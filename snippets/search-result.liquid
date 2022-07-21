@@ -1,0 +1,79 @@
+
+
+<div class="grid search-results">
+
+  {% if item.featured_image %}
+
+    <div class="grid__item one-third pl30">
+      <a href="{{ item.url }}" title="{{ item.title | escape }}">
+        {{ item.featured_image.src | product_img_url: 'medium' | img_tag: item.featured_image.alt }}
+      </a>
+    </div>
+  {% endif %}
+
+
+  
+  
+  <div class="grid__item two-thirds {% unless item.featured_image %}push--one-third{% endunless %}">
+    <h3 class="primary mb0">{{ item.title | link_to: item.url }}</h3>
+
+  
+
+    {% assign tag_price = 0 %}
+    {% assign tag = 'default' %}
+    {% if customer.tags.size > 0 %}
+    {% for cust_tag in customer.tags %}
+    {% if item.metafields.shappify_csp[cust_tag] %}
+    {% assign tag = cust_tag %}
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% if item.metafields.shappify_csp[tag] %}
+    {% assign tag_price = 1 %}
+    {% endif %}
+    {% if tag_price != 1 %}
+
+
+
+
+    
+     <span class="primary mb20 block" itemprop="price">
+        {{ bold_price | money }}
+      </span>
+
+
+
+    {% else %}
+    {% capture attribute_price_min %}{{tag}}_raw_lownum{% endcapture %}
+    {% capture attribute_price_max %}{{tag}}_price_high{% endcapture %}
+    {% capture attribute_price %}{{tag}}{% endcapture %}
+     
+        {% if bold_compare_at_price > bold_price %}
+          <span class="on-sale primary mb20 block" itemprop="price">
+            {{ item.metafields.shappify_csp[attribute_price] }}
+          </span>
+          <small>
+            Compare at:
+            {{ bold_compare_at_price_max | money }}
+          </small>
+        {% else %}
+          <span class="primary mb20 block" itemprop="price">
+            {{ item.metafields.shappify_csp[attribute_price] }}
+          </span>
+        {% endif %}
+     
+    {% endif %}
+
+
+
+
+
+    {% comment %}
+      Get a brief excerpt of raw text from the page/product
+    {% endcomment %}
+    <p class="light">{{ item.content | strip_html | truncatewords: 50 }}</p>
+  </div>
+
+</div>
+
+<hr>

@@ -1,0 +1,92 @@
+{% comment %}
+  --------------------------------
+  DEFAULT PRODUCT LAYOUT
+  --------------------------------
+{% endcomment %}
+<!-- INSIDE TECH & PARALLEL INNOVATION -->
+
+<section id="product-tech" class="product-tech" style="background-image:url('{{ product.metafields.parallel.image }}');">
+  <div id="product-tech-curtain--{{ product.handle | remove: 'biolite-' }}" class="product-tech-curtain show">
+  
+    <div class="product-tech-curtain__content wrapper wrapper--full_height wrapper--large pt50 pb50">
+      
+      <header class="product-tech__header text-center grid__item large--one-whole">
+        <h3 class="light">Inside our Technology</h3>
+      </header>
+
+      <div class="product-tech-curtain__body">
+        <div class="grid__item large--one-half"> 
+          <img class="product-tech-curtain__img" src="{{ product.metafields.techspec.image }}" alt="">
+        </div>
+
+        {% assign inside_tech = product.handle | remove: 'biolite-' | prepend: 'insidetech_' %}
+        
+        {% include inside_tech %}
+
+      </div>
+
+    </div>
+
+    <div data-control-curtain="#product-tech-curtain--{{ product.handle | remove: 'biolite-' }}" data-control-text="Parallel Innovation, Innovative Technology" data-control-fade=".product-tech-overlay">
+      <footer class="product-tech-curtain__footer">
+        <small class="caps gray-light alt"><span data-control-text-target="">Parallel Innovation</span></small>
+      </footer>
+      <div class="btn-circle-tab btn-circle-tab--bottom product-tech-curtain__tab">
+        <i class="icomoon icon-double-arrow"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-tech-overlay">
+    <div class="product-tech-overlay__content">
+      {% if product.metafields.parallel.title %}
+        <h3 class="light">{{ product.metafields.parallel.title }}</h3>
+      {% else %}
+        <h3 class="light">Parallel Innovation</h3>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="wrapper wrapper--large product-tech__content table">
+    <div class="table-cell">
+      <div id="parallel-innovation" class="grid__item large--one-half pull-right pt100 pl50">
+
+        <h4 class="alt">Parallel Innovation</h4>
+
+        {{ product.metafields.parallel.text }}
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- TECH SPECS -->
+<section id="product-specs" class="product-specs section product-specs--{{ product.handle | remove: 'biolite-' }}">
+  <div class="wrapper">
+    {% comment %}
+      Don't insert Tech Specs section for Product: eGift
+      todo: Add separate template for eGift?
+    {% endcomment %}
+
+    {% if product.title != 'BioLite eGift' %}
+      <header class="product-specs__header text-center">
+        <h3 class="light">Tech Specs</h3>
+      </header>
+      
+      {% comment %}
+        Grabbing the Tech Specs portion dynamically by product name
+        Unless product is eGift.
+
+        Could also use SKU for easier access
+        {{ bold_selected_or_first_available_variant.sku }}
+
+        Assign the tech_specs variable, then include techspecs-{file_name}
+      {% endcomment %}
+
+      {% assign tech_specs = product.handle | remove: 'biolite-' | prepend: 'techspecs_' %}
+      
+      {% include tech_specs %}
+    {% endif %}
+  </div>
+</section>

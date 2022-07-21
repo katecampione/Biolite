@@ -1,0 +1,64 @@
+{% comment %}
+
+  --------------------------------
+
+  BioLite /collections
+  and /products pages
+
+  --------------------------------
+
+{% endcomment %}
+
+
+
+<div class="collections-grid">
+<div class="wrapper wrapper--full">
+
+	  <div class="collections-hero-mobile">{% include 'hero-shop-welcome' %}</div>
+
+      <div class="grid__item large--one-quarter small-hidden">
+        {% include 'collection-sidebar-left' %}
+      </div>
+
+      <div class="grid__item large--three-quarters">
+
+        <div class="collections-hero">{% include 'hero-shop-welcome' %}</div>
+
+        <div class="no-products-available"> There are no products that match these filters</div>
+
+        <section id="product-grid" class="product-grid" itemtype="http://schema.org/SomeProducts">
+
+          	  {% assign collection = collections['all-products']  %}
+
+              {% assign all_products = collection.products %}
+
+          	  {% for product in all_products %}
+
+                  {% include 'collection-list-item' %}
+
+              {% endfor %}
+
+        </section>
+
+        {% if paginate.pages > 1 %}
+          <hr>
+
+          <div class="text-center">
+            {% include 'pagination-custom' %}
+          </div>
+        {% endif %}
+
+      </div>
+
+
+	</div>
+</div>
+<section class="interstitial section-xlarge" style="background-image:url('{{ 'bg-interstitial-2.jpg' | asset_url }}')">
+  <div class="wrapper table">
+    <div class="interstitial__content table-cell text-center">
+      <h3 class="mt0">Global impact in every purchase</h3>
+      <h6 class="light">With every purchase of a BioLite product, you are helping create lasting change in emerging markets of the developing world. The same technology that provides you with a clean, innovative camping experience is providing better living conditions, saving lives worldwide.  </h6>
+    </div>
+  </div>
+  <div class="interstitial__overlay interstitial__overlay--green"></div>
+</section>

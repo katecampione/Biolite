@@ -1,0 +1,439 @@
+{% comment %} Set some product details so we can use them in multiple spots {% endcomment %}
+{% assign product_title_shortened = product.title | remove: 'BioLite' %}
+{% assign default_variant = bold_selected_or_first_available_variant %}
+{% assign featured_image = bold_selected_or_first_available_variant.featured_image | default: product.featured_image %}
+{% assign features_and_specs = product.metafields.content.features_and_specs | split: ',' %}
+{% assign colors = product.metafields.colors.color | split: ',' %}
+
+{% capture product_price_meta %}
+<link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+<meta itemprop='excludedLocales' content='{{product.metafields.locale.excluded}}'/>
+<meta itemprop="priceCurrency" content="{{ shop.currency }}">
+{% if colors.size > 0 %}
+  <meta itemprop="productColor" content="{{ colors[0] }}">
+{% endif %}
+<meta itemprop='productID' content='{{ product.id }}' />
+<meta itemprop='productAddToCartText' content='{{ add_to_cart_text }}' />
+<meta itemProp='quantity' content="1"/>
+  {% for variant in product.variants %}
+{%- include 'bold-variant' with variant, hide_action: 'skip' -%}
+    {% if colors.size > 0 %}
+      {% unless (variant.option1 == "Default" and variant.option2 == "Default") %}
+        {% assign variant_color = variant.option2 %}
+        {% assign images = product.metafields.images[variant_color] | split: ','%}
+        <meta itemProp='variantImage' data-variant-id="{{ variant.id}}" content="{{ images[0] }}"/>
+        <meta itemprop='variantPrice' location='{{ variant.option1 }}' data-color="{{ variant.option2 }}" content='{{ bold_variant_price }}' data-variant-id='{{ variant.id }}' />
+        {% if variant.compare_at_price %}
+          <meta itemprop='comparePrice' location='{{ variant.option1 }}' data-color="{{ variant.option2 }}" content='{{ variant.compare_at_price }}' data-variant-id='{{ variant.id }}' />
+        {% endif %}
+      {% endunless %}
+    {% else %}
+      <meta itemprop='variantPrice' location='{{ variant.option1 }}' content='{{ bold_variant_price }}' data-variant-id='{{ variant.id }}' />
+      {% if variant.compare_at_price %}
+        <meta itemprop='comparePrice' location='{{ variant.option1 }}' content='{{ variant.compare_at_price }}' data-variant-id='{{ variant.id }}' />
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% capture product_price_options %}
+  {% for variant in product.variants %}
+{%- include 'bold-variant' with variant, hide_action: 'skip' -%}
+  {% if colors %}
+    {% unless (variant.option1 == "Default" and variant.option2 == "Default")%}
+      <option {% if variant==bold_selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}" data-color="{{ variant.option2 }}" data-locale="{{ variant.option1 }}">{{ bold_variant_price | money }}</option>
+    {% endunless %}
+  {% else %}
+    <option {% if variant==bold_selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}" data-locale="{{ variant.option1 }}">{{ bold_variant_price | money }}</option>
+  {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+<span itemscope itemtype="http://schema.org/Product">
+  <nav class="nav-horizontal nav-horizontal--products" data-sticky>
+    <div class="wrapper wrapper--full wrapper--max_height">
+      <div class="grid__item grid__item--p0 nav-horizontal__title">
+        {% assign product_title_shortened = product.title | remove: 'BioLite'  | remove: '(BaseCamp Sold Separately)' %}
+        <a href="#" data-control-scrollto="#product_top" class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</a><span class="product-title-divider">&nbsp;</span>
+
+
+      </div>
+      <div class="grid__item nav-horizontal__menu">
+        <p><span class="icomoon icon-impact-new"></span> Impact In Every Purchase. <a href="#" data-toggle-shop-with-impact title="See How">See How.</a></p>
+      </div>
+      <div class="grid__item nav-horizontal__action">
+        <a
+          href="#"
+          onClick="_gaq.push(['_trackEvent', 'Click', 'Sticky Nav Add To Cart', '{{ product.title }}']);"
+          class="btn btn-icon btn-icon--full btn-icon--right btn-primary btn-full cart-item--add ml0 mt0"
+          data-product-variant="{{ default_variant.id }}"
+          data-control-animation data-control-animation-target="#cart-item-badge"
+          data-control-animation-class="flash"
+           title="Add {{product.title}} to My Cart">
+          <span>Add to My Cart</span>
+          <i class=""></i>
+        </a>
+
+
+      {{ product_price_meta }}
+      </div>
+    </div>
+    <div class="mobile-shop-with-impact">
+      <p><span class="icomoon icon-impact-new"></span>Impact In Every Purchase. <a href="#" data-toggle-shop-with-impact title="See How">See How.</a></p>
+    </div>
+  </nav>
+<div class="product-page-view">
+  <div id="shop-with-impact-dropdown">
+    <div class="dropdown" style='background-image: url("https://cdn.shopify.com/s/files/1/0666/9741/files/Impact_Dropdown_BG.jpg?17717286138029674813");'>
+      <div class="wrapper wrapper--large">
+        <div class="grid__item" style="text-align: right;">
+          <span class="icomoon icon-close-circle" data-toggle-shop-with-impact></span>
+        </div>
+        <div class="grid__item">
+          <h2>A Purchase With Impact</h2>
+          <p style="padding-right:130px" class="light" mb20 pr40>
+           A portion of every sale from the BioLite shop gets re-invested
+into our work in bringing clean cooking and energy to
+thousands of families across India and sub-Saharan Africa.
+
+<br><br>
+
+We’re creating a new approach to energy access; one that empowers
+people to power themselves. And it all starts with you
+empowering us.
+          </p>
+
+          <iframe width="475" height="267" style="border: 4px solid #fff; margin-top:30px;" src="https://www.youtube.com/embed/mV1MRlhLnWQ" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- PRODUCT OVERVIEW -->
+  <section id="product-overview" class="single-product-features single-product-features--tall" style="background-image:url('large-camsptove-with-phone-and-twigs.jpg');">
+   <div class="wrapper wrapper--large wrapper--max_height">
+     <!-- THUMBNAILS AND IMAGES -->
+     <div class="grid__item large--five-eighths medium--one-whole table" id="product-thumbnails">
+
+        <img src="https://s3-us-west-2.amazonaws.com/biolitewebsite/shop-product-images/BioLite_GiftCard_r2.jpg" width="80%" alt="BioLite GiftCard" title="BioLite GiftCard" />
+
+
+     </div>
+     <!-- Content -->
+     <div class="grid__item large--three-eighths medium--one-whole table" id="product-content">
+         <div class="hide-on-mobile">
+           <h1>{{ product_title_shortened }}</h1>
+           <h2>{{ product.metafields.desc.short  }}</h2>
+
+
+           <p class="light">
+                  {{ product.content }}
+       </p>
+
+
+         </div>
+
+
+
+         <div id="qty-select">
+           <div class="qty-text light">Quantity</div
+             ><div class="qty-controls">
+             <span tabIndex="0" href="#" class="icomoon icon-quantity-minus"></span>
+             <span class="qty-text">1</span>
+             <span tabIndex="0" href="#" class="icomoon icon-quantity-plus"></span>
+           </div>
+           <input type="hidden" id="product-qty" name="name" value="1">
+         </div>
+
+
+
+        {% if product.tags contains 'soldout' %}
+
+
+         <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddSingleToCartForm">
+           <input type="hidden" name="id" value="{{ bold_selected_or_first_available_variant.id }}" />
+
+           <div class="add-to-cart-container">
+             <button class="btn btn-outline-primary mt20 cart-item--add">
+               <span id="AddToCartText">Product Sold Out</span>
+             </button>
+           </div>
+
+           <div class="price-container">
+
+              <select name="id" id="productSelect" class="product-single__variants">
+               {{ product_price_options }}
+              </select>
+              <span id="ProductPrice" itemprop="price" class="h4">
+                {{ default_variant.price | money }}
+                {% if bold_compare_at_price > bold_price %}
+                  <div class="compare-at">
+                    <span class="product-price-compare-small">normally</span> <span class="product-price-compare-strike">{{ default_variant.compare_at_price | money }}  </span>
+                  </div>
+                {% endif %}
+              </span>
+            </div>
+            <div style="clear: both;">
+
+            </div>
+       </form>
+
+{%- unless bundle_loaded == 'true' -%}
+{%- include 'shappify-bdl-load-bundle' -%}
+{%- assign bundle_loaded = 'true' -%}
+{%- endunless -%} 
+
+
+        <div>
+         <!--<p>{{ product.metafields.outofstock.email }}</p>-->
+
+       </div>
+
+
+       {% else %}
+
+
+       <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddSingleToCartForm">
+           <input type="hidden" name="id" value="{{ bold_selected_or_first_available_variant.id }}" />
+
+           <div class="add-to-cart-container">
+             <button  title="add {{product.title}} to cart" type="submit" onClick="_gaq.push(['_trackEvent', 'Click', 'Overview Add To Cart', '{{ product.title }}']);" name="add" id="AddToCart" class="btn btn-primary mt20 cart-item--add" data-product-variant="{{ default_variant.id }}">
+               <span id="AddToCartText">Add To My Cart</span>
+             </button>
+           </div>
+
+           <div class="price-container">
+
+              <select name="id" id="productSelect" class="product-single__variants">
+               {{ product_price_options }}
+              </select>
+              <span id="ProductPrice" itemprop="price" class="h4">
+                {{ default_variant.price | money }}
+                {% if bold_compare_at_price > bold_price %}
+                  <div class="compare-at">
+                    <span class="product-price-compare-small">normally</span> <span class="product-price-compare-strike">{{ default_variant.compare_at_price | money }}  </span>
+                  </div>
+                {% endif %}
+              </span>
+            </div>
+            <div style="clear: both;">
+
+            </div>
+       </form>
+        {% endif %}
+
+
+
+
+     </div>
+   </div>
+  </section>
+  <div class="mobile-wrapper open">
+   <h2 class="mobile-title"> Description </h2>
+   <section id="product-content" class="mobile-wrapper-content">
+     <div class="mobile-description">
+       <h2>{{ product.metafields.desc.short  }}</h2>
+
+
+           <p class="light">
+                  {{ product.content }}
+       </p>
+
+
+
+     </div>
+   </section>
+  </div>
+
+  <div class="wrapper related-products">
+   {% if product.metafields.recommendations.productHandles %}
+   <hr>
+
+   <section class="section">
+
+     <header class="related-products__header">
+       <h6>Customers typically purchase these products together</h6>
+     </header>
+
+     <div id="product-accessories" class="related-products">
+       {% comment %} Related products will be appended here {% endcomment %}
+     </div>
+
+   </section>
+   {% endif %}
+  </div>
+
+
+
+
+
+  <!-- </section> -->
+  <!-- #content -->
+
+  <!-- Scripts to hide and show all product reviews -->
+  <!-- @todo: 'show' btn if there aren't any reviews -->
+  <script>
+   $(document).ready(function(){
+     jQuery('#product-rating').append(' \
+     <a href="#" class="spr-summary-actions-allreviews gray-light" onclick="">See all Reviews</a>\
+     <a href="#" class="spr-summary-actions-hidereviews gray-light" onclick="">Hide Reviews</a>\
+     <a href="" class="spr-summary-actions-newreview gray-light" onclick="SPR.toggleForm({{product.id}});return false" style="float: left;">Write a review</a> \
+     ');
+
+     jQuery('.spr-summary-actions-hidereviews').hide();
+
+     /*
+      #HACK: don't know why is this change overwritting so I am adding a setTimeout to close this issue. <Rolando Perez.>
+     */
+
+     /*setTimeout(function(){
+       jQuery('.spr-reviews').attr("style","display:block;").addClass("show");
+     }, 7000);
+     */
+
+     jQuery(document).delegate('.spr-summary-actions-allreviews', 'click', function (event) {
+     event.preventDefault();
+     jQuery('.spr-reviews').removeClass('hide').addClass('show');
+     jQuery('.spr-summary-actions-allreviews').hide();
+     jQuery('.spr-summary-actions-newreview').show();
+     jQuery('.spr-load-more').show();
+     jQuery('.spr-form').removeClass('show').addClass('hide');
+     });
+
+     jQuery(document).delegate('#product-reviews .review-scrollto', 'click', function (event) {
+     event.preventDefault();
+     jQuery('.spr-summary-actions-allreviews').trigger( 'click' );
+     });
+
+     jQuery(document).delegate('.spr-summary-actions-newreview', 'click', function (event) {
+     jQuery('.spr-summary-actions-newreview').hide();
+     jQuery('.spr-summary-actions-allreviews').show();
+     jQuery('.spr-load-more').hide();
+     jQuery('.spr-reviews').removeClass('show').addClass('hide');
+     jQuery('.spr-form').removeClass('hide').addClass('show');
+     });
+
+     var paginateCallback = function(){
+       SPRCallbacks = {};
+
+       var nextPage = "",
+           lastPage = "",
+           pastComments = [],
+           nextAnchorTag = [],
+           commentsContainer = [],
+           html = "";
+
+       return function(e){
+         nextPage = $(".spr-pagination-next > a").attr("data-page");
+         lastPage = $(".spr-pagination-page > a").last().attr("data-page");
+         pastComments = $(".spr-reviews");
+         nextAnchorTag = $(".spr-pagination-next > a");
+         commentsContainer = $("#shopify-product-reviews .spr-reviews");
+
+         var comments = pastComments.clone();
+         comments.find(".spr-pagination").remove();
+         html = comments.html();
+
+         if(!SPRCallbacks.onReviewsLoad){
+           // pluging in into Shopify Product Reviews Object SPR;
+           SPRCallbacks.onReviewsLoad = function(e){
+             if(nextPage == lastPage){
+               $(".spr-load-more").hide();
+             }
+
+             if(pastComments.length > 0){
+               commentsContainer.prepend(html);
+             }
+
+           };
+
+           SPR.registerCallbacks();
+         }
+
+         nextAnchorTag.click();
+
+         return false;
+
+       }
+     }
+
+     $(".spr-load-more").click(paginateCallback());
+
+
+     /* AM - clone only reviews stars and numbers to the top */
+     jQuery('#product-rating .spr-summary-starrating').appendTo(".star-container-top");
+
+     //pull the intial text
+     var reviewtext = jQuery('#product-rating .spr-summary-caption').text();
+
+     console.log('reviewtext:',reviewtext);
+     //strip the "based on X review"
+     var numberreviews = reviewtext.replace(/on|Based|reviews|review/g,'');
+     numberreviews = numberreviews.replace(/\s+/g, '');
+     numberreviews = numberreviews.replace('(', '');
+     numberreviews = numberreviews.replace(')', '');
+     jQuery(".star-container-top").append('<span class="number-reviews-top">('+numberreviews+')</span>');
+
+     //Trigger opening of see all reviews, and write a review when you click the top
+     $('.top-see-all').click(function() {
+     jQuery('.spr-summary-actions-allreviews').trigger('click');
+     });
+
+     $('.top-write-a-review').click(function() {
+     jQuery('.spr-summary-actions-newreview').trigger('click');
+     SPR.toggleForm({{product.id}});
+     });
+
+     $(".mobile-wrapper").click(function(e){
+       var isOpened = $(this).hasClass("open"),
+           target = $(e.target);
+
+       if(isOpened && (target.hasClass("mobile-title") || target.hasClass("mobile-wrapper"))){
+         $(this).removeClass("open").addClass("closed");
+       }else{
+         $(this).removeClass("closed").addClass("open");
+       }
+     });
+
+   });
+  </script>
+
+  <!-- HERO VIDEO MODAL -->
+  {% if product.metafields.hero.video %}
+  <div id="hero-video--{{ product.handle | handlesize }}" class="modal">
+   <header class="modal__header">
+     {% comment %}
+     <div class="modal__title">{% if product.metafields.hero.video_title %} {{ product.metafields.hero.video_title }} {% else %} {{ product.title }} {% endif %}</div>{% endcomment %}
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+   <div class="modal__content modal__content--video">
+     <div data-control-youtube-video="{{ product.metafields.hero.video }}"></div>
+   </div>
+  </div>
+  {% endif %}
+
+  {% comment %}
+  Add the product data to our Javascript Objects for various magics
+  {% endcomment %}
+  {% if product %}
+  <script type="text/javascript">
+  jQuery(function() {
+  APP.data.current_product = {%- include 'bold-product', output: 'json' -%}
+  APP.data.current_product_variants = {{ product.variants | json }}
+  {% if product.metafields.bundle.productHandle %}
+  meta = {
+  'bundle' : {
+  'productHandle' : {{ product.metafields.bundle.productHandle | json }},
+  'desc' : {{ product.metafields.bundle.desc | json }},
+  }
+  }
+  APP.data.current_product_metafields = meta
+  APP.GetBundledProduct.attach(meta.bundle)
+  {% endif %}
+  APP.getRecommendedProducts.attach({{ product.metafields.recommendations.productHandles | json }})
+  });
+  </script>
+
+  {% endif %}
+</div>

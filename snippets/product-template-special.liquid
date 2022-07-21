@@ -1,0 +1,711 @@
+{% comment %}
+--------------------------------
+  BioLite PRODUCT SINGLE PAGE
+--------------------------------
+{% endcomment %}
+
+<a id="product_top" name="product_top" title="Product top"></a>
+
+{% include 'hero' %}
+
+{% comment %}
+  Set some product details so we can use them in multiple spots
+{% endcomment %}
+{% assign product_title_shortened = product.title | remove: 'BioLite' %}
+{% assign default_variant = bold_selected_or_first_available_variant %}
+{% assign featured_image = bold_selected_or_first_available_variant.featured_image | default: product.featured_image %}
+
+{% capture product_price_meta %}
+  <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+  <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+  <meta itemprop='productID' content='{{ product.id }}'/>
+  <meta itemprop='productAddToCartText' content='{{ add_to_cart_text }}'/>
+  {% for variant in product.variants %}
+{%- include 'bold-variant' with variant, hide_action: 'skip' -%}
+    <meta itemprop='variantPrice' location='{{ variant.option1 }}' content='{{ bold_variant_price }}' data-variant-id='{{ variant.id }}'/>
+    {% if variant.compare_at_price %}
+    <meta itemprop='comparePrice' location='{{ variant.option1 }}' content='{{ variant.compare_at_price }}' data-variant-id='{{ variant.id }}'/>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% capture product_price_options %}
+  {% for variant in product.variants %}
+{%- include 'bold-variant' with variant, hide_action: 'skip' -%}
+    <option {% if variant == bold_selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}" data-locale="{{ variant.option1 }}">{{ bold_variant_price | money }}</option>
+  {% endfor %}
+{% endcapture %}
+
+<span itemscope itemtype="http://schema.org/Product">
+
+<nav class="nav-horizontal nav-horizontal--products" data-sticky>
+  <div class="wrapper wrapper--full wrapper--max_height">
+    <div class="grid__item grid__item--p0 nav-horizontal__title">
+      {% assign product_title_shortened = product.title | remove: 'BioLite' %}
+      <a href="#" data-control-scrollto="#product_top" class="gray-warm" title="{{ product_title_shortened }}">{{ product_title_shortened }}</a>
+    </div>
+    <div class="grid__item nav-horizontal__menu">
+      <ul class="sticky-product-nav" data-control-activeitems>
+
+        <li class="active"><a href="#" data-control-scrollto="#product-overview" data-control-scrollto-offset="68" title="Overview">Overview</a></li>
+        <li><a href="#" data-control-scrollto="#product-features" data-control-scrollto-offset="68" title="Features">Features</a></li>
+        <li><a href="#" data-control-scrollto="#product-specs" data-control-scrollto-offset="68" title="Specs">Specs</a></li>
+        {% if product.metafields.review_feat.text %}
+          <li><a href="#" data-control-scrollto="#product-reviews" data-control-scrollto-offset="68" title="Reviews">Reviews</a></li>
+        {% endif %}
+
+      </ul>
+    </div>
+    <div class="grid__item nav-horizontal__action">
+      <a href="/products" class="btn btn-icon btn-icon--full btn-icon--right  btn-full btn-all-products" title="Back To Shop">
+        <span>Back To Shop</span>
+        <i class="icomoon icon-shop-small fa-circle-border fa-circle-border--medium"></i>
+      </a>
+
+      <a href="#"  onClick="_gaq.push(['_trackEvent', 'Click', 'Sticky Nav Add To Cart', '{{ product.title }}']);" class="btn btn-icon btn-icon--full btn-icon--right btn-primary btn-full cart-item--add ml0 mt0" data-product-variant="{{ default_variant.id }}" data-control-animation data-control-animation-target="#cart-item-badge" data-control-animation-class="flash" title="{{ add_to_cart_text }}">
+        <span>{{ add_to_cart_text }}</span>
+        <i class="icomoon icon-shoppingCart fa-circle-border fa-circle-border--medium"></i>
+      </a>
+      {{ product_price_meta }}
+    </div>
+  </div>
+</nav>
+
+<!-- PRODUCT OVERVIEW -->
+<section id="product-overview" class="single-product-features single-product-features--tall" style="background-image:url('large-camsptove-with-phone-and-twigs.jpg');">
+  <div class="wrapper wrapper--large wrapper--max_height">
+      <div class="grid__item large--one-half table">
+        <div class="table-cell">
+          {{ product.content }}
+
+   {% unless product.metafields.bundle.productHandle %}
+          <!-- AM changes -->
+
+
+
+           <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddSingleToCartForm">
+              <input type="hidden" name="id" value="{{ bold_selected_or_first_available_variant.id }}" />
+
+              <div class="add-to-cart-container">
+              <button type="submit"  onClick="_gaq.push(['_trackEvent', 'Click', 'Overview Add To Cart', '{{ product.title }}']);" name="add" id="AddToCart" class="btn btn-primary mt20 cart-item--add" data-product-variant="{{ default_variant.id }}">
+ 				<span id="AddToCartText">Add {{ product.title | remove: 'BioLite' }} To My Cart</span>
+              </button>
+			  </div>
+
+			<div class="price-container">
+			<select name="id" id="productSelect" class="product-single__variants">
+             {{ product_price_options }}
+            </select>
+            <span id="ProductPrice" itemprop="price" class="h4 primary-warm">
+
+            {{ default_variant.price | money }}
+            {% if bold_compare_at_price > bold_price %}
+			<div class="compare-at">
+            <span class="product-price-compare-small">normally</span> <span class="product-price-compare-strike">{{ default_variant.compare_at_price | money }}  </span>
+          	</div>
+  			{% endif %}
+            </span>
+			</div>
+
+            </form>
+
+{%- unless bundle_loaded == 'true' -%}
+{%- include 'shappify-bdl-load-bundle' -%}
+{%- assign bundle_loaded = 'true' -%}
+{%- endunless -%} 
+
+			<!-- end AM changes -->
+
+
+
+          {% endunless %}
+
+        </div>
+
+
+
+      </div>
+      <div class="grid__item large--one-half table">
+
+        {% if product.images.size > 1 %}
+        <div class="product-single__mini-slider">
+
+         <ul id="product-single__image" data-control-target>
+           {% for image in product.images %}
+             <li><img src="{{ image.src | img_url: 'large' }}" alt=""></li>
+           {% endfor %}
+         </ul>
+
+         <ul class="product-single__thumbnails" data-control-nav data-control-targets="#product-single__image">
+
+           {% for image in product.images %}
+             <li class="grid__item one-quarter">
+               <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" title="{{ image.alt | escape }}">
+             </li>
+           {% endfor %}
+
+         </ul>
+
+        </div>
+        {% endif %}
+      </div>
+  </div>
+</section>
+
+</span>
+
+<!-- PRODUCTS WITH BUNDLE -->
+{% if product.metafields.bundle.productHandle %}
+
+  <section id="bundled-offer" class="product-cards">
+    <div class="product-card product-card--bg_right product-without-bundle product-card--{{ product.handle | remove: 'biolite-'  }}" itemscope itemtype="http://schema.org/Product">
+      <div class="product-card__inner" style="background-image:url('{{ featured_image | img_url: 'large' }}');">
+        <div class="product-card__content">
+          <h3 class="mb0" itemprop="name">{{ product_title_shortened }}</h3>
+
+          {{ product_price_meta }}
+          <select name="id" id="productSelect" class="product-single__variants">
+            {{ product_price_options }}
+          </select>
+
+          <span id="ProductPrice" itemprop="price" class="product-grid-item__price h4 primary warm m0">
+            {{ default_variant.price | money }}
+          </span>
+
+          <p class="mt0 gray-light text-links bundle_url">
+            {{ product.metafields.product.desc }}
+          </p>
+
+          <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddNonBundleToCartForm">
+            <button type="submit" name="add" id="AddToCart" class="btn btn-primary mt20 cart-item--add" data-product-variant="{{ default_variant.id }}">
+            <span id="AddToCartText">{{ add_to_cart_text }}</span>
+            <input type="hidden" name="id" value="{{ bold_selected_or_first_available_variant.id }}" />
+          </button>
+        </form>
+        </div>
+        <div class="product-card__overlay"></div>
+      </div>
+    </div>
+
+    {% comment %}
+      Bundled item appended here
+    {% endcomment %}
+
+  </section>
+
+{% endif %}
+
+{% comment %}
+  PRODUCT FEATURES
+{% endcomment %}
+
+{% if product.metafields.features_slide01.image %}
+  <section id="product-features" class="single-product-features single-product-features--photo_bg">
+    <div class="wrapper wrapper--max_height single-product-features__inner">
+      <div class="grid__item large--one-half pr30">
+
+        <ul class="nav-circles nav-circles--transparent" data-control-nav data-control-targets="#single-product-slides, #single-product-slide-content">
+          {% if product.metafields.features_slide01.icon %}
+          <li>
+            <div class="circle icomoon"  onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 1', '{{ product.title }}']);">
+              <i class="{{ product.metafields.features_slide01.icon }}"></i>
+            </div>
+          </li>
+          {% endif %}
+
+          {% if product.metafields.features_slide02.icon %}
+          <li>
+            <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 2', '{{ product.title }}']);">
+              <i class="{{ product.metafields.features_slide02.icon }}"></i>
+            </div>
+          </li>
+          {% endif %}
+
+          {% if product.metafields.features_slide03.icon %}
+          <li>
+            <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 3', '{{ product.title }}']);">
+              <i class="{{ product.metafields.features_slide03.icon }}"></i>
+            </div>
+          </li>
+          {% endif %}
+
+          {% if product.metafields.features_slide04.icon %}
+          <li>
+            <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 4', '{{ product.title }}']);">
+              <i class="{{ product.metafields.features_slide04.icon }}"></i>
+            </div>
+          </li>
+          {% endif %}
+        </ul>
+
+        <ul id="single-product-slide-content" class="pt20" data-control-target>
+          {% if product.metafields.features_slide01.title %}
+          <li>
+            <h3 class="light">{{ product.metafields.features_slide01.title }}</h3>
+            <h6>{{ product.metafields.features_slide01.desc }}</h6>
+          </li>
+          {% endif %}
+
+          {% if product.metafields.features_slide02.title %}
+          <li>
+            <h3 class="light">{{ product.metafields.features_slide02.title }}</h3>
+            <h6>{{ product.metafields.features_slide02.desc }}</h6>
+          </li>
+          {% endif %}
+
+          {% if product.metafields.features_slide03.title %}
+          <li>
+            <h3 class="light">{{ product.metafields.features_slide03.title }}</h3>
+            <h6>{{ product.metafields.features_slide03.desc }}</h6>
+          </li>
+          {% endif %}
+
+          {% if product.metafields.features_slide04.title %}
+          <li>
+            <h3 class="light">{{ product.metafields.features_slide04.title }}</h3>
+            <h6>{{ product.metafields.features_slide04.desc }}</h6>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="single-product-features__overlay"></div>
+
+    <ul id="single-product-slides" class="single-product-slides" data-control-target>
+      {% if product.metafields.features_slide01.image %}
+      <li style="background-image:url('{{ product.metafields.features_slide01.image }}');"></li>
+      {% endif %}
+
+      {% if product.metafields.features_slide02.image %}
+      <li style="background-image:url('{{ product.metafields.features_slide02.image }}');"></li>
+      {% endif %}
+
+      {% if product.metafields.features_slide03.image %}
+      <li style="background-image:url('{{ product.metafields.features_slide03.image }}');"></li>
+      {% endif %}
+
+      {% if product.metafields.features_slide04.image %}
+      <li style="background-image:url('{{ product.metafields.features_slide04.image }}');"></li>
+      {% endif %}
+
+    </ul>
+  </section>
+{% endif %}
+
+{% comment %}
+  Product Tech Curtain - Inside our Tech, Parallel Innovation sections
+{% endcomment %}
+
+{% if product.title == 'BioLite KettleCharge' %}
+  {% comment %}
+    Products without the Parallel Innovation section
+    Kettlepot, Portable Grill, BaseCamp Carry Pack, FlexLight
+  {% endcomment %}
+
+  <section id="product-tech" class="product-tech without-curtain product-tech--{{ product.handle | remove: 'biolite-'  }}">
+    <div class="product-tech-curtain show">
+      <div class="product-tech-curtain__content wrapper wrapper--full_height wrapper--large pt50 pb50">
+        <header class="product-tech__header text-center grid__item large--one-whole">
+          <h3 class="light">Inside our Technology</h3>
+        </header>
+
+        <div class="product-tech-curtain__body">
+          <div class="grid__item large--one-half">
+            <img class="product-tech-curtain__img" src="{{ product.metafields.techspec.image }}" alt="">
+          </div>
+
+          {% assign inside_tech = product.handle | remove: 'biolite-' | prepend: 'insidetech_' %}
+
+          {% include inside_tech %}
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% elsif product.title == 'BioLite FlexLight' or product.title == 'BioLite Carry Pack' or product.title == 'BioLite KettlePot' or product.title == 'BioLite Portable Grill' %}
+
+  {% comment %}
+    Hide both the Parallel Innovation and Inside our Tech sections
+    FlexLight, BaseCamp Carry Pack
+  {% endcomment %}
+
+{% elsif product.title == 'BioLite SiteLight' %}
+
+{% else %}
+
+  {% comment %}
+    Show Parallel Innovation and Inside our Tech sections
+  {% endcomment %}
+
+
+
+{% endif %}<!-- conditional: inside our tech, parallel innovation section -->
+
+{% comment %}
+  GLOBAL IMPACT SECTION
+  KettlePot, Portable Grill, BaseCamp Carry Pack, FlexLight
+{% endcomment %}
+{% if product.title == 'BioLite KettleCharge' %}
+  <section class="interstitial section-xlarge mb40" style="background-image:url('{{ 'bg-interstitial-2.jpg' | asset_url }}')">
+    <div class="wrapper table">
+      <div class="interstitial__content table-cell text-center">
+        <h3 class="mt0">Global Impact in Every Purchase</h3>
+        <h6 class="light">With every purchase of a BioLite product, you are helping create lasting change for communities living in energy poverty. The same technology that provides you with a clean, innovative outdoor experience is providing cleaner daily cooking conditions, curbing climate change and saving lives worldwide.</h6>
+      </div>
+    </div>
+    <div class="interstitial__overlay interstitial__overlay--green"></div>
+  </section>
+{% endif %}<!-- conditional: global impact section -->
+
+
+<!-- <section id="content" class=""> -->
+  <section id="product-specs" class="product-specs section product-specs--{{ product.handle | remove: 'biolite-' }}">
+    <div class="wrapper">
+      {% comment %}
+        Don't insert Tech Specs section for Product: eGift
+        todo: Add separate template for eGift?
+      {% endcomment %}
+
+      {% if product.title != 'BioLite eGift' %}
+        <header class="product-specs__header text-center">
+          <h3 class="light">Tech Specs</h3>
+        </header>
+
+        {% comment %}
+          Grabbing the Tech Specs portion dynamically by product name
+          Unless product is eGift.
+
+          Could also use SKU for easier access
+          {{ bold_selected_or_first_available_variant.sku }}
+
+          Assign the tech_specs variable, then include techspecs-{file_name}
+        {% endcomment %}
+
+        {% assign tech_specs = product.handle | remove: 'biolite-' | prepend: 'techspecs_' %}
+
+        {% include tech_specs %}
+      {% endif %}
+    </div>
+  </section>
+
+  {% if product.title == 'BioLite FlexLight' or product.title == 'BioLite Carry Pack' or product.title == 'BioLite KettlePot' or product.title =='BioLite Portable Grill' %}
+    <section class="interstitial section-xlarge mb40" style="background-image:url('{{ 'bg-interstitial-2.jpg' | asset_url }}')">
+      <div class="wrapper table">
+        <div class="interstitial__content table-cell text-center">
+          <h3 class="mt0">Global impact in every purchase</h3>
+          <h6 class="light">With every purchase of a BioLite product, you are helping create lasting change in emerging markets of the developing world. The same technology that provides you with a clean, innovative camping experience is providing better living conditions, saving lives worldwide.  </h6>
+        </div>
+      </div>
+      <div class="interstitial__overlay interstitial__overlay--green"></div>
+    </section>
+  {% endif %}
+
+
+  {% if product.title == 'BioLite SiteLight' %}
+    <!-- SITELIGHT: HIDE INSIDE TECH -->
+    <section id="product-tech" class="product-tech product-tech--sitelight" style="background-image:url('{{ product.metafields.parallel.image }}');">
+
+      <div class="wrapper wrapper--large product-tech__content table">
+        <div class="table-cell">
+          <div id="parallel-innovation" class="grid__item large--one-half pull-right pl50">
+
+            <h4 class="alt">Parallel Innovation</h4>
+
+            {{ product.metafields.parallel.text }}
+
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+
+  <div class="product-reviews-container">
+  <div class="wrapper">
+
+    {% assign review_featured = product.metafields.review_feat.text %}
+    {% assign review_details = product.metafields.review_feat.details %}
+    {% assign review_rating = product.metafields.review_feat.rating %}
+
+    {% if review_featured %}
+
+    <section id="product-reviews" class="review-quote">
+      <div class="review-quote__body">
+        <h6 class="review-quote__quote">{{review_featured }}</h6>
+      </div>
+      <div class="review-quote__details">
+        {{ review_details }}
+
+        <div class="review-stars review-stars--{{ review_rating }} mt30"></div>
+        <p class="gray-light text-links">
+          <a href="#" class="underline review-scrollto" data-control-scrollto="#product-rating" data-control-scrollto-offset="68" title="See All Reviews">See All Reviews</a>
+        </p>
+      </div>
+    </section>
+
+    {% endif %}
+
+
+    <section class="product-featurette section-large pt0--mobile" itemscope itemtype="http://schema.org/Product">
+      <div class="product-featurette__image grid__item large--one-half">
+        <img src="{{ featured_image | img_url: 'large' }}" alt="{{ product.title }}" title="{{ product.title }}">
+      </div>
+      <div class="product-featurette__content grid__item large--one-half table">
+        <h3 class="alt baseline" itemprop="name">{{ product.title }}</h3>
+
+        {{ product_price_meta }}
+        <select name="id" id="productSelect" class="product-single__variants">
+          {{ product_price_options }}
+        </select>
+
+        <span id="ProductPrice" itemprop="price" class="product-grid-item__price h1 primary light tight m0">
+          {{ default_variant.price | money }}
+        </span>
+
+        {% if product.metafields.bundle.productHandle %}
+          <p class="gray-light text-links baseline">{{ product.metafields.product.desc }}</p>
+        {% endif %}
+
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddReviewedToCartForm" class="mb40">
+
+          <br>
+          <button type="submit"  onClick="_gaq.push(['_trackEvent', 'Click', 'Bottom Add To Cart', '{{ product.title }}']);" name="add" id="AddToCart" class="btn btn-primary cart-item--add" data-product-variant="{{ default_variant.id }}">
+            <span id="AddToCartText">{{ add_to_cart_text }}</span>
+          </button>
+
+        </form>
+        <div class="list-toggle mb20">
+<div class="list-toggle__title" data-control-sibling="" data-control-toggle-icons="fa-plus-circle, fa-minus-circle"><i class="fa fa-plus-circle"></i> <span>
+
+  CampStove Bundle Reviews</span></div>
+<div class="list-toggle__content">
+<div class="spr-review" id="spr-review-668235">
+<div class="spr-review-header"><span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i></span>
+<h3 class="spr-review-header-title">Christmas Present for My Husband</h3>
+<span class="spr-review-header-byline"><strong>Nisa</strong> on <strong>Sep 23, 2014</strong></span></div>
+<div class="spr-review-content">
+<p class="spr-review-content-body">I bought the Camp Stove Bundle for my husband last Christmas, he loved it! We took it on our first camping trip to Big Bend National Park. We made eggs and bacon along with morning coffee on the stove. I would highly recommend this product. It is sturdy and good quality and we expect to use it for many years to come</p>
+</div>
+</div>
+<div class="spr-review" id="spr-review-668231">
+<div class="spr-review-header"><span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i></span>
+<h3 class="spr-review-header-title">I can't begin to tell you how pleased I am.</h3>
+<span class="spr-review-header-byline"><strong>Linda A.</strong> on <strong>Sep 17, 2014</strong></span></div>
+<div class="spr-review-content">
+<p class="spr-review-content-body">I can't begin to tell you how pleased I am with the BioLite Camp Stove. In all honesty, we were a bit reluctant when we first set it up. But after following the instructions we were amazed at how easy and fast it started. In addition, using it to charge the cell phone is a bonus ! We cooked 2 thick lamb chops using the grill attachment and within 15 minutes they were done. The amount of heat that is generated is amazing. One of the best investments I've made.</p>
+</div>
+</div>
+<div class="spr-review" id="spr-review-668230">
+<div class="spr-review-header"><span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i></span>
+<h3 class="spr-review-header-title">This really surprised my husband and son</h3>
+<span class="spr-review-header-byline"><strong>Karen</strong> on <strong>Aug 22, 2014</strong></span></div>
+<div class="spr-review-content">
+<p class="spr-review-content-body">I bought this for my husband for Christmas last year and he looked at it, gave me that 'Uhmm...thanks' look and promptly put it away, never even taking it out of its box. Then, we went up to the Colorado mountains for some camping in July. I made sure it made it into the truck when we were packing. Well, it rained the whole time we were up there. We were stuck under a tarp a lot. He finally began to use it and is now addicted. He brags about it to all his buddies.</p>
+</div>
+</div>
+<div class="spr-review" id="spr-review-668090">
+<div class="spr-review-header"><span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i></span>
+<h3 class="spr-review-header-title">What a great product</h3>
+<span class="spr-review-header-byline"><strong>Reid</strong> on <strong>Dec 13, 2014</strong></span></div>
+<div class="spr-review-content">
+<p class="spr-review-content-body">I got the bundle this summer, and although I've only been able to use it a few times, it was great. It burns well and having grilled zucchini at my campsite was awesome! I am a sea kayaker and I would recommend this stove to any sea kayaker because combining it with a small solar panel I have has allowed me to buy a $5 app that gives me gps with official NOAA charts that would cost me $4-$500 for a gps unit that does the same.</p>
+</div>
+</div>
+<div class="spr-review" id="spr-review-668040">
+<div class="spr-review-header"><span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i></span>
+<h3 class="spr-review-header-title">Fantastic stove</h3>
+<span class="spr-review-header-byline"><strong>bill</strong> on <strong>Aug 13, 2013</strong></span></div>
+<div class="spr-review-content">
+<p class="spr-review-content-body">This is the best survival stove I have used in a long time. Not only does it generate power while you use it but it also burns the wood so efficiently that after using it non-stop for over 3 hours I had nothing more than a tea spoon of ash. I boiled a full pot water at 7,000 feet in just 3.5 min wow! You are crazy not to own this stove. I will be ordering the bigger version nice job BioLite, I am proud to have invested in your company keep up the good work.</p>
+</div>
+</div>
+<div class="spr-review" id="spr-review-668042">
+<div class="spr-review-header"><span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i></span>
+<h3 class="spr-review-header-title">Great Preparedness Stove Bundle</h3>
+<span class="spr-review-header-byline"><strong>Tina</strong> on <strong>Aug 14, 2013</strong></span></div>
+<div class="spr-review-content">
+<p class="spr-review-content-body">I purchased the BioLite Stove, Pitcher and Grill Bundle as preparedness items. I started a fire in the stove, used the pitcher to heat water for making tea and a freeze dried meal. The stove was easy, took surprisingly little "twig" fuel and the pitcher heated the water to boiling very fast. The fan certainly got the fire burning very hot. I did not use the grill attachment at this time. I highly recommend getting the set for an emergency situation.</p>
+</div>
+</div>
+</div>
+</div>
+
+        <div class="list-toggle mb20">
+<div class="list-toggle__title" data-control-sibling="" data-control-toggle-icons="fa-plus-circle, fa-minus-circle"><i class="fa fa-plus-circle"></i> <span>NanoGrid Reviews</span></div>
+<div class="list-toggle__content">
+<div class="spr-review" id="spr-review-697542">
+<div class="spr-review-header"><span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i></span>
+<h3 class="spr-review-header-title">NanoGrid Customer Service</h3>
+<span class="spr-review-header-byline"><strong>Gary Brown</strong> on <strong>Apr 28, 2015</strong></span></div>
+<div class="spr-review-content">
+<p class="spr-review-content-body">I now own all of BioLite products except BaseCamp which at the moment I have no requirement for. Maybe in the future. Very happy with the product and even more so with customer service.Had two problems with NanoGrid product. One was a minor design problem (waterproof plug on main unit) wouldn't stay plugged in. Shocked at how quickly Biolite addressed and fixed this problem. Like asking for help from an old friend. Second problem was related to my wife's cat thinking the 10 foot cord on one of my SiteLights was its new chew toy! This time I was treated like an old friend who they owed a favor! Thanks Dale. I believe the only thing better than their product is BioLites service and pride in what they sell and what BioLite is doing for the disadvantaged around the globe. I believe in karma and expect BioLite to be around for along time. Plus one of the great features of the NanoGrid is it can be charged by an external battery pack while running to greatly extend it's run time. Or even your car or all terrain vehicle thru a usb connection for a run time beyond anything that would be useful. Fantastic product for back packers for sure.</p>
+</div>
+</div>
+<div class="spr-review" id="spr-review-667908">
+<div class="spr-review-header"><span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i></span>
+<h3 class="spr-review-header-title">I use this almost every day!</h3>
+<span class="spr-review-header-byline"><strong>Katherine</strong> on <strong>Apr 11, 2015</strong></span></div>
+<div class="spr-review-content">
+<p class="spr-review-content-body">My husband is a big fan of BioLite products, but I'm not much of an "outdoors person" so I never really got into it. He bought me the Nanogrid system a couple of weeks ago and I have to say, I use this almost every day. We use it on the boat, to walk the dogs at night or early morning, I even hung it on the porch with the Sitelights and plugged my iPad in and played music while enjoying some wine on a relaxing evening. One of the best gifts I've ever gotten. I hope you guys make more stuff like this in the future!</p>
+</div>
+</div>
+<div class="spr-review" id="spr-review-667909">
+<div class="spr-review-header"><span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i></span>
+<h3 class="spr-review-header-title">Great Job!</h3>
+<span class="spr-review-header-byline"><strong>Monica</strong> on <strong>Apr 11, 2015</strong></span></div>
+<div class="spr-review-content">
+<p class="spr-review-content-body">I love all of your stuff, but this may be one of my favorites. This flashlight/lantern/charger/battery pack is amazing. Great Job BioLite!!</p>
+</div>
+</div>
+<div class="spr-review" id="spr-review-667910">
+<div class="spr-review-header"><span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i></span>
+<h3 class="spr-review-header-title">Lots of light with light weight</h3>
+<span class="spr-review-header-byline"><strong>Douglas C</strong> on <strong>Mar 17, 2015</strong></span></div>
+<div class="spr-review-content">
+<p class="spr-review-content-body">Just got to use the powerlite and 2 sitelites this weekend. Easy to fit in backpack and worked great to light the camp site and tent. We also purchased a 10 by 10 ft. canopy and we hung the lights on 3 corners of the canopy with great results. This is an awesome tool and a "must-have" for any camper or hiker.</p>
+</div>
+</div>
+<div class="spr-review" id="spr-review-667912">
+<div class="spr-review-header"><span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i></span>
+<h3 class="spr-review-header-title">Winter camp with the NanoGrid</h3>
+<span class="spr-review-header-byline"><strong>Shawn Davis </strong> on <strong>Mar 10, 2015</strong></span></div>
+<div class="spr-review-content">
+<p class="spr-review-content-body">Another must have product from BioLite! Core essentials for the modern off-grid camper now includes a power source for your 5v devices. For me personally as a Scout Leader, this also means I can be relied on to have an emergency phone available if needed at all times. Designing what amounts to a small handheld device around a very high storage li-ion battery was very well conceived. If that was all it was I'd be satisfied...but wait! It's also a high lumen output lantern, and a dual LED flashlight in cool white that really cuts through the night. The SiteLight chainable extension lights (included) worked well, and did not dim the lantern when plugged in the main light. I used the kit this past weekend in -16C temperatures, charged my iPhone from dead twice, and used the light itself for approximately 8 hours and still has 50% charge when I got home. I'd like to see a built in hanger on the next generation of the SiteLight, to make hanging them easier, I always have an assortment of twist ties, small carabiners and twine with me so it was not a real issue. 100% would recommend the NanoGrid to anyone looking to not only consolidate their lantern, flashlight and battery backup into one device, but also for the quality and customer support in dealing with BioLite.</p>
+</div>
+</div>
+<div class="spr-review" id="spr-review-667916">
+<div class="spr-review-header"><span class="spr-starratings spr-review-header-starratings"><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i><i class="spr-icon spr-icon-star"></i></span>
+<h3 class="spr-review-header-title">Rad BioLite NanoGrid enhanced my experience!</h3>
+<span class="spr-review-header-byline"><strong>Liz T.</strong> on <strong>Feb 17, 2015</strong></span></div>
+<div class="spr-review-content">
+<p class="spr-review-content-body">BioLite has always been a favorite of mine between their incredible, reliable, innovative products and their awesome ethos. They۪ve continued to excite me with their new NanoGrid. A new charging and lighting system, it includes two separate components (1) the PowerLighta three-in-one rechargeable battery, lantern, and flashlight, and (2) two SiteLights. I love its pocket size (and light weight), the light is bright, but atmospheric (easy to be around and important to me while out in the wilderness), and it was so great to charge my phone so I could capture the special moments. So cook some dinner under the lights and snap a few photos by your fire while roasting marshmallows! BioLite has done it again!</p>
+</div>
+</div>
+</div>
+</div>
+
+      </div>
+    </section>
+
+    {% if product.metafields.recommendations.productHandles %}
+    <hr>
+
+    <section class="section">
+
+      <header class="related-products__header">
+        <h6>We think you'll like these related products</h6>
+      </header>
+
+      <div id="product-accessories" class="related-products">
+        {% comment %}
+          Related products will be appended here
+        {% endcomment %}
+      </div>
+
+    </section>
+    {% endif %}
+
+  </div>
+  </div>
+<!-- </section> --><!-- #content -->
+
+<!-- Scripts to hide and show all product reviews -->
+<!-- @todo: 'show' btn if there aren't any reviews -->
+<script>
+  jQuery('#product-rating').append(' \
+    <a href="#" class="spr-summary-actions-allreviews gray-light" onclick="">See all Reviews</a>\
+    <a href="#" class="spr-summary-actions-hidereviews gray-light" onclick="">Hide Reviews</a>\
+    <a href="" class="spr-summary-actions-newreview gray-light" onclick="SPR.toggleForm({{product.id}});return false" style="float: left;">Write a review</a> \
+  ');
+
+  jQuery('.spr-summary-actions-hidereviews').hide();
+  jQuery('.spr-reviews').hide();
+
+  jQuery(document).delegate('.spr-summary-actions-allreviews', 'click', function (event) {
+    event.preventDefault();
+    jQuery('.spr-reviews').addClass('show');
+    jQuery('.spr-summary-actions-allreviews').hide();
+    jQuery('.spr-summary-actions-hidereviews').show();
+  });
+
+  jQuery(document).delegate('.spr-summary-actions-hidereviews', 'click', function (event) {
+    event.preventDefault();
+    jQuery('.spr-reviews').removeClass('show');
+    jQuery('.spr-summary-actions-allreviews').show();
+    jQuery('.spr-summary-actions-hidereviews').hide();
+  });
+
+  jQuery(document).delegate('#product-reviews .review-scrollto', 'click', function (event) {
+    event.preventDefault();
+    jQuery('.spr-summary-actions-allreviews').trigger( 'click' );
+  });
+
+  jQuery(document).delegate('.spr-summary-actions-newreview', 'click', function (event) {
+    jQuery('.spr-summary-actions-newreview').hide();
+  });
+
+
+  	/* AM - clone only reviews stars and numbers to the top */
+  jQuery('#product-rating .spr-summary-starrating').appendTo(".star-container-top");
+
+  //pull the intial text
+  var reviewtext = jQuery('#product-rating .spr-summary-caption').text();
+
+  //strip the "based on X review"
+  var numberreviews = reviewtext.replace(/on|Based|reviews|review/g,'');
+  numberreviews = numberreviews.replace(/\s+/g, '');
+  jQuery(".star-container-top").append('<span class="number-reviews-top">('+numberreviews+')</span>');
+
+
+  //Trigger opening of see all reviews, and write a review when you click the top
+  $('.top-see-all').click(function() {
+	jQuery('.spr-summary-actions-allreviews').trigger('click');
+   });
+
+  $('.top-write-a-review').click(function() {
+	jQuery('.spr-summary-actions-newreview').trigger('click');
+	SPR.toggleForm({{product.id}});
+  });
+
+</script>
+
+<!-- HERO VIDEO MODAL -->
+{% if product.metafields.hero.video %}
+  <div id="hero-video--{{ product.handle | handlesize }}" class="modal">
+    <header class="modal__header">
+      {% comment %}<div class="modal__title">{% if product.metafields.hero.video_title %} {{ product.metafields.hero.video_title }} {% else %} {{ product.title }} {% endif %}</div>{% endcomment %}
+      <div class="modal--close">
+        <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+      </div>
+    </header>
+    <div class="modal__content modal__content--video">
+      <div data-control-youtube-video="{{ product.metafields.hero.video }}"></div>
+    </div>
+  </div>
+{% endif %}
+
+{% comment %}
+  Add the product data to our Javascript Objects for various magics
+{% endcomment %}
+{% if product %}
+  <script type="text/javascript">
+    jQuery(function() {
+      APP.data.current_product = {%- include 'bold-product', output: 'json' -%}
+      APP.data.current_product_variants = {{ product.variants | json }}
+      {% if product.metafields.bundle.productHandle %}
+        meta = {
+          'bundle' : {
+            'productHandle' : {{ product.metafields.bundle.productHandle | json }},
+            'desc' : {{ product.metafields.bundle.desc | json }},
+          }
+        }
+        APP.data.current_product_metafields = meta
+        APP.GetBundledProduct.attach(meta.bundle)
+      {% endif %}
+      APP.getRecommendedProducts.attach({{ product.metafields.recommendations.productHandles | json }})
+    });
+  </script>
+
+{% endif %}

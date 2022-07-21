@@ -1,0 +1,573 @@
+<style>
+  
+.nav-featured-area .featured-item-description:hover {    text-decoration:none; }
+.nav-featured-area .featured-item-description:active {    text-decoration:none; }
+  a.nav-featured-area-link:active .featured-item {
+    text-decoration:none;
+
+}
+  
+  .img-responsive { 
+    /* other definitions */
+    width:100%;
+}
+      
+.image {
+    position:relative;
+    display:inline-block;
+  	opacity: 1;
+  	line-height:normal;
+}
+.overlay {
+    display:none;
+  	vertical-align:middle;
+    transition: all 150ms ease-in-out;
+    transform: scale3d(1, 1, 1);
+    padding:5px;
+}
+.image:hover .overlay {
+    width:100%;
+    height:100%;
+	background-color: rgba(32, 160, 157, 0.8);
+  	position:absolute;
+    top:0;
+    left:0;
+    display:inline-block;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+  	text-align:center;
+    
+}
+  
+.arrow {
+	border-top: 10px solid transparent !important;
+    border-bottom: 10px solid transparent !important; 
+    border-right:10px solid light-grey !important;
+}
+  
+.row img {
+  max-width:100%;
+}
+  
+.light, .baseline, .mb10{
+  font-size:24px;
+}
+  
+b {
+  margin-top:1000px;
+}
+  
+  .hero .hero__viewport {
+  height: 80% !important;
+}
+  
+  h1 {
+  font-size: 60px !important;
+  font-family: "din-next-pro";
+  font-weight: normal;
+}
+  
+.staff-grid {
+padding-top: 30px;
+  overflow:visible;
+
+}
+  
+  .modal {
+  height:625px; !important;
+background-color: rgba(255, 255, 255, 0);
+}
+  
+  .modal--close {
+  border-left: 0px solid rgba(255, 255, 255, 0.15);
+
+}
+  
+  .modal__header {
+  height: 80px;
+  background-color: #252729;
+  background-color: rgba(37, 39, 41, 0);
+}
+  
+  .hero .hero__inner.hero__inner--light {
+   background-color: none !important; 
+}
+  
+
+  
+@media screen and (max-width: 767px) {
+  .row {
+  	font-size:3vw;
+  }
+  
+  .mobile-shop-btn {
+  	display:inline;
+  }
+  
+  #popup {
+  	background-color:black;
+  }
+}
+  
+  h5 {
+  font-size: 25px;
+  font-family: "din-next-pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+  
+  .btn.btn-primary:hover, .btn.btn-green:hover {
+  color: #fff;
+  background-color: #319c9b;
+    border:1px solid #319c9b;
+}
+  
+  .btn {
+    line-height:1;
+  }
+  
+  .btn.btn-outline-primary, .btn.btn-outline-green {
+    margin-top:1px; 
+    border: 1px solid #35a8a6;
+    
+  }
+  
+  
+  
+  .mobile-shop-btn{
+  	display:none;
+  }
+  
+  @media screen and (max-width:767px) {
+    .img-hide{
+    	display:none;
+    }
+    
+   .table-cell {
+    vertical-align: middle !important;
+  }
+    
+    .icon-question {
+    	display:none;
+      color:#fff;
+    }
+    
+      h1 {
+  font-size: 34px !important; 
+ 
+}
+     
+   h3 {
+  font-size: 24px !important; 
+ 
+}
+ 
+   h6 {
+  width: 90% !important; 
+ }
+    
+    .staff-grid-item {
+  margin-bottom: 50px;
+}
+    
+    .staff-grid-item__photo {
+  height: 320px;
+}
+    
+  .staff-grid-item .btn.btn-primary, .btn.btn-green {
+  margin-right: 20px;
+}
+    
+      .logo-small {
+    width: 250px;
+  }
+    
+    .col-sm-6 {
+      margin-top:15px;
+    }
+    
+    .row {
+      padding-bottom: 0px !important;
+      width: 100% !important;
+     
+  }
+  }
+  
+.super-nav .super-nav-right span img {margin:0 4px 0 0; position:relative;top: 0px;}
+  .badge { line-height:21px; }
+  .left-nav > li > a > img {margin: -5px 5px 0 0; position: relative;}
+
+</style>
+
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.11/jquery.popupoverlay.js"></script>
+
+  <section class="hero hero--small">
+    <div class="hero__viewport">
+      <div class="hero__inner hero__inner--light">
+        <div class="hero__body wrapper table">
+          <div class="table-cell text-center">
+
+
+              <h1 class="light ">2016 Energy Ecosystem</h1>
+             <h1 class="mt0"><img class="logo-small mt0" src="https://cdn.shopify.com/s/files/1/0666/9741/files/Cook_Charge_Light-01.svg?11809344132762397271" width="300" alt="Cook Charge Light"></h1>
+
+           
+          </div>
+        </div>
+      </div>
+      <div class="hero__image" style="background-image: url('https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection_hero_r3.jpg?17226739304164721441');"></div>
+    </div>
+  </section>
+
+
+<section class="section-tight">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item">
+          
+        <div class="rte">
+          
+          <!--First section of page-->
+          <h3 class = "faq-title light primary" style = "text-align:center; font-size:34px;">Designed to Work Better, Together</h3>
+          
+          <h6 class = "light gray-warm text-center mb30" style = "width:45%; font-size:16px; margin:0 auto;">Do more with less. BioLite’s 2016 Energy Ecosystem is a full cooking, charging, and lighting toolkit for life outside and on the go.</h6>
+          
+          <!--IMAGE GRID-->
+          <section id = "staff-grid" class = "grid-wrap">
+          <div class = "staff-grid">         
+            
+            <div class="staff-grid-item grid__item large--one-third">
+                  <div class="staff-grid-item__photo" style="background-image: url('https://cdn.shopify.com/s/files/1/0666/9741/files/PowerLightMini_1_teal_1170x1170_large.jpg?10357694140175756365'); background-color:white; background-size:contain;">
+                    
+                  </div>
+            
+            	<footer class = "staff-grid-item__footer">
+                 <h3 class="gray-warm baseline text-center mb10">PowerLight Mini</h3>
+                 <p class = "light baseline gray-medium" style = "font-size:16px;">See. Be Seen. Be Charged.</p>
+
+              <a href="/products/powerlight-mini" class="btn btn-primary mt30" data-control-modal="#hero-video--powerlight-mini" title="Watch"><i class="fa fa-r fa-play" style="padding-right:5px;"></i> <span>Watch</span> </a>
+                      <div id="hero-video" class="modal">
+       
+     <header class="modal__header">
+      <div class="modal--close">
+        <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+      </div>
+    </header>
+                        
+    <div id="hero-video--powerlight-mini" class="modal">
+   <header class="modal__header">
+     
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+   <div class="modal__content modal__content--video">
+     <div data-control-youtube-video="riYgmRdBpKo"></div>
+   </div>
+  </div>
+  </div>
+			 <a href="/products/powerlight-mini" class="btn btn-outline-primary mt30" title="Shop Now"> <span>Shop Now</span> </a>
+            	</footer>
+				</div>
+            
+        <div class="staff-grid-item grid__item large--one-third">
+                  <div class="staff-grid-item__photo" style="background-image: url('//cdn.shopify.com/s/files/1/0666/9741/products/SolarPanel5__1_large.jpeg?v=1455122408'); background-color:white; background-size:contain;">
+                    
+                  </div>
+            
+            	<footer class = "staff-grid-item__footer">
+                 <h3 class="gray-warm baseline text-center mb10">SolarPanel 5+</h3>
+                 <p class = "light baseline gray-medium" style = "font-size:16px;">Maximize Your Charge From The Sun</p>
+
+              <a href="#" class="btn btn-primary mt30" data-control-modal="#hero-video--solarpanel-5-plus" title="Watch"><i class="fa fa-r fa-play" style="padding-right:5px;"></i> <span>Watch</span> </a>
+                      <div id="hero-video-2" class="modal">
+       
+    <header class="modal__header">
+      <div class="modal--close">
+        <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+      </div>
+    </header>
+                        
+    <div id="hero-video--solarpanel-5-plus" class="modal">
+   <header class="modal__header">
+     
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+   <div class="modal__content modal__content--video">
+     <div data-control-youtube-video="IQos6VFR1yA"></div>
+   </div>
+  </div>
+  </div>
+			 <a href="/products/solarpanel-5-plus" class="btn btn-outline-primary mt30" title="Shop Now"> <span>Shop Now</span> </a>
+            	</footer>
+				</div>
+            
+            
+               <div class="staff-grid-item grid__item large--one-third">
+                  <div class="staff-grid-item__photo" style="background-image: url('//cdn.shopify.com/s/files/1/0666/9741/products/CookStove_1_withSticks_large.jpeg?v=1455122383'); background-color:white; background-size:contain;">
+                    
+                  </div>
+            
+            	<footer class = "staff-grid-item__footer">
+                 <h3 class="gray-warm baseline text-center mb10">CookStove</h3>
+                 <p class = "light baseline gray-medium" style = "font-size:16px;">Burn Wood Not Gas</p>
+
+              <a href="#" class="btn btn-primary mt30" data-control-modal="#hero-video--cookstove" title="Watch"><i class="fa fa-r fa-play" style="padding-right:5px;"></i> <span>Watch</span> </a>
+                      <div id="hero-video-3" class="modal">
+       
+    <header class="modal__header">
+      <div class="modal--close">
+        <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+      </div>
+    </header>
+                        
+    <div id="hero-video--cookstove" class="modal">
+   <header class="modal__header">
+     
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+   <div class="modal__content modal__content--video">
+     <div data-control-youtube-video="A5VsDmP2WhI"></div>
+   </div>
+  </div>
+                        
+                        
+  </div>
+			 <a href="/products/cookstove" class="btn btn-outline-primary mt30" title="Shop Now"> <span>Shop Now</span> </a>
+            	</footer>
+				</div>  
+          
+            
+            </div>
+          </section>
+          
+          <h3 class = "faq-title light primary baseline mb40" style = "text-align:center;">Explore: A Day In The Life of The Energy Ecosystem</h3>
+                                                                
+        
+                                        
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Images grid starts here: responsive up to 846px, then snaps to list format-->
+
+<div class="wrapper">
+<section id = "photos">
+
+<div class="row" style = "width: 90%; padding: 5px; padding-bottom:15px; margin:auto; font-size:1vw;">
+<div class="col-sm-3">
+      		      
+       <div class = "image">
+        <span class = "icon-question white" style = "font-size:25px; position:absolute; margin-top:3%; margin-left:3%; z-index:2;"></span>
+                <img class = "img-hide img-responsive" src = "https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection_1_v2.jpg?18602610707038053" style = "max-width:100%; padding-bottom:0px; margin:auto;">                
+                <div class="overlay">
+              
+                  <p class="white light" style="padding-right:30px; padding-left:30px; padding-top:50px; font-size:16px; line-height:19px; text-align:left "><strong>On-the-Go Light</strong><br><br>
+                    PowerLight Mini features red or white flash modes and an easy to use bike mount; when you’re done at the campsite, take it on your commute.</p>
+                </div>
+            </div>
+    </div>
+  
+    <div class="col-sm-6">
+  			<div class = "image">
+                <img class="img-responsive" src = "https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection_2_v2.jpg?18602610707038053" style = "max-width:100%; padding-bottom:0px; margin:auto;">
+              <!--Code for popup--> 
+              <div class = 'popup-div-button' style = "margin-top: -30%; margin-left: 60%; position: absolute; z-index:2;">
+                <div class = 'popup-div'>
+                  <div style = "opacity:0.85; padding:1px;"><span class = "icon-quantity-plus white expand-image" style = "font-size:35px;"></span></div>
+                  <div class = 'all-popup popup' style = "width: 300px; height:395px; background-color:#fff; box-shadow: 1px 1px 3px rgba(0,0,0,0.11); float: right; margin-top: 0; display: none; padding-top:10px; margin-left:65px;margin-top:-125px; border-radius:5px; text-align:center;">
+                    <img src = "http://cdn.shopify.com/s/files/1/0666/9741/products/SolarPanel5__1_medium.jpeg?v=1455122408" style = "width:70%; display:block; margin:10px auto;">
+                    
+                    <br>
+                    <h5 class="primary" style = "margin-top: -20px; text-align:center;">SolarPanel 5+</h5>
+                    <br>
+                    <a href = 'http://www.biolitestove.com/products/solarpanel-5-plus' target='blank' class = "btn btn-primary btn-icon" title="Shop Now">
+                      <span>Shop Now</span>
+                    </a> 
+                  </div>
+                </div>
+                                
+          	  </div>
+                          
+              
+              </div>
+    </div>
+  
+    <div class="col-sm-3">
+  			<div class = "image">
+                <img class = "img-hide img-responsive" src = "https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection_3_v2.jpg?18602610707038053" style = "max-width:100%; padding-bottom:0px; margin:auto;">
+               
+              </div> 
+    </div>
+  
+</div>
+
+
+<div class="row" style = "width: 90%; padding: 5px; padding-bottom:15px; margin:auto; font-size:1vw;">
+<div class="col-sm-6">
+      
+      <div class = "image">
+        <span class = "icon-question white" style = "font-size:25px; position:absolute; margin-top:2%; margin-left:2%; z-index:2;"></span>
+                <img class="img-responsive" src = "https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection_4_v2.jpg?6664229358642585749" style = "max-width:100%; padding-bottom:0px; margin:auto; position:relative;">
+                <div class="overlay">
+              
+                  <p class="white light" style="padding-right:30px; padding-left:30px; padding-top:50px; font-size:16px; line-height:19px; text-align:left "><strong>Direct Sun</strong><br><br>
+                    SolarPanel 5 series’ integrated sundial keeps you aligned to the sun to capture direct rays for max power. </p>
+                </div>
+            </div>
+      
+    </div>
+  <!--have divs below the image with the info from the popup, hide on larger screens, then show on smaller-->
+    
+    <div class="col-sm-6">
+  		<div class = "image">
+                <img class = "img-hide img-responsive" src = "https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection__5_v2.jpg?6664229358642585749" style = "max-width:100%; padding-bottom:0px; margin:auto;">
+                
+              </div>
+      
+    </div>
+  
+</div>
+  
+  
+<div class="row" style = "width: 90%; padding: 5px; padding-bottom:15px; margin:auto; font-size:1vw;">
+<div class="col-sm-6">
+      	<img class="img-responsive" src = "https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection_7_v2.jpg?5976077004530822951" style = "max-width:100%; padding-bottom:0px; margin:auto;"> 
+      	
+      
+      		
+      	<!--Popup Code--> 
+                <div class = 'popup-div-button' style = "margin-top: -25%; margin-left: 60%; position: absolute; z-index:2;">
+                <div class = 'popup-div-2'>
+                  <div style = "opacity:0.85; padding:1px;"><span class = "icon-quantity-plus white expand-image-2" style = "font-size:35px;"></span></div>
+                  <div class = 'all-popup popup-2' style = "width: 300px; height:395px; background-color:#fff; box-shadow: 1px 1px 3px rgba(0,0,0,0.11); float: right; margin-top: 0; display: none; padding-top:10px; margin-left:65px;margin-top:-125px; border-radius:5px; text-align:center;">
+                    <img src = "http://cdn.shopify.com/s/files/1/0666/9741/products/CookStove_1_withSticks_medium.jpeg?v=1455122383" style = "width:70%; display:block; margin:10px auto;">
+                    
+                    <br>
+                    <h5 class="primary" style = "margin-top: -20px; text-align:center;">CookStove</h5>
+                    <br>
+                    <a href = 'http://www.biolitestove.com/products/cookstove' target='blank' class = "btn btn-primary btn-icon" title="Shop Now">
+                      <span>Shop Now</span>
+                    </a> 
+                  </div>
+                </div>
+                                
+          	  </div>
+                      
+    </div>
+  <!--have divs below the image with the info from the popup, hide on larger screens, then show on smaller-->
+    
+    <div class="col-sm-6">
+  		     
+      
+       <div class = "image">
+        <span class = "icon-question white" style = "font-size:25px; position:absolute; margin-top:2%; margin-left:2%; z-index:2;"></span>
+                <img class="img-responsive" src = "https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection_6_v2.jpg?5976077004530822951" style = "max-width:100%; padding-bottom:0px; margin:auto;">
+                <div class="overlay">
+              
+                  <p class="white light" style="padding-right:30px; padding-left:30px; padding-top:50px; font-size:16px; line-height:19px; text-align:left "><strong>Powerful Charge</strong><br><br>
+                    Featuring the Optimal Sun System, the SolarPanel 5 can fully charge a smartphone in two hours when in peak sun.</p>
+                </div>
+            </div>
+      
+    </div>
+  
+</div>
+  
+  
+<div class="row" style = "width: 90%; padding: 5px; padding-bottom:15px; margin:auto; font-size:1vw;">
+<div class="col-sm-12">
+        <img class = "img-hide img-responsive" src = "https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection_8_v3.jpg?11049499948070630746" style = "max-width:100%; padding-bottom:0px; margin:auto;">
+
+    </div>
+  
+</div>
+  
+
+<div class="row" style = "width: 90%; padding: 5px; padding-bottom:15px; margin:auto; font-size:1vw;">
+<div class="col-sm-3">
+           
+       <div class = "image">
+        <span class = "icon-question white" style = "font-size:25px; position:absolute; margin-top:3%; margin-left:3%; z-index:2;"></span>
+                <img class = "img-hide img-responsive" src = "https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection_9_v3.jpg?5049419906329659944" style = "max-width:100%; padding-bottom:0px; margin:auto; position:relative;">
+                <div class="overlay">
+              
+                  <p class="white light" style="padding-right:30px; padding-left:30px; padding-top:50px; font-size:16px; line-height:19px; text-align:left "><strong>LED Interface</strong><br><br>
+                    4 fan speeds on the new CookStove control flame size at the touch of a button. Burn the wood around you and get a campfire feel that can cook your meals – without the smoke.</p>
+                </div>
+            </div>
+      
+      
+    </div>
+  
+    <div class="col-sm-6">
+  			<div class = "image">
+                <img class="img-responsive" src = "https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection_10_v3.jpg?5049419906329659944" style = "max-width:100%; padding-bottom:0px; margin:auto;">
+              <!--Code For popup--> 
+             <div class = 'popup-div-button' style = "margin-top: -58%; margin-left: 33%; position: absolute; z-index:2;">
+                <div class = 'popup-div-3'>
+                  <div style = "opacity:0.85; padding:1px;"><span class = "icon-quantity-plus white expand-image-3" style = "font-size:35px;"></span></div>
+                  <div class = 'all-popup popup-3' style = "width: 300px; height:395px; background-color:#fff; box-shadow: 1px 1px 3px rgba(0,0,0,0.11); float: right; margin-top: 0; display: none; padding-top:10px; margin-left:65px;margin-top:-125px; border-radius:5px; text-align:center;">
+                    <img src = "https://cdn.shopify.com/s/files/1/0666/9741/files/PowerLightMini_1_teal_1170x1170_medium.jpg?10357694140175756365" style = "width:70%; display:block; margin:10px auto;">
+                    
+                    <br>
+                    <h5 class="primary" style = "margin-top: -20px; text-align:center;">PowerLight Mini</h5>
+                    <br>
+                    <a href = 'http://www.biolitestove.com/products/powerlight-mini' target='blank' class = "btn btn-primary btn-icon" title="Shop Now">
+                      <span>Shop Now</span>
+                    </a> 
+                  </div>
+                </div>
+                                
+          	  </div>
+         
+              </div>
+    </div>
+  
+    <div class="col-sm-3">
+  			      
+       <div class = "image">
+        <span class = "icon-question white" style = "font-size:25px; position:absolute; margin-top:3%; margin-left:3%; z-index:2;"></span>
+                <img class = "img-hide img-responsive" src = "https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection_11_v2.jpg?5049419906329659944" style = "max-width:100%; padding-bottom:0px; margin:auto;">
+                <div class="overlay">
+              
+                  <p class="white light" style="padding-right:30px; padding-left:30px; padding-top:50px; font-size:16px; line-height:19px; text-align:left "><strong>Edge-lighting Technology</strong><br><br>
+                    The PowerLight Mini is only 15mm thick yet produces an impressive 135 lumens. Integrated clipstand allows you to hang, stand, or wear for both task and ambient lighting.</p>
+                </div>
+            </div>
+      
+    </div>
+  
+</div>
+
+
+<div class="row" style = "width: 90%; padding: 5px; padding-bottom:15px; margin:auto; font-size:1vw;">
+<div class="col-sm-12">
+        <img class="img-responsive" src = "https://cdn.shopify.com/s/files/1/0666/9741/files/2016Collection_12_v3.jpg?4184933120516699824" style = "max-width:100%; padding-bottom:0px; margin:auto;">
+
+    </div>
+  
+</div>  
+  
+
+  <div class="blog-full text-center mt50 mb50">
+  <a href="/products" class="btn btn-primary mt50 mb50 text-center" style="margin: 0 auto; margin-top:100px; margin-bottom:100px;" title="Shop The 2016 Energy Ecosystem"> <span>Shop The 2016 Energy Ecosystem</span> </a>
+  </div>
+
+  
+  
+
+  
+</section>
+
+</div>
+
+
+
+

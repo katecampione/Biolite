@@ -1,0 +1,38 @@
+<div id="extra_discount_field">
+  <div class="fieldset">
+    <div class="field ">
+      <label class="field__label" for="checkout_reduction_code">Gift card or discount code</label>
+      <div class="field__input-btn-wrapper">
+        <div class="field__input-wrapper">
+          <input placeholder="Gift card or discount code" class="field__input" data-discount-field="true" autocomplete="off" size="30" type="text" name="extra_discount_field" id="extra_checkout_reduction_code" />
+        </div>
+        <button id="submit_extra_discount_field" type="submit" class="field__input-btn btn btn--default btn--disabled">
+          <span class="btn__content visually-hidden-on-mobile">Apply</span>
+          <i class="btn__content shown-on-mobile icon icon--arrow"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  @media (min-width: 1000px) {
+    #extra_discount_field {
+      display: none;
+    }
+  }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+  $('#submit_extra_discount_field').click( function(e) {
+    var discountCode = $('#extra_checkout_reduction_code').val();
+    // Open the order summary where the real discount field is
+    $('body > button.order-summary-toggle.order-summary-toggle--show').trigger( "click" )
+    // insert discount code into the real field and submit the form
+    $('#checkout_reduction_code').val(discountCode);
+    setTimeout(function (){
+      $('#checkout_reduction_code').closest('form').find('button').trigger('click');
+    }, 100);
+  });
+</script>

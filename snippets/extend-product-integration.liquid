@@ -1,0 +1,122 @@
+<script defer="defer">
+
+  // Run scripts on DOMContentLoaded to avoid affecting site load time
+  window.addEventListener('load', function(){
+
+    // Checks if Extend lives in the window and the active currency is USD before showing Extend offers
+    if (window.Extend && window.ExtendShopify && window.Shopify.currency.active === "USD") {
+
+      /************************/
+      /* Initial Variables */
+      /************************/
+      var productForm = document.querySelector('form[action="/cart/add"]'); // Change this to the product form element
+      var addToCartButton = document.querySelector('button[name="add"]'); // Change this to the Add-To-Cart element
+      var secondATCButton = document.querySelector('a[title*="Add"]') // ATC button at top of page
+      var extendOffer = document.querySelector('#extend-offer'); // extendOffer element
+
+      /************************/
+      /* initProductOffer */
+      /************************/
+      // Initializes product offers and handles ATC button functionality for the main PDP ATC
+      function initProductOffer() {
+
+        // Fail safes
+        if(!productForm || !addToCartButton || !extendOffer) return;
+
+        // Check if product is an extend warranty, if so disable the atc
+        function isExtend() {
+          if(meta.product && meta.product.vendor == "Extend"){
+            addToCartButton.disabled = true;
+          }
+        }
+
+        // Checks if product is an Extend warranty and if so disables 
+        isExtend();
+
+        var variantId;
+
+        // Listens for changes to the productForm and sets the activeProduct for extend via variantID
+        productForm.addEventListener('change', function () {
+          variantId = new URL(window.location.href).searchParams.get('variant');
+          if (variantId) {
+            Extend.setActiveProduct(extendOffer, variantId);
+            isExtend();
+          }
+        });
+
+        // Grabs variantId from URL
+        var variantByParam = new URL(window.location.href).searchParams.get('variant');
+
+        // Checks if variant exists in URL or in form
+        variantId = variantByParam ? variantByParam : productForm.id.value
+
+        // Grabs the variantId from the productForm and renders the initial offers for it
+        Extend.buttons.render(extendOffer, {referenceId: variantId })
+
+        //click simulation handling add to cart
+        function handleAddToCart(e, atc) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+
+          var quantityEl = productForm.querySelector('[name="quantity"]');
+          var quantity = quantityEl && quantityEl.value;
+          ExtendShopify.handleAddToCart(extendOffer, {
+            quantity: quantity,
+            modal: true,
+            done: function () {
+              // Trigger Analytics
+              if (Extend.analytics) window.Extend.productAnalytics(variantId, quantity);
+              // remove default click listener
+              addToCartButton.removeEventListener('click', handleAddToCart, true);
+              //click atc button
+              console.log("addToCartButton:", addToCartButton)
+              $(addToCartButton).trigger('click');
+              // add default click listener back
+              addToCartButton.addEventListener('click', handleAddToCart, true);
+            },
+          });
+        }
+
+        //run handleCaddtoCart when we click ATC, capturing event
+        addToCartButton.addEventListener('click', handleAddToCart, true);
+        secondATCButton.addEventListener('click', handleAddToCart, true);
+
+      }
+
+      // Initial product offer render
+      initProductOffer();
+      
+
+      //START - Iframe Styling
+      window.setTimeout(function() {
+        let iFrameDocument = document.querySelector("#extend-offer div iframe").contentDocument;
+        var captionStyling = '.caption { display: block !important; text-align : center !important;}'
+        iFrameDocument.head.innerHTML = iFrameDocument.head.innerHTML + '<style>' + captionStyling + '</style>';
+      }, 500)
+      //END - Iframe Styling
+      
+    }
+
+  })
+
+</script>
+
+<style>
+
+  #extend-offer {
+    padding-bottom: 5px;
+  }
+
+  @media screen and (max-width: 767px) {
+
+    #extend-offer {
+      border-top: 1px solid #E1E1E1;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+  }
+
+    
+
+
+</style>

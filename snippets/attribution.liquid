@@ -1,0 +1,25 @@
+<!-- Start Attribution.io Snippet -->
+<script>
+var _attio = _attio || [];
+(function(){
+_attio.push({command:'setAccount', public_key:'d5a4697aa10fbecb'});
+{% if customer %}
+customer_info = {
+  name: "{{ customer.name }}",
+  firstName: "{{ customer.first_name }}",
+  lastName: "{{ customer.last_name }}",
+  email: "{{ customer.email }}",
+  totalSpent: "{{ customer.total_spent }}",
+  allOrdersCount: {{ customer.orders_count }}
+};
+customer_id = {{customer.id}};
+_attio.push({command:'identify', client_id: customer_id, meta:customer_info});
+{% else %}
+customer_id = null;
+{% endif %}
+var s = document.createElement('script');s.type = 'text/javascript';
+s.async = 1;s.src = 'https://cdn.attribution.io/client.js.gz';
+var n = document.getElementsByTagName('script')[0];n.parentNode.insertBefore(s, n);
+})();
+</script>
+<!-- End Attribution.io Snippet -->

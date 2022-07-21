@@ -1,0 +1,145 @@
+{{ 'location-switcher-vendor-cookies.js' | asset_url | script_tag }}
+{{ 'location-switcher-vendor-featherlight.js' | asset_url | script_tag }}
+{{ 'location-switcher.js' | asset_url | script_tag }}
+
+<div class="location-switcher" id="locationSwitcher" data-location-switcher>
+  <a href="#" title="Close Location" class="focusguard" id="location-focusguard-top"></a>
+  <a href="#" title="Close Location Modal" aria-label="Close Location Modal" class="closeLocationModal"><i class="icomoon icon-close"></i></a>
+  <div class="location-switcher-header">
+    <img class="location-switcher-header-logo" src="{{ 'location-switcher-biolite-icon-only.svg' | asset_url }}" alt="" />
+    <h2 class="location-switcher-header-title">{{ section.settings.title }}</h2>
+  </div>
+
+  <div class="location-switcher-body">
+      
+    {% assign groups = 'primary,secondary' | split: ',' %}
+
+    {% for group in groups %}
+
+      {% assign groupTitleID = group | append: '_group_title' %}
+
+      <div class="location-switcher-group location-switcher-group--{{group}}">
+
+
+        <nav class="location-switcher-nav">
+            
+          <ul class="location-switcher-nav-list">
+            {% for location in section.blocks %}
+              {% if location.settings.group == group %}
+
+                <li class="location-switcher-nav-item">
+                  <a tabIndex="0" href="{{ location.settings.url | default: '#' }}" class="location-switcher-nav-item-wrap location-switcher-nav-item-wrap--link" data-location-switcher-new-location-url="{{ location.settings.url }}">
+                    <div class="location-switcher-nav-item-flags">
+                      <img src="{{ location.settings.flag_icon_1 | img_url: '90x90' }}" alt="{{ location.settings.flag_icon_1.alt }}" />
+                      {% if location.settings.flag_icon_2 %}<img src="{{ location.settings.flag_icon_2 | img_url: '90x90' }}" alt="{{ location.settings.flag_icon_2.alt }}" />{% endif %}
+                    </div>
+                    <div class="location-switcher-nav-item-content">
+                      {% if location.settings.currency != '' %}<em class="location-switcher-nav-item-currency">{{ location.settings.currency }}</em>{% endif %}
+                      <strong class="location-switcher-nav-item-location">{{ location.settings.title }}</strong>
+                    </div>
+                  </a>
+                </li>
+
+              {% endif %}
+            {% endfor %}
+
+          </ul>
+        </nav>
+
+      </div><!--/location-switcher-group-->
+
+    {% endfor %}
+
+  </div><!--/location-switcher-body-->
+  <a href="#" title="Location Switcher" class="focusguard" id="location-focusguard-bottom"></a>
+
+</div><!--/location-switcher-->
+
+{% schema %}
+  {
+    "name": "Location switcher pop-up",
+
+    "settings": [
+      {
+        "id": "title",
+        "label": "Main heading",
+        "type": "text",
+        "default": "Choose your region"
+      },
+      {
+        "id": "primary_group_title",
+        "label": "Primary group title",
+        "type": "text",
+        "default": "Camping & Outdoor Recreation"
+      },
+      {
+        "id": "secondary_group_title",
+        "label": "Secondary group title",
+        "type": "text",
+        "default": "Off-grid Home"
+      }
+    ],
+
+    "blocks": [
+      {
+        "name": "Location",
+        "type": "location",
+        "settings": [
+          {
+            "id": "title",
+            "label": "Title",
+            "type": "text",
+            "placeholder": "E.g. United States"
+          },
+          {
+            "id": "short_title",
+            "label": "Short title",
+            "type": "text",
+            "placeholder": "E.g. US"
+          },
+          {
+            "id": "group",
+            "label": "Group",
+            "type": "select",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              }
+            ],
+            "default": "primary"
+          },
+          {
+            "id": "currency",
+            "label": "Currency symbol",
+            "type": "text",
+            "placeholder": "E.g. $"
+          },
+          {
+            "id": "url",
+            "label": "Shop URL",
+            "type": "text",
+            "placeholder": "E.g. http://my-location-specific-shop.com"
+          },
+          {
+            "id": "flag_icon_1",
+            "label": "Flag icon",
+            "type": "image_picker",
+            "info": "Ideally PNG @2x, 90x90px"
+          },
+          {
+            "id": "flag_icon_2",
+            "label": "Flag icon 2 (optional)",
+            "type": "image_picker",
+            "info": "Ideally PNG @2x, 90x90px"
+          }
+        ]
+      }
+    ]
+  }
+
+{% endschema %}

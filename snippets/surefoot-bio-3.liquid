@@ -1,0 +1,94 @@
+<script>
+// jshint ignore: start
+!function(e){var i={};function o(t){if(i[t])return i[t].exports;var n=i[t]={i:t,l:!1,exports:{}};return e[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}o.m=e,o.c=i,o.d=function(t,n,e){o.o(t,n)||Object.defineProperty(t,n,{enumerable:!0,get:e})},o.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},o.t=function(n,t){if(1&t&&(n=o(n)),8&t)return n;if(4&t&&"object"==typeof n&&n&&n.__esModule)return n;var e=Object.create(null);if(o.r(e),Object.defineProperty(e,"default",{enumerable:!0,value:n}),2&t&&"string"!=typeof n)for(var i in n)o.d(e,i,function(t){return n[t]}.bind(null,i));return e},o.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return o.d(n,"a",n),n},o.o=function(t,n){return Object.prototype.hasOwnProperty.call(t,n)},o.p="",o(o.s=1)}([,function(t,n,e){"use strict";var i=window.jQuery,o=function(i){var a="bio-3",u="a mobile PDP for me",c="redesigned top section",f=a+"-v1",o=f,r=0<window.location.href.indexOf("sf_debug");function n(t){var n,e;t&&(r=!0),d("_init-ing with forceDebug "+t+' for test "'+u+'"'),d('_activateHotjar with trigger "'+o+'"'),window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)},hj("trigger",o),hj("tagRecording",[o]),function(){d('_pushGaEvent with Action "'+u+'" and Label "'+c+'"');var i=0,o=a+" "+u,r=f+" "+c;d('_pushGaEvent with Action "'+o+'" and Label "'+r+'"'),function e(){setTimeout(function(){if(window.ga&&window.ga.loaded&&"function"==typeof window.ga.getAll){d("_pushGaEvent - GA found! sending GA event...");var t=window.ga.getAll()[0].get("name"),n=t+".send";window.ga(n,{hitType:"event",eventCategory:"surefoot_testing",eventAction:o,eventLabel:r,nonInteraction:!0})}else i<20?(d("_pushGaEvent - ga not found at attempt "+i+" of 20. trying again in 500ms"),i++,e()):d("_pushGaEvent FAILED - ga not found after 20 attempts. skipping event push...")},500)}()}(),function(){d("_movePriceContainer initiated");var t=i(".price-qty-container").detach(),n=i(".otv-option-selects-container");0<n.length?n.after(t):i("#AddSingleToCartForm").prepend(t)}(),n=i(".icon-quantity-minus"),e=i(".icon-quantity-plus"),n.addClass("icon-minus"),e.addClass("icon-plus"),function(){i(".qty-text").remove();i(".qty-controls").find(".icon-minus").after('<input class="qty-text" type="number" pattern="[0-9]*" name="qty-text">'),i("input.qty-text").val("1").text("1")}(),d("_QtyEventListener initiated"),i("#qty-select .icon-minus").on("click",function(t){l(t);var n=i("input.qty-text").text();s(--n)}),i("#qty-select .icon-plus").on("click",function(t){l(t);var n=i("input.qty-text").text();s(++n)}),i("input.qty-text").on("click",function(t){l(t),i(this).select()}),i("input.qty-text").change(function(){s(i("input.qty-text").val())})}function l(t){t.stopPropagation(),i("#qty-select").off("click")}function s(t){t<1&&(t=1),i("input.qty-text").text(t),i("input.qty-text").val(t),i('meta[itemprop="quantity"]').attr("content",t),i("input.cart-item--quantity").val(t)}function d(t){r&&console.log("%c"+Date.now()+" sf | "+f+" | "+t,"color: #522fae;")}return{activate:function(t){n(t)}}}(i);i(document).ready(function(){i(window).width()<=767&&o.activate()})}]);
+</script>
+
+<style>
+@media only screen and (max-width: 767px) {
+  /* adjust entire form width */
+  #AddSingleToCartForm {
+    width: 85% !important;
+  }
+  .price-qty-container {
+    width: 100%;
+    padding-top: 0;
+    margin: 0;
+  }
+  .add-to-cart-container {
+    width: 100%;
+  }
+
+  /* pricing */
+  .price-container {
+    text-align: left;
+    line-height: 60px;
+    margin: 0;
+    padding-top: 15px;
+  }
+  .template-product #ProductPrice.h4 {
+    font-size: 21px !important;
+    font-weight: 600;
+    color: #262729;
+  }
+  .compare-at .product-price-compare-strike {
+    font-size: 13px;
+    padding-left: 5px;
+    top: -3px;
+    position: relative;
+}
+  #qty-select>.qty-text {
+    display: none;
+  }
+  #qty-select .qty-controls {
+    text-align: right;
+    border: solid 1px #E5E5E5;
+    padding: 0;
+  }
+  .qty-controls .icomoon {
+    vertical-align: baseline;
+    color: #262729;
+    font-size: 12px;
+    padding: 15px 10px;
+  }
+  #qty-select {
+    float: right;
+    text-align: right;
+    padding-bottom: 8px;
+    margin: 0;
+  }
+  #qty-select > div {
+    width: auto;
+  }
+  /* qty number input */
+  #qty-select .qty-controls .qty-text {
+    margin: 0;
+  }
+  input.qty-text[type="number"] {
+    display: inline;
+    width: 40px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    text-align: center;
+    font-size: 22px !important;
+    color: #262729;
+  }
+
+  /* bring elements closer together */
+  .otv-option-selects-container,
+  .otv-option-selects-container .selector-wrapper {
+    margin: 0;
+  }
+  /* Add to Cart Button */
+  #AddToCart {
+    padding: 20px 24px;
+    padding-top: 20px;
+    padding-right: 24px;
+    padding-bottom: 20px;
+    padding-left: 24px;
+  }
+  .btn-large {
+    font-size: 20px;
+  }
+}
+</style>

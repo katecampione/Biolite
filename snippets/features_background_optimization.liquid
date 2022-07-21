@@ -1,0 +1,136 @@
+<style>
+ {% if product.metafields.features_slide01.image %}
+   .features_slide01.lazyloaded {
+     background-image: url('{{ product.metafields.features_slide01.image}}');
+  }
+ {% endif %}
+
+ {% if product.metafields.features_slide02.image %}
+   .features_slide02.lazyloaded {
+     background-image: url('{{ product.metafields.features_slide02.image}}');
+  }
+ {% endif %}
+
+ {% if product.metafields.features_slide03.image %}
+   .features_slide03.lazyloaded{
+     background-image: url('{{ product.metafields.features_slide03.image}}');
+  }
+ {% endif %}
+
+ {% if product.metafields.features_slide01.image %}
+   .features_slide04.lazyloaded{
+     background-image: url('{{ product.metafields.features_slide04.image}}');
+  }
+ {% endif %}
+
+ /* Tablet - Portrait */
+ @media (min-width: 736px) and (max-width: 769px) and (orientation: portrait){
+   {% if product.metafields.features_slide01.image_tablet_portrait %}
+     .features_slide01.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide01.image_tablet_portrait}}');
+    }
+   {% endif %}
+
+   {% if product.metafields.features_slide02.image_tablet_portrait %}
+     .features_slide02.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide02.image_tablet_portrait}}');
+    }
+   {% endif %}
+
+   {% if product.metafields.features_slide03.image_tablet_portrait %}
+     .features_slide03.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide03.image_tablet_portrait}}');
+    }
+   {% endif %}
+
+   {% if product.metafields.features_slide01.image_tablet_portrait %}
+     .features_slide04.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide04.image_tablet_portrait}}');
+    }
+   {% endif %}
+
+ }
+
+
+ /* Tablet - Landscape */
+ @media (min-width: 736px) and (max-width: 1024px) and (orientation: landscape){
+   {% if product.metafields.features_slide01.image_tablet_landscape %}
+     .features_slide01.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide01.image_tablet_landscape}}');
+    }
+   {% endif %}
+
+   {% if product.metafields.features_slide02.image_tablet_landscape %}
+     .features_slide02.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide02.image_tablet_landscape}}');
+    }
+   {% endif %}
+
+   {% if product.metafields.features_slide03.image_tablet_landscape %}
+     .features_slide03.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide03.image_tablet_landscape}}');
+    }
+   {% endif %}
+
+   {% if product.metafields.features_slide01.image_tablet_landscape %}
+     .features_slide04.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide04.image_tablet_landscape}}');
+    }
+   {% endif %}
+ }
+
+ /* Mobile - Portrait */
+ @media (max-width: 736px) and (orientation: portrait){
+   {% if product.metafields.features_slide01.image_mobile_portrait %}
+     .features_slide01.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide01.image_mobile_portrait}}');
+    }
+   {% endif %}
+
+   {% if product.metafields.features_slide02.image_mobile_portrait %}
+     .features_slide02.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide02.image_mobile_portrait}}');
+    }
+   {% endif %}
+
+   {% if product.metafields.features_slide03.image_mobile_portrait %}
+     .features_slide03.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide03.image_mobile_portrait}}');
+    }
+   {% endif %}
+
+   {% if product.metafields.features_slide01.image_mobile_portrait %}
+     .features_slide04.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide04.image_mobile_portrait}}');
+    }
+   {% endif %}
+ }
+
+ /* Mobile - Landscape */
+ @media (max-width: 736px) and (orientation: landscape){
+   {% if product.metafields.features_slide01.image_mobile_landscape %}
+     .features_slide01.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide01.image_mobile_landscape}}');
+    }
+   {% endif %}
+
+   {% if product.metafields.features_slide02.image_mobile_landscape %}
+     .features_slide02.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide02.image_mobile_landscape}}');
+    }
+   {% endif %}
+
+   {% if product.metafields.features_slide03.image_mobile_landscape %}
+     .features_slide03.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide03.image_mobile_landscape}}');
+    }
+   {% endif %}
+
+   {% if product.metafields.features_slide01.image_mobile_landscape %}
+     .features_slide04.lazyloaded{
+       background-image: url('{{ product.metafields.features_slide04.image_mobile_landscape}}');
+    }
+   {% endif %}
+ }
+
+</style>

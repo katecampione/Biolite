@@ -1,0 +1,28 @@
+{% include 'hero' %}
+
+<section class="expandable expandable--full flex-columns pt40">
+	<div class="wrapper">
+		<ul class="expandable-content flex-content intl-stores">
+			
+			{{ page.content }}
+
+			<li class="mb30 mt30">
+				<div class="list-toggles">
+					{% for article in blogs['international-stores'].articles %}
+			  	  <div class="list-toggle">
+			  	    <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+			  	      <i class="fa fa-minus-circle"></i>
+			  	      <span>{{ article.title }}</span>
+			  	    </div>
+			  	    <div class="list-toggle__content">
+			  	      <ul class="intl-stores-list">
+			  	      	{{ article.content }}
+			  	      </ul>
+			  	    </div>
+			  	  </div>
+					{% endfor %}
+				</div>
+			</li>
+		</ul>
+	</div>
+</section>

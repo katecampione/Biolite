@@ -1,0 +1,1016 @@
+{% comment %} Set some product details so we can use them in multiple spots {% endcomment %}
+{% assign product_title_shortened = product.title | remove: 'BioLite' %}
+{% assign default_variant = bold_selected_or_first_available_variant %}
+{%- include 'bold-variant' with default_variant, output: 'none' -%}
+{% assign featured_image = default_variant.featured_image | default: product.featured_image %}
+{% assign features_and_specs = product.metafields.content.features_and_specs | split: ',' %}
+
+{% capture product_price_meta %}
+  <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+  <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+  <meta itemprop='productID' content='{{ product.id }}' />
+  <meta itemprop='productAddToCartText' content='{{ add_to_cart_text }}' />
+  <meta itemProp='quantity' content="1"/>
+  {% for variant in product.variants %}
+{%- include 'bold-variant' with variant, hide_action: 'skip' -%}
+    <meta itemprop='variantPrice' content='{{ bold_variant_price }}' data-variant-id='{{ variant.id }}' />
+    {% if variant.compare_at_price %}
+      <meta itemprop='comparePrice' location='{{ variant.option1 }}' content='{{ variant.compare_at_price }}' data-variant-id='{{ variant.id }}' />
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+<div itemscope itemtype="http://schema.org/Product">
+
+  <nav class="nav-horizontal nav-horizontal--products" data-sticky>
+    <div class="wrapper wrapper--full wrapper--max_height">
+      <div class="grid__item grid__item--p0 nav-horizontal__title">
+        {% assign product_title_shortened = product.title | remove: 'BioLite'  | remove: '(BaseCamp Sold Separately)' %}
+        
+        {% if product.tags contains 'category-stoves' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline;">Home</a><span class="category-arrows">>></span><a href="/collections/stoves" class="gray-warm din-medium" style="text-decoration:underline">Stoves</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% elsif product.tags contains 'category-power' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline">Home</a><span class="category-arrows">>></span><a href="/collections/power" class="gray-warm din-medium" style="text-decoration:underline">Power</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% elsif product.tags contains 'category-lighting' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline">Home</a><span class="category-arrows">>></span><a href="/collections/lighting" class="gray-warm din-medium" style="text-decoration:underline">Lighting</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% elsif product.tags contains 'category-gearkits' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline">Home</a><span class="category-arrows">>></span><a href="/collections/gearkits" class="gray-warm din-medium" style="text-decoration:underline">Gear Kits</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% else %}
+        <span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% endif %}
+      </div>
+      <div class="grid__item nav-horizontal__menu">
+
+      </div>
+      {% if product.tags contains '' or product.available == false %}
+
+      {% else %}
+
+        <div class="grid__item nav-horizontal__action">
+          <a
+            href="#"
+            onClick="_gaq.push(['_trackEvent', 'Click', 'Sticky Nav Add To Cart', '{{ product.title }}']);"
+            class="btn btn-icon btn-icon--full btn-icon--right btn-primary btn-full cart-item--add ml0 mt0"
+            data-product-variant="{{ default_variant.id }}"
+            data-otv-current-product-add
+            data-control-animation data-control-animation-target="#cart-item-badge"
+            data-control-animation-class="flash"
+             title="Add {{product.title}} to My Cart">
+            <span style="font-weight:600;" data-otv-current-product-add-text>Add to My Cart</span>
+            <i class=""></i>
+          </a>
+          {{ product_price_meta }}
+        </div>
+
+      {% endif %}
+
+    </div>
+
+  </nav>
+
+  <!--/product-page-view-->
+  <div class="product-page-view">
+
+    <div id="shop-with-impact-dropdown">
+      <div class="dropdown" style='background-image: url("https://cdn.shopify.com/s/files/1/0666/9741/files/Impact_Dropdown_BG.jpg?17717286138029674813");'>
+        <div class="wrapper wrapper--large">
+          <div class="grid__item" style="text-align: right;">
+            <span class="icomoon icon-close-circle" data-toggle-shop-with-impact></span>
+          </div>
+          <div class="grid__item">
+            <h2>A Purchase With Impact</h2>
+            <p style="padding-right:130px" class="light" mb20 pr40>A portion of every sale from the BioLite shop gets re-invested into our work in bringing clean cooking and energy to thousands of families across India and sub-Saharan Africa.<br><br>We’re creating a new approach to energy access; one that empowers people to power themselves. And it all starts with you empowering us.</p>
+            <iframe width="475" height="267" style="border: 4px solid #fff; margin-top:30px;" src="https://www.youtube.com/embed/mV1MRlhLnWQ" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT OVERVIEW -->
+    <section id="product-overview" class="single-product-features single-product-features--tall" >
+      <div class="wrapper wrapper--full wrapper--max_height">
+
+        <!-- THUMBNAILS AND IMAGES -->
+        <div class="grid__item large--five-eighths medium--one-whole" id="product-thumbnails">
+        
+			{% include "mini-slider-kits" %}
+
+        <div class="grid__item kit-products medium--text-center small--text-center">
+          <div class="clearfix"></div>
+          <span class="kit-includes-title">KIT INCLUDES:</span>
+          <hr class="kit-divider">
+          
+            <!--**************** KIT ITEM #1 **************** -->
+          <div class="grid__item large--one-sixth medium--one-third small--one-third kit-products-detail text-center" id="kits-product">
+           <span class="kits-quickview"><span class="icomoon icon-quicklook quickview-icon"></span>QUICKLOOK</span>
+            <a href="#baselanternxl"><img src="https://cdn.shopify.com/s/files/1/0666/9741/products/BaseLanternXL_1_1024x1024.jpg?v=1465646322" class="kits-product-img" /></a>
+            <span class="kits-product-title">BaseLantern XL</span>
+            <span class="quicklook-mobile"><a href="#baselanternxl">+ Quicklook</a></span>
+            
+            <div class="remodal" data-remodal-id="baselanternxl">
+  <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="grid__item large--five-eighths medium--one-whole small--one-whole quicklook-media" > 
+      <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/BaseLantern_detailPics.jpg?4446029393987135578" class="" />
+      
+      <div class='embed-container'><iframe src="https://www.youtube.com/embed/24nTqBB9T0w?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+      
+     </div>
+              
+    <div class="grid__item large--three-eighths medium--one-whole small--one-whole text-left" > 
+       <span class="quicklook-product-title">BaseLantern XL</span>
+       <span class="quicklook-product-shortdesc">Bluetooth Lantern &amp; XL Power Hub</span>
+      <div class="quicklook-reviews"><img src="https://cdn.shopify.com/s/files/1/0666/9741/files/reviews-5star-01.svg?6173437052494628283" class="quicklook-reviews-stars" /><span class="number-reviews-top">(12)</span></div>
+      
+<span class="quicklook-product-detail">
+  <p class="light">Featuring a 12000 mAh rechargeable li-on battery, the BaseLantern XL 
+    offers big power to light large group settings and charge your gear. 
+    A custom Low Energy Bluetooth app connects with your BaseLantern and unlocks a suite of features like sleep timers, proximity activation, and real-time battery feedback.</p>
+<ul class="core-header-list">
+<li>500 lumen flat-pack lantern &amp; USB power bank</li>
+<li>12000mAh USB output (2x)</li>
+<li>Total Control - Bluetooth functionality with FREE App</li>
+<li>Weight: 1.29 lbs</li>
+</ul> 
+      </span>
+       <div class="kits-price-container">
+         <span class="kits-price">$129.95</span>
+            </div>
+ <span class="quicklook-full-desc"><a href="/products/baselantern-xl" target="_blank">View Full Details <span class="icomoon icon-arrowThick2-01 full-desc-arrow"></a></span>
+ </span>
+
+     </div>
+</div>
+          </div>
+          
+                   <!--**************** KIT ITEM #2 **************** -->
+          <div class="grid__item large--one-sixth medium--one-third small--one-third kit-products-detail text-center" id="kits-product">
+           <span class="kits-quickview"><span class="icomoon icon-quicklook quickview-icon"></span>QUICKLOOK</span>
+            <a href="#powerlight"><img src="https://cdn.shopify.com/s/files/1/0666/9741/products/NanoGrid_2_a34badab-aa85-4620-b5cf-5179ec7922fe_1024x1024.jpeg?v=1455122510" class="kits-product-img" /></a>
+            <span class="kits-product-title">PowerLight</span>
+            <span class="quicklook-mobile"><a href="#powerlight">+ Quicklook</a></span>
+            
+            <div class="remodal" data-remodal-id="powerlight">
+  <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="grid__item large--five-eighths medium--one-whole small--one-whole quicklook-media" > 
+      <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/PowerLight_detailPics.jpg?15305763481115538397" class="" />
+            <div class='embed-container'><iframe src="https://www.youtube.com/embed/dHpO6SbAdoM?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+
+     </div>
+              
+    <div class="grid__item large--three-eighths medium--one-whole small--one-whole text-left" > 
+       <span class="quicklook-product-title">PowerLight</span>
+       <span class="quicklook-product-shortdesc">250 Lumen Lantern &amp; USB Power Hub</span>
+      <div class="quicklook-reviews"><img src="https://cdn.shopify.com/s/files/1/0666/9741/files/reviews-5star-01.svg?6173437052494628283" class="quicklook-reviews-stars" /><span class="number-reviews-top">(19)</span></div>
+      
+<span class="quicklook-product-detail">
+
+  <p class="light"> Ultimate portability with maximum functionality: charge and light with a device that fits in your pocket. Warm, powerful lighting meets portable off-grid charging to create an energy hub in the palm of your hand.</p>
+<ul class="core-header-list">
+<li>Patented Edge-Lit Technology</li>
+<li>250 lumen torch, 200 lumen lantern</li>
+<li>4400mAh battery with USB charge-out</li>
+<li>Weight: 7.05 oz</li>
+</ul>
+      </span>
+       <div class="kits-price-container">
+         <span class="kits-price">$59.95</span>
+            </div>
+ <span class="quicklook-full-desc"><a href="/products/powerlight" target="_blank">View Full Details <span class="icomoon icon-arrowThick2-01 full-desc-arrow"></a></span>
+ </span>
+
+     </div>
+</div>
+          </div>
+          
+                             <!--**************** KIT ITEM #3 **************** -->
+          <div class="grid__item large--one-sixth medium--one-third small--one-third kit-products-detail text-center" id="kits-product">
+           <span class="kits-quickview"><span class="icomoon icon-quicklook quickview-icon"></span>QUICKLOOK</span>
+            <a href="#powerlightmini"><img src="https://cdn.shopify.com/s/files/1/0666/9741/products/PowerLightMini_1_yellow_1170x1170_89f5037a-ba52-4e04-8540-d1a53441b644_1200x1200.jpg?v=1509991793" class="kits-product-img" /></a>
+            <span class="kits-product-title">PowerLight Mini</span>
+            <span class="quicklook-mobile"><a href="#powerlightmini">+ Quicklook</a></span>
+            
+            <div class="remodal" data-remodal-id="powerlightmini">
+  <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="grid__item large--five-eighths medium--one-whole small--one-whole quicklook-media" > 
+      <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/PowerLightMini_detailPics.jpg?18082178398712325282" class="" />
+      <div class='embed-container'><iframe src="https://www.youtube.com/embed/riYgmRdBpKo?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+
+     </div>
+              
+    <div class="grid__item large--three-eighths medium--one-whole small--one-whole text-left" > 
+       <span class="quicklook-product-title">PowerLight Mini</span>
+       <span class="quicklook-product-shortdesc">Clippable USB Rechargeable Lantern</span>
+      <div class="quicklook-reviews"><img src="https://cdn.shopify.com/s/files/1/0666/9741/files/reviews-5star-01.svg?6173437052494628283" class="quicklook-reviews-stars" /><span class="number-reviews-top">(78)</span></div>
+      
+<span class="quicklook-product-detail">
+
+  <p class="light">Go hands free with this ultraslim clippable lantern. 
+    A 1350 mAh USB rechargeable battery provides up to 52 hours of light or a backup boost to your phone. It's a headlamp, lantern, and bikelight all in one highly compact form.</p>
+<ul class="core-header-list">
+<li>135 lumen lantern with 4 modes</li>
+<li>1350mAh battery with USB charge-out</li>
+<li>Burn Time (hours): 52 LOW / 5 HI</li>
+<li>Weight: 2.82 oz</li>
+</ul>
+      </span>
+       <div class="kits-price-container">
+         <span class="kits-price">$39.95</span>
+            </div>
+ <span class="quicklook-full-desc"><a href="/products/powerlight-mini" target="_blank">View Full Details <span class="icomoon icon-arrowThick2-01 full-desc-arrow"></a></span>
+ </span>
+
+     </div>
+</div>
+          </div>
+          
+          
+          
+     <!--**************** KIT ITEM #4 **************** -->
+          <div class="grid__item large--one-sixth medium--one-third small--one-third kit-products-detail text-center" id="kits-product">
+           <span class="kits-quickview"><span class="icomoon icon-quicklook quickview-icon"></span>QUICKLOOK</span>
+            <a href="#sitelightxl"><img src="https://cdn.shopify.com/s/files/1/0666/9741/products/SiteLightXL_1_1024x1024.jpg?v=1486668880" class="kits-product-img" /></a>
+            <span class="kits-product-title">SiteLight XL</span>
+            <span class="quicklook-mobile"><a href="#sitelightxl">+ Quicklook</a></span>
+            
+            <div class="remodal" data-remodal-id="sitelightxl">
+  <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="grid__item large--five-eighths medium--one-whole small--one-whole quicklook-media" > 
+      <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/SitelightXL_detailPics.jpg?8046398436594559915" class="" />
+       <div class='embed-container'><iframe src="https://www.youtube.com/embed/Gt-LxHGJ58Y?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+
+     </div>
+              
+    <div class="grid__item large--three-eighths medium--one-whole small--one-whole text-left" > 
+       <span class="quicklook-product-title">SiteLight XL</span>
+       <span class="quicklook-product-shortdesc">Packable Fabric Lantern</span>
+      <div class="quicklook-reviews"><img src="https://cdn.shopify.com/s/files/1/0666/9741/files/reviews-5star-01.svg?6173437052494628283" class="quicklook-reviews-stars" /><span class="number-reviews-top">(4)</span></div>
+      
+<span class="quicklook-product-detail">
+  <p class="light">Pack. Pop. Light. This collapsible fabric lantern brightens any campsite with 300 lumens of dimmable ambient light. Set on 15 feet of cord and daisy-chainable, power it with the PowerLight or BaseLantern or any USB source with included adapter. Packs down to a pocketable stuffsack and clocks in at just 92 grams.</p>
+<ul class="core-header-list">
+<li>300 lumen LED collapsible fabric lantern</li>
+<li>Daisy-chainable: connect multiple string lights</li>
+<li>Dimming functionality when used with BioLite Lanterns</li>
+<li>Weight: 3.25 oz.</li>
+</ul>
+      </span>
+       <div class="kits-price-container">
+         <span class="kits-price">$29.95</span>
+            </div>
+ <span class="quicklook-full-desc"><a href="/products/sitelight-xl" target="_blank">View Full Details <span class="icomoon icon-arrowThick2-01 full-desc-arrow"></a></span>
+ </span>
+
+     </div>
+</div>
+          </div>
+          
+          
+               <!--**************** KIT ITEM #5 **************** -->
+          <div class="grid__item large--one-sixth medium--one-third small--one-third kit-products-detail text-center" id="kits-product">
+           <span class="kits-quickview"><span class="icomoon icon-quicklook quickview-icon"></span>QUICKLOOK</span>
+            <a href="#sitelight"><img src="https://cdn.shopify.com/s/files/1/0666/9741/products/SiteLight_3_61c7a75d-a7ba-42de-bae6-3d7459c57fb4_1024x1024.jpeg?v=1486682390" class="kits-product-img" /></a>
+            <span class="kits-product-title">SiteLight</span>
+            <span class="quicklook-mobile"><a href="#sitelight">+ Quicklook</a></span>
+            
+            <div class="remodal" data-remodal-id="sitelight">
+  <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="grid__item large--five-eighths medium--one-whole small--one-whole quicklook-media" > 
+      <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/Sitelight_detailPics.jpg?8217985044247303084" class="" />
+             <div class='embed-container'><iframe src="https://www.youtube.com/embed/qa8EGSwIXUA?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+
+     </div>
+              
+    <div class="grid__item large--three-eighths medium--one-whole small--one-whole text-left" > 
+       <span class="quicklook-product-title">SiteLight</span>
+       <span class="quicklook-product-shortdesc">Compact, Overhead String Lights</span>
+      <div class="quicklook-reviews"><img src="https://cdn.shopify.com/s/files/1/0666/9741/files/reviews-5star-01.svg?6173437052494628283" class="quicklook-reviews-stars" /><span class="number-reviews-top">(2)</span></div>
+      
+<span class="quicklook-product-detail">
+  <p class="light">Create a sense of space and place with SiteLights, a daisy-chaining light system that provides warm and highly functional overhead light at your site. For use with the BioLite PowerLight or BaseLantern, these dimmable SiteLights come 2 per set and each light emits 150 lumens and contains 10 feet of cord. 
+    The set packs down easily into a compact protective sphere with effortless cord management.</p>
+<ul class="core-header-list">
+<li>150 lumens per light</li>
+<li>Overhead lighting with 3m effective range</li>
+<li>Use with BioLite lanterns, or any USB power bank</li>
+<li>Weight: 1.83 oz</li>
+</ul>
+      </span>
+       <div class="kits-price-container">
+         <span class="kits-price">$29.95</span>
+            </div>
+ <span class="quicklook-full-desc"><a href="/products/sitelight" target="_blank">View Full Details <span class="icomoon icon-arrowThick2-01 full-desc-arrow"></a></span>
+ </span>
+
+     </div>
+</div>
+          </div>
+          
+          
+                         <!--**************** KIT ITEM #6 **************** -->
+          <div class="grid__item large--one-sixth medium--one-third small--one-third kit-products-detail text-center" id="kits-product">
+           <span class="kits-quickview"><span class="icomoon icon-quicklook quickview-icon"></span>QUICKLOOK</span>
+            <a href="#sitelightmini"><img src="https://cdn.shopify.com/s/files/1/0666/9741/products/SiteLightMini_1_1024x1024.jpg?v=1490646420" class="kits-product-img" /></a>
+            <span class="kits-product-title">SiteLight Mini</span>
+            <span class="quicklook-mobile"><a href="#sitelightmini">+ Quicklook</a></span>
+            
+            <div class="remodal" data-remodal-id="sitelightmini">
+  <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="grid__item large--five-eighths medium--one-whole small--one-whole quicklook-media" > 
+      <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/SitelightMini_detailPics.jpg?8217985044247303084" class="" />
+       <div class='embed-container'><iframe src="https://www.youtube.com/embed/aLwyDVzddlQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+
+     </div>
+              
+    <div class="grid__item large--three-eighths medium--one-whole small--one-whole text-left" > 
+       <span class="quicklook-product-title">SiteLight Mini</span>
+       <span class="quicklook-product-shortdesc">String Lighting To Go</span>
+      <div class="quicklook-reviews"><img src="https://cdn.shopify.com/s/files/1/0666/9741/files/reviews-5star-01.svg?6173437052494628283" class="quicklook-reviews-stars" /><span class="number-reviews-top">(5)</span></div>
+      
+<span class="quicklook-product-detail">
+  <p class="light">
+    Containing four lights per string, the SiteLight Mini can light pathways, campsites, and tents with 150 lumens of dimmable ambient light. Set on 10 feet of cord and daisy-chainable, power it with the BioLite PowerLight or BaseLantern or any USB source with included adapter.</p>
+<ul class="core-header-list">
+<li>4x 150 lumen LED string lights</li>
+<li>Daisy chain output - connect additional string lights</li>
+<li>Cord stabilizers for accurate overhead focused light</li>
+<li>Weight: 2.5oz.</li>
+</ul>
+      </span>
+       <div class="kits-price-container">
+         <span class="kits-price">$19.95</span>
+            </div>
+ <span class="quicklook-full-desc"><a href="/products/sitelight-mini" target="_blank">View Full Details <span class="icomoon icon-arrowThick2-01 full-desc-arrow"></a></span>
+ </span>
+
+     </div>
+</div>
+          </div>
+          
+          
+          </div>
+
+        </div>
+        <!--/ THUMBNAILS AND IMAGES -->
+
+        <!-- Content -->
+        <div class="grid__item large--three-eighths medium--one-whole table" id="product-content">
+
+          <div class="hide-on-mobile">
+            <h1>{{ product_title_shortened }}</h1>
+            <h2>{{ product.metafields.desc.short  }}</h2>
+
+         
+
+            <p class="light">{{ product.content }}</p>
+          </div>
+         
+
+          
+  {% if product.tags contains 'outofstock' or product.available == false %}
+                {% else %}
+     
+  {% if product.tags contains 'displayinventory' %}
+           <div class="shipping-notice">
+              <span class="icomoon icon-note-01 notice-icon"></span>
+             <span class="shipping-notice-message">Special Holiday Edition: Only <span style="text-decoration:underline">{{ bold_selected_or_first_available_variant.inventory_quantity  }}</span> Left In Stock</span>
+            </div>
+           {% else %}
+          {% endif %}
+      {% endif %}
+          
+    
+                   
+  
+
+
+          <!--PRICE QUANTITY CONTAINER-->
+          <div class="price-savings-container">
+
+            <div class="grid__item large--one-half medium--one-half small--one-half medium--text-center small--text-center">
+              <span id="ProductPrice" itemprop="price" class="h4">
+                <span data-otv-variant-price>{{ default_variant.price | money }}</span>
+                <div class="compare-at product-price-compare-strike">
+                  <span class="product-price-compare-strike" style="color:#C24D00;" data-otv-variant-compare-price>
+                    {% if default_variant.compare_at_price > default_variant.price %}
+                    
+                      {{ default_variant.compare_at_price | money }}
+                    {% endif %}
+                  </span>
+                </div>
+              </span>
+            </div>
+
+            <div id="grid__item large--one-half medium--one-half small--one-half kits-bundlesave medium--text-center small--text-center">
+           <div class="grid__item kits-bundlesave-icon large--one-sixth medium--one-sixth small--one-sixth large--text-right">
+              <span class="icomoon icon-shipbox bundlesave-icon"></span>
+                </div>
+             <div class="grid__item large--two-sixths medium--two-sixths small--two-sixths medium--text-center small--text-center">
+             <span class="kits-bundlesave-label">BUNDLE &amp; SAVE</span><span class="kits-bundle-savings">31% OFF WITH KIT</span>
+              </div>
+            </div>
+
+          </div>
+           
+        
+          <!--/PRICE QUANTITY CONTAINER-->
+
+            {% if bold_selected_or_first_available_variant.inventory_quantity < 3  %}
+           
+                {% if product.metafields.shipping.noticenew %}
+          <div class="shipping-notice">
+              <span class="icomoon icon-shipping-exception-01 shipping-icon"></span>
+              <span class="shipping-notice-message">{{ product.metafields.shipping.noticenew }}</span>
+            </div>
+            {% else %}
+          
+          <div class="shipping-notice">
+              <span class="shipping-notice-message">THIS ITEM IS BACKORDERED <br>Orders can still be placed &amp; you'll receive an email when shipped </span>
+            </div>
+          {% endif %}
+      {% endif %}
+          
+               
+          
+          {% if product.tags contains 'outofstock'%}
+           
+          <div class="shipping-notice">
+              <span class="icomoon icon-shipping-exception-01 shipping-icon"></span>
+              <span class="shipping-notice-message">{{ product.metafields.outofstock.custommessage }}</span>
+            </div>
+            {% else %}
+      {% endif %}
+   
+
+          <!--NO INVENTORY-->
+          {% if product.tags contains 'noinventory'%}
+           
+      {% if product.metafields.outofstock.custommessage %}
+          
+          <div class="grid__item large mt40">
+            
+              <span class="soldout-notice-message mb10">{{ product.metafields.outofstock.custommessage }}</span>
+            </div>
+         {% else %}
+
+          
+          <div class="grid__item large mt40">
+              <span class="shipping-notice-message mb10">Out of stock. Be the first to know when the next batch ships.</span>
+              <div style="margin:10px 0 20px 0;">
+                <form id="email_signup" style="margin:0 auto;" class="klaviyo_condensed_styling klaviyo_condensed_float klaviyo_condensed_embed_HeBeHG" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" target="_blank" novalidate="novalidate">
+                  <input type="hidden" name="g" value="HeBeHG">
+                  <div class="klaviyo_field_group">
+                    <label for="k_id_email">Newsletter Sign Up</label>
+                    <input type="email" value="" name="email" id="k_id_email" placeholder="Enter Email" />
+                  </div>
+                  <div class="klaviyo_messages">
+                    <div class="success_message" style="display:none;"></div>
+                    <div class="error_message" style="display:none;"></div>
+                  </div>
+                  <div class="klaviyo_form_actions">
+                    <button type="submit" class="klaviyo_submit_button">Notify Me</button>
+                  </div>
+                </form>
+              </div>
+              <style type="text/css">
+                .klaviyo_styling.klaviyo_condensed_embed_HeBeHG,
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_HeBeHG {
+                  font-family: opensans, Arial;
+                }.klaviyo_styling.klaviyo_condensed_embed_HeBeHG label,
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_HeBeHG label {
+                  color:#222;
+                }.klaviyo_styling.klaviyo_condensed_embed_HeBeHG input[type=text],
+                .klaviyo_styling.klaviyo_condensed_embed_HeBeHG input[type=email],
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_HeBeHG input[type=text],
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_HeBeHG input[type=email] {
+                  border-radius: 2px;
+                  height:50px;
+                  font-family: opensans, Arial;
+
+                }
+                .klaviyo_condensed_styling .klaviyo_field_group {
+                    width: 275px;
+                    margin: 0 5px 0 0;
+                }
+                  .klaviyo_condensed_styling, .klaviyo_styling {
+                    max-width: 400px;
+                }
+
+                  .klaviyo_condensed_styling .klaviyo_submit_button, .klaviyo_styling .klaviyo_submit_button {
+                     font-family: din-next-pro, Arial;
+                    font-size:16px;
+
+                }
+
+                  .klaviyo_condensed_styling .klaviyo_messages .error_message, .klaviyo_condensed_styling .klaviyo_messages .success_message, .klaviyo_styling .klaviyo_messages .error_message, .klaviyo_styling .klaviyo_messages .success_message {
+                    font-size: 16px;
+                    line-height: 1.2;
+                    margin-bottom: 12px;
+                    padding-top: 20px;
+                    font-family: din-next-pro;
+                }
+
+                  .klaviyo_styling.klaviyo_condensed_embed_HeBeHG .klaviyo_submit_button,
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_HeBeHG .klaviyo_submit_button {
+                  background-color:#35A8A6;
+                  border-radius: 2px;
+                  height:50px;
+                }.klaviyo_styling.klaviyo_condensed_embed_HeBeHG .klaviyo_submit_button:hover,
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_HeBeHG .klaviyo_submit_button:hover {
+                  background-color:#35A8A6;
+                }
+              </style>
+              <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+              <script type="text/javascript">
+                KlaviyoSubscribe.attachToForms('#email_signup', {
+                  hide_form_on_success: true,
+                  success_message: "Your email has been added. We'll let you know as soon as we're back in stock."
+                });
+              </script>
+
+            </div>
+          
+                    {% endif %}
+
+
+          <!--/OUT OF STOCK-->
+          {% else %}
+          <!--IN STOCK-->
+
+            <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddSingleToCartForm">
+              {% comment %}<input type="hidden" name="id" value="{{ bold_selected_or_first_available_variant.id }}" />{% endcomment %}
+
+              {% if product.has_only_default_variant %}
+
+                <!-- DEFAULT VARIANT HIDDEN -->
+                <input type="hidden" name="id" value="{{ default_variant.id }}" data-otv-variant-field />
+
+              {% else %}
+
+                {% comment %}
+                  Multi-option support with fallback
+                {% endcomment %}
+                <div class="otv-option-selects-container">
+                  <select id="BasicSelector" name="id" data-otv-variant-field>
+                    <option disabled selected>Select an option</option>
+                    {% for variant in product.variants %}
+{%- include 'bold-variant' with variant, hide_action: 'skip' -%}
+                      <option>
+                        {% unless variant.available %}disabled{% endunless %}
+                        {% if variant == default_variant %}selected{% endif %}
+                        value="{{ variant.id }}"
+                      
+                          {{ variant.title }}
+                          {% if variant.available %}
+                            - {{bold_variant_price | money }}
+                            {% if variant.compare_at_price > bold_variant_price %}
+                              (Was {{ variant.compare_at_price | money }}{% if price_suffix %} {{price_suffix}}{% endif %})
+                            {% endif %}
+                          {% else %}
+                            - SOLD OUT
+                          {% endif %}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+              {% endif %}
+              
+                  
+          <!--SHIPPING DELAY-->
+          {% if product.tags contains 'shippingdelay'%}
+                     
+          <div class="grid__item large small--text-center mt10">
+            
+              <span class="soldout-notice-message mb10">{{ product.metafields.shippingdelay.custommessage }}</span>
+            </div>
+         {% else %}
+           {% endif %}
+
+              <div class="add-to-cart-container">
+                <button title="add {{product.title}} to cart" type="submit" name="add" id="AddToCart" class="btn-large btn-large-primary mt10 cart-item--add" data-product-variant="{{ default_variant.id }}" data-otv-current-product-add>
+                  <span id="AddToCartText" data-otv-current-product-add-text>Add To My Cart</span>
+                </button>
+              </div>
+
+              <div class="impact-container">
+                <div class="impact-icon-container">
+                  <a href="#" data-toggle-shop-with-impact title="See How">
+                    <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/question-mark.svg?15432744757690495664" class="impact-icon" alt="Your Purchase Creates Impact" />
+                  </a>
+                </div>
+                <div class="impact-text-container">
+                  <span class="impact-text primary"><a href="#" data-toggle-shop-with-impact title="See How">Your Purchase Creates Impact</a></span>
+                </div>
+              </div>
+
+              <div style="clear: both;"></div>
+            </form>
+
+{%- unless bundle_loaded == 'true' -%}
+{%- include 'shappify-bdl-load-bundle' -%}
+{%- assign bundle_loaded = 'true' -%}
+{%- endunless -%} 
+
+
+          <!--/IN STOCK-->
+          {% endif %}
+
+         
+        {% if product.tags contains 'outofstock' or product.available == false %}
+          {% else %}
+
+          <!--RELATED PRODUCTS-->
+          {% if product.metafields.recommendations.productHandles %}
+            <div class="upsell-section">
+              <span class="upsell-title">{{ product.metafields.upsell.title }}</span>
+              <div id="product-accessories" class="related-products">
+                {% comment %} Related products will be appended here {% endcomment %}
+              </div>
+            </div>
+          {% else %}
+          {% endif %}
+          
+        {% endif %}  
+
+        </div>
+        <!--/ Content -->
+
+      </div>
+    </section>
+    <!--/PRODUCT OVERVIEW -->
+    
+    
+        <section class="kits-feature" >
+      <div class="wrapper wrapper--full wrapper--max_height">
+        
+       
+        
+        
+        <div class="grid__item large--three-twelfths">
+          
+          <div class="kits-explantion">
+            <span class="kits-explanation-title">Why These Products?</span>
+            <p class="kits-explanation-desc light">When we create our Gear Kits, it's not just to save you $$$ (nice bonus though!). We create a kit when the gear in it works better together. <br><br>
+            
+            
+              Straight from our own experiences and the BioLite community, here's how we curated the gear for <strong>NanoGrid Light Kit</strong>. 
+            </p>
+            
+            <span class="icomoon icon-shipbox kits-explanation-icon"></span>
+            
+          </div>
+          
+        </div>
+        
+         <div class="grid__item push--large--one-twelfth large--eight-twelfths medium--one-whole small--one-whole">
+           <div class="kits-detail">
+             
+             <div class="grid__item large--one-whole kits-detail-desc">
+              <h4 class="alt dark-grey">Finding The Right Light For The Job</h4>
+				<p class="light">When it comes to finding your camp light, there are a lot of things to consider. In our experience, there are 7 jobs that outdoor lighting needs to do:</p>
+             </div>
+               
+               
+               <div class="grid__item large--one-eighth medium--one-third small--one-third text-center nanogrid-lightkit-icons">
+                 <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/jobsIcons-01.svg?12939964108732298374"/>
+                 <h6 class="alt">Wayfinding</h6>
+               </div>
+               
+                <div class="grid__item large--one-eighth medium--one-third small--one-third text-center nanogrid-lightkit-icons">
+                 <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/jobsIcons-02.svg?12939964108732298374"/>
+                 <h6 class="alt">Task Lighting</h6>
+               </div>
+               
+                <div class="grid__item large--one-eighth medium--one-third small--one-third text-center nanogrid-lightkit-icons">
+                 <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/jobsIcons-05.svg?129399641087322983744"/>
+                 <h6 class="alt">Area Lighting</h6>
+               </div>
+               
+                <div class="grid__item large--one-eighth medium--one-third small--one-third text-center nanogrid-lightkit-icons">
+                 <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/jobsIcons-04.svg?12939964108732298374"/>
+                 <h6 class="alt">Tent Light</h6>
+               </div>
+               
+                <div class="grid__item large--one-eighth medium--one-third small--one-third text-center nanogrid-lightkit-icons">
+                 <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/jobsIcons-03.svg?12939964108732298374"/>
+                 <h6 class="alt">Ambience</h6>
+               </div>
+               
+                <div class="grid__item large--one-eighth medium--one-third small--one-third text-center nanogrid-lightkit-icons">
+                 <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/jobsIcons-06.svg?12939964108732298374"/>
+                 <h6 class="alt">Being Seen</h6>
+               </div>
+               
+                <div class="grid__item large--one-eighth medium--one-third small--one-third text-center nanogrid-lightkit-icons">
+                 <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/jobsIcons-07.svg?12939964108732298374"/>
+                 <h6 class="alt">Emergency</h6>
+               </div>
+                 
+
+               
+                              <div class="grid__item large--one-whole kits-detail-desc">
+<p class="light">The <strong>NanoGrid Light Kit</strong> has a product (or a combo of products) that satisifies each job - which means you'll always be ready for your next adventure.<br><br>
+  
+  Read more about these jobs in our <a href="https://blog.bioliteenergy.com/blogs/clinic/how-to-find-the-right-light-for-the-job" target="_blank" style="color:#00b2b0;font-weight:600;text-decoration:underline;">blog post.</a> </p>
+               </div>
+
+               
+            
+             
+             <div class="grid__item large--one-half pl30">
+             </div>
+             
+           </div>
+        </div>
+        
+        
+        
+        </div>
+    </section>
+    
+    
+
+    <div class="mobile-wrapper open">
+      <h2 class="mobile-title"> Description </h2>
+      <section id="product-content" class="mobile-wrapper-content">
+        <div class="mobile-description">
+          <h2>{{ product.metafields.desc.short  }}</h2>
+          <p class="light">{{ product.content }}</p>
+        </div>
+      </section>
+    </div>
+
+
+
+    <!--PRODUCT FEATURES-->
+    {% if product.metafields.features_slide01.image %}
+      <div class="mobile-wrapper closed">
+        <h2 class="mobile-title"> Images </h2>
+
+        <section id="product-features" class="single-product-features single-product-features--photo_bg mobile-wrapper-content">
+
+          <div class="wrapper wrapper--max_height single-product-features__inner">
+            <div class="grid__item large--one-half pr30">
+
+              <ul class="nav-circles nav-circles--transparent" data-control-nav data-control-targets="#single-product-slides, #single-product-slide-content">
+                {% if product.metafields.features_slide01.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 1', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide01.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide02.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 2', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide02.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide03.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 3', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide03.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide04.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 4', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide04.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+              </ul>
+
+              <ul id="single-product-slide-content" class="pt20" data-control-target>
+                {% if product.metafields.features_slide01.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide01.title }}</h3>
+                    <h6>{{ product.metafields.features_slide01.desc }}</h6>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide02.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide02.title }}</h3>
+                    <h6>{{ product.metafields.features_slide02.desc }}</h6>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide03.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide03.title }}</h3>
+                    <h6>{{ product.metafields.features_slide03.desc }}</h6>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide04.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide04.title }}</h3>
+                    <h6>{{ product.metafields.features_slide04.desc }}</h6>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div><!--/single-product-features__inner-->
+
+          <div class="single-product-features__overlay"></div>
+
+          <ul id="single-product-slides" class="single-product-slides" data-control-target>
+            {% if product.metafields.features_slide01.image %}
+              <li class="features_slide01"></li>
+            {% endif %}
+            {% if product.metafields.features_slide02.image %}
+              <li class="features_slide02"></li>
+            {% endif %}
+            {% if product.metafields.features_slide03.image %}
+              <li class="features_slide03"></li>
+            {% endif %}
+            {% if product.metafields.features_slide04.image %}
+              <li class="features_slide04"></li>
+            {% endif %}
+          </ul>
+
+          {% include 'features_background_optimization'%}
+
+        </section>
+      </div>
+    {% endif %}
+    <!--/PRODUCT FEATURES-->
+
+   
+    <!-- </section> -->
+    <!-- #content -->
+
+    <!-- Scripts to hide and show all product reviews -->
+    <!-- @todo: 'show' btn if there aren't any reviews -->
+    <script>
+     $(document).ready(function(){
+       jQuery('#product-rating').append(' \
+       <a href="#" class="spr-summary-actions-allreviews gray-light" onclick="">See all Reviews</a>\
+       <a href="#" class="spr-summary-actions-hidereviews gray-light" onclick="">Hide Reviews</a>\
+       <a href="" class="spr-summary-actions-newreview gray-light" onclick="SPR.toggleForm({{product.id}});return false" style="float: left;">Write a review</a> \
+       ');
+
+       jQuery('.spr-summary-actions-hidereviews').hide();
+
+       /*
+        #HACK: don't know why is this change overwritting so I am adding a setTimeout to close this issue. <Rolando Perez.>
+       */
+
+       /*setTimeout(function(){
+         jQuery('.spr-reviews').attr("style","display:block;").addClass("show");
+       }, 7000);
+       */
+
+       jQuery(document).delegate('.spr-summary-actions-allreviews', 'click', function (event) {
+       event.preventDefault();
+       jQuery('.spr-reviews').removeClass('hide').addClass('show');
+       jQuery('.spr-summary-actions-allreviews').hide();
+       jQuery('.spr-summary-actions-newreview').show();
+       jQuery('.spr-load-more').show();
+       jQuery('.spr-form').removeClass('show').addClass('hide');
+       });
+
+       jQuery(document).delegate('#product-reviews .review-scrollto', 'click', function (event) {
+       event.preventDefault();
+       jQuery('.spr-summary-actions-allreviews').trigger( 'click' );
+       });
+
+       jQuery(document).delegate('.spr-summary-actions-newreview', 'click', function (event) {
+       jQuery('.spr-summary-actions-newreview').hide();
+       jQuery('.spr-summary-actions-allreviews').show();
+       jQuery('.spr-load-more').hide();
+       jQuery('.spr-reviews').removeClass('show').addClass('hide');
+       jQuery('.spr-form').removeClass('hide').addClass('show');
+       });
+
+       var paginateCallback = function(){
+         SPRCallbacks = {};
+
+         var nextPage = "",
+             lastPage = "",
+             pastComments = [],
+             nextAnchorTag = [],
+             commentsContainer = [],
+             html = "";
+
+         return function(e){
+           nextPage = $(".spr-pagination-next > a").attr("data-page");
+           lastPage = $(".spr-pagination-page > a").last().attr("data-page");
+           pastComments = $(".spr-reviews");
+           nextAnchorTag = $(".spr-pagination-next > a");
+           commentsContainer = $("#shopify-product-reviews .spr-reviews");
+
+           var comments = pastComments.clone();
+           comments.find(".spr-pagination").remove();
+           html = comments.html();
+
+           if(!SPRCallbacks.onReviewsLoad){
+             // pluging in into Shopify Product Reviews Object SPR;
+             SPRCallbacks.onReviewsLoad = function(e){
+               if(nextPage == lastPage){
+                 $(".spr-load-more").hide();
+               }
+
+               if(pastComments.length > 0){
+                 commentsContainer.prepend(html);
+               }
+
+             };
+
+             SPR.registerCallbacks();
+           }
+
+           nextAnchorTag.click();
+
+           return false;
+
+         }
+       }
+
+       $(".spr-load-more").click(paginateCallback());
+
+
+       /* AM - clone only reviews stars and numbers to the top */
+       jQuery('#product-rating .spr-summary-starrating').appendTo(".star-container-top");
+
+       //pull the intial text
+       var reviewtext = jQuery('#product-rating .spr-summary-caption').text();
+
+       console.log('reviewtext:',reviewtext);
+       //strip the "based on X review"
+       var numberreviews = reviewtext.replace(/on|Based|reviews|review/g,'');
+       numberreviews = numberreviews.replace(/\s+/g, '');
+       numberreviews = numberreviews.replace('(', '');
+       numberreviews = numberreviews.replace(')', '');
+       jQuery(".star-container-top").append('<span class="number-reviews-top">('+numberreviews+')</span>');
+
+       //Trigger opening of see all reviews, and write a review when you click the top
+       $('.top-see-all').click(function() {
+       jQuery('.spr-summary-actions-allreviews').trigger('click');
+       });
+
+       $('.top-write-a-review').click(function() {
+       jQuery('.spr-summary-actions-newreview').trigger('click');
+       SPR.toggleForm({{product.id}});
+       });
+
+       $(".mobile-wrapper").click(function(e){
+         var isOpened = $(this).hasClass("open"),
+             target = $(e.target);
+
+         if(isOpened && (target.hasClass("mobile-title") || target.hasClass("mobile-wrapper"))){
+           $(this).removeClass("open").addClass("closed");
+         }else{
+           $(this).removeClass("closed").addClass("open");
+         }
+       });
+
+     });
+    </script>
+
+    <!-- HERO VIDEO MODAL -->
+    {% if product.metafields.hero.video %}
+      <div id="hero-video--{{ product.handle | handlesize }}" class="modal">
+        <header class="modal__header">
+          {% comment %}<div class="modal__title">{% if product.metafields.hero.video_title %} {{ product.metafields.hero.video_title }} {% else %} {{ product.title }} {% endif %}</div>{% endcomment %}
+          <div class="modal--close">
+            <i class="icomoon icon-close-circle modal-close-button"></i>
+          </div>
+        </header>
+        <div class="modal__content modal__content--video">
+          <div data-control-youtube-video="{{ product.metafields.hero.video }}"></div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% comment %}
+    Add the product data to our Javascript Objects for various magics
+    {% endcomment %}
+    {% if product %}
+      <script type="text/javascript">
+      jQuery(function() {
+      APP.data.current_product = {%- include 'bold-product', output: 'json' -%}
+      APP.data.current_product_variants = {{ product.variants | json }}
+      {% if product.metafields.bundle.productHandle %}
+      meta = {
+      'bundle' : {
+      'productHandle' : {{ product.metafields.bundle.productHandle | json }},
+      'desc' : {{ product.metafields.bundle.desc | json }},
+      }
+      }
+      APP.data.current_product_metafields = meta
+      APP.GetBundledProduct.attach(meta.bundle)
+      {% endif %}
+      APP.getRecommendedProducts.attach({{ product.metafields.recommendations.productHandles | json }})
+      });
+      </script>
+    {% endif %}
+
+  </div><!--/product-page-view-->
+
+</div>
+
+<!-- make product data available to JS -->
+<script type="application/json" data-product-json>
+  {%- include 'bold-product', output: 'json' -%}
+</script>

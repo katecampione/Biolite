@@ -1,0 +1,38 @@
+
+<div class="mobile-wrapper closed">
+ <h2 class="mobile-title">Full Features</h2>
+ <section id="product-full_features" class="mobile-wrapper-content product-specs section product-specs--{{ product.handle | remove: 'biolite-' }}">
+   <div class="wrapper">
+     <div class="product-specs__bottom clearfix">
+       <div class="grid__item large--one-half">
+         <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/CampStove2-Bundle_Midnight_features-01.svg?15276163858608380385" alt="CampStove 2 Bundle Midnight features" title="CampStove 2 Bundle Midnight features">
+       </div>
+       <div class="grid__item large--one-half">
+
+
+
+
+         
+
+            <ol>
+          <li>On-Board Battery<br><span class="light">Integrated 2600 mAh battery charges devices with or without a live fire</span></li><br>
+           <li>Smart LED Dashboard<br><span class="light">Real time feedback on fire strength, power output and fan speed settings</span></li><br>
+           <li>USB Charge Out With 50% More Power<br><span class="light">Updated thermoelectrics creates even more electricity from fire</span></li><br>
+                  <li>Lightweight Aluminum Legs<br><span class="light">Fold up for nested portability</span></li><br>
+                  <li>Fuel Intake Lid<br><span class="light">Doubles as refueling source and chimney</span></li><br>
+                  <li>Steel Grill Grate<br><span class="light">Fit up to four burgers or six hot dogs</span></li><br>
+                   <li>Flame Spreading Design<br><span class="light">Transform CampStove flames into a wood-fired grill</span></li><br>
+                  <li>Folding Legs<br><span class="light">Packs flat for ultimate portability</span></li><br>
+                  <li>BPA-Free High-Temp Top<br><span class="light">See what you’re cooking</span></li><br>
+                  <li>Silicone Seal<br><span class="light">Keeps liquids secure so you can pour without spilling a drop</span></li><br>
+                    <li>Vertical Cool Touch Handles<br><span class="light">Facilitate easy pouring</span></li><br>
+                  <li>Ultra-Thin Stainless Body<br><span class="light">Lightweight and safer than anodized aluminum cookware</span></li><br>
+                </ol>
+
+
+       </div>
+
+     </div>
+   </div>
+ </section>
+</div>

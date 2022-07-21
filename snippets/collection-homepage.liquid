@@ -1,0 +1,17 @@
+<div class="grid__item large--three-quarters">
+<section id="product-grid" class="product-grid section-large" itemtype="http://schema.org/SomeProducts">
+  <div class="wrapper wrapper--xxlarge rel">
+
+
+    {% for product in collection.lighting %}
+{%- include 'bold-product' with product, hide_action: 'skip' -%}
+
+      {% include 'collection-list-item' %}
+  
+
+
+    {% endfor %}
+
+  </div>
+</section>
+</div>

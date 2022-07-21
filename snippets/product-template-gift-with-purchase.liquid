@@ -1,0 +1,716 @@
+{% comment %} -------------------------------- BioLite PRODUCT SINGLE PAGE -------------------------------- {% endcomment %}
+
+<a id="product_top" name="product_top" title="Product top"></a>
+
+{% include 'hero' %} {% comment %} Set some product details so we can use them in multiple spots {% endcomment %} {% assign product_title_shortened = product.title | remove: 'BioLite' %} {% assign default_variant = bold_selected_or_first_available_variant %} {% assign
+featured_image = pbold_selected_or_first_available_variant.featured_image | default: product.featured_image %} {% capture product_price_meta %}
+
+<link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+<meta itemprop='excludedLocales' content='{{product.metafields.locale.excluded}}'/>
+<meta itemprop="priceCurrency" content="{{ shop.currency }}">
+<meta itemprop='productID' content='{{ product.id }}' />
+<meta itemprop='productAddToCartText' content='{{ add_to_cart_text }}' /> {% for variant in product.variants %}
+{%- include 'bold-variant' with variant, hide_action: 'skip' -%}
+<meta itemprop='variantPrice' location='{{ variant.option1 }}' content='{{ bold_variant_price }}' data-variant-id='{{ variant.id }}' /> {% if variant.compare_at_price %}
+<meta itemprop='comparePrice' location='{{ variant.option1 }}' content='{{ variant.compare_at_price }}' data-variant-id='{{ variant.id }}' /> {% endif %} {% endfor %} {% endcapture %} {% capture product_price_options %} {% for variant in product.variants %}
+{%- include 'bold-variant' with variant, hide_action: 'skip' -%}
+<option {% if variant==p bold_selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}" data-locale="{{ variant.option1 }}">{{ bold_variant_price | money }}</option>
+{% endfor %} {% endcapture %}
+
+<span itemscope itemtype="http://schema.org/Product">
+  <nav class="nav-horizontal nav-horizontal--products" data-sticky>
+    <div class="wrapper wrapper--full wrapper--max_height">
+      <div class="grid__item grid__item--p0 nav-horizontal__title">
+        {% assign product_title_shortened = product.title | remove: 'BioLite' %}
+        <a href="#" data-control-scrollto="#product_top" class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</a>
+      </div>
+      <div class="grid__item nav-horizontal__menu">
+        <ul class="sticky-product-nav" data-control-activeitems>
+          <li class="active"><a href="#" data-control-scrollto="#product-overview" data-control-scrollto-offset="68" title="Overview">Overview</a></li>
+          <li><a href="#" data-control-scrollto="#product-features" data-control-scrollto-offset="68" title="Features">Features</a></li>
+          {% if product.title == 'BioLite FlexLight' or product.title == 'BioLite Carry Pack' or product.title == 'BioLite KettlePot' or product.title == 'BioLite Portable Grill' or product.title == 'Energy Bundle' %}
+          {% else %}
+          <li><a href="#" data-control-scrollto="#product-tech" data-control-scrollto-offset="68" title="Tech">Tech</a></li>
+          {% endif %}
+          <li><a href="#" data-control-scrollto="#product-specs" data-control-scrollto-offset="68" title="Specs">Specs</a></li>
+          <li><a href="#" data-control-scrollto="#product-reviews" data-control-scrollto-offset="68" title="Reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div class="grid__item nav-horizontal__action">
+        <span class="btn btn-icon btn-icon--full btn-icon--right  btn-full btn-all-products">
+          <span class="yellow black mt20" style="font-size:20px; top:2px;">100% IMPACT</span><br>
+          <span class="yellow light" style="font-size:11px;">NOW THROUGH DEC 11</span>
+
+</span>
+
+<a href="#" onClick="_gaq.push(['_trackEvent', 'Click', 'Sticky Nav Add To Cart', '{{ product.title }}']);" class="btn btn-icon btn-icon--full btn-icon--right btn-yellow btn-full cart-item--add ml0 mt0" data-product-variant="{{ default_variant.id }}"
+data-control-animation data-control-animation-target="#cart-item-badge" data-control-animation-class="flash" title="{{ add_to_cart_text }}">
+  <span>{{ add_to_cart_text }}</span>
+  <i class="icomoon icon-shoppingCart fa-circle-border fa-circle-border--medium"></i>
+</a>
+
+
+{{ product_price_meta }}
+</div>
+</div>
+</nav>
+
+<!-- PRODUCT OVERVIEW -->
+<section id="product-overview" class="single-product-features single-product-features--tall" style="background-image:url('large-camsptove-with-phone-and-twigs.jpg');">
+  <div class="wrapper wrapper--large wrapper--max_height">
+    <!-- THUMBNAILS AND IMAGES -->
+    <div class="grid__item large--one-half medium--one-half table" id="product-thumbnails">
+      <div class="product-single__mini-slider">
+        {% if product.images.size > 1 %}
+          {% if product.metafields.video.thumbnail %}
+          <ul id="product-single__image" data-control-target>
+            {% for image in product.images limit:3 %}
+            <li><img src="{{ image.src | img_url: 'large' }}" alt=""></li>
+            {% endfor %}
+          </ul>
+          <ul class="product-single__thumbnails" data-control-nav data-control-targets="#product-single__image">
+            {% for image in product.images limit:3 %}
+              <li class="grid__item">
+                <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+              </li>
+            {% endfor %}
+            <li class="grid__item video_thumbnail">
+              <a href="#" class="btn btn-circle-tab btn-circle-tab--transparent" data-control-modal="#hero-video--{{ product.handle | handleize }}" title="Play">
+                <i class="fa fa-r fa-play"></i>
+              </a>
+              <img src="{{ product.metafields.video.thumbnail }}">
+            </li>
+          </ul>
+          {% else %}
+          <ul id="product-single__image" data-control-target>
+            {% for image in product.images limit:4 %}
+            <li><img src="{{ image.src | img_url: 'large' }}" alt=""></li>
+            {% endfor %}
+          </ul>
+          <ul class="product-single__thumbnails" data-control-nav data-control-targets="#product-single__image">
+            {% for image in product.images limit:4 %}
+              <li class="grid__item">
+                <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+              </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <!--
+    <div class="product-single__mini-slider">
+      {% if product.images.size > 1 %}
+        {% if product.metafields.video.thumbnail %}
+        <ul id="product-single__image" data-control-target>
+          {% for image in product.images limit:3 %}
+          <li><img src="{{ image.src | img_url: 'large' }}" alt=""></li>
+          {% endfor %}
+        </ul>
+        <ul class="product-single__thumbnails" data-control-nav data-control-targets="#product-single__image">
+          {% for image in product.images limit:3 %}
+            <li class="grid__item">
+              <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+            </li>
+          {% endfor %}
+          <li class="grid__item video_thumbnail">
+            <a href="#" class="btn btn-circle-tab btn-circle-tab--transparent" data-control-modal="#hero-video--{{ product.handle | handleize }}">
+              <i class="fa fa-r fa-play"></i>
+            </a>
+            <img src="{{ product.metafields.video.thumbnail }}">
+          </li>
+        </ul>
+        {% else %}
+        <ul id="product-single__image" data-control-target>
+          {% for image in product.images limit:4 %}
+          <li><img src="{{ image.src | img_url: 'large' }}" alt=""></li>
+          {% endfor %}
+        </ul>
+        <ul class="product-single__thumbnails" data-control-nav data-control-targets="#product-single__image">
+          {% for image in product.images limit:4 %}
+            <li class="grid__item">
+              <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+            </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      {% endif %}
+    </div>
+    -->
+    <!-- Content -->
+    <div class="grid__item large--one-half medium--one-half table" id="product-content">
+      <div class="table-cell">
+        {{ product.content }} {% unless product.metafields.bundle.productHandle %}
+        <!-- AM changes -->
+
+        <div class="top-review-container">
+          {% if product.metafields.press_review.content %} {{ product.metafields.press_review.content }} {% endif %}
+          <div class="product-reviews-top">
+            <div id="product-rating-top" class="top-reviews">
+              {% if product.metafields.quote.content %}
+              <div class="left-side">
+                <img src="{{ product.metafields.quote.logo }}" alt="" />
+                <p>
+                  "{{ product.metafields.quote.content }}"
+                  <span class="quote-author">{{product.metafields.quote.author}}</span>
+                </p>
+              </div><div class="right-side">
+                <div class="star-container-top"></div>
+                <a href="#" data-control-scrollto="#product-rating" data-control-scrollto-offset="68" class="gray-light top-see-all" title="See All">See All</a>
+                <a href="#" data-control-scrollto="#product-rating" data-control-scrollto-offset="68" class="gray-light top-write-a-review" title="Write A Review">Write A Review</a>
+              </div>
+              {% else %}
+              <div style="padding-left: 20px;">
+                <div class="star-container-top"></div>
+                <a href="#" data-control-scrollto="#product-rating" data-control-scrollto-offset="68" class="gray-light top-see-all" title="See All">See All</a>
+                <a href="#" data-control-scrollto="#product-rating" data-control-scrollto-offset="68" class="gray-light top-write-a-review" title="Write A Review">Write A Review</a>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="product-reviews-mobile">
+          <div id="product-rating-top" class="top-reviews">
+            <div class="left-side">
+              <div class="star-container-top"></div>
+            </div><div class="right-side">
+              <a href="#" data-control-scrollto="#product-rating" data-control-scrollto-offset="68" class="gray-light top-see-all" title="See All Reviews">See All Reviews</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mobile-product-content">
+          <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddSingleToCartForm">
+            <input type="hidden" name="id" value="{{ bold_selected_or_first_available_variant.id }}" />
+
+            <div class="add-to-cart-container">
+              <button title="add {{product.title}} to cart" type="submit" onClick="_gaq.push(['_trackEvent', 'Click', 'Overview Add To Cart', '{{ product.title }}']);" name="add" id="AddToCart" class="btn btn-yellow mt20 cart-item--add" data-product-variant="{{ default_variant.id }}">
+                <span id="AddToCartText">Add To My Cart</span>
+              </button>
+            </div>
+
+            <div class="price-container">
+              <select name="id" id="productSelect" class="product-single__variants">
+                {{ product_price_options }}
+              </select>
+              <span id="ProductPrice" itemprop="price" class="h4 carbonBlack">
+        {{ default_variant.price | money }}
+        {% if bold_compare_at_price > bold_price %}
+        <div class="compare-at">
+        <span class="product-price-compare-small">normally</span> <span class="product-price-compare-strike">{{ default_variant.compare_at_price | money }}  </span>
+            </div>
+            {% endif %}
+            </span>
+        </div>
+        </form>
+
+{%- unless bundle_loaded == 'true' -%}
+{%- include 'shappify-bdl-load-bundle' -%}
+{%- assign bundle_loaded = 'true' -%}
+{%- endunless -%} 
+
+        </div>
+
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddSingleToCartForm" class="tablet-portrait-hidden">
+          <input type="hidden" name="id" value="1212425061" />
+
+          <div class="add-to-cart-container">
+            <button type="submit" onClick="_gaq.push(['_trackEvent', 'Click', 'Overview Add To Cart', '{{ product.title }}']);" name="add" id="AddToCart" class="btn btn-yellow mt20 cart-item--add" data-product-variant="1212425061">
+              <span id="AddToCartText">Add {{ product.title | remove: 'BioLite' }} To My Cart</span>
+            </button>
+          </div>
+
+          <div class="price-container">
+            <select name="id" id="productSelect" class="product-single__variants">
+              {{ product_price_options }}
+            </select>
+            <span id="ProductPrice" itemprop="price" class="h4 carbonBlack">
+{{ default_variant.price | money }}
+{% if bold_compare_at_price > bold_price %}
+<div class="compare-at">
+<span class="product-price-compare-small">normally</span> <span class="product-price-compare-strike">{{ default_variant.compare_at_price | money }}  </span>
+          </div>
+          {% endif %}
+          </span>
+      </div>
+      </form>
+      {% endunless %}
+    </div>
+  </div>
+  </div>
+</section>
+<div class="mobile-product-content">
+  <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddSingleToCartForm">
+    <input type="hidden" name="id" value="1212425061" />
+
+    <div class="add-to-cart-container">
+      <button title="add {{product.title}} to cart" type="submit" onClick="_gaq.push(['_trackEvent', 'Click', 'Overview Add To Cart', '{{ product.title }}']);" name="add" id="AddToCart" class="btn btn-primary mt20 cart-item--add" data-product-variant="1212425061">
+        <span id="AddToCartText">Add To My Cart</span>
+      </button>
+    </div>
+
+    <div class="price-container">
+      <select name="id" id="productSelect" class="product-single__variants">
+        {{ product_price_options }}
+      </select>
+      <span id="ProductPrice" itemprop="price" class="h4 primary-warm">
+{{ default_variant.price | money }}
+{% if bold_compare_at_price > bold_price %}
+<div class="compare-at">
+<span class="product-price-compare-small">normally</span> <span class="product-price-compare-strike">{{ default_variant.compare_at_price | money }}  </span>
+    </div>
+    {% endif %}
+    </span>
+</div>
+</form>
+</div>
+<div class="product-reviews-mobile">
+  <div id="product-rating-top" class="top-reviews">
+    <div class="left-side">
+      <div class="star-container-top"></div>
+    </div><div class="right-side">
+      <a href="#" data-control-scrollto="#product-rating" data-control-scrollto-offset="68" class="gray-light top-see-all" title="See All Reviews">See All Reviews</a>
+    </div>
+  </div>
+</div>
+</span>
+
+<div class="mobile-wrapper open">
+  <h2 class="mobile-title"> Description </h2>
+  <section id="product-content" class="mobile-wrapper-content">
+    <div class="mobile-description">
+      {{ product.content }}
+    </div>
+  </section>
+</div>
+
+<div class="wrapper related-products">
+  {% if product.metafields.recommendations.productHandles %}
+  <hr>
+
+  <section class="section">
+
+    <header class="related-products__header">
+      <h6>Customers typically purchase these products together</h6>
+    </header>
+
+    <div id="product-accessories" class="related-products">
+      {% comment %} Related products will be appended here {% endcomment %}
+    </div>
+
+  </section>
+  {% endif %}
+</div>
+{% if product.metafields.features_slide01.image %}
+<div class="mobile-wrapper closed">
+  <h2 class="mobile-title"> Features </h2>
+  <section id="product-features" class="single-product-features single-product-features--photo_bg mobile-wrapper-content">
+    <div class="wrapper wrapper--max_height single-product-features__inner">
+      <div class="grid__item large--one-half pr30">
+
+        <ul class="nav-circles nav-circles--transparent" data-control-nav data-control-targets="#single-product-slides, #single-product-slide-content">
+          {% if product.metafields.features_slide01.icon %}
+          <li>
+            <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 1', '{{ product.title }}']);">
+              <i class="{{ product.metafields.features_slide01.icon }}"></i>
+            </div>
+          </li>
+          {% endif %} {% if product.metafields.features_slide02.icon %}
+          <li>
+            <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 2', '{{ product.title }}']);">
+              <i class="{{ product.metafields.features_slide02.icon }}"></i>
+            </div>
+          </li>
+          {% endif %} {% if product.metafields.features_slide03.icon %}
+          <li>
+            <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 3', '{{ product.title }}']);">
+              <i class="{{ product.metafields.features_slide03.icon }}"></i>
+            </div>
+          </li>
+          {% endif %} {% if product.metafields.features_slide04.icon %}
+          <li>
+            <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 4', '{{ product.title }}']);">
+              <i class="{{ product.metafields.features_slide04.icon }}"></i>
+            </div>
+          </li>
+          {% endif %}
+        </ul>
+
+        <ul id="single-product-slide-content" class="pt20" data-control-target>
+          {% if product.metafields.features_slide01.title %}
+          <li>
+            <h3 class="light">{{ product.metafields.features_slide01.title }}</h3>
+            <h6>{{ product.metafields.features_slide01.desc }}</h6>
+          </li>
+          {% endif %} {% if product.metafields.features_slide02.title %}
+          <li>
+            <h3 class="light">{{ product.metafields.features_slide02.title }}</h3>
+            <h6>{{ product.metafields.features_slide02.desc }}</h6>
+          </li>
+          {% endif %} {% if product.metafields.features_slide03.title %}
+          <li>
+            <h3 class="light">{{ product.metafields.features_slide03.title }}</h3>
+            <h6>{{ product.metafields.features_slide03.desc }}</h6>
+          </li>
+          {% endif %} {% if product.metafields.features_slide04.title %}
+          <li>
+            <h3 class="light">{{ product.metafields.features_slide04.title }}</h3>
+            <h6>{{ product.metafields.features_slide04.desc }}</h6>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="single-product-features__overlay"></div>
+
+    <ul id="single-product-slides" class="single-product-slides" data-control-target>
+      {% if product.metafields.features_slide01.image %}
+      <li style="background-image:url('{{ product.metafields.features_slide01.image }}');"></li>
+      {% endif %} {% if product.metafields.features_slide02.image %}
+      <li style="background-image:url('{{ product.metafields.features_slide02.image }}');"></li>
+      {% endif %} {% if product.metafields.features_slide03.image %}
+      <li style="background-image:url('{{ product.metafields.features_slide03.image }}');"></li>
+      {% endif %} {% if product.metafields.features_slide04.image %}
+      <li style="background-image:url('{{ product.metafields.features_slide04.image }}');"></li>
+      {% endif %}
+
+    </ul>
+  </section>
+  {% endif %}
+</div>
+{% comment %} Product Tech Curtain - Inside our Tech, Parallel Innovation sections {% endcomment %} {% if product.title == 'BioLite KettleCharge' %} {% comment %} Products without the Parallel Innovation section Kettlepot, Portable Grill,
+BaseCamp Carry Pack, FlexLight {% endcomment %}
+<div class="mobile-wrapper closed inside-tech--{{ product.handle | remove: 'biolite-'  }}">
+  <h2 class="mobile-title">Inside The Tech</h2>
+  <section id="product-tech" class="product-tech without-curtain product-tech--{{ product.handle | remove: 'biolite-'  }} mobile-wrapper-content">
+    <div class="product-tech-curtain show">
+      <div class="product-tech-curtain__content wrapper wrapper--full_height wrapper--large pt50 pb50">
+        <header class="product-tech__header text-center grid__item large--one-whole">
+          <h3 class="light">Inside our Technology</h3>
+        </header>
+
+        <div class="product-tech-curtain__body">
+          <div class="grid__item large--one-half medium--one-half">
+            <img class="product-tech-curtain__img" src="{{ product.metafields.techspec.image }}" alt="">
+          </div>
+
+          {% assign inside_tech = product.handle | remove: 'biolite-' | prepend: 'insidetech_' %} {% include inside_tech %}
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% elsif product.title == 'BioLite FlexLight' or product.title == 'BioLite Carry Pack' or product.title == 'BioLite KettlePot' or product.title == 'BioLite Portable Grill' or product.title == 'Energy Bundle' %} {% comment %} Hide both the Parallel Innovation and Inside our Tech sections
+FlexLight, BaseCamp Carry Pack {% endcomment %} {% elsif product.title == 'BioLite SiteLight' %} {% else %} {% comment %} Show Parallel Innovation and Inside our Tech sections {% endcomment %}
+<div class="mobile-wrapper closed inside-tech--{{ product.handle | remove: 'biolite-'  }}">
+  <h2 class="mobile-title">Inside The Tech</h2>
+  <section id="product-tech" class="product-tech mobile-wrapper-content" style="background-image:url('{{ product.metafields.parallel.image }}');">
+    <div id="product-tech-curtain--{{ product.handle | remove: 'biolite-' }}" class="product-tech-curtain show">
+
+      <div class="product-tech-curtain__content wrapper wrapper--full_height wrapper--large pt50 pb50">
+
+        <header class="product-tech__header text-center grid__item large--one-whole">
+          <h3 class="light">Inside our Technology</h3>
+        </header>
+
+        <div class="product-tech-curtain__body">
+          <div class="grid__item large--one-half  medium--one-half">
+            <img class="product-tech-curtain__img" src="{{ product.metafields.techspec.image }}" alt="">
+          </div>
+
+          {% assign inside_tech = product.handle | remove: 'biolite-' | prepend: 'insidetech_' %} {% include inside_tech %}
+
+        </div>
+
+      </div>
+
+      <div data-control-curtain="#product-tech-curtain--{{ product.handle | remove: 'biolite-' }}" data-control-text="Parallel Innovation, Innovative Technology" data-control-fade=".product-tech-overlay">
+        <footer class="product-tech-curtain__footer">
+          <small class="caps gray-light alt"><span data-control-text-target="">Parallel Innovation</span></small>
+        </footer>
+        <div class="btn-circle-tab btn-circle-tab--bottom product-tech-curtain__tab">
+          <i class="icomoon icon-double-arrow"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-tech-overlay">
+      <div class="product-tech-overlay__content">
+        {% if product.metafields.parallel.title %}
+        <h3 class="light">{{ product.metafields.parallel.title }}</h3> {% else %}
+        <h3 class="light">Parallel Innovation</h3> {% endif %}
+      </div>
+    </div>
+
+
+    <div class="wrapper wrapper--large product-tech__content table">
+      <div class="table-cell">
+        <div id="parallel-innovation" class="grid__item large--one-half pull-right pt100 pl50">
+
+          <h4 class="alt">Parallel Innovation</h4> {{ product.metafields.parallel.text }}
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+{% endif %}
+<!-- conditional: inside our tech, parallel innovation section -->
+
+{% comment %} GLOBAL IMPACT SECTION KettlePot, Portable Grill, BaseCamp Carry Pack, FlexLight {% endcomment %} {% if product.title == 'BioLite KettleCharge' %}
+<section class="interstitial section-xlarge mb40 tablet-portrait-hidden" style="background-image:url('{{ 'bg-interstitial-2.jpg' | asset_url }}')">
+  <div class="wrapper table">
+    <div class="interstitial__content table-cell text-center">
+      <h3 class="mt0">Global Impact in Every Purchase</h3>
+      <h6 class="light">With every purchase of a BioLite product, you are helping create lasting change for communities living in energy poverty. The same technology that provides you with a clean, innovative outdoor experience is providing cleaner daily cooking conditions, curbing climate change and saving lives worldwide.</h6>
+    </div>
+  </div>
+  <div class="interstitial__overlay interstitial__overlay--green"></div>
+</section>
+{% endif %}
+<!-- conditional: global impact section -->
+
+<div class="mobile-wrapper closed">
+  <h2 class="mobile-title">Specs</h2>
+  <section id="product-specs" class="mobile-wrapper-content product-specs section product-specs--{{ product.handle | remove: 'biolite-' }}">
+    <div class="wrapper">
+      {% comment %} Don't insert Tech Specs section for Product: eGift todo: Add separate template for eGift? {% endcomment %} {% if product.title != 'BioLite eGift' %}
+      <header class="product-specs__header text-center">
+        <h3 class="light">Tech Specs</h3>
+      </header>
+
+      {% comment %} Grabbing the Tech Specs portion dynamically by product name Unless product is eGift. Could also use SKU for easier access {{ bold_selected_or_first_available_variant.sku }} Assign the tech_specs variable, then include techspecs-{file_name} {% endcomment %}
+      {% assign tech_specs = product.handle | remove: 'biolite-' | prepend: 'techspecs_' %} {% include tech_specs %} {% endif %}
+    </div>
+  </section>
+</div>
+<!-- <section id="content" class=""> -->
+
+
+{% if product.title == 'BioLite FlexLight' or product.title == 'BioLite Carry Pack' or product.title == 'BioLite KettlePot' or product.title =='BioLite Portable Grill' %}
+<section class="interstitial section-xlarge mb40" style="background-image:url('{{ 'bg-interstitial-2.jpg' | asset_url }}')">
+  <div class="wrapper table">
+    <div class="interstitial__content table-cell text-center">
+      <h3 class="mt0">Global impact in every purchase</h3>
+      <h6 class="light">With every purchase of a BioLite product, you are helping create lasting change in emerging markets of the developing world. The same technology that provides you with a clean, innovative camping experience is providing better living conditions, saving lives worldwide.  </h6>
+    </div>
+  </div>
+  <div class="interstitial__overlay interstitial__overlay--green"></div>
+</section>
+{% endif %} {% if product.title == 'BioLite SiteLight' %}
+<!-- SITELIGHT: HIDE INSIDE TECH -->
+<section id="product-tech" class="product-tech product-tech--sitelight" style="background-image:url('{{ product.metafields.parallel.image }}');">
+
+  <div class="wrapper wrapper--large product-tech__content table">
+    <div class="table-cell">
+      <div id="parallel-innovation" class="grid__item large--one-half pull-right pl50">
+
+        <h4 class="alt">Parallel Innovation</h4> {{ product.metafields.parallel.text }}
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<div class="mobile-wrapper closed reviews" id="product-reviews">
+  <h2 class="mobile-title">Reviews</h2>
+  <div class="product-reviews-container mobile-wrapper-content">
+    <div class="wrapper">
+      <section class="product-featurette section-large pt0--mobile" itemscope itemtype="http://schema.org/Product">
+        <header class="product-reviews__header text-center grid__item large--one-whole">
+          <h3 class="light">Reviews</h3>
+        </header>
+        {{ product_price_meta }}
+        <select name="id" id="productSelect" class="product-single__variants">
+          {{ product_price_options }}
+        </select>
+        <div class="product-featurette__image grid__item large--one-third tablet-portrait-hidden">
+          <img src="{{ featured_image | img_url: 'large' }}" alt="{{ product.title }}">
+          <h3 class="alt baseline" itemprop="name">{{ product.title | remove: "BioLite" }}</h3>
+          <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddReviewedToCartForm">
+            <button type="submit" onClick="_gaq.push(['_trackEvent', 'Click', 'Bottom Add To Cart', '{{ product.title }}']);" name="add" id="AddToCart" class="btn btn-primary cart-item--add" data-product-variant="{{ default_variant.id }}">
+              <span id="AddToCartText">{{ add_to_cart_text }}</span>
+            </button>
+          </form>
+          <span id="ProductPrice" itemprop="price" class="product-grid-item__price h1 primary light">
+          {{ default_variant.price | money }}
+          </span>
+        </div>
+
+        <div class="product-featurette__content grid__item large--two-thirds table">
+          <div id="product-rating">
+            <div id="shopify-product-reviews" data-id="{{product.id}}" class="show-rating">{{ product.metafields.spr.reviews }}</div>
+            <a href="" class="spr-load-more" title="Load More Reviews">Load More Reviews</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- </section> -->
+<!-- #content -->
+
+<!-- Scripts to hide and show all product reviews -->
+<!-- @todo: 'show' btn if there aren't any reviews -->
+<script>
+  jQuery('#product-rating').append(' \
+  <a href="#" class="spr-summary-actions-allreviews gray-light" onclick="">See all Reviews</a>\
+  <a href="#" class="spr-summary-actions-hidereviews gray-light" onclick="">Hide Reviews</a>\
+  <a href="" class="spr-summary-actions-newreview gray-light" onclick="SPR.toggleForm({{product.id}});return false" style="float: left;">Write a review</a> \
+  ');
+
+  jQuery('.spr-summary-actions-hidereviews').hide();
+  jQuery('.spr-reviews').show();
+
+  jQuery(document).delegate('.spr-summary-actions-allreviews', 'click', function (event) {
+  event.preventDefault();
+  jQuery('.spr-reviews').removeClass('hide').addClass('show');
+  jQuery('.spr-summary-actions-allreviews').hide();
+  jQuery('.spr-summary-actions-newreview').show();
+  jQuery('.spr-load-more').show();
+  jQuery('.spr-form').removeClass('show').addClass('hide');
+  });
+
+  jQuery(document).delegate('#product-reviews .review-scrollto', 'click', function (event) {
+  event.preventDefault();
+  jQuery('.spr-summary-actions-allreviews').trigger( 'click' );
+  });
+
+  jQuery(document).delegate('.spr-summary-actions-newreview', 'click', function (event) {
+  jQuery('.spr-summary-actions-newreview').hide();
+  jQuery('.spr-summary-actions-allreviews').show();
+  jQuery('.spr-load-more').hide();
+  jQuery('.spr-reviews').removeClass('show').addClass('hide');
+  jQuery('.spr-form').removeClass('hide').addClass('show');
+  });
+
+  var paginateCallback = function(){
+    SPRCallbacks = {};
+
+    var nextPage = "",
+        lastPage = "",
+        pastComments = [],
+        nextAnchorTag = [],
+        commentsContainer = [],
+        html = "";
+
+    return function(e){
+      nextPage = $(".spr-pagination-next > a").attr("data-page");
+      lastPage = $(".spr-pagination-page > a").last().attr("data-page");
+      pastComments = $(".spr-reviews");
+      nextAnchorTag = $(".spr-pagination-next > a");
+      commentsContainer = $("#shopify-product-reviews .spr-reviews");
+
+      var comments = pastComments.clone();
+      comments.find(".spr-pagination").remove();
+      html = comments.html();
+
+      if(!SPRCallbacks.onReviewsLoad){
+        // pluging in into Shopify Product Reviews Object SPR;
+        SPRCallbacks.onReviewsLoad = function(e){
+          if(nextPage == lastPage){
+            $(".spr-load-more").hide();
+          }
+
+          if(pastComments.length > 0){
+            commentsContainer.prepend(html);
+          }
+
+        };
+
+        SPR.registerCallbacks();
+      }
+
+      nextAnchorTag.click();
+
+      return false;
+
+    }
+  }
+
+  $(".spr-load-more").click(paginateCallback());
+
+
+  /* AM - clone only reviews stars and numbers to the top */
+  jQuery('#product-rating .spr-summary-starrating').appendTo(".star-container-top");
+
+  //pull the intial text
+  var reviewtext = jQuery('#product-rating .spr-summary-caption').text();
+
+  console.log('reviewtext:',reviewtext);
+  //strip the "based on X review"
+  var numberreviews = reviewtext.replace(/on|Based|reviews|review/g,'');
+  numberreviews = numberreviews.replace(/\s+/g, '');
+  jQuery(".star-container-top").append('<span class="number-reviews-top">('+numberreviews+')</span>');
+
+
+  //Trigger opening of see all reviews, and write a review when you click the top
+  $('.top-see-all').click(function() {
+  jQuery('.spr-summary-actions-allreviews').trigger('click');
+  });
+
+  $('.top-write-a-review').click(function() {
+  jQuery('.spr-summary-actions-newreview').trigger('click');
+  SPR.toggleForm({{product.id}});
+  });
+
+  $(".mobile-wrapper").click(function(e){
+    var isOpened = $(this).hasClass("open"),
+        target = $(e.target);
+
+    if(isOpened && (target.hasClass("mobile-title") || target.hasClass("mobile-wrapper"))){
+      $(this).removeClass("open").addClass("closed");
+    }else{
+      $(this).removeClass("closed").addClass("open");
+    }
+  });
+
+</script>
+
+<!-- HERO VIDEO MODAL -->
+{% if product.metafields.hero.video %}
+<div id="hero-video--{{ product.handle | handlesize }}" class="modal">
+  <header class="modal__header">
+    {% comment %}
+    <div class="modal__title">{% if product.metafields.hero.video_title %} {{ product.metafields.hero.video_title }} {% else %} {{ product.title }} {% endif %}</div>{% endcomment %}
+    <div class="modal--close">
+      <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+    </div>
+  </header>
+  <div class="modal__content modal__content--video">
+    <div data-control-youtube-video="{{ product.metafields.hero.video }}"></div>
+  </div>
+</div>
+{% endif %}
+
+{% comment %}
+Add the product data to our Javascript Objects for various magics
+{% endcomment %}
+{% if product %}
+<script type="text/javascript">
+jQuery(function() {
+APP.data.current_product = {%- include 'bold-product', output: 'json' -%}
+APP.data.current_product_variants = {{ product.variants | json }}
+{% if product.metafields.bundle.productHandle %}
+meta = {
+'bundle' : {
+'productHandle' : {{ product.metafields.bundle.productHandle | json }},
+'desc' : {{ product.metafields.bundle.desc | json }},
+}
+}
+APP.data.current_product_metafields = meta
+APP.GetBundledProduct.attach(meta.bundle)
+{% endif %}
+APP.getRecommendedProducts.attach({{ product.metafields.recommendations.productHandles | json }})
+});
+</script>
+
+{% endif %}

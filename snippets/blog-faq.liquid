@@ -1,0 +1,323 @@
+{% comment %}
+  
+  --------------------------------
+
+  BioLite FAQ PAGE
+
+  --------------------------------
+
+  /blogs/faq/tagged/popular
+
+{% endcomment %}
+
+{% comment %}
+  I've started converting this to a more dynamic version
+  There are 3 templates in ajax-templates
+  Functions need to be added to app.js
+  Not Completed yet
+{% endcomment %}
+
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  console.log('categories', "{{categories}}".split(',') )
+});
+</script>
+
+<section class="faq flex-columns" id="faq_categories">
+  <nav class="nav-sidebar flex-sidebar faq-nav">
+    <div class="nav-sidebar__header">
+      <h4 class="alt light baseline">Categories</h4>
+    </div>
+    <div class="nav-sidebar__content">
+      <ul class="faq-categories" data-control-nav data-control-targets="#faq-content">
+        <li id="popular">Popular FAQs</li>
+        <li id="nanogrid">NEW BioLite NanoGrid</li>
+        <li id="campstove">CampStove</li>
+        <li id="basecamp">BaseCamp</li>
+        <li id="portable-grill">Portable Grill</li>
+        <li id="kettlecharge">KettleCharge</li>
+        <li id="kettlepot">KettlePot</li>
+        <li id="emerging-markets">Emerging Markets</li>
+        <li id="orders-shipping">Orders &amp; Shipping</li>
+        <li id="misc">Miscellaneous</li>
+      </ul>
+    </div>
+  </nav>
+  
+  <ul id="faq-content" class="faq-content flex-content" data-control-target>
+    <li>
+      <h3 class="faq-title light primary baseline mb20" id="faq_popular">Popular FAQs</h3>
+      {% for article in blogs['faq'].articles %}
+        {% if article.tags contains 'faq_popular' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </li>
+
+    <li>
+      <h3 class="faq-title light primary baseline mb20">NEW BioLite NanoGrid</h3>
+      {% for article in blogs['faq'].articles %}
+        {% if article.tags contains 'faq_nanogrid'%}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </li>
+
+    <li>
+      <h3 class="faq-title light primary baseline mb20">CampStove</h3>
+      <h6 class="light">Startup &amp; First Time Use</h6>
+      {% for article in blogs['faq'].articles %}
+        <!-- CampStove Startup &amp First Time Use -->
+        {% if article.tags contains 'faq_campstove' and article.tags contains 'startup' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      
+      <h6 class="light mt30">Running &amp; Use</h6>
+      <!-- CampStove Running &amp Use -->
+      {% for article in blogs['faq'].articles %}
+        {% if article.tags contains 'faq_campstove' and article.tags contains 'running' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      
+      <h6 class="light mt30">Maintenance &amp; Care</h6>
+      <!-- CampStove Maintenance &amp; Care -->
+      {% for article in blogs['faq'].articles %}
+        {% if article.tags contains 'faq_campstove' and article.tags contains 'maintenance' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </li>
+
+    <li>
+      <h3 class="faq-title light primary baseline mb20">BaseCamp</h3>
+      <h6 class="light">Startup &amp; First Time Use</h6>
+      {% for article in blogs['faq'].articles %}
+        <!-- BaseCamp Startup &amp First Time Use -->
+        {% if article.tags contains 'faq_basecamp' and article.tags contains 'startup' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      
+      <h6 class="light mt30">Running &amp; Use</h6>
+      <!-- BaseCamp Running &amp Use -->
+      {% for article in blogs['faq'].articles %}
+        {% if article.tags contains 'faq_basecamp' and article.tags contains 'running' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      
+      <h6 class="light mt30">Maintenance &amp; Care</h6>
+      <!-- BaseCamp Maintenance &amp; Care -->
+      {% for article in blogs['faq'].articles %}
+        {% if article.tags contains 'faq_basecamp' and article.tags contains 'maintenance' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </li>
+
+    <li>
+      <h3 class="faq-title light primary baseline mb20" id="faq_portable-grill">Portable Grill</h3>
+      {% for article in blogs['faq'].articles %}
+        {% if article.tags contains 'faq_portable-grill' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </li>
+    
+    <li>
+      <h3 class="faq-title light primary baseline mb20">KettleCharge</h3>
+      {% for article in blogs['faq'].articles %}
+        {% if article.tags contains 'faq_kettlecharge' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </li>
+    
+    <li>
+      <h3 class="faq-title light primary baseline mb20">KettlePot</h3>
+      {% for article in blogs['faq'].articles %}
+        {% if article.tags contains 'faq_kettlepot' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </li>
+
+    <li>
+      <h3 class="faq-title light primary baseline mb20">Emerging Markets</h3>
+      {% for article in blogs['faq'].articles %}
+        {% if article.tags contains 'faq_emerging-markets' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </li>
+    
+    <li>
+      <h3 class="faq-title light primary baseline mb20">Orders &amp; Shipping</h3>
+      {% for article in blogs['faq'].articles %}
+        {% if article.tags contains 'faq_orders-shipping' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </li>
+    
+    <li>
+      <h3 class="faq-title light primary baseline mb20">Miscellaneous Questions</h3>
+      {% for article in blogs['faq'].articles %}
+        {% if article.tags contains 'faq_misc' %}
+          <div class="list-toggles">
+            <div class="list-toggle">
+              <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+                <i class="fa fa-plus-circle"></i>
+                <span>{{ article.title }}</span>
+              </div>
+              <div class="list-toggle__content">
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </li>
+  </ul>
+</section>
+
+<section class="jumbotron">
+  <div class="wrapper text-center">
+    <h3 class="light baseline mb10"><em>Still Have Questions?</em></h3>
+    <h6 class="light baseline">If you didn't find answers in our FAQ section, send us a message!</h6>
+    <a href="/pages/contact/#contactFormWrapper" class="btn btn-outline-white btn-icon btn-icon--left mt30" title="Contact Us"> <i class="fa fa-envelope-o"></i> <span>Contact Us</span> </a>
+  </div>
+</section>

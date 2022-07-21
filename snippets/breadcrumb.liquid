@@ -1,0 +1,73 @@
+
+{% comment %}
+  Documentation - http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation
+{% endcomment %}
+
+
+{% if template contains 'index' %}
+  
+  <li>BioLite</li>
+
+{% else %}
+
+  <li><a href="/" title="BioLite">BioLite</a></li>
+
+  {% if template contains 'product' %}
+
+    {% comment %}
+      {% if collection %}
+        
+        {% if collection.handle %}
+          {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+          <li>{{ collection.title | link_to: url }}</li>
+        {% endif %}
+      {% endif %}
+    {% endcomment %}
+
+    <li><a href="/products" title="Shop">Shop</a></li>
+    <li>{{ product.title }}</li>
+
+
+  
+  {% elsif template contains 'collection' %}
+    
+    {% comment %}
+      {% if current_tags %}
+        {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+        <li>{{ collection.title | link_to: url }}</li>
+
+        <li>{{ current_tags | join: " + " }}</li>
+      {% else %}
+
+        <li>{{ collection.title }}</li>
+      {% endif %}
+
+    {% endcomment %}
+    <li>Shop</li>
+
+  {% elsif template == 'blog' %}
+
+    {% if current_tags %}
+      <li>{{ blog.title | link_to: blog.url }}</li>
+
+      <li>{{ current_tags | join: " + " }}</li>
+    {% else %}
+    <li>{{ blog.title }}</li>
+    {% endif %}
+
+  {% elsif template == 'article' %}
+
+    <li>{{ blog.title | link_to: blog.url }}</li>
+    <li>{{ article.title }}</li>
+
+  {% elsif template contains 'page' %}
+
+   <li>{{ page.title }}</li>
+
+  {% else %}
+
+
+   <li>{{ page_title }}</li>
+
+  {% endif %}
+{% endif %}<!-- home page check -->

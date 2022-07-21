@@ -1,0 +1,260 @@
+/* Provide visible focus when tabbing to these elements */
+.product-grid-item__inner a:focus .product-grid-item__thumb,
+.klaviyo_submit_button:focus,
+#warrantySubmit:focus,
+#warranty_signup select:focus,
+.recent-press-be a:focus,
+.slider-prev:focus,
+.slider-next:focus,
+#AddSingleToCartForm .single-option-selector:focus,
+#AddToCart:focus,
+form.inline button:focus,
+.icon-close-circle:focus,
+#menu-main .hasDropdown button:focus,
+a.nav-featured-area-link:focus .feature-hover span,
+#gearkitsdropdown .gear-kits-item-button a:focus div,
+.btn.btn-primary:focus
+{
+  outline-width: 2px !important;
+  outline-style: solid !important;
+  outline-color: Highlight !important;
+}
+
+@media (-webkit-min-device-pixel-ratio:0) {
+  .product-grid-item__inner a:focus .product-grid-item__thumb,
+  .klaviyo_submit_button:focus,
+  #warrantySubmit:focus,
+  #warranty_signup select:focus,
+  .recent-press-be a:focus,
+  .slider-prev:focus,
+  .slider-next:focus,
+  #AddSingleToCartForm .single-option-selector:focus,
+  #AddToCart:focus,
+  form.inline button:focus,
+  .icon-close-circle:focus,
+  #menu-main .hasDropdown button:focus,
+  a.nav-featured-area-link:focus .feature-hover span,
+  #gearkitsdropdown .gear-kits-item-button a:focus div,
+  .btn.btn-primary:focus
+  {
+    outline: -webkit-focus-ring-color auto 5px !important;
+  }
+}
+
+/* make review report as innapropriate visible on focus */
+#shopify-product-reviews.show-rating .spr-review-reportreview:focus {
+  opacity: 1;
+}
+
+/* /press-media page recent press */
+.recent-press-be a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.recent-press-be a:focus .staff-grid-item__overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.recent-press-be a:focus .staff-grid-item__content {
+  transform: scale3d(1, 1, 1);
+}
+
+/* Product filtering focus on main content*/
+#AjaxinateLoop:focus {
+  outline: none;
+}
+
+/* Hidden announcer for product filtering screen reader*/
+.screenreader {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+/* group filtering checkboxes for screen readers */
+.product-filters-wrapper {
+  border: 0;
+  padding: 0;
+}
+
+/* region/location modal */
+.closeLocationModal {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #fff;
+  background-color: #000;
+  font-size: 25px;
+  width: 30px;
+  height: 30px;
+  line-height: 100%;
+  text-align: center;
+  border: 1px solid #fff;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px #000;
+}
+
+.closeLocationModal:hover {
+  color: #fff;
+}
+
+/* show label in newsletter signup form*/
+#email_signup.klaviyo_condensed_styling .klaviyo_field_group>label {
+    display: block;
+    color: #fff;
+    font-family: din-next-pro;
+    text-align: center;
+    left: 26px;
+    position: relative;
+    padding-bottom: 9px;
+  font-weight: 300;
+    font-size: 16px;
+}
+
+#email_signup {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#email_signup .klaviyo_messages {
+  order: 3;
+  flex: 0 1 100%;
+} 
+
+#email_signup .klaviyo_form_actions{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: calc(1em + 1px);
+}
+
+/* color contrast fixes */
+
+
+
+
+.product-grid-item__sub-title {
+  color: #6C6C6C !important;
+}
+
+#collections .compare-at .product-price-compare-strike, 
+#upgrade-your-tailgate-with-biolite-firepit 
+.compare-at .product-price-compare-strike, 
+#meet-biolite-headlamp-330-holy-fit-this-is-good 
+.compare-at .product-price-compare-strike, 
+#biolite-meet-the-biolite-firepit .compare-at .product-price-compare-strike, 
+#biolite-introducing-sunlight-solar-powered-lantern .compare-at .product-price-compare-strike, 
+#new-biolite-solarhome-620-solar-powered-light-charging-amp-radio .compare-at .product-price-compare-strike, 
+#biolite-shop-head-lamps-solar-lights-lanterns-amp-string-lights .compare-at .product-price-compare-strike, 
+#biolite-shop-portable-solar-panels-amp-usb-battery-chargers .compare-at .product-price-compare-strike, 
+#biolite-holiday-gift-guide .compare-at .product-price-compare-strike, 
+#biolite-shop-portable-camp-stoves-grills-amp-fire-pits .compare-at .product-price-compare-strike,
+#product-features-and-specs .tabs > li:not(.active):not(:hover),
+.number-reviews-top,
+.star-container-top ~ a,
+.cart-limit-sub-note,
+.cart-shipping-note,
+#account [title="Forgot your password?"],
+#account .text-links,
+#create-account .text-links
+{
+  color: #6e6e6e !important;
+}
+
+.footer-legal a {
+  color: #767676;
+}
+
+#menu-main .hasDropdown button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 100%;
+  background: transparent;
+  border: none;
+}
+
+a.nav-featured-area-link:focus .feature-hover {
+  opacity: 1;
+}
+
+span#ProductPrice:before {
+  content: "Current Price: ";
+  display: inline-block;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+span.product-price-compare-strike:before {
+  content: "Previous Price: ";
+  display: inline-block;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-label {
+  position:relative;
+  font-family: "din-next-pro";
+}
+
+.form-label .required-field {
+  top: -3px;
+}
+
+input[required]:invalid {
+  box-shadow: none;
+}
+
+.required-icon {
+  color: #C24D00 !important;
+  font-weight: 700;
+  padding-left: 3px;
+}
+
+.skip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: .857143em;
+  z-index:999999;
+}
+
+@media (min-width: 600px) {
+  .skip li {
+      margin-left: 111px;
+  }
+}
+
+.skip li {
+    position: absolute;
+    z-index: 1;
+    margin: 0;
+}
+
+.skip a {
+  position: absolute;
+  left: -9999px;
+  color: #ffffff;
+  background-color: #35a8a6;
+}
+
+.skip a:active, .skip a:focus {
+  display: block;
+  position: static;
+  left: 0;
+  padding: .25em 1em;
+}
+
+#sidebar {
+  display: none;
+}

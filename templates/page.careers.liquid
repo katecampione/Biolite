@@ -1,0 +1,50 @@
+<script>
+$(function(){
+  if (document.location.href.indexOf("careers") > -1) {
+    $.get( "https://app.builtforteams.com/biolite-inc/jobs.json", function( data ) {
+      if(data.length > 0){
+        $(data).each(function(index, job){
+          $('#built-jobs').append('<li><h4 class="alt gray-medium mt40 mb10">'+job.title+'</h4><a href="'+job.links[0].href.replace('/apply', '')+'" class="btn btn-primary mb30" target="_blank" rel="noopener" aria-label="Opens in a new tab" title="Learn more and apply for ' + job.title + ' job">Learn More & Apply</a></li> <hr>')
+        });
+      }
+    });
+  }
+});
+</script>
+
+<script>
+$(function(){
+  if (document.location.href.indexOf("careers") > -1) {
+    $.get( "https://app.builtforteams.com/biolite-kenya/jobs.json", function( data ) {
+      if(data.length > 0){
+        $(data).each(function(index, job){
+          $('#built-jobs').append('<li><h4 class="alt gray-medium mt40 mb10">'+job.title+'</h4><a href="'+job.links[0].href.replace('/apply', '')+'" class="btn btn-primary mb30" target="_blank" rel="noopener" aria-label="Opens in a new tab" title="Learn more and apply for ' + job.title + ' job">Learn More & Apply</a></li> <hr>')
+        });
+      }
+    });
+  }
+});
+</script>
+
+
+
+{% include 'hero' %}
+
+<section class="section-xlarge">
+	<div class="wrapper text-center">
+		{{ page.content }}
+	</div>
+</section>
+
+
+
+<section class="expandable expandable--full flex-columns pt10">
+	<div class="wrapper">
+		<ul class="expandable-content flex-content">
+			<h2 class="light mb50 text-center">Job Openings</h2>
+		
+
+<ul id="built-jobs"></ul>			
+		</ul>
+	</div>
+</section>

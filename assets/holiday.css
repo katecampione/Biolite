@@ -1,0 +1,217 @@
+
+.holiday-mission-stats-each {
+    border-right: 1px solid #b5b5b5;
+    margin: 14px 0 10px 0;
+    padding: 1px 17px 8px 10px;
+}
+.holiday-mission-stats-each:last-child {
+ border-right:0px; 
+}
+#give-a-gifcard-this-holiday .holiday-mission-stats-each {
+    margin: 14px 0 10px 0;
+    padding: 1px 17px 8px 10px;
+      border-right: 0;
+}
+
+.holiday-mission-stats {
+ margin:45px 0 30px 0; 
+}
+
+
+.holiday-text {
+   font-family: aw-conqueror-inline, sans-serif !important;
+  font-weight: 400 !important;
+	font-style: normal !important;
+}
+
+
+.homepage-gift-guide {
+    padding: 0 60px 0 60px;
+    margin: 40px auto 0 auto;
+}
+
+.homepage-category-wrapper {
+    margin: 60px auto;
+}
+
+.holiday-home-wrapper {
+    margin: 46px auto 0 auto;
+}
+
+
+.homeheader-footer {
+ margin:30px 0 0 0; 
+}
+
+.gift-guide-icon-wrapper {
+    transition: background-color 150ms ease-in;
+    -webkit-transition: background-color 150ms ease-in;
+    -moz-transition: background-color 150ms ease-in;
+    padding: 0 20px 30px 20px;
+    background-color: rgba(243, 243, 243, 0.8);
+}
+
+.gift-guide-icon-wrapper:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+
+.gift-guide-icon-home {
+    position: relative;
+    padding: 0 15% 0 15%;
+    margin: 0 auto 0 auto;
+    text-align: center;
+}
+.gift-guide-icon-label {
+    text-align: left;
+    left: 17%;
+    position: relative;
+    font-family: "din-next-pro";
+    font-weight: 700;
+    font-size: 13px;
+    color: #444444;
+    display: block;
+    text-transform: uppercase;
+}
+.homepage-category-img {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+        padding: 0 20px 20px 20px;
+}
+.homepage-category {
+    padding: 8px;
+}
+
+.homepage-category-padder {
+    margin: 0px;
+    background-color: #fff; 
+}
+
+.world-icon-holiday {
+    font-size: 41px !important;
+    color: #757575;
+    position: relative;
+    top: -15px;
+}
+
+.gifcard-icon-holiday {
+    font-size: 41px !important;
+    color: #C24D05;
+    position: relative;
+    top: -15px;
+}
+
+.homepage-category-caption {
+    font-family: din-next-pro, sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 35px;
+    color: #35a8a6;
+  	text-transform:uppercase;
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 20px;
+    display: block;
+    padding: 16px 0 16px 0px;
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+    background-color: rgba(243, 243, 243, 0);
+    -webkit-transition: all .2s ease-out 0.1s;
+    -moz-transition: all .2s ease-out 0.1s;
+    -o-transition: all .2s ease-out 0.1s;
+    transition: all .2s ease-out 0.1s;
+}
+
+.homepage-category-caption:hover {
+  color: #f3f3f3;
+}
+.homeheader-cta {
+    font-family: din-next-pro;
+    font-size: 22px;
+    line-height: 40px;
+    padding: 30px 0 0 0;
+    text-align: left;
+    position: relative;
+    color: #C24D05;
+    font-weight: 600;
+    /* text-transform: uppercase; */
+    font-style: normal;
+}
+
+.homeheader-title-holiday {
+    font-size: 38px;
+    line-height: 35px;
+    margin-bottom: 10px;
+    text-align: left;
+    display: block;
+    padding: 48px 0 0 0;
+}
+
+.homeheader-subtitle {
+    font-family: "din-next-pro";
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: left;
+    display: block;
+    color: #74744F;
+}
+
+
+.shop-all {
+  margin:200px 0 0 0
+}
+
+
+@media only screen and (min-width: 1680px) {
+
+  .footer-wrapper {
+    height: 1234px;
+}
+
+}
+
+
+@media only screen and (max-width: 1024px) {
+
+  .homepage-category {
+    margin: 0 0 15px 0;
+}
+
+    .holiday-mission-stats-each {
+    border-right: 0;
+}
+}
+
+@media only screen and (max-width: 480px) {
+
+  .homepage-category {
+    margin: 0 0 0px 0;
+}
+
+.collection-section-title-gift-guide {
+    font-size: 30px;
+}
+
+  .collection-section-title-gift-guide {
+    padding: 15px 0 6px 0;
+}
+.gift-guide-divider {
+    padding: 30px 0 9px 0;
+}
+  .collection-section-subtitle {
+    padding: 5px 25px 12px 25px;
+}
+
+ .collections-sidebar-selection {
+    padding: 20px 0 1px 0;
+} 
+  
+  .shop-all {
+    margin: 64px 0 0 0;
+}
+
+}
+

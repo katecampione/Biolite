@@ -1,0 +1,1146 @@
+{% assign product_title_shortened = product.title | remove: 'BioLite' %}
+{% assign default_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = default_variant.featured_image | default: product.featured_image %}
+{% assign features_and_specs = product.metafields.content.features_and_specs | split: ',' %}
+
+
+<script type="text/javascript">
+
+jQuery(document).ready(function( $ ) {
+    $('.remodal-close').click(function() {
+		
+      var overviewVideo = $("#overviewVideo iframe").attr("src");
+		$("#overviewVideo iframe").attr("src","");
+		$("#overviewVideo iframe").attr("src",overviewVideo);
+
+
+    });
+$('.remodal-background').click(function() {
+		var watchAllPlay = $("#watchAllPlay iframe").attr("src");
+		$("#watchAllPlay iframe").attr("src","");
+		$("#watchAllPlay iframe").attr("src",watchAllPlay);
+
+    });
+});
+
+</script>
+
+<script type="text/javascript">
+
+jQuery(document).ready(function( $ ) {
+    $('.remodal-close').click(function() {
+		
+      var overviewVideo = $("#overviewVideo iframe").attr("src");
+		$("#overviewVideo iframe").attr("src","");
+		$("#overviewVideo iframe").attr("src",overviewVideo);
+      
+        var watchCampStoveTech = $("#campstove-tech iframe").attr("src");
+		$("#campstove-tech iframe").attr("src","");
+		$("#campstove-tech iframe").attr("src",watchCampStoveTech);
+
+
+    });
+$('.remodal-background').click(function() {
+		var watchAllPlay = $("#watchAllPlay iframe").attr("src");
+		$("#watchAllPlay iframe").attr("src","");
+		$("#watchAllPlay iframe").attr("src",watchAllPlay);
+
+    });
+});
+
+</script>
+
+
+ <div class="remodal" data-remodal-id="campstove-tech"  data-remodal-options="closeOnOutsideClick: false">
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <div id="campstove-tech" class='embed-container'><iframe src="https://www.youtube.com/embed/kDLajlJCqHU?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+</div>
+
+ <div class="remodal" data-remodal-id="alpenglow-overview"  data-remodal-options="closeOnOutsideClick: false">
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <div id="campstove-tech" class='embed-container'><iframe src="https://www.youtube.com/embed/UhJvPI0uCT8?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+</div>
+
+
+
+
+{% assign collectionHandles = '' %}
+{% for collection in product.collections %}
+    {% assign collectionHandles = collectionHandles | append:collection.handle  %}
+    {% unless forloop.last %}{% assign collectionHandles = collectionHandles | append:',' %}{% endunless %}
+{% endfor %}
+{% assign collectionHandles = collectionHandles | split:',' %}
+
+
+{% comment %} surefoot test - bio-3: a mobile PDP for me [mobile PDP redesign]   {% endcomment %}
+{% if settings.bio_3_enabled %}
+  {% include 'surefoot-bio-3' %}
+{% endif %}
+
+{% comment %} surefoot test - bio-5: picture perfect (desktop) [PDP image redesign]   {% endcomment %}
+{% if settings.bio_5_enabled %}
+  {% include 'surefoot-bio-5' %}
+{% endif %}
+
+{% comment %} surefoot test - bio-6: picture perfect (mobile) [PDP image redesign]   {% endcomment %}
+{% if settings.bio_6_enabled %}
+  {% include 'surefoot-bio-6' %}
+{% endif %}
+
+
+<div itemscope itemtype="https://schema.org/Product">
+  
+<meta itemprop="name" content="{{ product.title }}">
+<meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+<meta itemprop="brand" content="{{ product.vendor | escape }}">
+    <meta itemProp='quantity' content="1"/>
+
+ <div itemprop="offers" itemtype="http://schema.org/Offer" itemscope>
+      <link itemprop="url" href="{{ shop.url }}{{ product.url }}" />
+     <meta itemprop="availability" content="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+      <meta itemprop="priceCurrency" content="USD" />
+      <meta itemprop="itemCondition" content="https://schema.org/NewCondition" />
+      <meta itemprop="price" content="{{ default_variant.price | money_without_currency }}" />
+      <meta itemprop="priceValidUntil" content="2020-11-05" />
+    </div>
+<meta itemprop="description" content="{{ product.description | strip_html | escape | strip_newlines }}">
+<meta itemprop="image" content="https:{{ product.featured_image.src | img_url: 'grande' }}">
+    {% if product.first_available_variant.sku != blank %}
+  <meta itemprop="sku" content="{{ product.first_available_variant.sku }}">
+  {% else %}
+    <meta itemprop="sku" content="{{ product.first_available_variant.id }}">
+  {% endif %}
+  
+    {% if product.first_available_variant.barcode.size == 12 %}
+  <meta itemprop="gtin12" content="{{ product.first_available_variant.barcode }}">
+  {% endif %}
+  {% if product.first_available_variant.barcode.size == 13 %}
+    <meta itemprop="gtin13" content="{{ product.first_available_variant.barcode }}">
+  {% endif %}
+  {% if product.first_available_variant.barcode.size == 14 %}
+      <meta itemprop="gtin14" content="{{ product.first_available_variant.barcode }}">
+  {% endif %}
+  
+
+   
+
+  <nav class="nav-horizontal nav-horizontal--products" data-sticky>
+    <div class="wrapper wrapper--full wrapper--max_height">
+      <div class="grid__item grid__item--p0 nav-horizontal__title">
+        {% assign product_title_shortened = product.title | remove: 'BioLite'  | remove: '(BaseCamp Sold Separately)' %}
+        
+        {% if product.tags contains 'category-stoves' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline;">Home</a><span class="category-arrows">>></span><a href="/collections/stoves" class="gray-warm din-medium" style="text-decoration:underline">Stoves</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% elsif product.tags contains 'category-power' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline">Home</a><span class="category-arrows">>></span><a href="/collections/power" class="gray-warm din-medium" style="text-decoration:underline">Power</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% elsif product.tags contains 'category-lighting' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline">Home</a><span class="category-arrows">>></span><a href="/collections/lighting" class="gray-warm din-medium" style="text-decoration:underline">Lighting</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% elsif product.tags contains 'category-headlamp' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline">Home</a><span class="category-arrows">>></span><a href="/collections/lighting" class="gray-warm din-medium" style="text-decoration:underline">Headlamps</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% elsif product.tags contains 'category-gearkits' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline">Home</a><span class="category-arrows">>></span><a href="/collections#systems" class="gray-warm din-medium" style="text-decoration:underline">Gear Kits</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% else %}
+        <span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ pitroduct_title_shortened }}</span>
+        {% endif %}
+      </div>
+      <div class="grid__item nav-horizontal__menu">
+
+      </div>
+      {% if product.tags contains 'outofstock' or  product.tags contains 'noinventory' or product.tags contains 'preorder' or product.available == false %}
+ 
+
+      {% else %}
+
+        <div class="grid__item nav-horizontal__action">
+          <a
+            href="#"
+             onclick=”_tfa.push({notify: 'event', name: 'Add_To_Cart'});”
+            onClick="_gaq.push(['_trackEvent', 'Click', 'Sticky Nav Add To Cart', '{{ product.title }}']);"
+            class="btn btn-icon btn-icon--full btn-icon--right btn-primary btn-full cart-item--add ml0 mt0"
+            data-product-variant="{{ default_variant.id }}"
+            data-otv-current-product-add
+            data-control-animation data-control-animation-target="#cart-item-badge"
+            data-control-animation-class="flash"
+             title="Add {{product.title}} to My Cart">
+            <span style="font-weight:600;" data-otv-current-product-add-text>Add to My Cart</span>
+            <i class=""></i>
+          </a>
+          {{ product_price_meta }}
+        </div>
+
+      {% endif %}
+
+    </div>
+
+  </nav>
+
+  <!--/product-page-view-->
+  <div class="product-page-view">
+
+    <div id="shop-with-impact-dropdown">
+        <a href="#" class="focusguard" id="impact-focusguard-top" tabindex="-1"></a>
+      <div class="dropdown lazyload" data-bg="https://cdn.shopify.com/s/files/1/0666/9741/files/Impact_Dropdown_BG_r2_f86872f3-978b-4efa-9a5f-226141bf834c.jpg?14723" style='background-image: url("https://cdn.shopify.com/s/files/1/0666/9741/files/Impact_Dropdown_BG_r2_f86872f3-978b-4efa-9a5f-226141bf834c.jpg?14723");'>
+        <div class="wrapper wrapper--large">
+          <div class="grid__item" style="text-align: right;">
+            <span tabIndex="-1" title="Close shop with impact popup" class="icomoon icon-close-circle" data-toggle-shop-with-impact></span>
+          </div>
+          <div class="grid__item">
+            <h2>Energy On A Mission</h2>
+            <p style="padding-right:130px" class="light" mb20 pr40>
+              Half the planet lacks safe, reliable access to energy.<br><br>
+              BioLite is on a mission to change that - <strong>and you play a part.</strong> <br><br>
+              When you purchase an item from BioLite, a part of that sale is re-invested into our work in sub-Saharan Africa. Together, we have helped over <strong>a million people</strong> cook, charge, and light daily life with products that enable families to feel safe, nourished, and connected. <br><br>
+              <strong>Thank you for helping us bring Energy Everywhere.</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="focusguard" id="impact-focusguard-bottom" tabindex="-1"></a>
+    </div>
+
+    <!-- PRODUCT OVERVIEW -->
+    <section id="product-overview" class="single-product-features single-product-features--tall" >
+      <div class="wrapper wrapper--full wrapper--max_height">
+
+        <!-- THUMBNAILS AND IMAGES -->
+        <div class="grid__item large--five-eighths medium--one-whole" id="product-thumbnails">
+          
+          
+     {% if product.tags contains '360-enabled' %}
+    <div style="display:none">
+          {% include 'product-carousel' %}
+          {% include "mini-slider" %}
+          </div>
+          {% include 'magic360' %}
+          
+           {% else' %}
+
+          {% include 'product-carousel' %}
+          {% include "mini-slider" %}
+
+          {% if product.metafields.hero.video %}
+            <a href="#" class="mobile-video mobile-show" data-control-modal="#hero-video--{{ product.handle | handleize }}" title="{{ product_title_shortened }}">
+              <div class="text-center">
+                <i class="icomoon icon-youtube product-video-play"></i>
+                Watch:
+               {% if product.metafields.custom.videocaption %}
+                <p class="light">{{ product.metafields.custom.videocaption }}</p>
+                {% else %}
+                <p class="light">{{ product_title_shortened }}</p>
+             {% endif %}
+
+              </div>
+            </a>
+         
+          {% endif %}
+          {% endif %}
+
+        </div>
+        <!--/ THUMBNAILS AND IMAGES -->
+
+        <!-- Content -->
+        <div class="grid__item large--three-eighths medium--one-whole table" id="product-content">
+
+          <div class="hide-on-mobile">
+            <h1>{{ product_title_shortened }}</h1>
+            <h2>{{ product.metafields.desc.short  }}</h2>
+          
+            
+         
+
+            {% if product.tags contains 'limitededition' %}
+            
+            {% else %}
+
+              <div class="hide-on-mobile">
+                
+<!-- /snippets/bv-summary.liquid -->
+<!-- Bazaarvoice Summary Container -->
+
+
+<div data-bv-show="rating_summary"data-bv-productId="{{product.id}}">
+{% if product.metafields.bazaarvoice.reviews-aggregate-ratings %}
+{{ product.metafields.bazaarvoice.reviews-aggregate-ratings }}
+{% endif %}
+           </div>
+
+              </div>
+            
+            {% endif %}
+
+            <p class="light mt20">{{ product.content }}</p>
+
+         
+
+                <div class="remodal" data-remodal-id="holyFit" role="dialog" aria-labelledby="modalAll">
+  <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+  <div class="grid__item remodal-bg-holyfit">
+            <div class="grid__item large--one-whole text-center">
+              <i class="icomoon icon-holyfit holy-fit-icon white"></i>
+    <h2 class="white bold">HolyFit Guarantee</h2>
+    <span class="holy-fit-desc white">Run with it, camp with it, live with it: feel the difference a good fit makes. <br><br>
+
+Try our HeadLamps for 30 days and if you don't fall in love, we'll take it back for a full refund.  </span>
+    </div>
+
+                  </div>
+</div>
+   
+            
+            
+          </div>
+
+
+
+
+          <div class="clearfix"></div>
+          
+          <!--PRICE QUANTITY CONTAINER-->
+      <div class="price-qty-container">
+
+            <div class="price-container">
+              <span id="ProductPrice" class="h4">
+                 {% include 'currency-indicator' %}<span data-otv-variant-price>{{ default_variant.price | money }}</span>
+                <div class="compare-at product-price-compare-strike">
+                  <span class="product-price-compare-strike" data-otv-variant-compare-price>
+                    {% if default_variant.compare_at_price > default_variant.price %}
+                    
+                      {% include 'currency-indicator' %}{{ default_variant.compare_at_price | money }}
+                    {% endif %}
+                  </span>
+                </div>
+              </span>
+            </div>
+
+
+          </div>
+           
+              <div id="hero-video--firepitShipping" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+                   <i class="icomoon icon-close-circle modal-close-button"></i>
+
+     </div>
+   </header>
+   <div class="modal__content modal__content--video text-center">
+   
+          <div class="grid__item large mt30 pr30 pl30">
+          <h3 class="primary mt20 mb0">BioLite Oversize Shipping Fees</h3>
+          <p class="light mb50">
+            
+Due to weight and volume, the following items at the BioLite Shop are subject to a $30 oversize shipping fee
+<ul>
+            <li>FirePit+</li>
+              <li>FirePit Cooking Kit</li>
+              <li>FirePit Cook Accessory Kit</li>
+              <li>FirePit Grill Lid</li>
+              <li>FirePit Griddle</li>
+              <li>Patio Set</li>
+              <li>CampStove Complete Cook Kit</li>
+</ul>
+<br><br>
+All other items qualify for free standard shipping on orders $99+
+</p>
+</div> 
+      
+      </div>
+  </div>
+          
+
+        
+          <!--/PRICE QUANTITY CONTAINER-->
+          
+              {% if product.tags contains 'remaininginventory' %}
+           <div class="shipping-notice">
+              <span class="icomoon icon-note-01 notice-icon"></span>
+             <span class="shipping-notice-message">Only <span style="text-decoration:underline">{{ product.variants.first.inventory_quantity  }}</span> Left In Stock</span>
+            </div>
+           {% else %}
+          {% endif %}
+
+            {% if product.variants.first.inventory_quantity < 1  %} 
+     
+          {% if product.metafields.shipping.noticenew %}
+          <div class="shipping-notice">             
+              <span class="shipping-notice-message">{{ product.metafields.shipping.noticenew }}</span>
+            </div>
+                                   
+            {% elsif product.tags contains 'shippingexception' %}
+{% else %}
+          {% if product.metafields.emailcapture.custommessage %}
+          {% else %}
+          <div class="shipping-notice">
+              <span class="shipping-notice-message">This item is currently unavailable.</span>
+            </div>
+          {% endif %}
+          {% endif %}
+      {% endif %}
+          
+          
+          {% if product.tags contains 'outofstock'%}
+          <div class="shipping-notice">
+              <span class="shipping-notice-message">{{ product.metafields.outofstock.custommessage }}</span>
+            </div>
+            {% else %}
+      {% endif %}
+          
+       
+   
+
+          <!--NO INVENTORY-->
+          {% if product.tags contains 'emailcapture'%}
+          
+                {% if product.metafields.emailcapture.listid %}
+          <div class="grid__item large mt0">
+            
+            {% if product.metafields.emailcapture.custommessage %}
+          <p class="soldout-notice-message mb10">{{ product.metafields.emailcapture.custommessage }}</p>
+            {% else %}
+            <p class="soldout-notice-message mb10">Sign up to be notified when we're back in stock.</p>
+            
+            {% endif %}
+
+              <div style="margin:10px 0 20px 0;">
+                <form id="email_signup" style="margin:0 auto;" class="klaviyo_condensed_styling klaviyo_condensed_float klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }}" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" target="_blank" novalidate="novalidate">
+                  <input type="hidden" name="g" value="{{ product.metafields.emailcapture.listid }}">
+                  <div class="klaviyo_field_group">
+                    <input type="email" value="" name="email" id="k_id_email" placeholder="Enter Email" />
+                  </div>
+                  <div class="klaviyo_messages">
+                    <div class="success_message" style="display:none;"></div>
+                    <div class="error_message" style="display:none;"></div>
+                  </div>
+                  <div class="klaviyo_form_actions">
+                    <button type="submit" class="klaviyo_submit_button" style="font-size:13px">Notify Me</button>
+                  </div>
+                </form>
+              </div>
+              <style type="text/css">
+                .klaviyo_styling.klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }},
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }} {
+                  font-family: reader-regular, Arial;
+                }.klaviyo_styling.klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }} label,
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }} label {
+                  color:#222;
+                }.klaviyo_styling.klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }} input[type=text],
+                .klaviyo_styling.klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }} input[type=email],
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }} input[type=text],
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }} input[type=email] {
+                  border-radius: 2px;
+                  height:50px;
+                  font-family: reader-regular, Arial;
+
+                }
+                .klaviyo_condensed_styling .klaviyo_field_group {
+                    width: 275px;
+                    margin: 0 5px 0 0;
+                }
+                  .klaviyo_condensed_styling, .klaviyo_styling {
+                    max-width: 400px;
+                }
+
+                  .klaviyo_condensed_styling .klaviyo_submit_button, .klaviyo_styling .klaviyo_submit_button {
+                     font-family: din-next-pro, Arial;
+                    font-size:13px !important;
+
+                }
+
+                  .klaviyo_condensed_styling .klaviyo_messages .error_message, .klaviyo_condensed_styling .klaviyo_messages .success_message, .klaviyo_styling .klaviyo_messages .error_message, .klaviyo_styling .klaviyo_messages .success_message {
+                    font-size: 13px;
+                    line-height: 1.2;
+                    margin-bottom: 12px;
+                    padding-top: 20px;
+                    font-family: reader-regular;
+                    color:#333;
+                   }
+
+                  .klaviyo_styling.klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }} .klaviyo_submit_button,
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }} .klaviyo_submit_button {
+                  background-color:#008fa1;
+                  border-radius: 2px;
+                  height:50px;
+                }.klaviyo_styling.klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }} .klaviyo_submit_button:hover,
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_{{ product.metafields.emailcapture.listid }} .klaviyo_submit_button:hover {
+                  background-color:#028b96;
+                }
+              </style>
+              <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+              <script type="text/javascript">
+                KlaviyoSubscribe.attachToForms('#email_signup', {
+                  hide_form_on_success: true,
+                  success_message: "Your email has been added. We'll let you know as soon as we're back in stock."
+                });
+              </script>
+
+            </div>
+           {% endif %}
+          
+           {% if product.metafields.outofstock.custommessage %}
+          
+       
+          
+          {% else %}
+
+
+       
+                {% endif %}
+
+    
+
+
+          <!--/OUT OF STOCK-->
+          {% else %}
+          
+          <!--IN STOCK-->
+
+            <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddSingleToCartForm">
+              {% comment %}<input type="hidden" name="id" value="{{ product.variants.first.id }}" />{% endcomment %}
+
+              {% if product.has_only_default_variant %}
+
+                <!-- DEFAULT VARIANT HIDDEN -->
+                <input type="hidden" name="id" value="{{ default_variant.id }}" data-otv-variant-field />
+
+              {% else %}
+
+                {% comment %}
+                  Multi-option support with fallback
+                {% endcomment %}
+                <div class="otv-option-selects-container">
+                  <select id="BasicSelector" name="id" data-otv-variant-field>
+                    <option disabled selected>Select an option</option>
+                    {% for variant in product.variants %}
+                      <option>
+                        {% unless variant.available %}disabled{% endunless %}
+                        {% if variant == default_variant %}selected{% endif %}
+                        value="{{ variant.id }}"
+                      
+                          {{ variant.title }}
+                          {% if variant.available %}
+                            - {{variant.price | money }}
+                            {% if variant.compare_at_price > variant.price %}
+                              (Was {{ variant.compare_at_price | money }}{% if price_suffix %} {{price_suffix}}{% endif %})
+                            {% endif %}
+                          {% else %}
+                            - SOLD OUT
+                          {% endif %}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+              {% endif %}
+              
+                  
+      
+
+              
+               {% if product.tags contains 'preorder'%}
+             <div class="add-to-cart-container">
+                <button type="submit" name="add" id="AddToCart" class="btn-large btn-large-orange mt10 cart-item--add" data-product-variant="{{ default_variant.id }}" data-otv-current-product-add>
+                  <span id="AddToCartText">Preorder Now</span>
+                </button>
+              </div>
+                {% else %}
+              
+               
+          
+              <div class="add-to-cart-container">
+                <button title="add {{product.title}} to cart" type="submit" name="add" onclick=”_tfa.push({notify: 'event', name: 'Add_To_Cart'});” {% if product.tags contains 'mw_grouped_product' %}disabled="disabled"{% endif %} id="AddToCart" class="btn-large btn-large-primary mt10 cart-item--add" data-product-variant="{{ default_variant.id }}" data-otv-current-product-add>
+                  <span id="AddToCartText" data-otv-current-product-add-text>Add To My Cart</span>
+                </button>
+              </div>
+              
+              
+            
+               {% endif %}
+
+              
+            
+                <div class="impact-container">
+                <div class="impact-icon-container">
+                  <a href="#" data-toggle-shop-with-impact title="See How">
+                    <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/question-mark_01d00c6b-a20e-4aae-9078-e0be8f541269.svg?v=1605197484" class="impact-icon" alt="Your Purchase Has Impact" />
+                  </a>
+                </div>
+                <div class="impact-text-container">
+                  <span class="impact-text primary"><a href="#" data-toggle-shop-with-impact title="See How">Your Purchase <span class="desktop-break">Has Impact</span></a></span>
+                </div>
+              </div>
+
+
+                 <div style="clear: both;"></div>
+              
+              
+              {% if collectionHandles contains 'overweight-items' %}
+            <div class="oversize-disclaimer-wrapper">
+            <p class="oversize-disclaimer">
+                         <img src="//cdn.shopify.com/s/files/1/0298/2769/4651/t/74/assets/freeshipping-icon-blue.svg?v=172629341271545740231652364330" class="left-msg-icon" alt="Free Shipping">
+
+             
+            <strong>$30 overweight</strong> shipping fee. <a href="#shipping" style="color:#008fa1;font-weight700">Learn more.</a></p>
+              </div>
+         {% endif %}
+            
+             {% if collectionHandles contains 'eligible-for-free-shipping' %}
+               <div class="oversize-disclaimer-wrapper">
+              <p class="oversize-disclaimer">
+                         <img src="//cdn.shopify.com/s/files/1/0298/2769/4651/t/74/assets/freeshipping-icon-blue.svg?v=172629341271545740231652364330" class="left-msg-icon" alt="Free Shipping">
+
+              <strong>Ships For Free</strong></p>
+              </div>
+         {% endif %}
+
+               <!-- Extend -- Add offer element -->
+              <div class="mt20"><div id="extend-offer"></div></div>
+              <!-- Extend -- End Extend code -->
+
+         
+
+            </form>
+          
+           {% if product.tags contains 'preorder'%}
+            <div class="grid__item large preorder-message">
+
+        <div class="shipping-notice">
+      <span class="preorder-notice-message" >Clicking above acknowledges your card will be charged immediately for this 
+        product that ships <span style="text-decoration:underline"><strong> {{ product.metafields.preorder.date }}.</strong></span><br> <br> 
+        NOTE: Discounts <span style="text-decoration:underline"><strong>can't be applied</strong></span> to this preorder</span> 
+       </div>
+       <br>
+          </div>
+          {% endif %}
+
+          <!--/IN STOCK-->
+          {% endif %}
+
+         
+        {% if product.tags contains 'outofstock' or product.available == false %}
+          {% else %}
+        {% endif %}  
+          
+            
+ 
+
+                {% if settings.free_flexlight_pdp %}
+          <div class="doorbuster-wrapper">
+              <div class="grid__item large--two-fifths medium--one-quarter small--one-quarter">
+                  <img class="doorbuster-img" src="https://cdn.shopify.com/s/files/1/0666/9741/files/FlexLight_100_shopMain.png?v=1612890419" alt="Free FlexLight">
+             </div>
+             <div class="grid__item large--three-fifths medium--three-quarters small--three-quarters">
+             <span class="doorbuster-title">FREE FlexLight With $100+ Purchase</span> 
+               <p class="doorbuster-detail">Spend $100 or more and receive a <strong>FREE FlexLight.</strong> Add below - discount automatically applied when cart reaches $100.</p>
+              <div class="doorbuster-add-to-cart">
+       <button type="submit" name="add" id="" class="btn-tight cart-item--add" data-product-variant="33410308571235">
+       <span id="AddToCartText" data-otv-current-product-add-text>Add To Cart</span>
+                </button>
+             </div>
+      </div>
+          
+          </div>
+                  {% endif %}
+          
+            {% if settings.free_pellets_pdp %}
+          {% if product.tags contains 'free-pellets-4pack' %}
+          <div class="doorbuster-wrapper">
+              <div class="grid__item large--two-fifths medium--one-quarter small--one-quarter">
+                  <img class="doorbuster-img" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/shop-product-images/BiofuelPellets-4-pack_shop.png" alt="Free Pellets">
+             </div>
+             <div class="grid__item large--three-fifths medium--three-quarters small--three-quarters">
+             <span class="doorbuster-title">FREE Pellets 4-Pack</span> 
+               <p class="doorbuster-detail">Today only, buy a CampStove Complete Kit and receive a <strong>FREE Pellets 4-Pack.</strong> Add below - discount automatically applied when both items appear in cart.</p>
+              <div class="doorbuster-add-to-cart">
+       <button type="submit" name="add" id="" class="btn-tight cart-item--add" data-product-variant="180580024334">
+       <span id="AddToCartText" data-otv-current-product-add-text>Add To Cart</span>
+                </button>
+             </div>
+      </div>
+          
+          </div>
+          {% endif %}
+          {% endif %}
+   
+
+          
+            
+
+        </div>
+
+      </div>
+    </section>
+    <!--/PRODUCT OVERVIEW -->
+
+    <div class="mobile-wrapper closed">
+      <h2 class="mobile-title"> Description </h2>
+      <section id="product-content" class="mobile-wrapper-content">
+        <div class="mobile-description">
+          <h2>{{ product.metafields.desc.short  }}</h2>
+          <p class="">{{ product.content }}</p>
+        </div>
+      </section>
+    </div>
+
+    <a name="tabs"></a>
+
+    <!-- FEATURES & SPECS -->
+    <div id="product-features-and-specs">
+      <ul class="tabs">
+        {% for tab_item in features_and_specs %}
+          {% assign tab_string = tab_item | downcase | replace: ' ','_' %}
+          <li class="light {% if forloop.first == true %}active{% endif %}" data-tab="{{ tab_string }}" data-tab="{{ tab_string }}" aria-controls="{{ tab_string }}" aria-selected="false" tabIndex="0" role="tab"> {{ tab_item }} </li>
+        {% endfor %}
+      </ul>
+
+      <div class="tabs-content">
+        {% for section_title in features_and_specs %}
+
+          {% assign section_string = section_title | downcase | replace: ' ','_' %}
+          {% assign include_string = product.handle | remove: 'biolite-' | prepend: "_" | prepend: section_string %}
+          <div class="{% if forloop.first == true %}active{% endif %} content-section" id="{{ section_string }}" role="tabpanel" tabIndex="0">
+            {% include include_string %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!--/FEATURES & SPECS -->
+
+    <!--PRODUCT FEATURES-->
+
+{% if product.tags contains 'no-slideshow' %}
+{% else %}
+    {% if product.metafields.features_slide01.image %}
+      <div class="mobile-wrapper closed">
+        <h2 class="mobile-title"> Features </h2>
+
+        <section id="product-features" class="single-product-features single-product-features--photo_bg mobile-wrapper-content">
+
+          <div class="wrapper wrapper--max_height single-product-features__inner">
+            
+            {% if product.tags contains 'icons-right' %}
+            <div class="grid__item push--large--one-half large--one-half pr30">
+                    <ul class="nav-circles nav-circles-right nav-circles--transparent" data-control-nav data-control-targets="#single-product-slides, #single-product-slide-content">
+                {% if product.metafields.features_slide01.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 1', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide01.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide02.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 2', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide02.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide03.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 3', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide03.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide04.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 4', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide04.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+              </ul>
+
+              <ul id="single-product-slide-content" class="pt20" data-control-target>
+                {% if product.metafields.features_slide01.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide01.title }}</h3>
+                    <h6>{{ product.metafields.features_slide01.desc }}</h6>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide02.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide02.title }}</h3>
+                    <h6>{{ product.metafields.features_slide02.desc }}</h6>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide03.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide03.title }}</h3>
+                    <h6>{{ product.metafields.features_slide03.desc }}</h6>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide04.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide04.title }}</h3>
+                    <h6>{{ product.metafields.features_slide04.desc }}</h6>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+              
+            {% else %}
+            <div class="grid__item large--one-half pr30">
+
+              <ul class="nav-circles nav-circles--transparent" data-control-nav data-control-targets="#single-product-slides, #single-product-slide-content">
+                {% if product.metafields.features_slide01.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 1', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide01.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide02.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 2', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide02.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide03.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 3', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide03.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide04.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 4', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide04.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+              </ul>
+
+              <ul id="single-product-slide-content" class="pt20" data-control-target>
+                {% if product.metafields.features_slide01.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide01.title }}</h3>
+                    <h6>{{ product.metafields.features_slide01.desc }}</h6>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide02.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide02.title }}</h3>
+                    <h6>{{ product.metafields.features_slide02.desc }}</h6>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide03.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide03.title }}</h3>
+                    <h6>{{ product.metafields.features_slide03.desc }}</h6>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide04.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide04.title }}</h3>
+                    <h6>{{ product.metafields.features_slide04.desc }}</h6>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+            {% endif %}
+            
+            
+          </div><!--/single-product-features__inner-->
+
+          <div class="single-product-features__overlay"></div>
+
+          <ul id="single-product-slides" class="single-product-slides" data-control-target>
+            {% if product.metafields.features_slide01.image %}
+              <li class="features_slide01 lazyload"></li>
+            {% endif %}
+            {% if product.metafields.features_slide02.image %}
+              <li class="features_slide02 lazyload "></li>
+            {% endif %}
+            {% if product.metafields.features_slide03.image %}
+              <li class="features_slide03 lazyload"></li>
+            {% endif %}
+            {% if product.metafields.features_slide04.image %}
+              <li class="features_slide04 lazyload"></li>
+            {% endif %}
+          </ul>
+
+          {% include 'features_background_optimization'%}
+
+        </section>
+      </div>
+    {% endif %}
+{% endif %}
+    <!--/PRODUCT FEATURES-->
+
+    {% if product.tags contains 'limitededition' %}
+    {% else %}
+    <!--REVIEWS-->
+
+      <div class="mobile-wrapper closed reviews" id="product-reviews">
+        <h2 class="mobile-title">Reviews</h2>
+        
+
+
+        
+        
+      
+     <div class="product-reviews-container mobile-wrapper-content">
+          <div class="wrapper">
+            <section class="product-featurette section-large pt0--mobile">
+              <header class="product-reviews__header text-center grid__item large--one-whole">
+                <h3 class="light">Reviews</h3>
+              </header>
+              {{ product_price_meta }}
+              <div class="product-featurette__image grid__item large--one-third tablet-portrait-hidden">
+                <img src="{{ featured_image | img_url: 'large' }}" alt="{{ product.title }}" title="{{ product.title }}">
+                <h3 class="alt baseline">{{ product.title | remove: "BioLite" }}</h3>
+      {% if product.tags contains 'outofstock' or  product.tags contains 'noinventory' or product.tags contains 'preorder' or product.available == false %}
+                {% else %}
+                  <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddReviewedToCartForm">
+                    <button title="add {{product.title}} to cart" type="submit" onclick=”_tfa.push({notify: 'event', name: 'Add_To_Cart'});” onClick="_gaq.push(['_trackEvent', 'Click', 'Bottom Add To Cart', '{{ product.title }}']);" name="add" id="AddToCart" class="btn btn-primary cart-item--add" data-product-variant="{{ default_variant.id }}" data-otv-current-product-add>
+                      <span id="AddToCartText" data-otv-current-product-add-text>{{ add_to_cart_text }}</span>
+                    </button>
+                  </form>
+                {% endif %}
+
+                <span id="ProductPrice" class="product-grid-item__price h1 primary light">
+                  <span data-otv-variant-price>{{ default_variant.price | money }}</span>
+                </span>
+              </div>
+
+              <div class="product-featurette__content grid__item large--two-thirds table">
+                
+                <!-- /snippets/bv-ratings-reviews.liquid -->
+<!-- Bazaarvoice Ratings & Reviews -->
+<div data-bv-show="reviews" data-bv-product-Id="{{product.id}}">
+{% if product.metafields.bazaarvoice.reviews %}
+{{ product.metafields.bazaarvoice.reviews }}
+{% endif %}
+</div>
+
+
+              </div>
+
+            </section>
+          </div>
+        </div>
+        
+        
+      </div>
+    <!--/REVIEWS-->
+    {% endif %}
+    
+          </div>    
+
+
+    <!-- </section> -->
+    <!-- #content -->
+
+    <!-- Scripts to hide and show all product reviews -->
+    <!-- @todo: 'show' btn if there aren't any reviews -->
+    <script>
+     $(document).ready(function(){
+       jQuery('#product-rating').append(' \
+       <a href="#" class="spr-summary-actions-allreviews gray-light" onclick="">See all Reviews</a>\
+       <a href="#" class="spr-summary-actions-hidereviews gray-light" onclick="">Hide Reviews</a>\
+       <a href="" class="spr-summary-actions-newreview gray-light" onclick="SPR.toggleForm({{product.id}});return false" style="float: left;">Write a review</a> \
+       ');
+
+       jQuery('.spr-summary-actions-hidereviews').hide();
+
+       /*
+        #HACK: don't know why is this change overwritting so I am adding a setTimeout to close this issue. <Rolando Perez.>
+       */
+
+       /*setTimeout(function(){
+         jQuery('.spr-reviews').attr("style","display:block;").addClass("show");
+       }, 7000);
+       */
+
+       jQuery(document).delegate('.spr-summary-actions-allreviews', 'click', function (event) {
+       event.preventDefault();
+       jQuery('.spr-reviews').removeClass('hide').addClass('show');
+       jQuery('.spr-summary-actions-allreviews').hide();
+       jQuery('.spr-summary-actions-newreview').show();
+       jQuery('.spr-load-more').show();
+       jQuery('.spr-form').removeClass('show').addClass('hide');
+       });
+
+       jQuery(document).delegate('#product-reviews .review-scrollto', 'click', function (event) {
+       event.preventDefault();
+       jQuery('.spr-summary-actions-allreviews').trigger( 'click' );
+       });
+
+       jQuery(document).delegate('.spr-summary-actions-newreview', 'click', function (event) {
+       jQuery('.spr-summary-actions-newreview').hide();
+       jQuery('.spr-summary-actions-allreviews').show();
+       jQuery('.spr-load-more').hide();
+       jQuery('.spr-reviews').removeClass('show').addClass('hide');
+       jQuery('.spr-form').removeClass('hide').addClass('show');
+       });
+
+       var paginateCallback = function(){
+         SPRCallbacks = {};
+
+         var nextPage = "",
+             lastPage = "",
+             pastComments = [],
+             nextAnchorTag = [],
+             commentsContainer = [],
+             html = "";
+
+         return function(e){
+           nextPage = $(".spr-pagination-next > a").attr("data-page");
+           lastPage = $(".spr-pagination-page > a").last().attr("data-page");
+           pastComments = $(".spr-reviews");
+           nextAnchorTag = $(".spr-pagination-next > a");
+           commentsContainer = $("#shopify-product-reviews .spr-reviews");
+
+           var comments = pastComments.clone();
+           comments.find(".spr-pagination").remove();
+           html = comments.html();
+
+           if(!SPRCallbacks.onReviewsLoad){
+             // pluging in into Shopify Product Reviews Object SPR;
+             SPRCallbacks.onReviewsLoad = function(e){
+               if(nextPage == lastPage){
+                 $(".spr-load-more").hide();
+               }
+
+               if(pastComments.length > 0){
+                 commentsContainer.prepend(html);
+               }
+
+             };
+
+             SPR.registerCallbacks();
+           }
+
+           nextAnchorTag.click();
+
+           return false;
+
+         }
+       }
+
+       $(".spr-load-more").click(paginateCallback());
+
+
+       /* AM - clone only reviews stars and numbers to the top */
+       jQuery('#product-rating .spr-summary-starrating').appendTo(".star-container-top");
+
+       //pull the intial text
+       var reviewtext = jQuery('#product-rating .spr-summary-caption').text();
+
+       console.log('reviewtext:',reviewtext);
+       //strip the "based on X review"
+       var numberreviews = reviewtext.replace(/on|Based|reviews|review/g,'');
+       numberreviews = numberreviews.replace(/\s+/g, '');
+       numberreviews = numberreviews.replace('(', '');
+       numberreviews = numberreviews.replace(')', '');
+       jQuery(".star-container-top").append('<span class="number-reviews-top">('+numberreviews+')</span>');
+
+       //Trigger opening of see all reviews, and write a review when you click the top
+       $('.top-see-all').click(function() {
+       jQuery('.spr-summary-actions-allreviews').trigger('click');
+       });
+
+       $('.top-write-a-review').click(function() {
+       jQuery('.spr-summary-actions-newreview').trigger('click');
+       SPR.toggleForm({{product.id}});
+       });
+
+       $(".mobile-wrapper").click(function(e){
+         var isOpened = $(this).hasClass("open"),
+             target = $(e.target);
+
+         if(isOpened && (target.hasClass("mobile-title") || target.hasClass("mobile-wrapper"))){
+           $(this).removeClass("open").addClass("closed");
+         }else{
+           $(this).removeClass("closed").addClass("open");
+         }
+       });
+
+     });
+    </script>
+
+    <!-- HERO VIDEO MODAL -->
+      <div class="remodal" data-remodal-id="overviewVideo"  data-remodal-options="closeOnOutsideClick: false">
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <div id="overviewVideo" class='embed-container'><iframe src="https://www.youtube.com/embed/{{ product.metafields.hero.video }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+    
+</div>
+    
+    
+    {% if product.metafields.hero.video %}
+      <div id="hero-video--{{ product.handle | handlesize }}" class="modal">
+        <header class="modal__header">
+          {% comment %}<div class="modal__title">{% if product.metafields.hero.video_title %} {{ product.metafields.hero.video_title }} {% else %} {{ product.title }} {% endif %}</div>{% endcomment %}
+          <div class="modal--close">
+            <i class="icomoon icon-close-circle modal-close-button"></i>
+          </div>
+        </header>
+        <div class="modal__content modal__content--video">
+          <div data-control-youtube-video="{{ product.metafields.hero.video }}"></div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% comment %}
+    Add the product data to our Javascript Objects for various magics
+    {% endcomment %}
+    {% if product %}
+      <script type="text/javascript">
+      jQuery(function() {
+      APP.data.current_product = {{ product | json }}
+      APP.data.current_product_variants = {{ product.variants | json }}
+      {% if product.metafields.bundle.productHandle %}
+      meta = {
+      'bundle' : {
+      'productHandle' : {{ product.metafields.bundle.productHandle | json }},
+      'desc' : {{ product.metafields.bundle.desc | json }},
+      }
+      }
+      APP.data.current_product_metafields = meta
+      APP.GetBundledProduct.attach(meta.bundle)
+      {% endif %}
+      APP.getRecommendedProducts.attach({{ product.metafields.recommendations.productHandles | json }})
+      });
+      </script>
+    {% endif %}
+    
+    <script text="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+
+  </div><!--/product-page-view-->
+
+
+<!-- make product data available to JS -->
+<script type="application/json" data-product-json>
+  {{ product | json }}
+</script>
+<!-- Extend -- Load product integration script -->
+{% render 'extend-product-integration' %}
+<!-- Extend -- End Extend code -->

@@ -1,0 +1,186 @@
+/*
+  LOCATION SWITCHER
+  Allow user to choose a location, set cookie and be redirected to appropriate location-specific store
+  Dependencies: jquery, cookies.js, featherlight.js
+*/
+
+// MODULE: LocationSwitcher
+LocationSwitcherModule = (function(){
+
+  var $locationSwitcher = $('[data-location-switcher]');
+  if (!$locationSwitcher.length) { return; } // quit if not present
+
+
+  /*** VARS ***/
+  /************/
+
+  var debug = true; // console.log debugging
+  var jsCookies = Cookies.noConflict(); // prevent conflicts with any legacy/other cookie plugins
+
+  var config = {
+    cookieID: 'biolite-location-switcher-location-url',
+    cookieExpiry: 30, // cookie expiry in days
+    cookieDomain: (window.location.hostname.indexOf('myshopify.com') !== -1 ? 'myshopify.com' : '{{ settings.geoip_root_domain }}'),
+    cookieSecureProtocol: false,
+    cookieResetHash: '#location-switcher-clear-cookie',
+    dataLabelLocationID: 'data-location-switcher-new-location-url',
+    htmlEnabledClass: 'js-location-switcher-enabled', // flag so we know location switcher is enabled
+    htmlModalOpenClass: 'js-location-switcher-featherlight-modal-open', // in case we need helper styling on overall html/page
+    modalClass: 'location-switcher-featherlight', // modal style helper
+    modal: false,
+    $newLocationTriggers: $('[data-location-switcher-new-location-url]'),
+    $changeLocationTriggers: $('[data-location-switcher-trigger]'),
+    $closeModal: $('.closeLocationModal')
+  };
+
+
+  /*** FUNCTIONS ***/
+  /*****************/
+
+  // FN: GET LOCATION COOKIE
+  var getLocationCookie = function(key) {
+    if (key === 'id') return config.cookieID;
+    if (key === 'value') return jsCookies.get(config.cookieID);
+
+    return {
+      id: config.cookieID,
+      value: jsCookies.get(config.cookieID)
+    }
+  };
+
+
+  // FN: SET LOCATION COOKIE
+  var setLocationCookie = function(locationID) {
+    jsCookies.set(config.cookieID, locationID, {expires: config.cookieExpiry, domain: config.cookieDomain, secure: config.cookieSecureProtocol});
+
+    if (debug) console.log('location-switcher: set location cookie',getLocationCookie(),config.cookieDomain,config.cookieExpiry,config.cookieSecureProtocol);
+  }
+
+
+  // FN: RESET LOCATION COOKIE
+  var resetCookie = function() {
+    jsCookies.remove(config.cookieID, {domain: config.cookieDomain, secure: config.cookieSecureProtocol});
+
+    if (debug) console.log('location-switcher: reset cookie',getLocationCookie(),config.cookieDomain,config.cookieSecureProtocol);
+  };
+
+
+  // FN: HASH COOKIE RESET
+  // Usage: Append #location-switcher-clear-cookie to URL then refresh to clear cookie
+  var enableHashCookieReset = function() {
+    if (window.location.hash === config.cookieResetHash) {
+      resetCookie();
+    }
+
+    if (debug) console.log('location-switcher: enabled cookie hash reset');
+  };
+
+
+  // FN: MODAL SETUP
+  var setupModal = function() {
+
+    config.modal = new $.featherlight(
+      $locationSwitcher, {
+        variant: config.modalClass,
+        // closeOnClick: false,
+        openSpeed: 0,
+        closeSpeed: 0,
+        beforeOpen: function() {
+          $('html').addClass(config.htmlModalOpenClass);
+        },
+        afterOpen: function() {
+          this.$content.find('a').attr('tabindex','0'); // fix modal tab focus issue
+
+          //focus on first region as soon as modal opens
+          $('.location-switcher-nav-list li:first-child a').focus();
+        },
+        afterClose: function() {
+          $('html').removeClass(config.htmlModalOpenClass);
+        }
+      }
+    );
+
+    if (debug) console.log('location-switcher: setup modal');
+  };
+
+
+  // FN: OPEN MODAL
+  var openModal = function() {
+    config.modal.open();
+
+    if (debug) console.log('location-switcher: open modal');
+  };
+
+
+  /*** INIT ***/
+  /************/
+
+  if (debug) console.log('location-switcher: init');
+  if (debug) console.log('location-switcher: current location cookie',getLocationCookie(),config.cookieDomain,config.cookieSecureProtocol);
+
+  $('html').addClass(config.htmlEnabledClass);
+
+  setupModal();
+
+  enableHashCookieReset();
+
+
+  /*** EVENTS ***/
+  /**************/
+
+  // NEW LOCATION TRIGGER
+  // Sets new location cookie and follows location-specific store URL
+  config.$newLocationTriggers.on('click', function(e) {
+    e.preventDefault();
+
+    var $trigger = $(this),
+        locationID = $trigger.attr(config.dataLabelLocationID), // location ID for cookie
+        locationURL = $trigger.attr('href') || false; // allow us to follow default link behaviour after setting cookie
+
+    // set location cookie...
+    setLocationCookie(locationID);
+
+    // ...then follow default behaviour of link
+    if (locationURL) {
+      window.location.href = locationURL;
+    } else {
+      location.reload(); // refresh page if no href
+    }
+  });
+
+  
+
+  // CHANGE LOCATION TRIGGER
+  // Launch modal when clicking a change location trigger
+  config.$changeLocationTriggers.on('click', function(e) {
+    e.preventDefault();
+
+    openModal(); // launch modal to choose new location
+  });
+
+  //close modal function
+  var closeModal = function() {
+    config.modal.close();
+  };
+
+  //close modal on clicking "X"
+  config.$closeModal.on('click', function(e) {
+    e.preventDefault();
+    closeModal();
+  });
+
+  //close modal on pressing "Esc". Featherlight's native CloseOnEsc didn't work.
+  $(document).keyup(function(e) {
+    if(e.key === "Escape") {
+      e.preventDefault();
+      closeModal();
+    }
+  });
+
+
+  // RETURN
+  return {
+    this: this,
+    openModal: openModal,
+  };
+});

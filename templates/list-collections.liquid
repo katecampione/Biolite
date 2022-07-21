@@ -1,0 +1,57 @@
+
+<div class="collections-grid">
+  <div class="wrapper wrapper--full">
+
+	  <div class="collections-hero-mobile">{% include 'hero-shop' %}</div>
+
+    <div class="grid__item large--one-quarter small-hidden">
+      {% include 'collection-sidebar-left' %}
+    </div>
+
+    <div class="grid__item large--three-quarters medium--mt50">
+            <div class="collections-hero">{% include 'hero-shop' %}</div>
+
+       {% assign collection = collections['all-products']  %}
+        {% assign all_products = collection.products %}
+      {% paginate collection.products by 48 %}
+   {% assign itemsCalc =  paginate.items | minus: paginate.current_offset %}
+
+    <div id="AjaxinateLoop" tabIndex="0">
+      
+      <span class="screenreader" id="selected-filter-cat" role="region" aria-live=“polite”>Shop All</span>
+
+      <div class="no-products-available"> There are no products that match these filters</div>
+
+      <section id="product-grid" class="product-grid pb50" itemtype="http://schema.org/SomeProducts">
+
+
+    	  {% for product in collection.products %}
+          {% include 'collection-list-item' %}
+        {% endfor %}
+              </section>
+        </div>
+
+          {% if paginate.pages > 1 %}
+
+       <div id="AjaxinatePagination">
+
+         <hr>
+      {% if paginate.next %}
+        <a href="{{ paginate.next.url }}" class="btn-large btn-large-primary" title="Load More Gear">
+                  <span>Load More Gear</span></a>
+         
+         
+      {% endif %}
+    </div>
+      {% endif %}
+	    
+{% endpaginate %}
+
+
+
+    </div>
+
+
+	</div>
+</div><!--/collections-grid-->
+

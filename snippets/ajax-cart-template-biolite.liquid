@@ -1,0 +1,27 @@
+{% comment %}
+
+  This snippet provides the handlebars.js templates for
+  the sidebar. Use the raw liquid tags to keep the
+  handlebar.js template tags as available hooks.
+
+{% endcomment %}
+<script id="bioliteCartTemplate" type="text/x-handlebars-template">
+{% raw %}
+  <div class="cart-item animated fadeInRightBig" data-product-variant="{{id}}">
+    <div class="cart-item__image"><img src="{{image}}" alt="Cart Item"></div>
+    <div class="cart-item__desc">
+      <h6 class="cart-item__name baseline">{{name}}</h6>
+      <span class="cart-item__price money">{{price}}</span>
+    </div>
+    <div class="cart-item__actions">
+      <form class="inline"><input type="number" class="cart-item--quantity" data-input-filter="number" name="quantity" value="{{quantity}}" data-product-variant="{{id}}"></form>
+      <a href="javascript:;" class="cart-item--remove icomoon icon-close-circle"></a>
+    </div>
+  </div>
+{% endraw %}
+</script>
+<script id="bioliteCartEmptyTemplate" type="text/x-handlebars-template">
+  <div class="cart-item pl10">
+    <h6 class="cart-item__name baseline">There are no items in your cart.</h6>
+  </div>
+</script>

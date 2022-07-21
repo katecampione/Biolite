@@ -1,0 +1,139 @@
+{
+  "current": {
+    "bio_3_enabled": true,
+    "bio_4_enabled": true,
+    "bio_5_enabled": true,
+    "bio_6_enabled": true,
+    "bio_8_enabled": false,
+    "flash_sale_alert_bar": false,
+    "flash_sale_filter": false,
+    "flash_sale_pdp": false,
+    "flash_sale_tag": false,
+    "blackfriday_alert_bar": false,
+    "blackfriday_shop_hero": false,
+    "blackfriday_pdp_sale": false,
+    "blackfriday_hero": false,
+    "saturday_deal_alert_bar": false,
+    "saturday_deal_pdp": false,
+    "cybermonday_pdp_sale": false,
+    "cyber_monday_alert_bar": false,
+    "cyber_monday_hero": false,
+    "cybermonday_shop_hero": false,
+    "social_twitter_link": "",
+    "twittercard_handle": "",
+    "social_facebook_link": "",
+    "social_youtube_link": "",
+    "social_instagram_link": "",
+    "social_pinterest_link": "",
+    "display_newsletter": false,
+    "limit": "No limit",
+    "limit_quantity": "1",
+    "limit_per": "product",
+    "limit_product_handles": "",
+    "limit_skip_cart_page": true,
+    "cart_notes": false,
+    "enable_geoip": true,
+    "geoip_root_domain": "bioliteenergy.com",
+    "geoip_current_store": "US",
+    "geoip_current_store_flag_1": "shopify:\/\/shop_images\/US-Flag_2x_bc6b151c-8e41-4a31-b4d5-02b8fd94f566.png",
+    "geoip_current_store_flag_2": "",
+    "shopify_3d_enabled": true,
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#1990c6",
+    "checkout_button_color": "#1990c6",
+    "checkout_error_color": "#ff6d6d",
+    "black_friday_doorbuster": false,
+    "black_friday_doorbuster_sold_out": false,
+    "black_friday_flash": false,
+    "black_sunday_flash": false,
+    "cyber_monday_doorbuster": false,
+    "cyber_monday_doorbuster_sold_out": false,
+    "sections": {
+      "location-switcher": {
+        "type": "location-switcher",
+        "blocks": {
+          "1505948829531": {
+            "type": "location",
+            "settings": {
+              "title": "United States",
+              "short_title": "US",
+              "group": "primary",
+              "currency": "$",
+              "url": "https:\/\/www.bioliteenergy.com",
+              "flag_icon_1": "shopify:\/\/shop_images\/US-Flag_2x_bc6b151c-8e41-4a31-b4d5-02b8fd94f566.png"
+            }
+          },
+          "1580506326498": {
+            "type": "location",
+            "settings": {
+              "title": "Canada",
+              "short_title": "CA",
+              "group": "primary",
+              "currency": "$",
+              "url": "https:\/\/ca.bioliteenergy.com",
+              "flag_icon_1": "shopify:\/\/shop_images\/Canada-Flag_2x_d57ab1fd-0f87-46d0-946b-e9be3a1bd239.png"
+            }
+          },
+          "1505948873176": {
+            "type": "location",
+            "settings": {
+              "title": "United Kingdom",
+              "short_title": "UK",
+              "group": "primary",
+              "currency": "£",
+              "url": "https:\/\/uk.bioliteenergy.com",
+              "flag_icon_1": "shopify:\/\/shop_images\/UK-Flag_2x_c91698f8-913d-4e08-ab15-1f912b5d78ff.png"
+            }
+          },
+          "1505948924558": {
+            "type": "location",
+            "settings": {
+              "title": "Europe",
+              "short_title": "EU",
+              "group": "primary",
+              "currency": "€",
+              "url": "https:\/\/eu.bioliteenergy.com",
+              "flag_icon_1": "shopify:\/\/shop_images\/EU-Flag_2x_fb5571ca-819a-40e2-a737-83cd53a79c33.png"
+            }
+          },
+          "1505948992849": {
+            "type": "location",
+            "settings": {
+              "title": "All other regions",
+              "short_title": "ROW",
+              "group": "primary",
+              "currency": "",
+              "url": "https:\/\/row.bioliteenergy.com",
+              "flag_icon_1": "shopify:\/\/shop_images\/Globe-Icon_2x_2ee0e66c-8e39-4c35-acda-f6823f1fa6f0.png"
+            }
+          }
+        },
+        "block_order": [
+          "1505948829531",
+          "1580506326498",
+          "1505948873176",
+          "1505948924558",
+          "1505948992849"
+        ],
+        "settings": {
+          "title": "Choose Your Region",
+          "primary_group_title": "<span style=\"text-decoration:underline\">CAMPING & OUTDOOR REC<\/span>: Select Your Shop",
+          "secondary_group_title": ""
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  }
+}

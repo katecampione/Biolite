@@ -1,0 +1,117 @@
+
+
+<!-- RECENT PRESS -->
+<section class="section-xlarge">
+  <div class="wrapper">
+
+	<div>
+		<h1 class="light mb30 primary">Recent Press</h1>
+      	<div class = "staff-grid mt10">
+		{% for article in blogs['press'].articles %}
+			{% unless article.tags contains 'press_releases' %}
+           {% unless article.tags contains 'awards' %}
+           {% unless article.tags contains 'press-archive' %}
+          {% unless article.tags contains 'awards-archive' %}
+
+
+          
+          <div class="recent-press-be staff-grid-item grid__item large--one-quarter"  style = "padding:5px;">
+          <div class="staff-grid-item__photo" style="background-image: url('{{ article.metafields.press.logo }}');">
+          
+          <a aria-label='{{ article.content }}' href = '{{ article.metafields.press.url }}'>
+            <div class="staff-grid-item__overlay table">
+          <div class="staff-grid-item__content table-cell">
+          <ul>
+          <li>
+          	<h5 class="alt"><time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+		      {{ article.published_at | date: '%b %d, %Y' }}
+              </time>  </h5>
+          </li>
+            
+            <li>
+              <p class="light mt10">{{ article.content }}</p>
+
+            </li>
+          
+          </ul>
+          </div>
+          </div>
+            </a>
+          </div>
+          </div>
+     
+		
+          {% endunless %}
+          {% endunless %}
+	
+          {% endunless %}
+
+          {% endunless %}
+		{% endfor %}
+      </div>
+      <a href="/pages/press-awards-archive" class="btn btn-transparent-primary" title="View Archived Press"> <span>View Archived Press</span> </a>
+	</div>
+  </div>
+</section>
+
+
+
+<!-- RECENT AWARDS -->
+<!--<section class="section-xlarge">
+  <div class="wrapper">
+
+	<div>
+		<h1 class="light mb30 primary">Recent Awards</h1>
+      	<div class = "staff-grid mt10">
+		{% for article in blogs['press'].articles %}
+         {% unless article.tags contains 'press-awards' %}
+
+			{% if article.tags contains 'awards' %}
+
+          
+          <div class="staff-grid-item grid__item large--one-quarter"  style = "padding:5px;">
+          <div class="staff-grid-item__photo" style="background-image: url('{{ article.metafields.press.logo }}');">
+          
+          <a href = '{{ article.metafields.press.url }}'>
+            <div class="staff-grid-item__overlay table">
+          <div class="staff-grid-item__content table-cell">
+          <ul>
+          <li>
+         
+          </li>
+            
+            <li>              <p class="light mt10">{{ article.content }}</p></li>
+          
+          </ul>
+          </div>
+          </div>
+            </a>
+          </div>
+          </div>
+     
+
+          		{% endif %}
+          
+            {% endunless %}
+
+
+		{% endfor %}
+      </div>
+      <a href="/pages/press-awards-archive" class="btn btn-transparent-primary" title="View Archived Awards"> <span>View Archived Awards</span> </a>
+	</div>
+  </div>
+</section>-->
+
+
+
+
+
+<!--<section class="jumbotron">
+  <div class="wrapper text-center">
+    <h3 class="light baseline mb10">More Information</h3>
+    <h6 class="light baseline"></h6>
+    <a href="/pages/contact/#contactFormWrapper" class="btn btn-outline-white btn-icon btn-icon--left mt30"> <i class="fa fa-envelope-o"></i> <span>Download Media Kit</span> </a>
+    <a href="/pages/contact/#contactFormWrapper" class="btn btn-outline-white btn-icon btn-icon--left mt30"> <i class="fa fa-envelope-o"></i> <span>Contact Us</span> </a>
+
+  </div>
+</section>-->

@@ -1,0 +1,85 @@
+{% comment %}
+--------------------------------
+
+  BioLite HERO PARTIAL
+
+--------------------------------
+{% endcomment %}
+
+{% if template contains 'product' %}
+
+  <!-- PRODUCT -->
+  <section class="hero hero--product">
+    <div class="hero__viewport">
+      <div class="hero__inner hero__inner--light">
+        <div class="hero__body wrapper table">
+          <div class="table-cell text-center">
+
+            {% if product.metafields.hero.subtitle_top %}
+              <h4 class="alt sans baseline">{{ product.metafields.hero.subtitle_top }}</h4>
+            {% endif %}
+
+            <h1 class="large light mt0">{{ product.title }}</h1>
+
+            {% if product.metafields.hero.subtitle_bottom %}
+              <h4 class="alt sans baseline">{{ product.metafields.hero.subtitle_bottom }}</h4>
+            {% endif %}
+
+            {% if product.metafields.hero.cta or product.metafields.hero.video %}
+              <footer>
+                {% if product.metafields.hero.cta %}
+                  {{ product.metafields.hero.cta }}
+                {% endif %}
+              </footer>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+      <div class="hero__image" style="background-image:url('{{ product.metafields.hero.image }}')"></div>
+    </div>
+  </section>
+
+{% else %}
+  <!-- DEFAULT PAGE -->
+  <section class="hero hero--small">
+    <div class="hero__viewport">
+      <div class="hero__inner hero__inner--light">
+        <div class="hero__body wrapper table">
+          <div class="table-cell text-center">
+
+            {% if page.metafields.hero.subtitle_top %}
+              <h3 class="white light baseline"><em>{{ page.metafields.hero.subtitle_top }}</em></h3>
+            {% endif %}
+
+            {% if page.metafields.hero.title_alt %}
+              <h1 class="light baseline">{{ page.metafields.hero.title_alt }}</h1>
+            {% else %}
+              <h1 class="light baseline">{{ page.title }}</h1>
+            {% endif %}
+
+            {% if page.metafields.hero.subtitle_bottom %}
+              <h3 class="white light baseline"><em>{{ page.metafields.hero.subtitle_bottom }}</em></h3>
+            {% endif %}
+
+            {% if page.metafields.hero.cta or page.metafields.hero.video %}
+              <footer class="mt20">
+                {% if page.metafields.hero.video %}
+                  <a href="#" class="btn btn-circle-tab btn-circle-tab--transparent" data-control-modal="#hero-video--{{ page.handle }}" title="Play">
+                    <i class="fa fa-r fa-play"></i>
+                  </a>
+                {% endif %}
+
+                {% if page.metafields.hero.cta %}
+                  {{ page.metafields.hero.cta }}
+                {% endif %}
+              </footer>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="hero__image" style="background-image: url('{{ page.metafields.hero.image }}');"></div>
+    </div>
+  </section>
+
+{% endif %}

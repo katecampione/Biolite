@@ -1,0 +1,70 @@
+
+
+<!-- ARCHIVED PRESS -->
+<section class="section-xlarge">
+  <div class="wrapper">
+
+	<div>
+		<h2 class="light mb30 primary">Archived Press</h2>
+      
+      <ul>
+       {% for article in blogs['press'].articles %}
+       {% unless article.tags contains 'press_releases' %}
+       {% unless article.tags contains 'awards' %}
+       {% unless article.tags contains 'awards-archive' %}
+
+        
+       {% if article.tags contains 'press-archive' %}
+
+
+        <li class="ml20"><p class="light"><a href = '{{ article.metafields.press.url }}' class="primary" title="{{ article.title }}">{{ article.title | remove: "Press:" }} (<time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }})</time> </a> -  {{ article.content }}</p>   </li>
+        
+        
+        
+        
+        {% endif %}
+        {% endunless %}
+        {% endunless %}
+
+          {% endunless %}
+        {% endfor %}
+      </ul>
+     </div>
+  
+    
+    
+    	<!--<div class="mt70">
+		<h2 class="light mb30 primary">Archived Awards</h2>
+      
+      <ul>
+       {% for article in blogs['press'].articles %}
+       {% unless article.tags contains 'press_releases' %}
+       {% unless article.tags contains 'awards' %}
+        
+       {% if article.tags contains 'awards-archive' %}
+
+
+        <li class="ml20"><p class="light"><a href = '{{ article.metafields.press.url }}' class="primary" title="{{ article.title }}">{{ article.title | remove: "Press:" }} </a> -  {{ article.content }}</p>   </li>
+        
+        
+        
+        
+        {% endif %}
+        {% endunless %}
+
+          {% endunless %}
+        {% endfor %}
+      </ul>
+     </div>-->
+  
+  
+  
+  </div>
+</section>
+
+
+
+
+
+
+

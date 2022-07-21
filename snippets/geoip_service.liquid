@@ -1,0 +1,195 @@
+{% comment %}
+
+    Javascript based GeoIP service using the MaxMind JS API
+
+    Usage:
+
+    CREATE NEW INSTANCE
+    -------------------
+
+    var geoip = new GeoIPService();
+
+
+    AVAILABLE METHODS
+    -----------------
+
+    1. Perform IP Lookup and show Popup:
+
+    geoip.getLocation();
+
+    2. Return Country Info only:
+
+    geoip.countryLookup();
+    setTimeout(function() {
+    console.log(geoip.getCountryName());    // Returns the country name
+    console.log(geoip.getCountryStore());   // Returns the store associated with their country e.g. UK, US, ROW etc
+    }, 1000);
+
+    Note: you must use the setTimeout as the response from MaxMind won't be available immediately after the initial call.
+
+{% endcomment %}
+
+<script>
+    GeoIPService = (function() {
+
+        var currentStore = '{{ settings.geoip_current_store }}';
+        var countryName = '';
+        var countryStore = 'ROW';
+        var cookieName = 'biolite-location-switcher-location-url';
+
+        /* Store Configuration */
+        var stores = {
+            'US' : 'https://www.bioliteenergy.com',
+            'CA' : 'https://biolite-ca.myshopify.com',
+            'UK' : 'https://biolite-uk.myshopify.com',
+            'EU' : 'https://biolite-eu.myshopify.com',
+            'ROW' : 'https://biolite-row.myshopify.com',
+        };
+
+        /* Country to Store Configuration */
+        var countries = {
+            'US' : { 'Name':'USA', 'Store':'US' },
+            'GB' : { 'Name':'United Kingdom', 'Store':'UK' },
+            'CA' : { 'Name':'Canada', 'Store':'CA' },
+          	'AT' : { 'Name':'Austria', 'Store':'EU' },
+            'BE' : { 'Name':'Belgium', 'Store':'EU' },
+            'CY' : { 'Name':'Cyprus', 'Store':'EU' },
+            'EE' : { 'Name':'Estonia', 'Store':'EU' },
+            'FI' : { 'Name':'Finland', 'Store':'EU' },
+          	'FR' : { 'Name':'France', 'Store':'EU' },
+            'DE' : { 'Name':'Germany', 'Store':'EU' },
+            'GR' : { 'Name':'Greece', 'Store':'EU' },
+            'IE' : { 'Name':'Ireland', 'Store':'EU' },
+            'IT' : { 'Name':'Italy', 'Store':'EU' },
+          	'LV' : { 'Name':'Latvia', 'Store':'EU' },
+            'LT' : { 'Name':'Latvia', 'Store':'EU' },
+            'LU' : { 'Name':'Luxembourg', 'Store':'EU' },
+            'MT' : { 'Name':'Malta', 'Store':'EU' },
+            'NL' : { 'Name':'Netherlands', 'Store':'EU' },
+          	'PT' : { 'Name':'Portugal', 'Store':'EU' },
+            'SK' : { 'Name':'Slovakia', 'Store':'EU' },
+            'SI' : { 'Name':'Slovenia', 'Store':'EU' },
+            'DK' : { 'Name':'Denmark', 'Store':'EU' },
+            'BG' : { 'Name':'Bulgaria', 'Store':'EU' },
+            'HR' : { 'Name':'Croatia', 'Store':'EU' },
+       		'CZ' : { 'Name':'Czech Republic', 'Store':'EU' },
+      		'HU' : { 'Name':'Hungary', 'Store':'EU' },
+      		'PL' : { 'Name':'Poland', 'Store':'EU' },
+      		'RO' : { 'Name':'Romania', 'Store':'EU' },
+     		'CH' : { 'Name':'Switzerland', 'Store':'EU' },
+            'ES' : { 'Name':'Spain', 'Store':'EU' }
+        };
+
+        /* GeoIPService Constructor */
+        function GeoIPService() { }
+
+        /* GeoIPService Functions */
+        GeoIPService.prototype = $.extend({}, GeoIPService.prototype, {
+
+            // Perform GeoIP Lookup
+            getLocation: function() {
+                if (this.getQueryStringParameter('gclid') || this.getQueryStringParameter('gclid') == undefined) {
+                    var cookied = this.getRedirectCookie(cookieName);
+                    if (cookied) {
+                        if (cookied != 'correct') {
+                            window.location = cookied;
+                        }
+                    } else {
+                        geoip2.country(this.processResponse, this.processError);
+                    }
+                }
+            },
+
+            // Process GeoIP Lookup Results and show appropriate popup
+            processResponse: function(data) {
+
+                var location = 'ROW';
+
+                if (typeof(data.country.iso_code) !== 'undefined') {
+                    if (typeof(countries[data.country.iso_code]) !== 'undefined') {
+                        if (countries[data.country.iso_code]['Store'] !== currentStore) {
+                            location = countries[data.country.iso_code]['Store'];
+                        } else {
+                            location = 'correct';
+                            console.log("GeoIP Status: On the correct store!");
+                        }
+                    }
+                }
+ 				// Show the correct popup based on location
+                if (location == "ROW") {
+                    showPopUpOne(location);
+                } else {
+                    if (location != "NO" && location != 'correct') {
+                        showPopUpTwo(location);
+                    }
+                }
+
+            },
+
+            // Process GeoIP Lookup Error
+            processError: function(data) {
+                console.log("GeoIP Status: Fail - " + JSON.stringify(data, undefined, 4));
+            },
+
+            /* COUNTRY ONLY FUNCTION */
+
+            // Perform IP lookup and return data
+            countryLookup: function() {
+                geoip2.country(this.setCountry, this.processError);
+            },
+
+            // Store the Country Name and correct country store
+            setCountry: function(data) {
+                countryName = data.country.names.en;
+
+                if (typeof(countries[data.country.iso_code]) !== 'undefined') {
+                    countryStore = countries[data.country.iso_code]['Store'];
+                }
+            },
+
+            // Return the stores country name
+            getCountryName: function(data) {
+                return countryName;
+            },
+
+            // Return the stores country name
+            getCountryStore: function(data) {
+                return countryStore;
+            },
+
+            /* HELPER FUNCTIONS */
+
+            // Check for specified query string parameter
+            getQueryStringParameter: function(parameter) {
+                var sPageURL = window.location.search.substring(1);
+                var sURLVariables = sPageURL.split('&');
+                for (var i=0; i<sURLVariables.length; i++) {
+                    var sParameterName = sURLVariables[i].split('=');
+                    if (sParameterName[0] == parameter) {
+                        return sParameterName[1];
+                    }
+                }
+            },
+
+            // Check if the redirect cookie already exists
+            getRedirectCookie: function() {
+                if ($.cookie(cookieName)) {
+                    var thisLocation =  window.location.host;
+                  	var cookiedLocation = $.cookie(cookieName);
+                    var cookieNoProtocol = cookiedLocation.replace("https://","").replace("http://", "")
+                    if (cookieNoProtocol == thisLocation) {
+                        console.log('GeoIP Status: No action required!');
+                      	return "correct";
+                    } else {
+                        return cookiedLocation + window.location.pathname + window.location.search;
+                    }
+                }
+                return false;
+            }
+
+        });
+
+        return GeoIPService;
+
+    })();
+</script>

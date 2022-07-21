@@ -1,0 +1,86 @@
+<div class="product-single__mini-slider">
+  {% if product.images.size > 1 %}
+    {% if product.metafields.video.thumbnail %}
+    <ul id="product-color-images-container" data-control-target>
+      {% for color in colors %}
+      {% assign images = product.metafields.images[color] | split: ',' %}
+        <li>
+          <ul id="product-single__image_{{color}}" class="product-single__image" data-control-target>
+            {% for image in images limit:6 %}
+            <li><img src="{{ image }}" alt=""></li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+    <ul id="product-single__colors" data-control-nav data-control-targets="#product-color-images-container ,#product-color-thumbnails-container, #product-carousels">
+      {% for color in colors %}
+      <li tabindex="0" title={{ color }} class="color-circle color-{{ color }}" data-color="{{color}}">
+        <div class="color-container">
+
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    <ul id="product-color-thumbnails-container" data-control-target>
+      {% for color_thumbnail in colors %}
+        {% assign images = product.metafields.images[color_thumbnail] | split: ',' %}
+        <li>
+          <ul class="product-single__thumbnails" data-control-nav data-control-targets="{% for color_target in colors %}{% if color_target == colors[0] %}#product-single__image_{{color_target}}{%else%} ,#product-single__image_{{color_target}}{% endif %}{% endfor %}">
+
+            {% for image in images limit:6 %}
+              <li class="grid__item">
+                <img src="{{ image }}" alt="">
+              </li>
+            {% endfor %}
+            <li class="grid__item video_thumbnail">
+              <a href="#" class="btn btn-circle-tab btn-circle-tab--transparent" data-control-modal="#hero-video--{{ product.handle | handleize }}" title="Play">
+                <i class="icomoon icon-playbutton-01 product-video-play"></i>
+              </a>
+              <img src="{{ product.metafields.video.thumbnail }}">
+            </li>
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+    <ul id="product-color-images-container" data-control-target>
+      {% for color in colors %}
+      {% assign images = product.metafields.images[color] | split: ',' %}
+        <li>
+          <ul id="product-single__image_{{color}}" data-control-target>
+            {% for image in images limit:7 %}
+            <li><img src="{{ image }}" alt=""></li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+    <ul id="product-single__colors" data-control-nav data-control-targets="#product-color-images-container ,#product-color-thumbnails-container, #product-carousels">
+      {% for color in colors %}
+      <li tabindex="0" title={{ color }} class="color-circle color-{{ color }}" data-color="{{color}}">
+        <div class="color-container">
+
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    <ul id="product-color-thumbnails-container" data-control-target>
+      {% for color_thumbnail in colors %}
+        {% assign images = product.metafields.images[color_thumbnail] | split: ',' %}
+        <li>
+          <ul class="product-single__thumbnails" data-control-nav data-control-targets="{% for color_target in colors %}{% if color_target == colors[0] %}#product-single__image_{{color_target}}{%else%} ,#product-single__image_{{color_target}}{% endif %}{% endfor %}">
+
+            {% for image in images limit:7 %}
+              <li class="grid__item">
+                <img src="{{ image }}" alt="">
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  {% endif %}
+</div>

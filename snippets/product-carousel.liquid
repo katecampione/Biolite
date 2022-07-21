@@ -1,0 +1,16 @@
+<!-- HERO HOME -->
+<ul id="product-carousels">
+  {% assign images = product.images %}
+  <li class="carousel">
+    <div class="hero__viewport hero-carousel">
+      <div class="shopify-3d-overlay" data-shopify-3d-variant-id="{{ bold_selected_or_first_available_variant.id }}" style="display: none;"></div>
+      <ul class="slides">
+        {% for image in images %}
+        <li>
+          <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.title }}" />
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </li>
+</ul>

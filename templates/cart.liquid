@@ -1,0 +1,160 @@
+<section class="section-xxlarge bg--offwhite">
+  <header class="wrapper mb40">
+
+  </header>
+
+  <div class="wrapper wrapper--960">
+    {% comment %}
+
+      This is your /cart template. If you are using the Ajaxify Cart plugin,
+      your form (with action="/cart") layout will be used in the drawer/modal.
+
+      For info on test orders:
+        - General http://docs.shopify.com/manual/your-store/orders/test-orders
+        - Shopify Payments - http://docs.shopify.com/manual/more/shopify-payments/testing-shopify-payments
+
+    {% endcomment %}
+
+    {% if cart.item_count > 0 %}
+      <form action="/cart" method="post" novalidate>
+
+        <h1 class="h2 light text-center">Review Your Shopping Cart</h1>
+
+        {% comment %}
+          Loop through products in the cart
+        {% endcomment %}
+
+        {% for item in cart.items %}
+
+          <div class="cart-row" data-id="{{ item.id }}">
+            
+            <div class="grid cart-item">
+                
+                <div class="grid__item large--one-eighth medium--one-eighth small--one-quarter">
+                  <a href="{{ item.product.url | within: collections.all }}" class="product-img" title="{{ item.title | escape }}">
+                    <img src="{{ item.product.featured_image.src | product_img_url: 'small' }}" alt="{{ item.title | escape }}" title="{{ item.title | escape }}">
+                  </a>
+                </div>
+
+                <div class="grid__item large--five-eighths medium--five-eighths small--three-quarters">
+                  <div class="product-desc pl30">
+                    <span class="product-title">
+                      <a href="{{ item.product.url }}" title="{{ item.product.title }}">
+                        {{ item.product.title }}
+                      </a>
+                    </span>
+                    <br>
+
+   {% if item.original_line_price != item.line_price %}
+                <span class="product-price-original"><s>{{ item.original_line_price | money }}</s></span>
+              {% endif %}
+              <span class="product-price">
+                {{ item.line_price | money }}
+              </span>
+                    
+                    <p class="cart-message">{{ item.message }}</p>
+
+                  </div>
+               
+                </div>
+                
+                
+
+              <div class="grid__item large--two-eighths medium--two-eighths small--one-whole">
+                <div class="product-desc">
+                  <div class="input-complex input-qty mb0 small--img-center">
+                    <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" max="15" data-id="{{ item.id }}">
+                    <label for="updates_{{ item.id }}" class="label-icon text-left"><span>QTY</span></label>
+                  </div>
+                </div>
+
+                <div class="table-cell">
+                  <div class="cart-item__actions">
+            
+                    <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}" title="Cart"><i class=" icomoon icon-close-circle"></i></a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        {% endfor %}
+
+
+        <div class="cart-summary mt60">
+          <div class="grid">
+
+            {% comment %}
+              Optional, add a textarea for special notes
+                - Your theme settings can turn this on or off. Default is on.
+                - Make sure you have name="note" for the message to be submitted properly
+
+              {% if settings.cart_notes %}
+                <div class="grid__item large--one-half push--one-quarter text-center">
+                  <label for="cartSpecialInstructions" class="label-icon pb0"><span>Special instructions for seller</span></label>
+                  <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
+                </div>
+              {% endif %}
+            {% endcomment %}
+
+            <div class="grid__item text-center">
+              
+              <p>{{ line_item.message }}</p>
+              
+              <h6 class="gray-light mb0 bold">SUBTOTAL</h5>
+              <div class="cart-subtotal">
+                <span class="h1 cart-subtotal--price">{{ cart.total_price | money }}</span>
+              </div>
+
+
+
+              {% comment %}
+                name="update" is required for the update button to work
+              {% endcomment %}
+              <input type="submit" name="update" class="btn btn-primary pt12" value="Update cart">
+
+              <a href="/products" class="btn btn-outline-green" title="Continue Shopping"> <span>Continue Shopping</span> </a>
+
+
+              {% comment %}
+                name="checkout" is required for the submit button to work
+              {% endcomment %}
+              <input type="submit" name="checkout" class="btn btn-primary pt12" value="Check out">
+
+              {% comment %}
+                Paypal and Google checkout buttons
+
+                {% if additional_checkout_buttons %}
+                  <p>{{ content_for_additional_checkout_buttons }}</p>
+                {% endif %}
+              {% endcomment %}
+            </div>
+
+          </div>
+        </div>
+
+     
+      </form>
+
+    {% else %}
+
+      {% comment %}
+        It's likely people won't have items in the cart sometimes.
+        Do something fun here, it's a great chance to show your company's human side.
+      {% endcomment %}
+
+      <div class="text-center">
+        <h2>It appears that your cart is currently empty.</h2>
+        <a href="/collections/all" class="btn btn-primary" title="Continue browsing here">Continue browsing here</a>
+      </div>
+
+    {% endif %}
+
+  </div>
+</section>
+
+<!-- Extend -- Load cart integration script -->
+{% render 'extend-cart-integration' %}
+<!-- Extend -- End Extend code -->
+

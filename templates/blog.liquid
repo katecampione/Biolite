@@ -1,0 +1,28 @@
+{% layout none %}{ {% paginate blog.articles by 12 %}
+"tags" : "{{ blog.all_tags | join: ',' }}",
+"page_size": "{{ paginate.page_size }}",
+"current_page": "{{ paginate.current_page }}",
+"current_offset": "{{ paginate.current_offset }}",
+"pages": "{{ paginate.pages }}",
+"items": "{{ paginate.items }}",
+"next_url": "{{ paginate.next.url }}",
+"articles": [
+  {% for article in blog.articles %}
+  	{
+  	"id": "{{article.id}}",
+  	"title": "{{article.title}}",
+  	"tags": "{% for tag in article.tags %}{{tag}},{% endfor %}",
+  	"content": "{{ article.content | replace: '"', "'" | escape | strip_newlines }}",
+  	"url": "{{article.url}}",
+  	"featured_image": "{{article.metafields.hero.image}}",
+  	"post_excerpt": {% if article.metafields.post.excerpt %}"{{article.metafields.post.excerpt}}"{% else %}"{{ article.content | strip_html | truncatewords:20 | replace: '"', "'" | escape | strip_newlines }}"{% endif %},
+  	"lab_cycle": {% cycle '250', '300', '330', '420' %}
+  	{% if article.tags contains 'stories' %}, "icon": "icon-user-stories"
+  	{% elsif article.tags contains 'emerging_markets' %}, "icon": "icon-emerging-markets"
+  	{% elsif article.tags contains 'inside_biolite' %}, "icon": "icon-inside-biolite"
+  	{% else %}, "icon": "icon-news-events"{% endif %}
+  	},
+  {% endfor %}
+  {"title": "","tags": "","content": "", "featured_image": "", "post_excerpt": ""}
+]
+{% endpaginate %} }

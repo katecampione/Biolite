@@ -1,0 +1,918 @@
+ <script>new WOW().init();</script>
+<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/misc/jquery.scrollify.js"></script>
+ <script type="text/javascript">
+       $(function() {
+          $.scrollify({
+            section : "",
+            standardScrollElements: ".wrapper wrapper--full",
+            sectionName : "section-name",
+            scrollSpeed: 900,
+    		overflowScroll: false,
+          });
+        });
+      </script>
+
+
+<div id="billboard-tight">
+    <div class="flexhero">
+      <div class="main-billboard">
+		<div class="main-billboard-content">
+        <span class="billboard-tight-main white">BioLite Lighting </span>
+        <span class="billboard-tight-subhead white">Compact, Efficient LED Lighting for Life Off-Grid and Outside</span>
+
+          <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/HeadLamp_Lighting_Hero.jpg?17285303457120639839" alt="BioLite Lighting" title="BioLite Lighting" />
+          <footer class="billboard-tight-cta">
+                 <a href="#" title="Get The Lumens You Need">
+                   <span class="billboard-tight-cta-msg white">Let’s Get Some Lumens – What Are You Looking For?</span>
+                     <i class="icomoon icon-downArrow category-bouncy-arrow"></i>
+
+            </a>
+
+                     <div id="hero-video" class="modal">
+
+     <header class="modal__header">
+
+    </header>
+
+    <div id="hero-video--lighting" class="modal">
+   <header class="modal__header">
+
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+  <div class="modal__content modal__content--video">
+                <iframe src="https://www.youtube.com/embed/1IDtK-w6E3c?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+  </div>
+  </div>
+              </footer>
+
+         </div>
+      </div>
+  </div>
+</div>
+
+  <nav class="nav-horizontal nav-horizontal--products category-page-nav" data-sticky>
+    <div class="wrapper wrapper--full wrapper--max_height">
+      <div class="grid__item grid__item--p0 nav-horizontal__title category-nav-title">
+        
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline">Home</a><span class="category-arrows">>></span><span class="gray-warm din-medium">Lighting</span>
+      </div>
+      <div class="grid__item nav-horizontal__menu-wide category-nav-desktop">
+                 <div class="grid__item large--one-fifth medium--one-fifth small--one-half"><a href="#headlamp" class="category-nav-title-lighting">HeadLamp</a></div>
+
+        <div class="grid__item large--one-fifth medium--one-fifth small--one-half"><a href="#solar-lighting" class="category-nav-title-lighting">Solar Lighting</a></div>
+        <div class="grid__item large--one-fifth medium--one-fifth small--one-half"><a href="#usb-lanterns" class="category-nav-title-lighting">USB Lanterns</a></div>
+        <div class="grid__item large--one-fifth medium--one-fifth small--one-half"><a href="#overhead-string-lights" class="category-nav-title-lighting">String Lights</a></div>
+       <div class="grid__item large--one-fifth medium--one-fifth small--one-half"><a href="#lighting-kits" class="category-nav-title-lighting">Lighting Kits</a></div>
+      </div>
+      
+<div class="grid__item nav-horizontal__menu-wide category-nav-mobile">   
+<div class="collections-sidebar-selection">
+        <div class="filter-by filter-by-mobile">Jump To Section:<span class="filter-by-arrow-down"> <i class="icomoon icon-downArrow"></i></span><span class="filter-by-arrow-up"><i class="icomoon icon-upArrow"></i></span></div>
+        <ul class="product-categories">
+             <li>
+            <a href="#headlamp" class="category-nav-title-lighting">HeadLamp</a>
+          </li>
+          <li>
+            <a href="#solar-lighting" class="category-nav-title-lighting">Solar Lighting</a>
+          </li>
+          <li>
+            <a href="#usb-lanterns" class="category-nav-title-lighting">USB Lanterns</a>
+          </li>
+          
+          <li>
+            <a href="#overhead-string-lights" class="category-nav-title-lighting">String Lights</a>
+          </li>
+         
+          
+           <li>
+            <a href="#lighting-kits" class="category-nav-title-lighting">Lighting Kits</a>
+          </li>
+          
+        </ul> 
+        </div>
+      </div>
+
+    </div>
+
+  </nav>
+
+<div class="wrapper wrapper--full mt70"  data-section-name="headlamp" id="headlamp">
+  <div class="grid__item large">
+<span class="collection-section-title">HeadLamp</span>
+<span class="collection-section-subtitle">Top-Tier Performance With A Fit Unlike Any Headlamp </span>
+  </div>
+
+<div class="grid__item large--one-whole">
+<section id="product-grid" class="product-grid section-large" itemtype="http://schema.org/SomeProducts">
+  <div class="wrapper wrapper--xxlarge rel">
+
+
+    {% for product in collection.products %}
+        {% if product.tags contains 'subcategory-headlamp' %}
+
+      {% include 'collection-list-item-category' %}
+    {% else %}
+    {% endif %}
+
+
+    {% endfor %}
+
+  </div>
+</section>
+</div>
+</div>
+
+<hr class="mt40">
+
+
+<div class="wrapper wrapper--full mt40"  data-section-name="solar-lighting" id="solar-lighting">
+  <div class="grid__item large">
+<span class="collection-section-title pt40">Solar Lighting</span>
+<span class="collection-section-subtitle">Get Your Light From The Sun With These Products</span>
+  </div>
+
+
+
+<div class="grid__item large--one-whole">
+<section id="product-grid" class="product-grid section-large" itemtype="http://schema.org/SomeProducts">
+  <div class="wrapper wrapper--xxlarge rel">
+
+
+    {% for product in collection.products %}
+        {% if product.tags contains 'subcategory-solarlight' %}
+
+      {% include 'collection-list-item-category' %}
+    {% else %}
+    {% endif %}
+
+
+    {% endfor %}
+
+  </div>
+</section>
+</div>
+</div>
+
+<hr class="mt40">
+
+<div class="wrapper wrapper--full mt40"  data-section-name="usb-lanterns" id="usb-lanterns">
+  <div class="grid__item large">
+<span class="collection-section-title">USB Lanterns</span>
+<span class="collection-section-subtitle">Big Size In A Small Footprint With USB Charge Out and String Light Ports</span>
+  </div>
+
+<div class="grid__item large--one-whole">
+<section id="product-grid" class="product-grid section-large" itemtype="http://schema.org/SomeProducts">
+  <div class="wrapper wrapper--xxlarge rel">
+
+
+    {% for product in collection.products %}
+        {% if product.tags contains 'subcategory-lantern' %}
+
+      {% include 'collection-list-item-category' %}
+    {% else %}
+    {% endif %}
+
+
+    {% endfor %}
+
+  </div>
+</section>
+</div>
+</div>
+
+ <!-- Begin Compare Table -->
+
+  <div class="clearfix"></div>
+    <i class="icomoon icon-compare compare-icon"></i>
+
+<div class="list-toggle mb40 mt40">
+
+<div class="list-toggle__title compare-toggle text-center" data-control-sibling="">
+  <span class="category-compare-title">Compare USB Lanterns</span>
+  </div>
+<div class="list-toggle__content">
+
+  <div class="product-compare wrapper wrapper--full_height wrapper--full">
+<table class="compare-table table-with-footer">
+
+  <thead>
+    <tr>
+      <th></th>
+      <th>
+<a href="/products/powerlight-mini"> <img class="compare-table-illustration" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/collection/powerlightmini-01.svg" alt="PowerLight Mini" title="PowerLight Mini" />
+  <strong class="pb20 pt20">PowerLight Mini</strong></a>
+        <a href="#" data-control-modal="#powerlightmini-video" class="btn-tiny btn-tiny-primary mt10" title="Shop Now"><span><i class="icomoon icon-playTriangle-01 btn-tiny-icon"></i>Watch Video</span></a>
+      </th>
+          <th>
+<a href="/products/powerlight"> <img class="compare-table-illustration" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/collection/powerlight-01.svg" alt="PowerLight" title="PowerLight" />
+  <strong class="pb20 pt20">PowerLight</strong></a>
+        <a href="#" data-control-modal="#powerlight-video" class="btn-tiny btn-tiny-primary mt10" title="Shop Now"><span><i class="icomoon icon-playTriangle-01 btn-tiny-icon"></i>Watch Video</span></a>
+      </th>
+           <th>
+<a href="/products/baselantern-xl"> <img class="compare-table-illustration" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/collection/baselantern-01.svg" alt="BaseLantern" title="BaseLantern" />
+  <strong class="pb20 pt20">BaseLantern XL</strong></a>
+        <a href="#" data-control-modal="#baselantern-video" class="btn-tiny btn-tiny-primary mt10" title="Shop Now"><span><i class="icomoon icon-playTriangle-01 btn-tiny-icon"></i>Watch Video</span></a>
+      </th>
+     
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+      <td>Lumens</td>
+      <td>135 Lm</td>
+      <td>250 Lm Torch<br>200 Lm Lantern</td>
+      <td>500 Lm</td>
+    </tr>
+    <tr>
+      <td>Weight</td>
+      <td>2.82 oz<br> (80 g)</td>
+      <td>7.05 oz <br>(210 g)</td>
+      <td>22.88 oz <br>(648 g)</td>
+    </tr>
+     <tr>
+      <td>Battery</td>
+      <td>1350 mAh<br>(50% Phone Boost)</td>
+      <td>4400 mAh<br>(2 Phone Charges)</td>
+      <td>7800 or 12000 mAh<br>(3-4 Phone Charges)</td>
+    </tr>
+     <tr>
+      <td>Burn Time (Hours)</td>
+      <td>52 LO<br>5 HI</td>
+      <td>72 LO<br>6.5 HI</td>
+      <td>78 LO<br>7.5 HI </td>
+    </tr>
+     <tr>
+      <td>Lighting modes</td>
+       <td><strong>4 Modes</strong><br>White<br>Red Night Vision <br>Red/White Strobe<br>White Point Light</td>
+      <td><strong>4 Modes</strong><br>Torch<br>Lantern<br>Lantern Single Panel<br>Lantern Flashing</td>
+      <td><strong>4 Modes</strong><br>White<br>White Strobe<br>White Single Panel<br>Full RGB Colors</td>
+    </tr>
+
+    <tr>
+      <td>Special Feature</td>
+      <td>Bike mount included</td>
+      <td>Combination lantern &amp; torch</td>
+      <td>Bluetooth enabled with free app </td>
+    </tr>
+    <tr>
+      <td>Ideal For</td>
+      <td>Personal Light<br>Biking</td>
+      <td>Hiking<br>Campsite Lightbulb </td>
+      <td>Large Area Lighting<br>Automated Use<br>Mood Lighting </td>
+    </tr>
+    
+   
+    
+      <div id="hero-video-product" class="modal">
+     <header class="modal__header">
+    </header>
+    <div id="powerlightmini-video" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+  <div class="modal__content modal__content--video">
+    <iframe src="https://www.youtube.com/embed/riYgmRdBpKo?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+     </div> 
+  </div>
+  </div>
+    
+       <div id="hero-video-product" class="modal">
+     <header class="modal__header">
+    </header>
+    <div id="powerlight-video" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+  <div class="modal__content modal__content--video">
+    <iframe src="https://www.youtube.com/embed/dHpO6SbAdoM?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+     </div> 
+  </div>
+  </div>
+    
+       <div id="hero-video-product" class="modal">
+     <header class="modal__header">
+    </header>
+    <div id="baselantern-video" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+  <div class="modal__content modal__content--video">
+    <iframe src="https://www.youtube.com/embed/24nTqBB9T0w?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+     </div> 
+  </div>
+  </div>
+    
+ </tbody>
+
+
+
+
+</table>
+
+
+<!-- Mobile Tables -->
+
+      <table class="table-with-footer compare-table-mobile">
+  <thead>
+    <tr>
+      <th colspan="2" class="border-bottom">
+        <img style="display:block; margin-left: auto; margin-right:auto;" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/collection/powerlightmini-01.svg" alt="PowerLight Mini" title="PowerLight Mini" />
+        <span>PowerLight Mini<br></span>
+        <a href="/products/powerlight-mini" class="btn-tiny btn-tiny-purple mt10" title="Shop Now">
+                  <span>Shop</span>
+                </a>
+        
+     <a href="#" data-control-modal="#powerlightmini-video" class="btn-tiny btn-tiny-primary mt10" title="Shop Now"><span><i class="icomoon icon-playTriangle-01 btn-tiny-icon"></i>Watch Video</span></a>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Lumens</td>
+      <td>135 Lm</td>
+    </tr>
+    <tr>
+      <td>Weight</td>
+      <td>2.82 oz (80 g)</td>
+    </tr>
+    <tr>
+      <td>Battery</td>
+      <td>1350 mAh (50% Phone Boost) </td>
+    </tr>
+    <tr>
+      <td>Burn Time</td>
+      <td>52 LO/5 HI</td>
+    </tr>
+    <tr>
+      <td>Lighting Modes</td>
+      <td>White, red night vision, red/white strobe, white point light</td>
+    </tr>
+    <tr>
+      <td>Special Feature</td>
+      <td>Bike mount included</td>
+    </tr>
+    <tr>
+      <td>Ideal For</td>
+      <td>Personal light, biking</td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+          <table class="table-with-footer compare-table-mobile">
+  <thead>
+    <tr>
+      <th colspan="2" class="border-bottom">
+        <img style="display:block; margin-left: auto; margin-right:auto;" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/collection/powerlight-01.svg" alt="PowerLight" title="PowerLight" />
+        <span>PowerLight<br></span>
+        <a href="/products/powerlight" class="btn-tiny btn-tiny-purple mt10" title="Shop Now">
+                  <span>Shop</span>
+                </a>
+        
+             <a href="#" data-control-modal="#powerlight-video" class="btn-tiny btn-tiny-primary mt10" title="Shop Now"><span><i class="icomoon icon-playTriangle-01 btn-tiny-icon"></i>Watch Video</span></a>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Lumens</td>
+      <td>250 Lm Torch; 200 Lm Lantern</td>
+    </tr>
+    <tr>
+      <td>Weight</td>
+      <td>7.05 oz (210 g)</td>
+    </tr>
+    <tr>
+      <td>Battery</td>
+      <td>4400 mAh (2 Phone Charges) </td>
+    </tr>
+    <tr>
+      <td>Burn Time</td>
+      <td>72h LO/6.5h HI</td>
+    </tr>
+    <tr>
+      <td>Lighting Modes</td>
+      <td>Torch, lantern, lantern single panel, lantern flashing</td>
+    </tr>
+    <tr>
+      <td>Special Feature</td>
+      <td>Combination lantern and torch</td>
+    </tr>
+    <tr>
+      <td>Ideal For</td>
+      <td>Hiking, campsite lightbulb</td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+          <table class="table-with-footer compare-table-mobile">
+  <thead>
+    <tr>
+      <th colspan="2" class="border-bottom">
+        <img style="display:block; margin-left: auto; margin-right:auto;" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/collection/baselantern-01.svg" alt="BaseLantern" title="BaseLantern" />
+        <span>BaseLantern<br></span>
+        <a href="/products/baselantern-xl" class="btn-tiny btn-tiny-purple mt10" title="Shop Now">
+                  <span>Shop</span>
+                </a>
+             <a href="#" data-control-modal="#baselantern-video" class="btn-tiny btn-tiny-primary mt10" title="Shop Now"><span><i class="icomoon icon-playTriangle-01 btn-tiny-icon"></i>Watch Video</span></a>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Lumens</td>
+      <td>500 Lm</td>
+    </tr>
+    <tr>
+      <td>Weight</td>
+      <td>22.88 oz (648 g)</td>
+    </tr>
+    <tr>
+      <td>Battery</td>
+      <td>7800 or 12000 mAh (3-4 Phone Charges) </td>
+    </tr>
+    <tr>
+      <td>Burn Time</td>
+      <td>54 LO/5 HI; 78 LO/7.5 HI (XL)</td>
+    </tr>
+    <tr>
+      <td>Lighting Modes</td>
+      <td>White, strobe, single panel, full RGB colors</td>
+    </tr>
+    <tr>
+      <td>Special Feature</td>
+      <td>Bluetooth with free app </td>
+    </tr>
+    <tr>
+      <td>Ideal For</td>
+      <td>Large area lighting, automated use, mood lighting</td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+
+
+	 </div>
+</div>
+</div>
+
+ <!-- End Compare Table -->
+
+
+<div class="wrapper wrapper--full mt70"  data-section-name="usb-lanterns" id="overhead-string-lights">
+  <div class="grid__item large">
+<span class="collection-section-title">Overhead String Lights</span>
+<span class="collection-section-subtitle">Chainable Light in Compact Form - Connect to BioLite Lanterns for More Functionality</span>
+  </div>
+
+<div class="grid__item large--one-whole">
+<section id="product-grid" class="product-grid section-large" itemtype="http://schema.org/SomeProducts">
+  <div class="wrapper wrapper--xxlarge rel">
+
+
+    {% for product in collection.products %}
+        {% if product.tags contains 'subcategory-stringlights' %}
+
+      {% include 'collection-list-item-category' %}
+    {% else %}
+    {% endif %}
+
+
+    {% endfor %}
+
+  </div>
+</section>
+</div>
+</div>
+
+ <!-- Begin Compare Table -->
+
+  <div class="clearfix"></div>
+    <i class="icomoon icon-compare compare-icon"></i>
+
+<div class="list-toggle mb40 mt40">
+
+<div class="list-toggle__title compare-toggle text-center" data-control-sibling="" data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+  <span class="category-compare-title">Compare Overhead String Lights</span>
+  </div>
+<div class="list-toggle__content">
+
+  <div class="product-compare wrapper wrapper--full_height wrapper--full">
+<table class="compare-table table-with-footer">
+
+  <thead>
+    <tr>
+      <th></th>
+      <th>
+<a href="/products/sitelight-mini"> <img class="compare-table-illustration" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/collection/sitelight-mini-01.svg" alt="SiteLight Mini" title="SiteLight Mini" />
+  <strong class="pb20 pt20">SiteLight Mini</strong></a>
+        <a href="#" data-control-modal="#sitelightmini-video" class="btn-tiny btn-tiny-primary mt10" title="Shop Now"><span><i class="icomoon icon-playTriangle-01 btn-tiny-icon"></i>Watch Video</span></a>
+      </th>
+          <th>
+<a href="/products/sitelight"> <img class="compare-table-illustration" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/collection/sitelight-01.svg" alt="SiteLight" title="SiteLight" />
+  <strong class="pb20 pt20">SiteLight</strong></a>
+        <a href="#" data-control-modal="#sitelight-video" class="btn-tiny btn-tiny-primary mt10" title="Shop Now"><span><i class="icomoon icon-playTriangle-01 btn-tiny-icon"></i>Watch Video</span></a>
+      </th>
+           <th>
+<a href="/products/sitelight-xl"> <img class="compare-table-illustration" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/collection/sitelight-xl-01.svg" alt="SiteLight XL" title="SiteLight XL" />
+  <strong class="pb20 pt20">SiteLight XL</strong></a>
+        <a href="#" data-control-modal="#sitelightxl-video" class="btn-tiny btn-tiny-primary mt10" title="Shop Now"><span><i class="icomoon icon-playTriangle-01 btn-tiny-icon"></i>Watch Video</span></a>
+      </th>
+     
+    </tr>
+  </thead>
+  
+        <div id="hero-video-product" class="modal">
+     <header class="modal__header">
+    </header>
+    <div id="sitelightmini-video" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+  <div class="modal__content modal__content--video">
+    <iframe src="https://www.youtube.com/embed/aLwyDVzddlQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+     </div> 
+  </div>
+  </div>
+    
+        <div id="hero-video-product" class="modal">
+     <header class="modal__header">
+    </header>
+    <div id="sitelight-video" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+  <div class="modal__content modal__content--video">
+    <iframe src="https://www.youtube.com/embed/dHpO6SbAdoM?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+     </div> 
+  </div>
+  </div>
+    
+        <div id="hero-video-product" class="modal">
+     <header class="modal__header">
+    </header>
+    <div id="sitelightxl-video" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+  <div class="modal__content modal__content--video">
+    <iframe src="https://www.youtube.com/embed/Gt-LxHGJ58Y?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+     </div> 
+  </div>
+  </div>
+  
+  <tbody>
+      <tr>
+      <td>Lumens</td>
+      <td>150 Lm Total (across 4 lights)</td>
+      <td>300 Lm Total (across 2 lights)</td>
+      <td>300 Lm Total</td>
+    </tr>
+     <tr>
+      <td>Weight</td>
+      <td>2.5 oz (70g)</td>
+      <td>3.66 oz (104 g)</td>
+      <td>3.25 oz (92 g)</td>
+    </tr>
+     <tr>
+      <td>Cord Length</td>
+      <td>10 ft (3 m)</td>
+      <td>10 ft (3 m) per light</td>
+      <td>15 ft (4.5 m)</td>
+    </tr>
+    <tr>
+     <td>Packed Dimensions</td>
+      <td>1.85 x 1.85 x 2.75 in <br>(47 x 47 x 70mm)</td>
+      <td> 2.55 x 1.06 x 2.55 in <br>(65 x 27 x 65 mm)</td>
+      <td>5.7 x 1.57 x 4.52 in <br>(145 x 40 x 115 mm)</td>
+    </tr>
+     <tr>
+      <td>Ideal For</td>
+      <td>Path &amp; boundary lighting</td>
+      <td>Task &amp; directional lighting</td>
+      <td>Large-area lighting</td>
+    </tr>
+
+   
+   
+    
+      <div id="hero-video-product" class="modal">
+     <header class="modal__header">
+    </header>
+    <div id="powerlightmini-video" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+  <div class="modal__content modal__content--video">
+    <iframe src="https://www.youtube.com/embed/riYgmRdBpKo?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+     </div> 
+  </div>
+  </div>
+    
+       <div id="hero-video-product" class="modal">
+     <header class="modal__header">
+    </header>
+    <div id="powerlight-video" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+  <div class="modal__content modal__content--video">
+    <iframe src="https://www.youtube.com/embed/dHpO6SbAdoM?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+     </div> 
+  </div>
+  </div>
+    
+       <div id="hero-video-product" class="modal">
+     <header class="modal__header">
+    </header>
+    <div id="baselantern-video" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+       <i class="fa fa-circle-border fa-circle-border--medium fa-times"></i>
+     </div>
+   </header>
+  <div class="modal__content modal__content--video">
+    <iframe src="https://www.youtube.com/embed/24nTqBB9T0w?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+     </div> 
+  </div>
+  </div>
+    
+ </tbody>
+
+
+
+
+</table>
+
+
+<!-- Mobile Tables -->
+
+       <table class="table-with-footer compare-table-mobile">
+  <thead>
+    <tr>
+      <th colspan="2" class="border-bottom">
+        <img style="display:block; margin-left: auto; margin-right:auto;" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/collection/sitelight-mini-01.svg" alt="SiteLight Mini" title="SiteLight Mini" />
+        <span>SiteLight Mini<br></span>
+        <a href="/products/sitelight-mini" class="btn-tiny btn-tiny-primary mt10" title="Shop Now">
+                  <span>Shop</span>
+                </a>
+                <a href="#" data-control-modal="#sitelightmini-video" class="btn-tiny btn-tiny-primary mt10" title="Shop Now"><span><i class="icomoon icon-playTriangle-01 btn-tiny-icon"></i>Watch Video</span></a>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Lumens</td>
+      <td>150 Lm Total (across 4 lights)</td>
+    </tr>
+    <tr>
+      <td>Weight</td>
+      <td>2.5 oz (70g)</td>
+    </tr>
+    <tr>
+      <td>Cord Length</td>
+      <td>10 ft (3 m) </td>
+    </tr>
+    <tr>
+      <td>Packed Dimensions</td>
+      <td>1.85 x 1.85 x 2.75 in (47 x 47 x 70mm)</td>
+    </tr>
+    <tr>
+      <td>Ideal For</td>
+      <td>Path and boundary lighting</td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+           <table class="table-with-footer compare-table-mobile">
+  <thead>
+    <tr>
+      <th colspan="2" class="border-bottom">
+        <img style="display:block; margin-left: auto; margin-right:auto;" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/collection/sitelight-01.svg" alt="SiteLight" title="SiteLight" />
+        <span>SiteLight<br></span>
+        <a href="/products/sitelight" class="btn-tiny btn-tiny-primary mt10" title="Shop Now">
+                  <span>Shop</span>
+                </a>
+                <a href="#" data-control-modal="#sitelight-video" class="btn-tiny btn-tiny-primary mt10" title="Shop Now"><span><i class="icomoon icon-playTriangle-01 btn-tiny-icon"></i>Watch Video</span></a>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Lumens</td>
+      <td>300 Lm Total (across 2 lights)</td>
+    </tr>
+    <tr>
+      <td>Weight</td>
+      <td>3.66 oz (104 g)</td>
+    </tr>
+    <tr>
+      <td>Cord Length</td>
+      <td>10 ft (3 m) per light </td>
+    </tr>
+    <tr>
+      <td>Packed Dimensions</td>
+      <td>2.55 x 1.06 x 2.55 in (65 x 27 x 65 mm)</td>
+    </tr>
+    <tr>
+      <td>Ideal For</td>
+      <td>Task &amp; directional lighting</td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+           <table class="table-with-footer compare-table-mobile">
+  <thead>
+    <tr>
+      <th colspan="2" class="border-bottom">
+        <img style="display:block; margin-left: auto; margin-right:auto;" src="https://s3-us-west-2.amazonaws.com/biolitewebsite/collection/sitelight-xl-01.svg" alt="SiteLight XL" title="SiteLight XL" />
+        <span>SiteLight XL<br></span>
+        <a href="/products/sitelight-xl" class="btn-tiny btn-tiny-primary mt10" title="Shop Now">
+                  <span>Shop</span>
+                </a>
+                <a href="#" data-control-modal="#sitelightxl-video" class="btn-tiny btn-tiny-primary mt10" title="Shop Now"><span><i class="icomoon icon-playTriangle-01 btn-tiny-icon"></i>Watch Video</span></a>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Lumens</td>
+      <td>300 Lm Total</td>
+    </tr>
+    <tr>
+      <td>Weight</td>
+      <td>3.25 oz (92 g)</td>
+    </tr>
+    <tr>
+      <td>Cord Length</td>
+      <td>15 ft (4.5 m) </td>
+    </tr>
+    <tr>
+      <td>Packed Dimensions</td>
+      <td>5.7 x 1.57 x 4.52 in (145 x 40 x 115 mm)</td>
+    </tr>
+    <tr>
+      <td>Ideal For</td>
+      <td>Large area lighting</td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+
+
+	 </div>
+</div>
+</div>
+
+ <!-- End Compare Table -->
+
+
+
+<div class="wrapper wrapper--full mt70"  data-section-name="usb-lanterns" id="lighting-kits">
+  <div class="grid__item large">
+<span class="collection-section-title">Lighting Kits</span>
+<span class="collection-section-subtitle">Our Favorite Lighting Setups - Hand Picked By The BioLite Team </span>
+  </div>
+
+<div class="grid__item large--one-whole">
+<section id="product-grid" class="product-grid section-large" itemtype="http://schema.org/SomeProducts">
+  <div class="wrapper wrapper--xxlarge rel">
+
+
+    {% for product in collection.products %}
+        {% if product.tags contains 'subcategory-lightingkits' %}
+
+      {% include 'collection-list-item-category' %}
+    {% else %}
+    {% endif %}
+
+
+    {% endfor %}
+
+  </div>
+</section>
+</div>
+</div>
+
+
+
+
+<section class="lighting-gallery-wrapper template-product section-xsmall" style="background-color:#000">
+
+  <div class="wrapper text-center shop-all-footer">
+
+     <!--   <div class="mb50">
+  <h3 class="gge white baseline" style="color:white;">Still Not Sure What To Choose?</h3>
+<footer class="mt30">
+                <a href="#" class="btn btn-white shop-all-footer-buttons">
+                  <span><strong>READ: How To Find Your Right Light </strong></span>
+                </a>
+
+
+
+
+  </footer></div>-->
+    
+    <div>
+  <h3 class="gge white baseline" style="color:white;">More BioLite Gear</h3>
+<footer class="mt30">
+                <a href="/collections/stoves" class="btn btn-outline-white shop-all-footer-buttons">
+                  <span><strong>Shop Stoves</strong></span>
+                </a>
+
+  <a href="/collections/power" class="btn btn-outline-white shop-all-footer-buttons">
+                  <span><strong>Shop Power</strong></span>
+                </a>
+
+    <a href="/products" class="btn btn-outline-white shop-all-footer-buttons">
+                  <span><strong>Shop All Products</strong></span>
+                </a>
+
+
+  </footer></div>
+</div>
+
+</section>
+
+
+<script>
+  // Added by RFD to activate the extra mobile menu
+  $(".mobile-wrapper").click(function(e){
+     var isOpened = $(this).hasClass("open"),
+         target = $(e.target);
+
+     if(isOpened && (target.hasClass("mobile-title") || target.hasClass("mobile-wrapper"))){
+       $(this).removeClass("open").addClass("closed");
+     }else{
+       $(this).removeClass("closed").addClass("open");
+     }
+   });
+</script>
+
+<script>
+    $("#Glide1").glide({
+        type: "carousel"
+    });
+  $("#Glide2").glide({
+        type: "carousel"
+    });
+</script>
+
+<script>
+var acc = document.getElementsByClassName("category-compare-title");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("activeToggle");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+
+
+

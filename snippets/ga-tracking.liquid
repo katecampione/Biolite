@@ -1,0 +1,120 @@
+{% comment %}Enter Google Analytics tracking code ie. UA-46246479-1 {% endcomment %}
+{% assign ga_code = 'UA-24507014-1' %}
+
+<script type="text/javascript">
+/*=========================================*/
+var debug = false;
+{% if settings.set_ga_events_to_debug %}
+  debug = true;
+{% endif %}
+
+// <!-- Google Analytics -->
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+// <!-- End Google Analytics -->
+
+ga('create', '{{ ga_code }}', 'auto');
+
+jQuery(document).ready(function($) {
+  if (debug) {
+    console.log('tracking snippet loaded');
+  }
+
+  {% if template contains 'index' %}
+    {% assign location = 'Homepage'  %}
+  {% elsif  template contains 'product' %}
+    {% assign location = 'Product Page' %}
+  {% elsif  template contains 'collection' %}
+    {% assign location = 'Collection' %}
+  {% else %}
+    {% assign location = 'Other'  %}
+  {% endif %}
+
+  var currentHandle = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  console.log('currentHandle ' + currentHandle);
+  if (currentHandle == '') {
+    var clickLocation = "{{ location }}";
+  } else {
+    var clickLocation = currentHandle;
+  }
+
+  var newLocation = '';
+
+  // Watch header links
+  $('a[href="/pages/return-shipping"]').click( function(e) {
+    newLocation = "Nav2017-" + clickLocation;
+    if (debug) {
+      e.preventDefault();
+      console.log(newLocation + ' clicked Free Shipping');
+    } else {
+      ga('send', 'event',  newLocation, 'Click', 'Free Shipping' );
+    }
+  });
+  $('.super-nav-search').click( function (e) {
+    newLocation = "Nav2017-" + clickLocation;
+    if (debug) {
+      e.preventDefault();
+      console.log(newLocation + ' Search');
+    } else {
+      ga('send', 'event',  newLocation, 'Click', 'Search' );
+    }
+  });
+  $('.super-nav-right a').click( function (e) {
+    var linkText = $(this).text().trim();
+    newLocation = "Nav2017-" + clickLocation;
+    if (debug) {
+      e.preventDefault();
+      console.log(newLocation + ' ' + linkText);
+    } else {
+      ga('send', 'event',  newLocation, 'Click', linkText );
+    }
+  });
+  $('.header-inner a').click( function (e) {
+    var linkText = $(this).text().trim();
+    if (linkText == '') {linkText = "Biolite Logo";}
+    newLocation = "Nav2017-" + clickLocation;
+    if (debug) {
+      e.preventDefault();
+      console.log(newLocation + ' ' + linkText);
+    } else {
+      ga('send', 'event',  newLocation, 'Click', linkText );
+    }
+  });
+  $('ul.product-categories a').click( function(e) {
+    var clickedItem = $(this).closest('li').attr('id');
+    newLocation = "Filter2017-" + clickLocation + "- Filter ";
+    if (debug) {
+      e.preventDefault();
+      console.log(newLocation + ' : ' + clickedItem);
+    } else {
+      ga('send', 'event',  newLocation, 'Click', clickedItem );
+    }
+  });
+
+});
+</script>
+
+{% comment %}
+<!-- GA Events - https://developers.google.com/analytics/devguides/collection/analyticsjs/events?hl=en -->
+<script>
+   // thank you page loaded
+   addListener(window, 'load', function() {
+       ga('send', 'event', 'page', 'load', 'order-completed');
+   });
+   function addListener(element, type, callback) {
+       if (element.addEventListener) element.addEventListener(type, callback);
+       else if (element.attachEvent) element.attachEvent('on' + type, callback);
+   }
+</script>
+
+<script>
+var pr = '{{ total_price | money_without_currency }}';
+var price = pr.replace(/[^0-9.]/g,'');
+document.write('<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/950030654/?value='+price+'&amp;currency_code=USD&amp;label=HltLCJn4oWAQvqKBxQM&amp;guid=ON&amp;script=0"/>');
+</script>
+{% endcomment %}
+
+

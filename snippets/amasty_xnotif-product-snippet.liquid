@@ -1,0 +1,32 @@
+<script type="text/javascript">
+    var amastyXnotifConfig = {
+        product: {%- include 'bold-product', output: 'json' -%},
+        customer_id: {% if customer %} {{ customer.id }} {% else %} null{% endif %}
+    };
+</script>
+
+{{ '//shopifyapi.amasty.com/xnotif/bundles/app/css/form.css' | stylesheet_tag }}
+
+<div data-role="amasty-xnotif-template" style="display:none">
+    <div data-role="amasty-xnotif-success-message" style="display:none" class="message-box success">
+        Alert subscription has been saved.
+    </div>
+
+    <div data-role="amasty-xnotif-error-message" style="display:none" class="message-box failed">
+        Failed to save subscription.
+    </div>
+
+    <div data-role="amasty-xnotif-form">
+        {% if customer %}
+            <a data-role="amxnotif-submit" href="#">Sign up to get notified when this product is back in stock</a>
+        {% else %}
+            <div>Subscribe to back in stock notification</div>
+            <form id="amxnotif_form">
+                <input type="email" value="" placeholder="your-email@example.com" id="amxnotif_email" autocorrect="off" autocapitalize="off" required>
+                <button type="submit" name="add" class="btn">
+                    <span>{{ 'general.newsletter_form.submit' | t }}</span>
+                </button>
+            </form>
+        {% endif %}
+    </div>
+</div>

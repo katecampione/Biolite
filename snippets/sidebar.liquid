@@ -1,0 +1,65 @@
+{% comment %}
+
+  CART SIDEBAR
+
+{% endcomment %}
+
+
+<div id="sidebar" class="sidebar">
+  <a href="#" title="Cart" id="cart-focusguard-top" class="focusguard"></a>
+  
+  <div class="sidebar__inner">
+
+    <a tabindex="0" href="javascript:;" class="toggle__sidebar sidebar__close" title="Close My Cart Sidebar">
+      <i class="icomoon icon-close"></i>
+    </a>
+    <header class="sidebar__header">
+      <h4 class="alt baseline">My Cart</h4>
+    </header>
+
+    <div class="sidebar__content">
+
+	  <!--<div class="cart-limit-note">
+          {{ 'cart.general.shipping_info' | t }}
+      </div>
+      <div class="cart-limit-sub-note gray-light">
+          Excludes FirePit, FirePit Starter Kit, FirePit Cooking Kit, CampStove Complete Cook Kit, FirePit Grill Lid &amp; FirePit Griddle 
+      </div>-->
+
+
+      
+      <div class="cart-items mb10"></div>
+
+      <div class="sidebar__actions">
+
+        <div class="cart-edit text-right section-tight animated fadeIn cart--update">
+          <a tabIndex="0" href="#" class="primary sidebar-cart-update" title="Update Cart" aria-label="Update Cart">Update</a>
+        </div>
+
+        <div class="cart-summary text-center section">
+          <span class="label--small">Subtotal</span>
+          <h3 class="cart-summary__subtotal"><span class="money">{{ cart.total_price | money_with_currency }}</span></h3>
+          
+          <!--<h4 class="alt"><span class="money">You've saved {{ cart.total_discount | money_with_currency }}</span></h4>-->
+          
+          <div class="cart-shipping-note gray-light">Shipping &amp; discounts calculated in next step</div>
+
+      <span class="cart-item__message">{{ item.message }}</span>
+          <span class="cart_checkout_button mb30"></span>
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div style="clear:both;"></div>
+    <a href="#" title="Cart" id="cart-focusguard-bottom" class="focusguard"></a>
+  </div>
+  
+</div>
+
+<!-- #sidebar -->

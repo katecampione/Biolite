@@ -1,0 +1,214 @@
+{% unless collection.handle == 'all' or collection.handle == 'all-products' %}
+
+<a name="shop-all-top"></a>
+
+<div class="collections-sidebar-left"> 
+  <div class="collections-sidebar-padder">
+    <div class="collections-sidebar-info">
+      <div class="info-block">    <span class="icon"><i class="icomoon icon-shipbox"></i></span>Free Shipping <a href="#" data-control-modal="#hero-video--freeshipping" title="Free Shipping">Over {{ 'general.header.promo' | t }}</a></div>
+      <div class="info-block"><span class="icon"><i class="icomoon icon-warranty-01"></i></span>1 Year Warranty</div>
+      <div class="info-block"><span class="icon"><i class="icomoon icon-question" style="position:relative;top:-2px"></i></span>Questions? <a href="https://help.bioliteenergy.com/hc/en-us" target="_blank" title="Let us help">Let Us Help</a></div>
+      
+          <div id="hero-video--returnsfineprint" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+                   <i class="icomoon icon-close-circle modal-close-button"></i>
+
+     </div>
+   </header>
+   <div class="modal__content modal__content--video text-center">
+   
+          <div class="grid__item large mt30 pr30 pl30">
+          <h3 class="primary mt60 mb0">Extended Holiday Returns</h3>
+          <p class="light mb20">Enjoy worry-free gift giving this holiday season with our extended returns window.  Products purchased between now and December 24th in new, unopened condition, can be returned for a refund until February 1, 2022.</p>
+</div> 
+      
+      </div>
+  </div>
+        
+    <div id="hero-video--returnsfineprint" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+                   <i class="icomoon icon-close-circle modal-close-button"></i>
+
+     </div>
+   </header>
+ 
+  </div>
+      
+              
+    <div id="hero-video--freeshipping" class="modal">
+   <header class="modal__header">
+     <div class="modal--close">
+                   <i class="icomoon icon-close-circle modal-close-button"></i>
+
+     </div>
+   </header>
+   <div class="modal__content modal__content--video text-center">
+   
+          <div class="grid__item large mt30 pr30 pl30">
+          <h3 class="primary mt20 mb0">Free Shipping Over {{ 'general.header.promo' | t }}</h3>
+  {% include 'free-shipping-msg' %}
+
+</div> 
+      
+      </div>
+  </div>
+
+      
+      
+      
+      
+      <div id="hero-video" class="modal">
+       
+     <header class="modal__header">
+     
+    </header>
+                        
+    <div id="hero-video--fineprint" class="modal">
+   <header class="modal__header">
+     
+     <div class="modal--close">
+                   <i class="icomoon icon-close-circle modal-close-button"></i>
+     </div>
+   </header>
+   <div class="modal__content modal__content--video text-center">
+        
+    <div class="grid__item large--one-whole text-center mt30 pr30 pl30" style="border-right:1px solid #f3f3f3;">
+          <h3 class="primary mt60 mb0">BioLite Support Is Here To Help</h3>
+          <p class="light mb20">Fill out our quick form so we can track your inquiry and make sure you get the info you need. A member of the BioLite Team will respond
+       within 24-48 hours</p>
+ <a href="/pages/contact" class="btn btn-primary" title="Contact Us"> <span>Fill Out Form</span> </a>
+</div>
+     
+          <!--<div class="grid__item large--one-half mt30 pr30 pl30">
+          <h3 class="primary mt60 mb0">Give Us A Call</h3>
+          <p class="light mb20">Customer service is standing by from 9am - 5pm EST (excluding holidays)</p>
+ <a href="#" class="btn btn-outline-primary" title="Call 844-424-6548"> <span>Call 844-424-6548</span> </a>
+</div> -->
+      
+      </div>
+  </div>
+  </div>
+      
+      
+    </div>
+
+
+      <div class="collections-sidebar-selection" data-sticky>
+        <div class="filter-by filter-by-mobile"><span class="icon"><img src="{{ 'filter.png' | asset_url }}" alt="Filter by" title="Filter by"/></span>Filter by:<span class="filter-by-arrow-down"> <i class="icomoon icon-downArrow"></i></span><span class="filter-by-arrow-up"><i class="icomoon icon-upArrow"></i></span></div>
+        <div class="filter-by"><span class="icon"><img src="{{ 'filter.png' | asset_url }}" alt="Filter by" title="Filter by" /></span>Filter by:</div>
+        
+		<ul role="group" class="product-categories">
+      <li id="all" class="active">
+        <a role="checkbox" aria-checked="true" href="javascript:;" id="shopAll" class="isotope-filter" data-filter=".product-category--all-products" title="Shop All Products">
+          <span style="color:#008fa1;font-weight:700;">Shop All</span>
+          <span class="collection-selector"></span>
+        </a>
+      </li>
+    </ul>
+    
+    <div role="heading" class="selection-header" id="bioliteEssentialGroup">Essential BioLite</div>
+    <ul role="group" aria-labelledby="bioliteEssentialGroup" class="product-categories">
+  
+
+  
+    
+  <li id="#shop-all-top">
+            <a href="javascript:;" class="isotope-filter" data-filter=".product-category--cooking" title="biggest-savings">
+              <span>Stoves</span>
+              <span class="collection-selector"></span>
+            </a>
+          </li>
+        <li id="#shop-all-top">
+            <a href="javascript:;" class="isotope-filter" data-filter=".product-category--power" title="biggest-savings">
+              <span>Power</span>
+              <span class="collection-selector"></span>
+            </a>
+          </li>
+        <li id="#shop-all-top">
+            <a href="javascript:;" class="isotope-filter" data-filter=".product-category--lighting" title="biggest-savings">
+              <span>Lighting</span>
+              <span class="collection-selector"></span>
+            </a>
+          </li>
+       <li id="#shop-all-top">
+            <a href="javascript:;" class="isotope-filter" data-filter=".product-category--best-sellers" title="biggest-savings">
+              <span>Best Sellers</span>
+              <span class="collection-selector"></span>
+            </a>
+          </li>
+
+
+
+ 
+      
+    </ul> 
+        
+		<div role="heading" id="functionGroup" class="selection-header">Shop By Function</div> 
+        <ul role="group" aria-labelledby="functionGroup"  class="product-categories">
+          <li id="#shop-all-top">
+            <a href="javascript:;" class="isotope-filter" data-filter=".product-category--firepit-family" title="FirePit Family">
+              <span>FirePit Family</span>
+              <span class="collection-selector"></span>
+            </a>
+          </li>
+          
+          <li id="">
+            <a role="checkbox" aria-checked="false" href="javascript:;" class="isotope-filter" data-filter=".product-category--usb-battery-banks" title="Function USB Battery Banks">
+              <span>USB Battery Banks</span>
+              <span class="collection-selector"></span>
+            </a>
+          </li>
+          
+             <li id="lightings">
+            <a role="checkbox" aria-checked="false" href="javascript:;" class="isotope-filter" data-filter=".product-category--headlamps" title="Function - HeadLamps">
+              <span>Headlamps</span>
+              <span class="collection-selector"></span>
+            </a>
+          </li>
+          
+           <li id="chargings">
+            <a role="checkbox" aria-checked="false" href="javascript:;" class="isotope-filter" data-filter=".product-category--campstove-family" title="Function - CampStove Family">
+              <span>CampStove Family</span>
+              <span class="collection-selector"></span>
+            </a>
+          </li>
+          
+          
+          <li id="chargings">
+            <a role="checkbox" aria-checked="false" href="javascript:;" class="isotope-filter" data-filter=".product-category--solar-panels" title="Function - Solar and Backup Power">
+              <span>Solar Panels</span>
+              <span class="collection-selector"></span>
+            </a>
+          </li>
+         
+          <li id="lightings">
+            <a role="checkbox" aria-checked="false" href="javascript:;" class="isotope-filter" data-filter=".product-category--lanterns-string-lights" title="Function - Lanterns &amp; String Lights">
+              <span>Lanterns &amp; String Lights</span>
+              <span class="collection-selector"></span>
+            </a>
+          </li>
+          
+        
+          <li id="bundle">
+            <a role="checkbox" aria-checked="false" href="javascript:;" class="isotope-filter" data-filter=".product-category--systems" title="Function - Kits &amp; Ecosystems">
+              <span>Kits &amp; Ecosystems</span>
+              <span class="collection-selector"></span>
+            </a>
+          </li>
+        </ul>
+        
+                
+         <div class="shop-impact-sticky">
+    <p class="shop-impact-sticky-title pt30">Gear That Gives Back</p>
+    <p class="shop-impact-sticky-desc">Your purchase helps bring clean energy to families in Africa &amp; Asia.</p>
+     
+  </div>
+        
+        </div>
+        
+	
+  </div>
+</div>
+{% endunless %}

@@ -1,0 +1,112 @@
+{% comment %}
+--------------------------------
+
+  BioLite LAB PAGE
+
+--------------------------------
+{% endcomment %}
+
+<script type="text/javascript">
+
+
+  function attachClickEventMore(){
+    $('a.show-more').click(function(event){
+      APP.GetBlogLab.getMorePosts()
+      event.stopPropagation();
+      return false;
+    });
+  }
+
+
+jQuery(document).ready(function($) {
+
+  // Fix for BIO-121
+  // We only override the Shopify.onCartUpdate function if it has an alert inside
+  if(Shopify && Shopify.onCartUpdate && Shopify.onCartUpdate.toString().indexOf('alert') >= 0){
+    Shopify.onCartUpdate = function(){
+      console.warn('calling onCartUpdate, which was overwritten to do nothing');
+    };
+  }
+
+  var attach_lab = APP.GetBlogLab.attach()
+
+  if( window.location.href.split("#").length <= 1 ){
+    $.when( attach_lab ).done(function()
+    {
+      link = $('ul.lab-categories li.all')
+      if( link.length ){
+        setTimeout(function(){ link.click() }, 1);
+      }
+
+      user_share = APP.GetBlogLab.usershare_template();
+      $('#lab-content').append(user_share);
+
+    })
+
+    attachClickEventMore();
+
+  }
+
+});
+</script>
+
+
+{% include 'hero' %}
+
+
+<nav id="story-grid-filter" class="nav-horizontal nav-horizontal--icons" data-sticky>
+  <div class="wrapper wrapper--full wrapper--max_height">
+
+    <div class="nav-horizontal__menu">
+      <ul id="lab-categories" class="lab-categories">
+        <li class="active all">
+          <a href="javascript:;" id="all-stories" class="isotope-filter" data-filter=".story-grid-item">
+            <i class="fa-circle-border icomoon icon-all-stories"></i>
+            <span>All Stories</span>
+          </a>
+        </li>
+        <li class="user-stories">
+          <a href="javascript:;" id="user-stories" class="isotope-filter" data-filter=".story-category--stories">
+            <i class="fa-circle-border icomoon icon-user-stories"></i>
+            <span>User Stories</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" id="emerging-markets" class="isotope-filter" data-filter=".story-category--emerging_markets">
+            <i class="fa-circle-border icomoon icon-emerging-markets"></i>
+            <span>Emerging Markets</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" id="inside-biolite" class="isotope-filter" data-filter=".story-category--inside_biolite">
+            <i class="fa-circle-border icomoon icon-inside-biolite"></i>
+            <span>Inside BioLite</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" id="news-events" class="isotope-filter" data-filter=".story-category--news_events">
+            <i class="fa-circle-border icomoon icon-news-events"></i>
+            <span>News &amp; Events</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- STORY GRID -->
+
+
+<section id="story-grid" class="story-grid story-grid--masonry story-grid--green section-small">
+  <div id="lab-content" class="wrapper wrapper--xlarge rel">
+
+
+  </div>
+
+
+
+</section>
+
+<div class="wrapper--full">
+<a class="articles show-more">Load More Posts</a>
+</div>

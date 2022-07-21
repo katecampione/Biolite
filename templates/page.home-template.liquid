@@ -1,0 +1,137 @@
+{% comment %}
+--------------------------------
+HOME PAGE TEMPLATE (alt landing)
+--------------------------------
+{% endcomment %}
+
+<!-- HERO CAROUSEL -->
+{% include 'hero-home' %}
+
+<section id="content" class="section hidden">
+  <div class="wrapper"></div>
+</section>
+
+<!-- HOMEPAGE TAKEOVER -->
+{% comment %}
+{% include 'homepage-takeover' %}
+{% endcomment %}
+
+<!-- PRODUCT FEATURES -->
+<section class="single-product-features">
+  <div class="wrapper wrapper--max_height">
+    <div class="grid__item large--four-tenths single-product-features__left">
+      <div class="pr-50">
+        
+        <ul class="nav-circles nav-circles--orange" data-control-nav data-control-targets="#single-product-images, #single-product-descriptions, #new-one">
+          <li>
+            <div class="circle icomoon"><span class="icomoon icon-cook"></span></div>
+            <span>Cook</span>
+          </li>
+          <li>
+            <div class="circle icomoon"><span class="icomoon icon-charge"></span></div>
+            <span>Charge</span>
+          </li>
+          <li>
+            <div class="circle icomoon"><span class="icomoon icon-light"></span></div>
+            <span>Light</span>
+          </li>
+        </ul>
+
+        <ul id="single-product-descriptions" data-control-target>
+          <li>
+            <h3 class="light">Turn Fire Into Electricity</h3>
+            <h6>Forget the fossil fuels and create a smokeless flame using the wood around you. Power your devices while you make your meals with BioLite's TEG technology.</h6>
+            <a href="/products#cooking" class="btn btn-green mt20" title="Shop Cooking">Shop Cooking</a>
+          </li>
+          <li>
+            <h3 class="light">Charge Off Grid</h3>
+            <h6>Keep your devices charged off-grid by generating and storing on-demand energy with BioLite products. Explore how you can harness your power and turn fire into usable electricity.</h6>
+            <a href="/products#charging" class="btn btn-green mt20" title="Shop Charging">Shop Charging</a>
+          </li>
+          <li>
+            <h3 class="light">Light Your Site</h3>
+            <h6>Wayfind, setup, and enjoy with innovative USB rechargeable lighting. Our edge-lit lanterns and portable daisy chain system bring warm broad spectrum LED light to off-grid environments around the world.</h6>
+            <a href="/products#lighting" class="btn btn-green mt20" title="Shop Lighting">Shop Lighting</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid__item large--six-tenths single-product-features__right" data-control-target>
+      <ul id="single-product-images">
+        <li data-control-target><img src="https://cdn.shopify.com/s/files/1/0666/9741/files/CampStove_1.jpg?155908" alt="CampStove" title="CampStove"></li>
+        <li data-control-target><img class="pt50" src="https://cdn.shopify.com/s/files/1/0666/9741/files/KettleCharge_1.jpg?155908" alt="KettleCharge" title="KettleCharge"></li>
+        <li data-control-target><img class="pt50" src="https://cdn.shopify.com/s/files/1/0666/9741/products/NanoGrid_1_grande.jpg?v=1420669258" alt="NanoGrid" title="NanoGrid"></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- INTERSTITIAL -->
+<section class="interstitial section-xlarge" style="background-image:url('{{ 'bg-interstitial-2.jpg' | asset_url }}')">
+  <div class="wrapper table">
+    <div class="interstitial__content table-cell text-center">
+      <h3 class="mt0">Global Impact in Every Purchase</h3>
+      <h6 class="light">With every purchase of a BioLite product, you create lasting change for communities living in energy poverty. The same technology in your outdoor gear provides cleaner daily cooking conditions for thousands, curbing climate change and saving lives worldwide.</h6>
+      
+      <footer class="mt40">
+        <a href="/pages/mission" class="btn btn-outline-white" title="See the Impact">See the Impact</a>
+      </footer>
+    </div>
+  </div>
+  <div class="interstitial__overlay interstitial__overlay--green"></div>
+</section>
+
+<!-- STORY GRID-->
+<section class="section-xlarge">
+  <header class="story-grid__header wrapper text-center mb50">
+    <h3>BioLite is used in over 70 countries and counting</h3>
+    <h6>See user stories from around the world and their firsthand experiences of bringing energy everywhere.</h6>
+  </header>
+
+  <div class="grid">
+
+    <section class="story-grid story-grid--thirds story-grid--green pl30 pl0--mobile">
+
+      {% for article in blogs['lab'].articles %}
+        {% if article.tags contains 'stories' and article.tags contains 'featured' limit:5 %}
+        <div class="story-grid-item">
+          <div class="story-grid-item__inner" style="background-image: url('{{ article.metafields.hero.image }}');">
+            <a class="story-grid-item__content story-grid-item__content--gradient table" href="{{ article.url }}" title="{{ article.title }}">
+              <div class="table-cell">
+                <div>
+                  <i class="fa-circle-border icomoon icon-user-stories"></i>
+                </div>
+                <h4 class="light alt">{{ article.title }}</h4>
+                <small>
+                  {% if article.metafields.post.excerpt %}
+                    {{ article.metafields.post.excerpt }}
+                  {% else %}
+                    {{ article.content | strip_html | truncatewords: 20 }}
+                  {% endif %}
+                </small>
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+
+      <div class="story-grid-item story-grid-item--fallback">
+        <div class="story-grid-item__inner">
+          <div class="story-grid-item__content story-grid-item__content--gradient table">
+            <div class="table-cell">
+              <h5 class="light">Tell us about your great adventures with BioLite products</h5>
+              <a href="/pages/share-your-story" class="btn btn-primary" title="Share Your Story">Share Your Story</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- story-grid -->
+  </div>
+
+  <footer class="story-grid__footer wrapper text-center mt30">
+    <a href="/pages/lab" class="btn btn-outline-primary" title="See All Stories">See All Stories</a>
+  </footer>
+
+</section>

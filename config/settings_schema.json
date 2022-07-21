@@ -1,0 +1,350 @@
+[
+  {
+    "name": "surefoot Test Settings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "bio_3_enabled",
+        "default": false,
+        "label": "Enable bio-3: a mobile PDP for me [PDP]"
+      },
+      {
+        "type": "checkbox",
+        "id": "bio_4_enabled",
+        "default": false,
+        "label": "Enable bio-4: disappearing category page [Collection]"
+      },
+      {
+        "type": "checkbox",
+        "id": "bio_5_enabled",
+        "default": false,
+        "label": "Enable bio-5: picture perfect (desktop) [PDP]"
+      },
+      {
+        "type": "checkbox",
+        "id": "bio_6_enabled",
+        "default": false,
+        "label": "Enable bio-6: picture perfect (mobile) [PDP]"
+      },
+      {
+        "type": "checkbox",
+        "id": "bio_8_enabled",
+        "default": false,
+        "label": "Enable bio-8: trust me on this one [Checkout]"
+      }
+    ]
+  },
+  {
+    "name": "Holiday 2021 Messaging & Sale",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "flash_sale_alert_bar",
+        "default": false,
+        "label": "Flash Sale Alert Bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "flash_sale_filter",
+        "default": false,
+        "label": "Flash Sale Filter"
+      },
+      {
+        "type": "checkbox",
+        "id": "flash_sale_pdp",
+        "default": false,
+        "label": "Flash Sale PDP"
+      },
+      {
+        "type": "checkbox",
+        "id": "flash_sale_tag",
+        "default": false,
+        "label": "Flash Sale Tag"
+      },
+      {
+        "type": "checkbox",
+        "id": "blackfriday_alert_bar",
+        "default": false,
+        "label": "Black Friday Alert Bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "blackfriday_shop_hero",
+        "default": false,
+        "label": "Black Friday Shop Hero"
+      },
+      {
+        "type": "checkbox",
+        "id": "blackfriday_pdp_sale",
+        "default": false,
+        "label": "Black Friday PDP Sale"
+      },
+      {
+        "type": "checkbox",
+        "id": "blackfriday_hero",
+        "default": false,
+        "label": "Black Friday Hero"
+      },
+      {
+        "type": "checkbox",
+        "id": "saturday_deal_alert_bar",
+        "default": false,
+        "label": "Saturday Free SunLight Alert Bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "saturday_deal_pdp",
+        "default": false,
+        "label": "Saturday Free SunLight PDP Module"
+      },
+      {
+        "type": "checkbox",
+        "id": "cybermonday_pdp_sale",
+        "default": false,
+        "label": "Cyber Monday PDP Sale"
+      },
+      {
+        "type": "checkbox",
+        "id": "cyber_monday_alert_bar",
+        "default": false,
+        "label": "Cyber Monday Alert Bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "cyber_monday_hero",
+        "default": false,
+        "label": "Cyber Monday Hero"
+      },
+      {
+        "type": "checkbox",
+        "id": "cybermonday_shop_hero",
+        "default": false,
+        "label": "Cyber Monday Shop Hero"
+      },
+      {
+        "type": "checkbox",
+        "id": "tuesday_deal_alert_bar",
+        "default": false,
+        "label": "Tuesday Free FlexLight Alert Bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "free_flexlight_pdp",
+        "default": false,
+        "label": "Thursday Free FlexLight PDP"
+      },
+      {
+        "type": "checkbox",
+        "id": "free_pellets_alert_bar",
+        "default": false,
+        "label": "Free Pellets 4 Pack With Complete Cook Kit"
+      },
+      {
+        "type": "checkbox",
+        "id": "free_pellets_pdp",
+        "default": false,
+        "label": "Free Pellets PDP Module"
+      },
+      {
+        "type": "checkbox",
+        "id": "free_coffeepress_alert_bar",
+        "default": false,
+        "label": "Free CoffeePress With KettlePot Alert Bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "free_coffeepress_pdp",
+        "default": false,
+        "label": "Free CoffeePress PDP Module"
+      }
+    ]
+  },
+  {
+    "name": "Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social Media Meta Tags"
+      },
+      {
+        "type": "paragraph",
+        "content": "Social meta tags include [Facebook](https:\/\/developers.facebook.com\/docs\/opengraph\/using-objects\/) and [Pinterest](https:\/\/developers.pinterest.com\/rich_pins\/) Open Graph Tags and [Twitter Cards](https:\/\/dev.twitter.com\/docs\/cards\/types\/product-card) . These are enabled by default to make the store more accessible on different platforms, and more readable for search engines."
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter link"
+      },
+      {
+        "type": "text",
+        "id": "twittercard_handle",
+        "label": "Twitter Handle"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "Youtube link"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram link"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest link"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_newsletter",
+        "label": "Show Newsletter Field"
+      }
+    ]
+  },
+  {
+    "name": "Limiting Number of Products Purchased",
+    "settings": [
+      {
+        "type": "select",
+        "id": "limit",
+        "label": "Limit the number of products purchased?",
+        "options": [
+          {
+            "value": "No limit",
+            "label": "No"
+          },
+          {
+            "value": "Enabled for all products",
+            "label": "Yes, and impose that limit on all products"
+          },
+          {
+            "value": "Enabled for products listed",
+            "label": "Yes, but only for the products listed below"
+          }
+        ],
+        "default": "No limit"
+      },
+      {
+        "type": "select",
+        "id": "limit_quantity",
+        "label": "If so, what limit do you want to impose?",
+        "options": [
+          {
+            "value": "0",
+            "label": "0"
+          },
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          }
+        ],
+        "default": "1"
+      },
+      {
+        "type": "select",
+        "id": "limit_per",
+        "options": [
+          {
+            "value": "variant",
+            "label": "per variant"
+          },
+          {
+            "value": "product",
+            "label": "per product"
+          },
+          {
+            "value": "order",
+            "label": "items per order"
+          }
+        ],
+        "default": "product"
+      },
+      {
+        "type": "textarea",
+        "id": "limit_product_handles",
+        "label": "Enter your comma-separated product handles here:",
+        "info": "(Leave blank if you are imposing your limit on all products.)"
+      },
+      {
+        "type": "checkbox",
+        "id": "limit_skip_cart_page",
+        "label": "Skip the cart page if limit is 1 item per order?",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Cart Page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes",
+        "label": "Allow notes with orders"
+      }
+    ]
+  },
+  {
+    "name": "GeoIP Service",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_geoip",
+        "label": "Enable GeoIP Services",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "geoip_root_domain",
+        "label": "Root domain",
+        "default": "bioliteenergy.com"
+      },
+      {
+        "type": "text",
+        "id": "geoip_current_store",
+        "label": "Current Store Name",
+        "default": "US"
+      },
+      {
+        "type": "image_picker",
+        "id": "geoip_current_store_flag_1",
+        "label": "Current Store - Flag 1",
+        "info": "Required"
+      },
+      {
+        "type": "image_picker",
+        "id": "geoip_current_store_flag_2",
+        "label": "Current Store - Flag 2",
+        "info": "Optional"
+      }
+    ]
+  },
+  {
+    "name": "Shopify 3D",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "shopify_3d_enabled",
+        "label": "Use Shopify 3D",
+        "default": false
+      }
+    ]
+  }
+]

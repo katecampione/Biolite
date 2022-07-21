@@ -1,0 +1,209 @@
+{% comment %}
+
+  This snippet provides the handlebars.js templates for
+  the sidebar. Use the raw liquid tags to keep the
+  handlebar.js template tags as available hooks.
+
+{% endcomment %}
+<script id="bioliteCartTemplate" type="text/x-handlebars-template">
+{% raw %}
+  
+  <div class="cart-item animated fadeInRightBig" data-product-variant="{{variant_id}}" >
+    <div class="cart-item__image"><img src="{{image}}" alt="Cart Item"></div>
+    <div class="cart-item__desc">
+      <h6 class="cart-item__name baseline">{{name}}</h6>
+      <span class="cart-item__price money">{{price}}</span>
+      <span class="cart-item__price money"><strike>{{actual_price}}</strike></span>
+      <span class="cart-item__message">{{message}}</span>
+    </div>
+    <div class="cart-item__actions" data-quantity="{{quantity}}">
+      <form class=""><input aria-label="update {{name}} quantity" title="update {{name}} quantity" tabIndex="0" type="number" class="cart-item--quantity" data-input-filter="number" name="quantity" value="{{quantity}}" data-product-variant="{{variant_id}}"></form>
+      <a href="javascript:;" aria-label="update {{name}} quantity" title="remove {{name}}" class="cart-item--remove icomoon icon-close-circle"></a>
+    </div>
+  </div>
+{% endraw %}
+</script>
+<script id="bioliteCartEmptyTemplate" type="text/x-handlebars-template">
+  <div class="cart-item pl10 no-items-text">
+    <h6 class="cart-item__name baseline">There are no items in your cart.</h6>
+  </div>
+</script>
+<script id="bioliteBundledProduct" type="text/x-handlebars-template">
+{% raw %}
+<div class="product-card product-card--bg_right product-in-bundle" itemscope>
+  <div class="product-card__inner" style="background-image:url({{image}});">
+    <div class="product-card__content">
+      <h3 class="mb0" >{{name}}</h3>
+      <span class="product-grid-item__price h4 primary warm m0" id="ProductPrice">
+        <span class="money">{{price}}</span>
+      </span>
+      <p class="mt0 gray-light text-links">{{{description}}}</p>
+      <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddBundleToCartForm">
+        <button type="submit" name="add" id="AddToCart" class="btn btn-primary mt20 cart-item--add" data-product-variant="{{ variant_id }}">
+          <span id="AddToCartText">{{ add_to_cart_text }}</span>
+          <input type="hidden" name="id" value="{{ variant_id }}" />
+        </button>
+      </form>
+    </div>
+    <div class="product-card__overlay"></div>
+  </div>
+</div>
+{% endraw %}
+</script>
+<script id="shoppingCartSubtotalConvert" type="text/x-handlebars-template">
+{% raw %}
+<br/>Your Order for <b>{{ converted_subtotal }}</b><br/>will be converted to <b>{{ subtotal }}</b>*
+{{#if isEurOrGbp}}
+<p>* Duties and Taxes will be covered by BioLite.</p>
+{{else}}
+<p>* The actual charge may vary slightly depending on your credit card exchange rate.</p>
+{{/if}}
+{% endraw %}
+</script>
+<script id="faqTopic" type="text/x-handlebars-template">
+{% raw %}
+<li id="{{topic_id}}">{{topic_title}}</li>
+{% endraw %}
+</script>
+<script id="faqTopicGroup" type="text/x-handlebars-template">
+{% raw %}
+<li>
+  <h3 class="faq-title light primary baseline mb20" id="topic-{{topic_id}}">{{topic_title}}</h3>
+  <div class="list-toggles" id="group-{{topic_id}}"></div>
+</li>
+{% endraw %}
+</script>
+<script id="faqTopicSubGroup" type="text/x-handlebars-template">
+{% raw %}
+<h6 class="light">{{sub_topic_title}}</h6>
+<div class="list-toggles" id="subgroup-{{sub_topic_id}}"></div>
+{% endraw %}
+</script>
+<script id="faqTopicItem" type="text/x-handlebars-template">
+{% raw %}
+<div class="list-toggle" data-article-id="{{ article_id }}">
+  <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+    <i class="fa fa-minus-circle"></i>
+    <span>{{ article_title }}</span>
+  </div>
+  <div class="list-toggle__content">
+    <p>{{{ article_content }}}</p>
+  </div>
+</div>
+{% endraw %}
+</script>
+<script id="labTopic" type="text/x-handlebars-template">
+{% raw %}
+<li id="{{topic_id}}">{{topic_title}}</li>
+{% endraw %}
+</script>
+<script id="labTopicItem" type="text/x-handlebars-template">
+{% raw %}
+<div class="story-grid-item {{article_cats}} story-grid-item--size-{{cycle_size}}">
+  <div class="story-grid-item__inner" style="background-image: url('{{ article_image }}');">
+    <a class="story-grid-item__content story-grid-item__content--gradient table" href="{{ article_url }}">
+      <div class="table-cell">
+        <div>
+          <i class="fa-circle-border icomoon {{article_icon}}"></i>
+        </div>
+        <h4 class="light alt">{{article_title}}</h4>
+        <small>
+          {{post_excerpt}}
+        </small>
+      </div>
+    </a>
+  </div>
+</div>
+{% endraw %}
+</script>
+<script id="userStoryShare" type="text/x-handlebars-template">
+{% raw %}
+<div id="user-story-share" class="story-grid-item story-grid-item--fallback story-category--stories">
+  <div class="story-grid-item__inner">
+    <div class="story-grid-item__content story-grid-item__content--gradient table">
+      <div class="table-cell">
+        <h5 class="light">Tell us about your great adventures with BioLite products</h5>
+        <a href="/pages/share-your-story" class="btn btn-primary">Share Your Story</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endraw %}
+</script>
+<script id="outOfStockAlert" type="text/x-handlebars-template">
+This product is out of stock.
+</script>
+<script id="productRecommendationItem" type="text/x-handlebars-template">
+{% raw %}
+
+<div class="grid__item large--one-sixth medium--one-third small--one-half large--mb40 upsell-image-third">
+  
+ <div class="upsell-cart">
+    
+  <a href="{{product_url}}">
+         
+<img src="{{image}}" class="upsell-image" alt="">
+
+  </a>
+
+    <span class="upsell-product-title">{{name}}</span>
+
+   <form class="inline">
+  <button title="add {{name}} to cart" tabIndex="0" type="submit" name="add" id="" class="btn-tiny btn-tiny-outline-primary cart-item--add" data-product-variant="{{variant_id}}">
+               <span>Add</span>
+             </button>    </form>
+    <span class="upsell-product-price">{{{ price }}}</span>
+  </div>
+
+
+  {{{meta}}}
+ 
+</div>
+
+<!--
+<a href="{{product_url}}" >
+
+  <span class="related-product__content" data-product-variant="{{variant_id}}">
+    <h5 class="related-product__title">{{name}}</h5>
+    <h4 class="related-product__price money">{{price}}</h4>
+  </span>
+  <span class="related-product__image" style="background-image:url()"></span>
+
+</a>
+-->
+{% endraw %}
+</script>
+<script id="shopifyCheckoutButton" type="text/x-handlebars-template">
+{% raw %}
+<footer class="cart-summary__action">
+  <form action="/cart" method="post" novalidate>
+    <input type="submit" tabIndex="0" name="checkout" class="btn btn-primary btn-wide" value="Checkout">
+  </form>
+</footer>
+{% endraw %}
+</script>
+<script id="bioliteCartUpsellItem" type="text/x-handlebars-template">
+{% raw %}
+	<div class="upsell">
+		<div class="upsell_text_top">Based on your choice, we'd recommend</div>
+		<div class="upsell_border">
+			<div class="upsell_product_image"><img src="{{image}}" alt="{{name}}" /></div>
+			<div class="upsell_box_middle">
+				<div class="upsell_product_title"><a href="{{ url }}">{{name}}</a></div>
+				<div class="upsell_product_price">{{ price }}</div>
+			</div>
+			<div class="upsell_add_button">
+				<div class="price-and-cart-add">
+					<form class="inline">
+						<input type="submit" value="&#xe65b;" onClick="_gaq.push(['_trackEvent', 'Click', 'Sidebar Upsell - Add To Cart', '{{ name }}']);" class="btn btn-primary fa cart-item--add" data-product-variant="{{ variant_id }}" />
+					</form>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="upsell-nothanks">
+			<a href="/checkout">No thanks</a>
+		</div>
+	</div>
+{% endraw %}
+</script>

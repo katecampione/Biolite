@@ -1,0 +1,71 @@
+{% comment %}
+
+  This template will be automatically generated for you if the file doesn't exist,
+  but where's the fun in having no control? Define your layout below.
+
+  The 'layout settings.customer_layout' line is inserted at the top of every customer account template.
+  Your theme's settings determine to use the 'default' or 'theme' customer templates.
+  More info:
+    - http://www.tetchi.ca/shopify-theme-from-scratch-part-11/
+
+{% endcomment %}
+
+
+<section class="section-xxlarge bg--offwhite">
+
+
+  <div class="wrapper text-center">
+    <div class="grid ml0">
+
+      <h2>Create Account</h2>
+
+      <div id="migrated-customers" class="hidden">
+        <p>Welcome to the new, improved Biolite!<br/>If you've purchased from us in the past, we still have your order information linked to your email address.</p>
+        <p>Fill out the information below with the same email address you used before - and create a new password.<br/>We'll send a confirmation email to you and you can log in.</p>
+      </div>
+
+      <div class="grid__item large--one-half push--large--one-quarter fieldset--half p0">
+
+        {% comment %}
+          This form must use 'create_customer'
+        {% endcomment %}
+        {% form 'create_customer' %}
+
+          {% include 'form-errors-custom' %}
+
+          <div class="input-complex input-complex--white">
+            <label for="first_name" class="label-icon text-left"> <i class="fa fa-user"></i> <span>First Name</span><span class="required-field" aria-hidden="true">*</span> </label>
+            <input required aria-required="true" aria-label="First Name" type="text" value="" name="customer[first_name]" id="first_name" placeholder="First Name" {% if form.errors contains "first_name" %} class="error"{% endif %} autocapitalize="words" autofocus>
+          </div>
+
+          <div class="input-complex input-complex--white">
+            <label for="last_name" class="label-icon text-left"> <i class="fa fa-user"></i> <span>Last Name</span><span class="required-field" aria-hidden="true">*</span> </label>
+            <input required aria-required="true" aria-label="Last Name" type="text" value="" name="customer[last_name]" id="last_name" placeholder="Last Name" {% if form.errors contains "last_name" %} class="error"{% endif %} autocapitalize="words">
+          </div>
+
+          <div class="input-complex input-complex--white">
+              <label for="email" class="label-icon text-left"><i class="fa fa-envelope"></i> <span>Email</span><span class="required-field" aria-hidden="true">*</span></label>
+            <input required aria-required="true" type="email" value="" name="customer[email]" id="email" placeholder="Email" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off"> 
+          </div>
+
+          <div class="input-complex input-complex--white">
+            <label for="create_password" class="label-icon text-left"><i class="fa fa-lock"></i> <span>Password</span><span class="required-field" aria-hidden="true">*</span></label>
+            <input aria-label="password" required aria-required="true" type="password" value="" name="customer[password]" id="create_password" placeholder="Password" {% if form.errors contains "password" %} class="error"{% endif %}>
+          </div>
+
+          <div class="text-center pt20">
+            <p>
+              <input aria-label="Create Account" type="submit" value="Create" class="btn btn-primary pt12">
+            </p>
+            <p class="gray-light text-links">
+              or <a href="{{ shop.url }}" title="Return to Store">Return to Store</a>
+            </p>
+          </div>
+
+        {% endform %}
+
+      </div>
+
+    </div>
+  </div>
+</section>

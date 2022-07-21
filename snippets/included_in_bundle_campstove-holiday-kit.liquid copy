@@ -1,0 +1,296 @@
+<div class="mobile-wrapper closed product-compare-bundle--{{ product.handle | remove: 'biolite-'  }}">
+ <h2 class="mobile-title">Included in Bundle</h2>
+ <section id="product-compare-bundle" class="product-compare-bundle product-compare-bundle--{{ product.handle | remove: 'biolite-'  }} mobile-wrapper-content">
+	 <div class="product-compare-bundle wrapper wrapper--full_height wrapper--large">
+<table class="compare-table-bundle table-with-footer">
+  <thead>
+    <tr style="background-color:#fff;">
+       <th class="border-bottom pb20">
+        <img style="display:block; margin-left: auto; margin-right:auto;" class="mb20" src="//cdn.shopify.com/s/files/1/0666/9741/products/CampStove2-6_medium.jpg?" width="150" alt="FlexLight 3" title="FlexLight 3" />
+<div class="bundle-number mb10 ">
+        <span class="inside-count">1</span>
+      </div>         
+         <span class="mt20"><strong><a href="http://www.bioliteenergy.com/products/campstove-2" style="color:#262729" target="_blank" title="CampStove + FlexLight">CampStove 2 + FlexLight</a></strong></span>
+      </th>
+ 
+      <th class="border-bottom  pb20">
+        <img style="display:block; margin-left: auto; margin-right:auto;" class="mb20" src="//cdn.shopify.com/s/files/1/0666/9741/products/CampStove2Bundle_4_medium.jpg" width="150" alt="Grill 4" title="Grill 4" />
+<div class="bundle-number mb10 ">
+        <span class="inside-count">2</span>
+      </div>  
+        <span class="mt20"><strong><a href="http://www.bioliteenergy.com/products/portable-grill" style="color:#262729" target="_blank" title="Portable Grill">Portable Grill</a></strong></span>
+      </th>
+       <th class="border-bottom  pb20">
+        <img style="display:block; margin-left: auto; margin-right:auto;" class="mb20" src="//cdn.shopify.com/s/files/1/0666/9741/products/KettlePot_2_medium.jpeg"  width="150" alt="KettlePot 2" title="KettlePot 2" />
+<div class="bundle-number mb10 ">
+        <span class="inside-count">3</span>
+      </div>  
+         <span class="mt20"><strong><a href="http://www.bioliteenergy.com/products/kettlepot" style="color:#262729" target="_blank" title="KettlePot">KettlePot</a></strong></span>
+      </th>
+      <th class="border-bottom  pb20">
+        <img style="display:block; margin-left: auto; margin-right:auto;" class="mb20" src="https://cdn.shopify.com/s/files/1/0666/9741/products/CoffeePress-1_large.jpg?v=1498168388"  width="150" alt="CoffeePress" title="CoffeePress" />
+<div class="bundle-number mb10 ">
+        <span class="inside-count">4</span>
+      </div>  
+        <span class="mt20"><strong><a href="http://www.bioliteenergy.com/products/coffeepress" style="color:#262729" target="_blank" title="CoffeePress">CoffeePress</a></strong></span>
+      </th>   
+       
+      <th class="border-bottom  pb20">
+        <img style="display:block; margin-left: auto; margin-right:auto;" class="mb20" src="https://cdn.shopify.com/s/files/1/0666/9741/products/20190501_Studio_Polar_Black_Flat_kitfox_webres_1200x_d7924eca-2f91-455d-8bf4-d30a0f5ebbeb_1024x1024.jpg?v=1574117730"  width="150" alt="Polar Puffy Blanket" title="Polar Puffy Blanket" />
+<div class="bundle-number mb10 ">
+        <span class="inside-count">5</span>
+      </div>  
+        <span class="mt20"><strong><a href="/products/polar-puffy-blanket" style="color:#262729" target="_blank" title="Polar Puffy Blanket">Polar Puffy Blanket</a></strong></span>
+      </th>
+      
+      
+       <th class="border-bottom  pb20">
+
+        <img style="display:block; margin-left: auto; margin-right:auto;" class="mb20" src="https://cdn.shopify.com/s/files/1/0666/9741/products/Miir_mugs_shopMain_1024x1024.png?v=1573672997"  width="150" alt="Miir Camp Cup x2" title="Miir Camp Cup x2" />
+<div class="bundle-number mb10 ">
+        <span class="inside-count">6</span>
+      </div>  
+        <span class="mt20"><strong><a href="/products/biolite-x-miir-camp-cup" style="color:#262729" target="_blank" title="Miir Camp Cup x2">Miir Camp Cup x2</a></strong></span>
+      </th>
+      
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A smokeless campfire that can cook meals and boil water in minutes</td>
+      <td>Cook your favorite meals over wood</td>
+      <td>A true grab-and-go system - pours like a kettle and cooks like a pot </td>
+      <td>Boils 1-6 cups of coffee in the KettlePot </td>
+      <td>Fabric: 100% Post-Consumer Recycled Polar Fleece &amp; PCR synthetic insulation</td>
+      <td>18/8 medical grade stainless steel provides clean taste</td>
+
+</tr>
+    
+    <tr>
+      <td>Generate usable electricity for charging lights phones, and other devices</td>
+      <td>Cooking area: 55 sq inches</td>
+      <td>Doubles as a carry case for CampStove</td>
+      <td>Made from stainless steel, BPA-free polypropylene</td>
+      <td>Size: 54"x70" </td>
+      <td>BPA-free Lid presses on easily</td>
+      
+    </tr>
+    <tr>
+      <td>Burns renewable biomass - twigs, pinecone, wood pellets</td>
+	  <td>Folded Size: 9.5 x 12 x 3.5 in (24.13 x 30.48 x 8.89 cm)</td>
+      <td>Max fill: 1.5 liters</td>
+      <td>Nests inside KettlePot with CampStove</td>
+      <td>Features a Cape Clip™ &amp; Snap Pocket for keys, phone</td>
+      <td>Dishwasher safe</td>
+
+    </tr>
+    <tr>
+      <td>Weight: 2.06 lbs (33 oz)</td>
+      <td>Weight: 1.88 lbs (850 g)</td>
+      <td>Weight: 1.03 lbs (465 g)</td>
+      <td>Weight: 2.8 oz (80 g)</td>
+      <td>Weight: 3.3 lbs (1500 g)</td>
+      <td>Weight: 0.59 lbs (267 g)</td>
+    </tr>
+  
+ 
+  </tbody>
+
+</table>
+
+
+<!-- Mobile Tables -->
+       
+       <table class="table-with-footer-bundle compare-table-bundle-mobile">
+  <thead>
+    <tr style="background-color:#fff;">
+      <th colspan="2" class="border-bottom">
+        <img style="display:block; margin-left: auto; margin-right:auto;" src="//cdn.shopify.com/s/files/1/0666/9741/products/CampStove2-6_1024x1024.jpg?v=1486422608" alt="CampStove 2" title="CampStove 2" />
+        <div class="bundle-number mb10 ">
+        <span class="inside-count">1</span>
+      </div> 
+         <span class=""><strong>CampStove 2</strong></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A smokeless campfire that can cook meals and boil water in minutes</td>
+    </tr>
+    <tr>
+      <td>Generate usable electricity for charging lights phones, and other devices</td>
+    </tr>
+    <tr>
+      <td>Burns renewable biomass - twigs, pinecone, wood pellets</td>
+    </tr>
+    <tr>
+      <td>Weight: 2.06 lbs (33 oz)</td>
+    </tr>
+    
+    
+   
+  </tbody>
+
+</table>
+
+       
+
+       
+              <table class="table-with-footer-bundle compare-table-bundle-mobile">
+  <thead>
+    <tr style="background-color:#fff;">
+      <th colspan="2" class="border-bottom">
+        <img style="display:block; margin-left: auto; margin-right:auto;" src="//cdn.shopify.com/s/files/1/0666/9741/products/CampStove2Bundle_4_medium.jpg" alt="Portable Grill" title="Portable Grill" />
+        <div class="bundle-number mb10 ">
+        <span class="inside-count">2</span>
+      </div> 
+         <span class=""><strong>Portable Grill</strong></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cook your favorite meals over wood</td>
+    </tr>
+    <tr>
+      <td>Cooking area: 55 sq inches</td>
+    </tr>
+    <tr>
+	  <td>Folded Size: 9.5 x 12 x 3.5 in (24.13 x 30.48 x 8.89 cm)</td>
+    </tr>
+    <tr>
+      <td>Weight: 1.88 lbs (850 g)</td>
+    </tr>
+    
+    
+   
+  </tbody>
+
+</table>
+
+       
+       
+       
+              
+              <table class="table-with-footer-bundle compare-table-bundle-mobile">
+  <thead>
+    <tr style="background-color:#fff;">
+      <th colspan="2" class="border-bottom">
+        <img style="display:block; margin-left: auto; margin-right:auto;" src="//cdn.shopify.com/s/files/1/0666/9741/products/KettlePot_2_large.jpeg?v=1455122565" alt="KettlePot 2" title="KettlePot 2" />
+        <div class="bundle-number mb10 ">
+        <span class="inside-count">3</span>
+      </div> 
+         <span class=""><strong>KettlePot</strong></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A true grab-and-go system - ours like a kettle and cooks like a pot </td>
+    </tr>
+    <tr>
+      <td>Doubles as a carry case for CampStove</td>
+    </tr>
+    <tr>
+      <td>Max fill: 1.5 liters</td>
+    </tr>
+    <tr>
+      <td>Weight: 1.03 lbs (465 g)</td>
+    </tr>
+    
+    
+   
+  </tbody>
+
+</table>
+       
+<table class="table-with-footer-bundle compare-table-bundle-mobile">
+  <thead>
+    <tr style="background-color:#fff;">
+      <th colspan="2" class="border-bottom">
+        <img style="display:block; margin-left: auto; margin-right:auto;" src="https://cdn.shopify.com/s/files/1/0666/9741/products/CoffeePress-1_large.jpg?v=1498168388" alt="CoffeePress" title="CoffeePress" />
+        <div class="bundle-number mb10 ">
+        <span class="inside-count">4</span>
+      </div> 
+         <span class=""><strong>CoffeePress</strong></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Boils 1-6 cups of coffee in the KettlePot </td>
+    </tr>
+    <tr>
+      <td>Made from stainless steel, BPA-free polypropylene</td>
+    </tr>
+    <tr>
+      <td>Nests inside KettlePot with CampStove</td>
+    </tr>
+    <tr>
+      <td>Weight: 2.8 oz (80 g)</td>
+    </tr>
+  </tbody>
+</table>
+       
+       <table class="table-with-footer-bundle compare-table-bundle-mobile">
+  <thead>
+    <tr style="background-color:#fff;">
+      <th colspan="2" class="border-bottom">
+        <img style="display:block; margin-left: auto; margin-right:auto;" src="https://cdn.shopify.com/s/files/1/0666/9741/products/20190501_Studio_Polar_Black_Flat_kitfox_webres_1200x_d7924eca-2f91-455d-8bf4-d30a0f5ebbeb_1024x1024.jpg?v=1574117730" alt="Polar Puffy Blanket" title="Polar Puffy Blanket" />
+        <div class="bundle-number mb10 ">
+        <span class="inside-count">5</span>
+      </div> 
+         <span class=""><strong>Polar Puffy Blanket</strong></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Fabric: 100% Post-Consumer Recycled Polar Fleece &amp; PCR synthetic insulation</td>
+    </tr>
+    <tr>
+      <td>Size: 54"x70" </td>
+    </tr>
+    <tr>
+      <td>Features a Cape Clip™ &amp; Snap Pocket for keys, phone</td>
+    </tr>
+    <tr>
+      <td>Dishwasher safe</td>
+    </tr>
+  </tbody>
+</table>
+       
+       
+       <table class="table-with-footer-bundle compare-table-bundle-mobile">
+  <thead>
+    <tr style="background-color:#fff;">
+      <th colspan="2" class="border-bottom">
+        <img style="display:block; margin-left: auto; margin-right:auto;" src="https://cdn.shopify.com/s/files/1/0666/9741/products/Miir_mugs_shopMain_1024x1024.png?v=1573672997" alt="Miir Camp Cup x2" title="Miir Camp Cup x2" />
+        <div class="bundle-number mb10 ">
+        <span class="inside-count">6</span>
+      </div> 
+         <span class=""><strong>Miir Camp Cup x2</strong></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>18/8 medical grade stainless steel provides clean taste</td>
+    </tr>
+    <tr>
+      <td>BPA-free Lid presses on easily</td>
+    </tr>
+    <tr>
+      <td>Dishwasher safe</td>
+    </tr>
+    <tr>
+      <td>Weight: 0.59 lbs (267 g)</td>
+    </tr>
+  </tbody>
+</table>
+       
+ 
+	 </div>
+ </section>
+</div>

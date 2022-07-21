@@ -1,0 +1,47 @@
+{% comment %}
+	This is Inside our Technology snippet for the BaseCamp
+{% endcomment %}
+
+
+
+<div class="mobile-wrapper closed">
+ <h2 class="mobile-title">Inside The Tech</h2>
+ <section id="product-tech" class="product-tech without-curtain product-tech--{{ product.handle | remove: 'biolite-'  }} mobile-wrapper-content">
+	 <div class="product-tech-curtain show">
+		 <div class="product-tech-curtain__content wrapper wrapper--full_height wrapper--large pt50 pb50">
+			 <header class="product-tech__header text-center grid__item large--one-whole">
+				 <h3 class="light">Inside our Technology</h3>
+			 </header>
+			 <div class="product-tech-curtain__body">
+				 <div class="grid__item large--one-half  medium--one-half">
+				 	<img class="product-tech-curtain__img" src="{{ product.metafields.techspec.image }}" alt="">
+				 </div>
+				 <div class="grid__item large--one-half medium--one-half">
+	 				<ul class="product-tech-curtain__list">
+	 				  <li class="list-item--red">
+	 				    <div class="symbol" style="background-color:#f3f3f3 !important;"><i>+</i></div>
+	 				    <h4 class="alt baseline">Heat</h4>
+	 				    <p>BioLite’s patented core technology captures waste heat from the fire through a heat probe attached to the orange powerpack.</p>
+	 				  </li>
+	 				  <li class="list-item--yellow">
+	 				    <div class="symbol" style="background-color:#f3f3f3 !important;"><i>+</i></div>
+	 				    <h4 class="alt baseline">Electricity</h4>
+	 				    <p>Heat is converted into usable electricity via a thermoelectric generator. This powers a fan and sends surplus electricity to a USB charging port.</p>
+	 				  </li>
+	 				  <li class="list-item--green">
+	 				    <div class="symbol" style="background-color:#f3f3f3 !important;"><i>+</i></div>
+	 				    <h4 class="alt baseline">Air</h4>
+	 				    <p>The internal fan forces air back into the burn chamber dramatically improving combustion and creating a cleaner, more efficient burn.</p>
+	 				  </li>
+	 				</ul>
+	 			</div>
+			 </div>
+		 </div>
+	 </div>
+ </section>
+</div>
+
+
+
+
+

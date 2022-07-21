@@ -1,0 +1,114 @@
+{% include 'attribution-customer' %}
+
+
+{% comment %}
+
+  This template will be automatically generated for you if the file doesn't exist,
+  but where's the fun in having no control? Define your layout below.
+
+  The 'layout settings.customer_layout' line is inserted at the top of every customer account template.
+  Your theme's settings determine to use the 'default' or 'theme' customer templates.
+  More info:
+    - http://www.tetchi.ca/shopify-theme-from-scratch-part-11/
+
+  Template note:
+    - All IDs on this template are required to make the form(s) submit properly
+
+  For all available customer liquid tags:
+    - http://docs.shopify.com/themes/liquid-variables/customer
+
+{% endcomment %}
+
+
+
+<section class="section-large bg--offwhite">
+ 
+
+  <div class="wrapper">
+    <h3>My Account</h3>
+
+    <hr class="hr--small">
+
+    <div class="grid__item two-thirds medium-down--one-whole">
+      <h5>Order History</h5>
+
+      {% comment %}
+        If we have past orders, loop through each one
+      {% endcomment %}
+      {% if customer.orders.size != 0 %}
+
+        <table class="full">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Date</th>
+              <th>Payment Status</th>
+              <th>Fulfillment Status</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in customer.orders %}
+              <tr class="customer-order-item">
+                <td><span style="color:#35a8a6;font-weight:600">{{ order.name | link_to: order.customer_url }}</span></td>
+                <td>{{ order.created_at | date: "%b %d, %Y" }}</td>
+                <td>{{ order.financial_status }}</td>
+                <td>{{ order.fulfillment_status }}</td>
+                <td>{{ order.total_price | money }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      {% else %}
+
+        <p>You haven't placed any orders yet.</p>
+
+      {% endif %}
+    </div>
+
+    <div class="grid__item one-third medium-down--one-whole pl30 pl0--mobile">
+      <h5>Account Details</h5>
+
+      <div class="customer-address-item">
+        <h6 class="mt0">{{ customer.name }}</h6>
+
+        {% if customer.default_address != nil %}
+          <p class="mb0">
+          {{ customer.default_address.address1 }}
+
+          {% if customer.default_address.address2 != "" %}
+            {{ customer.default_address.address2 }}<br>
+          {% endif %}
+
+          {% if customer.default_address.city != "" %}
+            {{ customer.default_address.city }},
+          {% endif %}
+
+          {% if customer.default_address.province_code != "" %}
+            {{ customer.default_address.province_code | upcase }}
+          {% endif %}
+
+          {% if customer.default_address.zip != "" %}
+            {{ customer.default_address.zip | upcase }}<br>
+          {% endif %}
+
+          {% if customer.default_address.country != "" %}
+            {{ customer.default_address.country }}<br>
+          {% endif %}
+
+          {% if customer.default_address.phone != "" %}
+            {{ customer.default_address.phone }}
+          {% endif %}
+
+          </p>
+
+        {% endif %}
+      </div>
+
+      <p class="gray-light text-links"><a href="/account/addresses" title="View Addresses ({{ customer.addresses_count }})">View Addresses ({{ customer.addresses_count }})</a></p>
+    </div>
+
+  </div>
+</section>
+<div id="talkable-offer"></div>

@@ -1,0 +1,156 @@
+
+
+
+
+
+.shake-icon {
+    position: relative;
+    padding-top: 7px;
+    width: 75px;
+    height: 215px;
+    margin-left: -2px;
+    opacity: 1;
+}
+
+.shake-divider {
+ background: linear-gradient(#c6c6c6 , #c6c6c6) no-repeat center/1px 100%;
+
+}
+.HL-mode-title {
+    font-weight: 700;
+    font-family: reader-regular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: left !important;
+}
+
+
+.chromareal-logo {
+    width: 296px;
+    margin: 10px 0 20px 0;
+}
+
+@media only screen and (max-width: 1024px) {
+ .shake-icon {
+    display:none;
+} 
+  
+  .HL-mode-title {
+    padding:20px 0 0 0;
+}
+}
+
+
+#biolite-alpenglow-500-500-lumen-usb-lantern-w-multicolor-leds .compare-table tbody tr > :first-child, .compare-table thead tr > th:first-child, .compare-table tfoot tr > td:first-child {
+  color: #4e4e4e;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: right;
+  width: 15%;
+  font-family: reader-regular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding-left: 21px;
+}
+
+#biolite-alpenglow-250-250-lumen-usb-lantern-w-multicolor-leds .compare-table tbody tr > :first-child, .compare-table thead tr > th:first-child, .compare-table tfoot tr > td:first-child {
+  color: #4e4e4e;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: right;
+  width: 15%;
+  font-family: reader-regular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding-left: 21px;
+}
+
+.alert-bar {
+  position: relative;
+  z-index: 1000;
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  background: linear-gradient(-45deg, #d46c5b , #7474ec, #008fa1, #b4398a);
+	background-size: 400% 400%;
+	animation: gradient 22s ease infinite;  text-align: center;
+  font-size: 14px !important;
+  color: #1b1b1b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: reader-regular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 800;
+}
+
+.nav-new-mobile-ag250 {
+    width: 36px !important;
+    margin-left: -92px !important;
+    position: absolute !important;
+    top: 98px !important;
+}
+
+.nav-new-mobile-ag500 {
+    width: 36px !important;
+    margin-left: -92px !important;
+    position: absolute !important;
+    top: 168px !important;
+}
+
+
+/*change me mobile*/
+
+
+@media only screen and (max-width: 480px) {
+  .billboard-cta {
+    top: 105px;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0px;
+    text-align: center;
+  }
+
+  .billboard-subhead {
+    top: 38px;
+    width: 100%;
+    font-size: 12px;
+    padding-right: 0px;
+    line-height: 16px;
+    padding: 0 20px 0 20px;
+    text-align: center;
+  }
+
+  .billboard-main {
+    top: 61px;
+    width: 100%;
+    font-size: 27px;
+    font-weight: 600;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+  }
+
+  #billboard {
+    background-image: url("https://cdn.shopify.com/s/files/1/0666/9741/files/AlpenGlow_500_hero_v2_mobile.jpg?v=1626464081") !important;
+    background-size: 480px 380px !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 380px !important;
+  }
+
+  #billboard img {
+    opacity: 0;
+    height: 300px !important;
+  }@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and ( min--moz-device-pixel-ratio: 2), only screen and ( -o-min-device-pixel-ratio: 2/1), only screen and ( min-device-pixel-ratio: 2), only screen and ( min-resolution: 192dpi), only screen and ( min-resolution: 2dpi) {
+    #billboard {
+      background-image: url("https://cdn.shopify.com/s/files/1/0666/9741/files/AlpenGlow_500_hero_v2_mobile__2x_4c2abc94-f095-4907-abcd-40dc82ff583f.jpg?v=1626464081") !important;
+    background-size: 480px 380px !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 380px !important;
+    background-size: cover;
+  }
+
+  #billboard img {
+    opacity: 0;
+    height: 380px !important;
+  }
+}
+}
+
+
+

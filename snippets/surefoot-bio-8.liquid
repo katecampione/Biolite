@@ -1,0 +1,65 @@
+<!-- surefoot - bio-8 test code -->
+<script>
+!function(n){var o={};function i(e){if(o[e])return o[e].exports;var t=o[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,i),t.l=!0,t.exports}i.m=n,i.c=o,i.d=function(e,t,n){i.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},i.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.t=function(t,e){if(1&e&&(t=i(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(i.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)i.d(n,o,function(e){return t[e]}.bind(null,o));return n},i.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return i.d(t,"a",t),t},i.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},i.p="",i(i.s=1)}([,function(e,t,n){"use strict";n(3);var o,i=n(2),g=(o=i)&&o.__esModule?o:{default:o};var r=window.jQuery,a=function(a){var c="bio-8",u="trust me on this one",o="v1",s="establish trust",d=c+"-"+o,t=d,n=0<window.location.href.indexOf("sf_debug")||!1;function i(e){e&&(n=!0),window.__SFME__[d]={buildTime:"Mon Nov 04 2019 19:27:54 GMT+0100 (CET)",testLabel:c,variationLabel:o,fullLabel:d,testName:u,variationName:s},f("production".toUpperCase()+" BUILD | Compiled on Mon Nov 04 2019 19:27:54 GMT+0100 (CET)"),f("_init-ing with forceDebug "+e+' for test "'+u+'"'),setTimeout(function(){a("body").css({opacity:1})},500),f('_activateHotjar with trigger "'+t+'"'),window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)},hj("trigger",t),hj("tagRecording",[t]),p(),a(".logged-in-customer-information").length&&p("bio-8","logged in user ("+o+")"),r(),f("in appendHero"),a(".banner").append(g.default),a("html").removeClass("page--no-banner"),l(),setTimeout(function(){return e=document.querySelector('[data-step="contact_information"]'),void new MutationObserver(function(e){f("in mutationObserver callback",e),a(".sf-bio-8").length||(r(),l())}).observe(e,{childList:!0,subtree:!0});var e},250)}function r(){f("in rearrangeFormElements");var e=a(".section.section--shipping-address");e.addClass("sf-bio-8"),a(".section.section--contact-information").insertAfter(e);var t=a('[name="checkout[shipping_address][phone]"]'),n=t.closest(".field"),o=a('[name="checkout[email]"]'),i=o.closest(".field"),r=a(".logged-in-customer-information");r.length?(f("logged in"),n.insertAfter(r)):n.insertBefore(i),a(".cart-checkout-notice").insertAfter(e),a('[for="checkout_buyer_accepts_marketing"]').text("I want to receive occasional emails about new products, promotions, and other news - unsubscribe at any time."),t.attr("placeholder","Phone (In case we need to contact you about your order)"),o.attr("placeholder","Email (Only used for order updates)").attr("data-autofocus",!1),i.removeClass("field--show-floating-label"),a("#checkout_shipping_address_first_name").focus()}function l(){f("in bindEvents");var n=void 0;a(".step .edit_checkout").off("submit.surefoot").on("submit.surefoot",function(e){if(e.preventDefault(),n)return f("optin captured, removing listener and resubmitting"),a(e.target).off("submit.surefoot"),e.target.submit();n=!0;var t=a("#checkout_buyer_accepts_marketing")[0].checked;return f("checked: ",t),t?(f("pushing form submitted with opt-in checked event"),p("bio-8","form submitted with opt-in checked ("+o+")")):(f("pushing form submitted with opt-in unchecked event"),p("bio-8","form submitted with opt-in unchecked ("+o+")")),e.target.submit()}),a("#checkout_email").off("change.surefoot").on("change.surefoot",function(e){var t;f("in email change handler"),(t=e.target.value,/^([a-zA-Z0-9_.+-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(t))&&(f("email valid, dispatching email captured event"),a(e.target).off("change.surefoot"),p("bio-8","email captured from email field ("+o+")"))})}function f(){window.console||(window.console={log:function(){}}),n&&console.log.apply(console,["%c"+Date.now()+" sf | "+d+" | ","color: #522fae;"].concat(Array.prototype.slice.call(arguments)))}function p(e,t,n){var o,i,r,a=0;r=e||t||n?(o=e,i=t,n):(o="surefoot_testing",i=c+" "+u,d+" "+s),function t(){setTimeout(function(){if(window.ga&&window.ga.loaded&&"function"==typeof window.ga.getAll){f("_pushGaEvent - GA found! sending GA event with Category "+o+", Action "+i+", and Label "+r);var e=window.ga.getAll()[0].get("name")+".send";window.ga(e,{hitType:"event",eventCategory:o,eventAction:i,eventLabel:r,nonInteraction:!0})}else a<20?(f("_pushGaEvent - ga not found at attempt "+a+" of 20. trying again in 500ms"),a++,t()):f("_pushGaEvent FAILED - ga not found after 20 attempts. skipping event push...")},500)}()}return window.__SFME__=window.__SFME__||{},{activate:function(e){window.__SFME__[d]?f(u+" already activated - not activating again."):i(e)}}}(r);r(document).ready(function(){-1===window.location.href.indexOf("previous_step=")&&a.activate()})},function(e,t){e.exports='<div class=checkout-hero> <div class=wrap> <div class=logo> <a href=https://bioliteenergy.com> <img src=//cdn-3.convertexperiments.com/uf/10021209/10024017/1555173360logo.png alt="Biolite Energy"/> </a> </div> </div> </div> '},function(e,t){}]);
+</script>
+
+<style>
+    .checkout-hero {
+    background: url("//cdn-3.convertexperiments.com/uf/10021209/10024017/1555607825Checkout_hero.jpg") right center no-repeat;
+    background-size: cover;
+    height: 84px;
+    box-shadow: inset 0px -10px 10px -10px #000; }
+    .checkout-hero .wrap {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        height: 100%; }
+    .checkout-hero .logo {
+        width: 112px; }
+        .checkout-hero .logo img {
+        width: 100%;
+        height: auto;
+        margin-top: -10px; }
+    @media (min-width: 1000px) {
+        .checkout-hero {
+        height: 196px; }
+        .checkout-hero .logo {
+            width: 276px; } }
+
+    body .cart-checkout-notice {
+    padding: 0 0.42857em;
+    font-weight: normal;
+    margin: 0; }
+
+    .section.section--contact-information .section__header {
+    margin-bottom: 10px; }
+    .section.section--contact-information .section__header > div {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        flex-direction: column; }
+
+    @media (min-width: 1000px) {
+    .section.section--contact-information input {
+        max-width: 75%; } }
+
+    .section.section--contact-information [for="checkout_buyer_accepts_marketing"] {
+    width: 93%; }
+
+    .section.section--contact-information .logged-in-customer-information + .field[data-address-field="phone"] {
+    margin: 15px 0;
+    padding: 0; }
+
+    .field input[type=tel], .field input[type=text], .field input[type=email], .field select {
+    padding-left: 10px !important; }
+
+    html:not(.page--no-banner) a.logo.logo--left {
+    display: none !important; }
+
+    @media (max-width: 999px) {
+    html:not(.page--no-banner).js .order-summary--is-collapsed {
+        margin: 0; } }
+</style>

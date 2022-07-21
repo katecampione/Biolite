@@ -1,0 +1,347 @@
+
+
+
+<div id="billboard-tight-giftguide">
+    <div class="flexhero">
+      <div class="main-billboard">
+		<div class="main-billboard-content">
+        <span class="billboard-tight-main golden-hour">2021 Quick Hit Gift Guide </span>
+        <span class="billboard-tight-subhead grey-dark">6 Categories. 3 Product Recs Each. Let’s Get You Some Ideas Fast.</span>
+
+          <img src="https://cdn.shopify.com/s/files/1/0666/9741/files/2020_GiftGuide_hero_r4.jpg?v=1605293758" alt="Quick Hit Gift Guide" title="Quick Hit Gift Guide" />
+
+
+         </div>
+      </div>
+  </div>
+</div>
+
+  <nav class="nav-horizontal nav-horizontal--products category-page-nav" data-sticky>
+    <div class="wrapper wrapper--full wrapper--max_height">
+      
+    
+      <div class="grid__item nav-horizontal__menu-wide category-nav-desktop">
+      <div class="grid__item large--one-sixth medium--one-sixth small--one-half category-nav-wrap"><a href="#stocking-stuffers" class="category-nav-title-gift">Stocking Stuffers</a></div>
+        <div class="grid__item large--one-sixth medium--one-sixth small--one-half category-nav-wrap"><a href="#home" class="category-nav-title-gift">Home</a></div>
+        <div class="grid__item large--one-sixth medium--one-sixth small--one-half category-nav-wrap"><a href="#travel" class="category-nav-title-gift">Travel</a></div>
+       <div class="grid__item large--one-sixth medium--one-sixth small--one-half category-nav-wrap"><a href="#campers" class="category-nav-title-gift">Campers</a></div>
+         <div class="grid__item large--one-sixth medium--one-sixth small--one-half category-nav-wrap"><a href="#runners" class="category-nav-title-gift">Runners</a></div>
+         <div class="grid__item large--one-sixth medium--one-sixth small--one-half category-nav-wrap"><a href="#grillers" class="category-nav-title-gift">Grillers</a></div>
+
+
+      </div>
+      
+<div class="grid__item nav-horizontal__menu-wide category-nav-mobile">   
+<div class="collections-sidebar-selection">
+        <div class="filter-by filter-by-mobile">Jump To Section:<span class="filter-by-arrow-down"> <i class="icomoon icon-downArrow"></i></span><span class="filter-by-arrow-up"><i class="icomoon icon-upArrow"></i></span></div>
+        <ul class="product-categories">
+             
+          <li> <a href="#stocking-stuffers" class="category-nav-title-gift">Stocking Stuffers</a></li>
+          <li> <a href="#home" class="category-nav-title-gift">Home</a></li>
+          <li> <a href="#travel" class="category-nav-title-gift">Travel</a></li>
+            <li> <a href="#campers" class="category-nav-title-gift">Campers</a></li>
+           <li> <a href="#runners" class="category-nav-title-gift">Runners</a></li>
+            <li> <a href="#grillers" class="category-nav-title-gift">Grillers</a></li>
+
+          
+         
+          
+        </ul> 
+        </div>
+      </div>
+
+    </div>
+
+  </nav>
+
+<a name="stocking-stuffers" class="gift-guide-anchor"></a>
+<div class="wrapper wrapper--full large--mt40"  data-section-name="stocking-stuffers">
+  <div class="grid__item large">
+  <img class="holiday-divider img-center" src="https://cdn.shopify.com/s/files/1/0838/4957/files/stockingStuffers.svg?v=1636139073" alt="Stocking Stuffers">
+
+<h2 class="collection-section-title-gift-guide">Stocking Stuffers</h2>
+<span class="collection-section-subtitle">Easy To Pack And Under $60</span>
+  </div>
+
+<div class="grid__item large--one-whole">
+<section id="product-grid" class="product-grid section-large" itemtype="http://schema.org/SomeProducts">
+  <div class="wrapper wrapper--xxlarge rel">
+
+
+    {% for product in collection.products %}
+        {% if product.tags contains 'subcategory-stockingstuffers' %}
+
+      {% include 'collection-list-item-giftguide' %}
+    {% else %}
+    {% endif %}
+
+
+    {% endfor %}
+
+  </div>
+</section>
+</div>
+</div>
+
+
+
+
+<a name="home" class="gift-guide-anchor"></a>
+<div class="wrapper wrapper--full large--mt40"  data-section-name="home">
+  <div class="grid__item large">
+  <img class="holiday-divider img-center" src="https://cdn.shopify.com/s/files/1/0838/4957/files/Home.svg?v=1636139073" alt="For The Home">
+<h2 class="collection-section-title-gift-guide">For The Home</h2>
+<span class="collection-section-subtitle">From Apres Ski to Emergency</span>
+  </div>
+
+<div class="grid__item large--one-whole">
+<section id="product-grid" class="product-grid section-large" itemtype="http://schema.org/SomeProducts">
+  <div class="wrapper wrapper--xxlarge rel">
+
+
+    {% for product in collection.products %}
+        {% if product.tags contains 'subcategory-home' %}
+
+      {% include 'collection-list-item-giftguide' %}
+    {% else %}
+    {% endif %}
+
+
+    {% endfor %}
+
+  </div>
+</section>
+</div>
+</div>
+
+
+
+
+<a name="travel" class="gift-guide-anchor"></a>
+<div class="wrapper wrapper--full large--mt40"  data-section-name="travel">
+  <div class="grid__item large">
+  <img class="holiday-divider img-center" src="https://cdn.shopify.com/s/files/1/0838/4957/files/travel.svg?v=1636139073" alt="For Travel">
+
+<h2 class="collection-section-title-gift-guide">For Travel</h2>
+<span class="collection-section-subtitle">Energy For Getting Back Out There</span>
+  </div>
+
+<div class="grid__item large--one-whole">
+<section id="product-grid" class="product-grid section-large" itemtype="http://schema.org/SomeProducts">
+  <div class="wrapper wrapper--xxlarge rel">
+
+
+    {% for product in collection.products %}
+        {% if product.tags contains 'subcategory-travel' %}
+
+      {% include 'collection-list-item-giftguide' %}
+    {% else %}
+    {% endif %}
+
+
+    {% endfor %}
+
+  </div>
+</section>
+</div>
+</div>
+
+
+  <div class="clearfix"></div>
+
+<a name="campers" class="gift-guide-anchor"></a>
+<div class="wrapper wrapper--full large--mt40"  data-section-name="campers">
+  <div class="grid__item large">
+  <img class="holiday-divider img-center" src="https://cdn.shopify.com/s/files/1/0838/4957/files/Camp.svg?v=1636139073" alt="campers">
+
+<h2 class="collection-section-title-gift-guide">For Campers</h2>
+<span class="collection-section-subtitle">Make BaseCamp Fun</span>
+  </div>
+
+<div class="grid__item large--one-whole">
+<section id="product-grid" class="product-grid section-large" itemtype="http://schema.org/SomeProducts">
+  <div class="wrapper wrapper--xxlarge rel">
+
+
+    {% for product in collection.products %}
+        {% if product.tags contains 'subcategory-campers' %}
+
+      {% include 'collection-list-item-giftguide' %}
+    {% else %}
+    {% endif %}
+
+
+    {% endfor %}
+
+  </div>
+</section>
+</div>
+</div>
+
+
+
+  <div class="clearfix"></div>
+
+
+<a name="runners" class="gift-guide-anchor"></a>
+<div class="wrapper wrapper--full large--mt40"  data-section-name="runners">
+  <div class="grid__item large">
+  <img class="holiday-divider img-center" src="https://cdn.shopify.com/s/files/1/0838/4957/files/Runners.svg?v=1636139073" alt="Runners">
+
+<h2 class="collection-section-title-gift-guide">For Runners</h2>
+<span class="collection-section-subtitle">Light for Training &amp; Trail Running</span>
+  </div>
+
+<div class="grid__item large--one-whole">
+<section id="product-grid" class="product-grid section-large" itemtype="http://schema.org/SomeProducts">
+  <div class="wrapper wrapper--xxlarge rel">
+
+
+    {% for product in collection.products %}
+        {% if product.tags contains 'subcategory-runners' %}
+
+      {% include 'collection-list-item-giftguide' %}
+    {% else %}
+    {% endif %}
+
+
+    {% endfor %}
+
+  </div>
+</section>
+</div>
+</div>
+
+
+
+  <div class="clearfix"></div>
+
+
+
+
+  <div class="clearfix"></div>
+
+<a name="grillers" class="gift-guide-anchor"></a>
+<div class="wrapper wrapper--full large--mt40"  data-section-name="grillers">
+  <div class="grid__item large">
+  <img class="holiday-divider img-center" src="https://cdn.shopify.com/s/files/1/0838/4957/files/Grillers.svg?v=1636139073" alt="Grillers">
+
+<h2 class="collection-section-title-gift-guide">For Grillers</h2>
+<span class="collection-section-subtitle">Taking Outside Meals Seriously</span>
+  </div>
+
+<div class="grid__item large--one-whole">
+<section id="product-grid" class="product-grid section-large" itemtype="http://schema.org/SomeProducts">
+  <div class="wrapper wrapper--xxlarge rel">
+
+
+    {% for product in collection.products %}
+        {% if product.tags contains 'subcategory-grillers' %}
+
+      {% include 'collection-list-item-giftguide' %}
+    {% else %}
+    {% endif %}
+
+
+    {% endfor %}
+
+  </div>
+</section>
+</div>
+</div>
+
+
+
+
+
+
+  <div class="clearfix"></div>
+
+
+<div class="footer-wrapper text-center mt40">
+  <div class="give-back-wrapper">
+       <img class="million-lives-mark-gift" src="https://cdn.shopify.com/s/files/1/0666/9741/files/OneMillionMark_icon-01.svg?v=1605206877" title="One Million People Living Safer Brighter Lives" alt="One Million People Living Safer Brighter Lives">
+
+    <span class="impact-msg primary">A Gift That Gives Back</span>  
+  </div>
+
+<div class="wrapper mt20">
+      <div class="grid__item large text-center">
+
+  </div>
+   <div class="clearfix"></div>
+
+
+    <div class="grid__item push--large--one-fifth large--three-fifths push--medium--one-fifth medium--three-fifths text-center">
+      <p class="dark-grey light">A portion of every purchase from the BioLite Shop gets re-invested into our work bringing safe, reliable energy across sub-Saharan Africa.
+      </p>
+  </div>
+     <div class="clearfix"></div>
+
+ <hr class="mt30">
+
+  
+      <div class="grid__item push--large--one-fifth large--three-fifths push--medium--one-fifth medium--three-fifths text-center mt50">
+    <span class="impact-msg primary">Didn't Find What You Want?</span>
+
+          <p class="dark-grey light pt10">Browse the entire BioLite Gear Collection or grab a Gift Card and let them decide.</p>
+
+      
+      <a href="/products" class="btn btn-primary" title="Shop Now">
+                  <span>Shop All Products</span>
+                </a>
+        
+         <a href="/products/gift-card" class="btn btn-primary footer-two-button" title="Shop Now">
+                  <span>Shop Gift Cards</span>
+                </a>
+
+  </div>
+
+  
+
+  
+     
+
+</div>
+</div>
+
+
+
+
+
+<script>
+  // Added by RFD to activate the extra mobile menu
+  $(".mobile-wrapper").click(function(e){
+     var isOpened = $(this).hasClass("open"),
+         target = $(e.target);
+
+     if(isOpened && (target.hasClass("mobile-title") || target.hasClass("mobile-wrapper"))){
+       $(this).removeClass("open").addClass("closed");
+     }else{
+       $(this).removeClass("closed").addClass("open");
+     }
+   });
+</script>
+
+
+
+<script>
+var acc = document.getElementsByClassName("category-compare-title");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("activeToggle");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+
+
+

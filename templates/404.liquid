@@ -1,0 +1,51 @@
+{% comment %}
+  404 Hero
+{% endcomment %}
+<section class="hero hero--xsmall">
+  <div class="hero__viewport">
+    <div class="hero__inner hero__inner--light">
+      <div class="hero__body wrapper table">
+        <div class="table-cell text-center">
+          <h1 class="light mb0">Page Not Found</h1>
+        </div>
+      </div>
+    </div>
+    <div class="hero__image" style="background-image: url('//cdn.shopify.com/s/files/1/0666/9741/files/sample_404.jpg');"></div>
+  </div>
+</section>
+
+
+<section class="section text-center">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item text-center">
+          {% comment %}
+          Regular page content goes here.
+          {% endcomment %}
+        <div class="rte">
+          <h2 class="light gray-warm">Dang...that page doesn't exist. We're sorry about that.</h2>
+          <p class="light gray-warm">Let's get you to the right place - what would you like to do?</p>
+          
+          <a href="/products" class="btn btn-primary mt20 mr20" title="BioLite Shop"><span>Shop BioLite Gear</span></a>
+
+          <a href="/index" class="btn btn-primary mt20 mr20" title="BioLite Home"><span>Return To Homepage</span></a>
+       
+          <a href="/pages/blog" class="btn btn-primary mt20 mr20" title="BioLite Blog"><span>Visit Our Blog</span></a>
+          
+          <p class="light gray-warm pt30">Still looking for some help? <a href="/pages/contact" style="color:#00b2b0" title="The Road To Impact"><strong>Give us a shout.</strong></a></p>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- Begin Transportr -->
+{% include 'transportr' %}
+<!-- End Transportr -->
+{% include 'SEOManager-404' %}

@@ -1,0 +1,138 @@
+{% comment %}
+--------------------------------
+  BioLite PRODUCT GRID PARTIAL
+--------------------------------
+{% endcomment %}
+{% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+{% assign default_variant = bold_selected_or_first_available_variant %}
+{% assign collection_title_handleize = collection.title | handleize %}
+
+{% assign collectionHandles = '' %}
+{% for collection in product.collections %}
+	{% assign collectionHandles = collectionHandles | append:collection.handle  %}
+	{% unless forloop.last %}{% assign collectionHandles = collectionHandles | append:',' %}{% endunless %}
+{% endfor %}
+{% assign collectionHandles = collectionHandles | split:',' %}
+
+  <div class="product-grid-item {% for collection in product.collections %} product-category--{{ collection.handle }} {% endfor %} grid__item large--one-quarter medium--one-half small--one-half {% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}" itemscope itemtype="http://schema.org/Product" data-locales-excluded='{{ product.metafields.locale.excluded }}'>
+    <div class="product-grid-item-padder">
+    {% assign colors = product.metafields.colors.color | split: ',' %}
+    <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+    <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+    <meta itemprop='productID' content='{{ product.id }}'/>
+    {% for variant in product.variants %}
+      {% if colors.size > 0 %}
+          {% unless product.options.option2 == "Default" %}
+            {% assign variant_color = variant.option2 %}
+            {% assign images = product.metafields.images[variant_color] | split: ','%}
+            <meta itemProp='variantImage' data-variant-id="{{ variant.id}}" content="{{ images[0] }}"/>
+            <meta itemprop='variantPrice' location='{{ variant.option1 }}' data-color="{{ variant.option2 }}" content='{{ bold_variant_price }}' data-variant-id='{{ variant.id }}' />
+          {% endunless %}
+          {% if variant.compare_at_price %}
+            <meta itemprop='comparePrice' location='{{ variant.option1 }}' data-color="{{ variant.option2 }}" content='{{ variant.compare_at_price }}' data-variant-id='{{ variant.id }}' />
+          {% endif %}
+      {% else %}
+        <meta itemprop='variantPrice' location='{{ variant.option1 }}' content='{{ bold_variant_price }}' data-variant-id='{{ variant.id }}' />
+        {% if variant.compare_at_price %}
+          <meta itemprop='comparePrice' location='{{ variant.option1 }}' content='{{ variant.compare_at_price }}' data-variant-id='{{ variant.id }}' />
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    <div class="product-grid-item__inner">
+      <a href="{{ product.url }}" title="{{ product.title }}">
+
+        {% if colors.size > 0 %}
+        <ul class="product-{{ product.handle | remove: 'biolite-' }}" data-control-target>
+          {% for color_thumbnail in colors %}
+          {% assign images = product.metafields.images[color_thumbnail] | split: ',' %}
+            <li>
+              <div class="product-grid-item__thumb" style="background-image:url('{{ images.first }}');"></div>
+            </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        
+          {% if product.tags contains 'soldout' %}
+          <div class="soldout"><h4 class="alt warm-gray">SOLD OUT</h4></div>
+            {% if product.metafields.shop.main %}
+                <div class="product-grid-item__thumb" style="background-image:url('{{ product.metafields.shop.main }}');"></div>
+            {% else %}
+                <div class="product-grid-item__thumb" style="background-image:url('{{ product.featured_image.src | product_img_url: 'medium' }}');"></div>
+            {% endif %}
+          {% endif %}
+          {% if product.metafields.shop.main %}
+            <div class="product-grid-item__thumb" style="background-image:url('{{ product.metafields.shop.main }}');"></div>
+          {% else %}
+            <div class="product-grid-item__thumb" style="background-image:url('{{ product.featured_image.src | product_img_url: 'medium' }}');"></div>
+          {% endif %}
+        {% endif %}
+      </a>
+      {% if colors.size > 0 %}
+      <ul class="color-control" data-control-nav data-control-targets=".product-{{ product.handle | remove: 'biolite-' }}">
+        {% for color in colors %}
+        <li tabindex="0" title="{{ color }} {{product.title}}" class="color-circle color-{{ color }}" data-color="{{color}}">
+          <div class="color-container">
+
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    <footer class="product-grid-item__footer">
+      
+
+      {% if product.tags contains 'preorder' %}
+            <div class="you-save">
+        <span class="left-side-long">PREORDER</span> 
+      </div>
+
+      {% elsif default_variant.compare_at_price > default_variant.price %}
+      <div class="you-save">
+       <span class="right-side rounded_money"> Save <span class="save-price">{{ bold_selected_or_first_available_variant.compare_at_price | minus: bold_variant_price | round |  money_without_trailing_zeros }}</span> </span>
+      </div>
+      
+         {% elsif product.tags contains 'onlineexclusive' %}
+      <div class="you-save">
+        <span class="left-side-long">Online Exclusive</span> 
+      </div>
+  
+        {% elsif product.tags contains 'holidaytoppick' %}
+      <div class="you-save">
+        <span class="left-side-long">Holiday Top Pick</span> 
+      </div>
+      
+        {% elsif product.tags contains 'massivesavings' %}
+      <div class="you-save">
+        <span class="left-side-long">Massive Savings</span> 
+      </div>
+  
+      
+      {% else %}
+      <div class="fake-you-save"></div>
+      {% endif %}
+      <a href="{{ product.url }}" title="{{ product.title }}">
+        <h5 class="product-grid-item__title" itemprop="name">{{ product.title | remove: "BioLite" | remove: "(BaseCamp Sold Separately)"}}</h5>
+      </a>
+      <h6 class="product-grid-item__sub-title shop-all-desc">{{ product.metafields.desc.short }}</h6>
+      <select name="id" id="productSelect" class="product-single__variants">
+        {% for variant in product.variants %}
+          {% if variant.available %}
+            <option {% if variant == bold_selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}" data-locale="{{ variant.option1 }}">{{ bold_variant_price | money_with_currency }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+
+      <div class="price-and-cart-add">
+     {% if default_variant.compare_at_price > default_variant.price %}
+    <span id="ProductPrice" itemprop="price" class="product-grid-item__price h5" style="color:#35a8a6;font-weight:600;">{{ default_variant.price | money }}</span>
+	<div class="compare-at"> <span class="product-price-compare-strike">{{ default_variant.compare_at_price | money_with_currency }}  </span></div>        
+                {% else %}
+        <span id="ProductPrice" itemprop="price" class="product-grid-item__price h5">{{ default_variant.price | money }}</span>
+                        {% endif %}
+
+      </div>
+    </footer>
+    </div>
+  </div>

@@ -1,0 +1,37 @@
+<div class="product-single__mini-slider" id="kits-slideshow-wrapper">
+
+       <div id="Glide" class="glide kits-slideshow">
+<div class="glide__arrows">
+        <button class="glide__arrow prev" data-glide-dir="<"><i class="icomoon icon-leftArrowFilled slideshow-arrow-icon-kits"></i></button>
+        <button class="glide__arrow next" data-glide-dir=">"><i class="icomoon icon-rightArrowFilled slideshow-arrow-icon-kits"></i></button>
+    </div>  
+   <div class="glide__wrapper">
+        <ul class="glide__track">
+        
+           {% for image in product.images limit:10 %}
+            <li class="glide__slide text-center">
+              <img src="{{ image.src | img_url: '1200x1200' }}" alt="{{ image.alt | escape }}" title="{{ image.alt | escape }}"/>
+            </li>
+          {% endfor %}
+          
+             
+
+ </ul>
+    </div>
+       <div class="glide__bullets"></div>
+   
+   </div>
+
+</div>
+
+  
+  
+
+<script>
+    $("#Glide").glide({
+        type: "carousel"
+    });
+</script>
+  
+
+

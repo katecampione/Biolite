@@ -1,0 +1,28 @@
+{% render 'shogun-products', content: collection %}
+{{collection.metafields.shogun.above}}
+{% include 'hero-shop' %}
+
+
+{% if collection.handle == 'all' %}
+  {% include 'collection-sorting' %}
+{% endif %}
+
+
+
+ <script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+  var endlessScroll = new Ajaxinate();
+});
+</script>
+
+
+<section class="interstitial section-xlarge" style="background-image:url('{{ 'bg-interstitial-2.jpg' | asset_url }}')">
+  <div class="wrapper table">
+    <div class="interstitial__content table-cell text-center">
+      <h3 class="mt0">Global impact in every purchase</h3>
+      <h6 class="light">With every purchase of a BioLite product, you are helping create lasting change in emerging markets of the developing world. The same technology that provides you with a clean, innovative camping experience is providing better living conditions, saving lives worldwide.  </h6>
+    </div>
+  </div>
+  <div class="interstitial__overlay interstitial__overlay--green"></div>
+</section>
+{{collection.metafields.shogun.below}}

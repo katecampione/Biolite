@@ -1,0 +1,18 @@
+{% assign images = product.metafields.images.orange | split: ',' %}
+<!-- HERO HOME -->
+<ul id="product-carousels" data-control-target >
+  {% for color in colors %}
+  {% assign images = product.metafields.images[color] | split: ',' %}
+  <li class="carousel">
+    <div class="hero__viewport hero-carousel">
+      <ul class="slides">
+        {% for image in images %}
+        <li>
+          <img src="{{image}}" alt="" />
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </li>
+  {% endfor %}
+</ul>

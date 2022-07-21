@@ -1,0 +1,240 @@
+<a name="footer"></a>
+<section class="footer-default section">
+  <div class="wrapper">
+    <div class="grid__item large--one-whole">           
+
+      <div class="grid__item large--one-third footer-mobile">
+
+        <h4 class="alt mt0">Customer Support</h4>
+       <h5 class="footer-subtext">Visit our <a href="https://help.bioliteenergy.com/hc/en-us" style="font-weight:700;color:#008fa1;" target="_blank" title="BioLite Help Center">Help Center</a> or select a topic below.</h5>
+<ul class="footer-content">
+        <h5 class="footer-header">orders</h5>
+        <li><a href="https://help.bioliteenergy.com/hc/en-us/sections/1260802736950-Shipping-general-" target="_blank" title="">Shipping Status</a></li>
+       <li><a href="https://help.bioliteenergy.com/hc/en-us/sections/1260802736910-General" target="_blank" title="">Returns</a></li>
+       <li><a href="/account/login?return_url=%2Faccount" title="My Account">My Account</a></li>
+
+       </ul>
+       
+       <ul class="footer-content">
+        <h5 class="footer-header">products</h5>
+        <li><a href="https://help.bioliteenergy.com/hc/en-us#products" target="_blank" title="">Troubleshooting</a></li>
+       <li><a href="https://help.bioliteenergy.com/hc/en-us#products" target="_blank" title="">Instruction Manuals</a></li>
+       </ul>
+       
+         <ul class="footer-content">
+        <h5 class="footer-header">get in touch</h5>
+        <li><a href="https://help.bioliteenergy.com/hc/en-us/requests/new?ticket_form_id=1260805176450" target="_blank" title="">Contact BioLite</a></li>
+       </ul>
+</div>
+    
+         <div class="grid__item large--two-thirds footer-mobile-divider">
+           
+           <div class="grid__item large--one-third">
+               <h4 class="alt mt0">Get Deals &amp; Reveals</h4>
+       <h5 class="footer-subtext">Sign up for the BioLite email newsletter.</h5>
+             
+             </div>
+           
+        <div class="grid__item large--two-thirds">
+                 <div style="margin:0 auto;">
+        <form id="email_signup" style="margin:0 auto;" class="klaviyo_condensed_styling klaviyo_condensed_float klaviyo_condensed_embed_PkVhA3" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" target="_blank" novalidate="novalidate">
+  <input type="hidden" name="g" value="PkVhA3">
+  <div class="klaviyo_field_group">
+    <input type="email" value="" name="email" id="k_id_email" placeholder="Enter Email" />
+  </div>
+  <div class="klaviyo_messages">
+    <div class="success_message" style="display:none;"></div>
+    <div class="error_message" style="display:none;"></div>
+    </div>
+  <div class="klaviyo_form_actions">
+    <button type="submit" class="klaviyo_submit_button">Join</button>
+  </div>
+</form>
+        </div>
+<style type="text/css">
+.klaviyo_styling.klaviyo_condensed_embed_PkVhA3,
+.klaviyo_condensed_styling.klaviyo_condensed_embed_PkVhA3 {
+  font-family: reader-regular, Arial;
+}.klaviyo_styling.klaviyo_condensed_embed_PkVhA3 label,
+.klaviyo_condensed_styling.klaviyo_condensed_embed_PkVhA3 label {
+  color:#222;
+}.klaviyo_styling.klaviyo_condensed_embed_PkVhA3 input[type=text],
+.klaviyo_styling.klaviyo_condensed_embed_PkVhA3 input[type=email],
+.klaviyo_condensed_styling.klaviyo_condensed_embed_PkVhA3 input[type=text],
+.klaviyo_condensed_styling.klaviyo_condensed_embed_PkVhA3 input[type=email] {
+  border-radius: 2px;
+  height:50px;
+  font-family: reader-regular, Arial;
+
+}
+.klaviyo_condensed_styling .klaviyo_field_group {
+    width: 320px;
+    margin: 0 5px 0 0;
+}
+  .klaviyo_condensed_styling, .klaviyo_styling {
+    max-width: 400px;
+}
+
+  .klaviyo_condensed_styling .klaviyo_submit_button, .klaviyo_styling .klaviyo_submit_button {
+     font-family: reader-regular, Arial;
+    font-size:16px;
+
+}
+
+  .klaviyo_condensed_styling .klaviyo_messages .error_message, .klaviyo_condensed_styling .klaviyo_messages .success_message, .klaviyo_styling .klaviyo_messages .error_message, .klaviyo_styling .klaviyo_messages .success_message {
+    font-size: 16px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    padding-top: 20px;
+    font-family: reader-regular;
+}
+
+  .klaviyo_styling.klaviyo_condensed_embed_PkVhA3 .klaviyo_submit_button,
+.klaviyo_condensed_styling.klaviyo_condensed_embed_PkVhA3 .klaviyo_submit_button {
+  background-color:#008fa1;
+  border-radius: 2px;
+  height:50px;
+}.klaviyo_styling.klaviyo_condensed_embed_PkVhA3 .klaviyo_submit_button:hover,
+.klaviyo_condensed_styling.klaviyo_condensed_embed_PkVhA3 .klaviyo_submit_button:hover {
+  background-color:#028292;
+}
+</style>
+<script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+<script type="text/javascript">
+  KlaviyoSubscribe.attachToForms('#email_signup', {
+    hide_form_on_success: true,
+    success_message: "Your email has been added."
+  });
+</script>
+</div>
+           
+           <div class="clearfix"></div>
+           
+           <div class="grid__item large--one-quarter medium--one-half small--one-half">
+        <h5 class="footer-header">products</h5>
+        <ul class="footer-content">
+  {% for link in linklists.products.links %}
+          {% assign child_list_handle = link.title | handleize %}
+          <li>
+            <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+          <li><a href="/search" title="Search Products">Search Products</a></li>
+           <li><a href="/pages/warranty" title="Warranty Registration">Warranty Registration</a></li>
+
+          
+  </ul>
+
+</div>
+       
+           
+<div class="grid__item large--one-quarter medium--one-half small--one-half">
+        <h5 class="footer-header">about</h5>
+        <ul class="footer-content">
+  <li>
+            <a href="https://blog.bioliteenergy.com" target="_blank" title="BioLite Blog">Blog</a>
+          </li>
+        {% for link in linklists.about.links %}
+          {% assign child_list_handle = link.title | handleize %}
+          <li>
+            <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+         <li>
+            <a href="https://blog.bioliteenergy.com/pages/road-to-impact" target="_blank" title="Impact Report">Impact Report</a>
+          </li>
+                    <li><a href="/pages/biolite-official-coupons-promotions-discounts" title="Coupons">Coupons</a></li>
+
+  </ul>
+
+</div>
+           
+                      <div class="grid__item large--one-quarter medium--one-half small--one-half">
+        <h5 class="footer-header">partners</h5>
+        <ul class="footer-content">
+         {% for link in linklists.partners.links %}
+          {% assign child_list_handle = link.title | handleize %}
+          <li>
+            <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+          <li>
+            <a href="https://biolite.envoyb2b.com/auth/login?redirectTo=%2F&brandCode=biolite" title="Retailer Payment & Order Portal">Retailer Payment &amp; Ordering</a>
+          </li>
+              
+  </ul>
+
+</div>
+           
+           <div class="grid__item large--one-quarter medium--one-half small--one-half">
+        <h5 class="footer-header">programs</h5>
+        <ul class="footer-content">
+  {% for link in linklists.Programs.links %}
+          {% assign child_list_handle = link.title | handleize %}
+          <li>
+            <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+  </ul>
+
+</div>
+           
+    
+
+</div>
+      </div>
+           
+ <div class="clearfix"></div>
+    
+  <div class="footer-anchor">  
+<div class="grid__item large--one-quarter">
+            <ul class="carbon-neutral carbon-neutral--has_emblem">
+
+          <li>
+            <a href="https://www.climateneutral.org/" target="_blank" title="Proudly Climate Neutral Certified"><img src="https://cdn.shopify.com/s/files/1/0666/9741/files/climateNeutral_white-01.svg?10835" class="carbon-neutral-footer" alt="Climate Neutral Certified" >
+            </a></li>
+        </ul>
+</div>
+           
+<div class="grid__item large--one-half">
+    <ul class="list-inline list-inline--has_divider footer-legal">
+
+          <li>        <span>Copyright <script>document.write(new Date().getFullYear())</script> BioLite Inc. All rights reserved.</span>
+          </li>
+          {% for link in linklists.footer.links %}
+            {% assign child_list_handle = link.title | handleize %}
+            <li>
+              <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>    
+</div>
+           
+<div class="grid__item large--one-quarter">
+     <ul class="menu-social">
+
+
+          <li>
+            <a href="https://www.facebook.com/biolitestove/" title="Facebook" target="_blank" class="icomoon icon-facebook-outline">&nbsp;</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/biolitestove" title="Twitter" target="_blank" class="icomoon icon-twitter-outline">&nbsp;</a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/user/BioLiteChannel/videos" title="YouTube" target="_blank" class="icomoon icon-youtube-outline">&nbsp;</a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/biolite/" title="Instagram" target="_blank" class="icomoon icon-instagram-outline">&nbsp;</a>
+          </li>
+
+
+        </ul>
+           </div>
+    </div>
+        
+
+    
+    
+    
+
+      

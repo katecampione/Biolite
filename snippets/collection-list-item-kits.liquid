@@ -1,0 +1,42 @@
+{% comment %}
+--------------------------------
+  BioLite PRODUCT GRID PARTIAL
+--------------------------------
+{% endcomment %}
+{% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+{% assign default_variant = bold_selected_or_first_available_variant %}
+{% assign collection_title_handleize = collection.title | handleize %}
+
+
+  <div class="product-grid-item {% for collection in product.collections %} product-category--{{ collection.handle }} {% endfor %} grid__item large--one-quarter medium--one-half  medium--one-half small--one-half {% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}" itemscope itemtype="http://schema.org/Product" data-locales-excluded='{{ product.metafields.locale.excluded }}'>
+    <div class="product-grid-item-padder-small">
+    <div class="product-grid-item__inner-small">
+      <a href="{{ product.url }}" title="{{ product.title }}">
+
+        <div class="">
+        <img src="{{ product.metafields.shop.main }}" class="" alt="{{ product.title }}" title="{{ product.title }}" />
+        </div>
+      </a>
+
+    </div>
+ 
+    </div>
+    
+       <footer class="product-grid-item__footer-category-small text-center">
+      <a href="{{ product.url }}" title="{{ product.title }}">
+        <span class="kits-grid-item-title" itemprop="name">{{ product.title | remove: "BioLite" | remove: "(BaseCamp Sold Separately)"}}</span>
+      </a>
+      <select name="id" id="productSelect" class="product-single__variants">
+        {% for variant in product.variants %}
+          {% if variant.available %}
+            <option {% if variant == bold_selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}" data-locale="{{ variant.option1 }}">{{ bold_variant_price | money_with_currency }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+
+      <!--<div class="price-and-cart-add">
+        <span id="ProductPrice" itemprop="price" class="kits-strikethru-price">{{ default_variant.price | money }}</span>
+
+      </div>-->
+    </footer>
+  </div>

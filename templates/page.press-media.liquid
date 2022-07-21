@@ -1,0 +1,172 @@
+<section class="hero hero--small">
+  <div class="hero__viewport">
+    <div class="hero__inner hero__inner--light">
+      <div class="hero__body wrapper table">
+        <div class="table-cell text-center">
+          <h1 class="light baseline">{{ page.title }}</h1>
+
+          {% if page.metafields.press_mediakit.pdf %}
+            <a href="{{ page.metafields.press_mediakit.pdf }}" target="_blank" class="btn btn-primary" title="Download Media Kit">Download Media Kit</a>
+          {% endif %}
+          
+        </div>
+      </div>
+    </div>
+    <div class="hero__image" style="background-image: url('{{ page.metafields.hero.image }}');"></div>
+  </div>
+</section>
+
+<!-- RECENT PRESS -->
+<section class="section-xlarge">
+	<div class="wrapper recent-press-scrollable">
+		<h2 class="light mb30 text-center">Recent Press</h2>
+		{% for article in blogs['press'].articles %}
+			{% unless article.tags contains 'press_releases' %}
+      			{% unless article.tags contains 'awards' %}
+
+				<div class="recent-press">
+					<a class="logo" href="{{ article.metafields.press.url }}" target="_blank"><img src="{{ article.metafields.press.logo }}" alt=""></a>
+					<div class="excerpt">
+						<time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+						  {{ article.published_at | date: '%b %d, %Y' }}
+						</time>
+						{{ article.content }}
+					</div>
+				</div>
+			{% endunless %}
+			{% endunless %}
+
+      {% endfor %}
+	</div>
+</section>
+
+<!-- AWARDS SLIDER -->
+{% if page.metafields.features_slide01.image %}
+  <section id="product-features" class="single-product-features single-product-features--photo_bg product-features--press">
+    <div class="wrapper wrapper--max_height single-product-features__inner">
+      <div class="grid__item large--one-half pr30">
+
+        <ul class="nav-circles nav-circles--dark" data-control-nav data-control-targets="#single-product-slides, #single-product-slide-content">
+          {% if page.metafields.features_slide01.icon %}
+          <li>
+            <div class="circle icomoon">
+              <i class="{{ page.metafields.features_slide01.icon }}"></i>
+            </div>
+          </li>
+          {% endif %}
+
+          {% if page.metafields.features_slide02.icon %}
+          <li>
+            <div class="circle icomoon">
+              <i class="{{ page.metafields.features_slide02.icon }}"></i>
+            </div>
+          </li>
+          {% endif %}
+
+          {% if page.metafields.features_slide03.icon %}
+          <li>
+            <div class="circle icomoon">
+              <i class="{{ page.metafields.features_slide03.icon }}"></i>
+            </div>
+          </li>
+          {% endif %}
+
+          {% if page.metafields.features_slide04.icon %}
+          <li>
+            <div class="circle icomoon">
+              <i class="{{ page.metafields.features_slide04.icon }}"></i>
+            </div>
+          </li>
+          {% endif %}
+        </ul>
+        
+        <ul id="single-product-slide-content" class="pt20" data-control-target>
+          {% if page.metafields.features_slide01.title %}
+	          <li>
+	            {{ page.metafields.features_slide01.title }}
+	            {{ page.metafields.features_slide01.desc }}
+	          </li>
+          {% endif %}
+
+          {% if page.metafields.features_slide02.title %}
+	          <li>
+	           {{ page.metafields.features_slide02.title }}
+	            {{ page.metafields.features_slide02.desc }}
+	          </li>
+          {% endif %}
+
+          {% if page.metafields.features_slide03.title %}
+	          <li>
+	           {{ page.metafields.features_slide03.title }}
+	            {{ page.metafields.features_slide03.desc }}
+	          </li>
+          {% endif %}
+
+          {% if page.metafields.features_slide04.title %}
+	          <li>
+	           {{ page.metafields.features_slide04.title }}
+	            {{ page.metafields.features_slide04.desc }}
+	          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    
+
+    <ul id="single-product-slides" class="single-product-slides" data-control-target>
+      {% if page.metafields.features_slide01.image %}
+      	<li style="background-image:url('{{ page.metafields.features_slide01.image }}');"></li>
+      {% endif %}
+
+      {% if page.metafields.features_slide02.image %}
+      	<li style="background-image:url('{{ page.metafields.features_slide02.image }}');"></li>
+      {% endif %}
+
+      {% if page.metafields.features_slide03.image %}
+      	<li style="background-image:url('{{ page.metafields.features_slide03.image }}');"></li>
+      {% endif %}
+
+      {% if page.metafields.features_slide04.image %}
+      	<li style="background-image:url('{{ page.metafields.features_slide04.image }}');"></li>
+      {% endif %}
+
+    </ul>
+  </section>
+{% endif %}
+
+<!-- PRESS RELEASES -->
+<section class="expandable expandable--full flex-columns pt100">
+	<div class="wrapper">
+		<ul class="expandable-content flex-content pt0">
+			<h2 class="light mb30 text-center">Press Releases</h2>
+			<li>
+				<div class="list-toggles">
+					{% for article in blogs['press'].articles %}
+						{% if article.tags contains 'press_releases' %}
+				  	  <div class="list-toggle">
+				  	    <div class="list-toggle__title" data-control-sibling data-control-toggle-icons="fa-plus-circle, fa-minus-circle">
+				  	      <i class="fa fa-plus-circle"></i>
+				  	      <span>{{ article.title }}</span>
+				  	      <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+				  	        {{ article.published_at | date: '%b %d, %Y' }}
+				  	      </time>
+				  	    </div>
+				  	    <div class="list-toggle__content">
+				  	      {{ article.content }}
+				  	    </div>
+				  	  </div>
+			  	  {% endif %}
+					{% endfor %}
+				</div>
+			</li>
+		</ul>
+	</div>
+</section>
+
+<section class="jumbotron">
+  <div class="wrapper text-center">
+    <h3 class="light baseline mb10">Press/Media Inquiries</h3>
+    <h6 class="light baseline"></h6>
+    <a href="/pages/contact/#contactFormWrapper" class="btn btn-outline-white btn-icon btn-icon--left mt30" title="Contact Us"> <i class="fa fa-envelope-o"></i> <span>Contact Us</span> </a>
+  </div>
+</section>

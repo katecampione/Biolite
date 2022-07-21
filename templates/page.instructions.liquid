@@ -1,0 +1,144 @@
+{% include 'hero' %}
+
+
+<div class="wrapper">
+  
+   <div class="grid__item large--one-third ">
+    <div class="nav-sidebar__header">
+      <h4 class="alt light baseline">Products</h4>
+    </div>
+    <div class="nav-sidebar__content">
+        {% for product in collections.frontpage.products %}
+
+    {% assign product_handle_trimmed = product.handle | remove: 'biolite-' %}
+    {% assign product_title_shortened = product.title | remove: 'BioLite' %}
+      <ul class="faq-categories"  id="faq-categories">
+        <li><a href="#{{ product_handle_trimmed }}"> <p class="mt0 mb10 alt">{{ product_title_shortened }}</p></a></li>
+	
+      </ul>
+      
+        {% endfor %}
+    </div>
+  </div> 
+  
+  
+  <div class="grid__item large--two-thirds mt30">
+<section class="section-xlarge">
+  
+  {% for product in collections.frontpage.products %}
+
+    {% assign product_handle_trimmed = product.handle | remove: 'biolite-' %}
+    {% assign product_title_shortened = product.title | remove: 'BioLite' %}
+
+    <div id="{{ product_handle_trimmed }}" class="grid instruction-grid" style="background-image: url('{{ product.images[0] | product_img_url: 'large' }}');">
+      <div class="wrapper">
+        
+            <a name="{{ product_handle_trimmed }}"></a>
+
+        <h4 class="mt0 mb10 alt">{{ product_title_shortened }}</h4>
+
+        <div class="grid__item large--three-quarters">
+          {% if product.metafields.instructions.video %}
+            {{ product.metafields.instructions.video }}
+          {% endif %}
+          
+          <div class="clearfix"></div>
+
+          <footer class="footer-actions">
+            {% if product.metafields.instructions.pdf %}
+              <a href="{{ product.metafields.instructions.pdf }}" target="_blank" aria-label="Opens PDF in a new tab" rel="noopener" class="btn btn-primary mt10" title="Download {{ product.title }} Manual">Download Manual</a>
+            {% endif %}
+             {% if product.metafields.instructions.more %}
+            <a href="/blogs/instruction-manuals/{{ product_handle_trimmed }}" target="_blank" aria-label="Opens in a new tab" rel="noopener" class="btn btn-outline-primary large--ml10 mt10" title="Visit {{ product.title }} section in FAQ">FAQs, Tips &amp; More </a>
+          {% endif %}
+          </footer>
+        </div>
+
+      </div>
+      
+    </div>
+
+  {% endfor %}
+
+  
+  
+  </section>
+  
+  <section class="section-xlarge">
+  <hr>
+    <h2 class="mb30">Legacy Products</h2>
+    
+       <a name="basecamp"></a>
+
+    
+        <div id="" class="grid instruction-grid" style="background-image: url('https://cdn.shopify.com/s/files/1/0666/9741/products/BaseCamp_full_large.jpeg?v=1455122541');">
+      <div class="wrapper">
+        <h2 class="mt0 mb30">BaseCamp</h2>
+
+        <div class="grid__item large--one-half">
+          <iframe width="560" height="315" src="//www.youtube.com/embed/CQUNH_GGMk0" frameborder="0" allowfullscreen></iframe> 
+          
+          <div class="clearfix"></div>
+
+          <footer class="footer-actions">
+              <a href="https://cdn.shopify.com/s/files/1/0666/9741/files/BaseCamp_instructionBooklet_reader.pdf?15254358528177372558" target="_blank" aria-label="Opens PDF in a new tab" rel="noopener" class="btn btn-primary" title="Download Manual">Download Manual</a>
+        
+          </footer>
+        </div>
+
+      </div>
+      
+    </div>
+    
+    
+    
+    <a name="campstove"></a>
+
+    <div id="" class="grid instruction-grid" style="background-image: url('https://cdn.shopify.com/s/files/1/0666/9741/files/CampStove_IM.jpg?17956431688481276127');">
+      <div class="wrapper">
+        <h2 class="mt0 mb30">CampStove</h2>
+
+        <div class="grid__item large--one-half">
+          <iframe width="560" height="315" src="//www.youtube.com/embed/5Nvb96v_3fQ" frameborder="0" allowfullscreen></iframe>
+          
+          <div class="clearfix"></div>
+
+          <footer class="footer-actions">
+              <a href="https://cdn.shopify.com/s/files/1/0666/9741/files/BioLiteCampStove_IM.pdf?4934072770189429368" target="_blank" aria-label="Opens PDF in a new tab" rel="noopener" class="btn btn-primary" title="Download Manual">Download Manual</a>
+        
+          </footer>
+        </div>
+
+      </div>
+      
+    </div>
+    
+       <a name="powerlight"></a>
+
+    <div id="" class="grid instruction-grid" style="background-image: url('https://cdn.shopify.com/s/files/1/0666/9741/products/PowerLight_Sitelight_large.jpg?v=1510256994');">
+      <div class="wrapper">
+        <h2 class="mt0 mb30">PowerLight</h2>
+
+        <div class="grid__item large--one-half">
+          <iframe width="560" height="315" src="//www.youtube.com/embed/3DKiOlxnMBI" frameborder="0" allowfullscreen></iframe>
+          
+          <div class="clearfix"></div>
+
+          <footer class="footer-actions">
+              <a href="https://cdn.shopify.com/s/files/1/0666/9741/files/NanoGrid_InstructionManual_LCA-R3-IM_reader.pdf?3776041162009310519" target="_blank" aria-label="Opens PDF in a new tab" rel="noopener" class="btn btn-primary" title="Download Manual">Download Manual</a>
+        
+          </footer>
+        </div>
+
+      </div>
+      
+    </div>
+    
+  
+
+
+  
+  
+  </section>
+  
+</div></div>

@@ -1,0 +1,183 @@
+<section class="hero hero--empty bg--offwhite">
+  <div class="wrapper">
+    <h1 class="title-blog-single">{{ page.title }}</h1>
+    {{ page.content }}
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+
+		 <!-- Div to show the loading text while the iframe loading is in progress
+		============================================= -->
+		<div style=" width:100%;height:500px; text-align:center; " align="center" id="loading">Loading......</div>
+
+		<!-- Ic form to build store's cart content
+		============================================= -->
+		<form name="icForm" id="icForm" method="post" action="https://www.internationalcheckout.com/cart.php" target="icIframe">
+		    
+		    {% for item in cart.items %}  
+		                 
+		            <!-- Check Gift Certificate in the cart
+		            ============================================= -->
+		            {% if item.product.description contains 'Gift Cards' %}
+		            	<input id="giftCard" name="giftCard" class="giftCard" type="hidden" value="1" />
+		            {% endif %}
+
+		            {% if item.product.description != empty %}
+		                <input type="hidden" class="ItemDescription" id="ItemDescription{{ forloop.index }}" name='ItemDescription{{ forloop.index }}' value="{{ item.title | escape | replace: '"', '&acute;&acute;' }} " />
+		            {% else %}
+		                <input type="hidden" class="ItemDescription" id="ItemDescription{{ forloop.index }}" name='ItemDescription{{ forloop.index }}' value="{{ item.title | escape | replace: '"', '&acute;&acute;'}}" />
+		            {% endif %}
+
+		            <input type="hidden" name="ItemImage{{ forloop.index }}" class="ItemImage" value='https:{{ item.product.images[0] | product_img_url: "thumb" }}' />
+		            <input type="hidden" name="ItemQuantity{{ forloop.index }}" value="{{ item.quantity }}" />
+		            <input type="hidden" name="ItemSKU{{ forloop.index }}" value="{{ item.sku }}" />
+		            <input type="hidden" name="ItemPrice{{ forloop.index }}" value='{{ item.price | money | strip_html | replace: "$", "" }}' />
+		            
+		    {% endfor %}
+
+				<!-- Replace 'test' with your store's p value
+				============================================= -->
+		        <input type="hidden" name="p" value="biolitetest" />
+		        
+		        <input type="hidden" name="shipping_method" id="shipping_method" value="" />
+		        
+				<!-- For Flat Rate Shipping charges, add the amount in 'value' attribute
+				======================================================================== -->
+		        <input type="hidden" name="external_domesticshipping" id="external_domesticshipping" value="" />
+		        
+		</form>
+
+
+		<!-- Set a status in the case of empty cart 
+		============================================= -->
+		{% if cart.item_count == 0 %}
+		        <input type="hidden" id="cartStatus" value="1" />
+		{% endif %}
+
+
+		<!-- Display link back to home page in the case of empty cart 
+		============================================= -->
+		<p id="noItem" style="display: none;height: 400px;text-align: center;padding: 50px;" >Your shopping cart is empty. <a href="/" title="Continue Shopping">Continue Shopping</a></p>
+
+		<!-- Load jQuery to perform Javascript functionality
+		============================================= -->
+		<!-- script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script -->
+		<script type="text/javascript">
+
+		    var name = "";
+			var price;
+			var index = 1;
+			var host;
+			var name =  new Array();
+			var price =  new Array();
+			$(document).ready(function () {
+				if(document.getElementById('cartStatus')){
+					
+					document.getElementById('noItem').style.display = '';
+				
+				}else if($(".giftCard") && $(".giftCard").val() == '1'){
+		        
+					alert('Gift Certificate is not available for international orders. Please remove Gift Certificate from shopping cart before proceeding with International Checkout.'); 
+		        	window.location.href = '/cart'; 
+				
+				}else{
+					makeform();
+				}
+			});
+		function makeform() {
+			var url = '/cart/shipping_rates.json?shipping_address[zip]=91406&shipping_address[country]=United States&shipping_address[province]=California';
+			var currentUrl = window.location.href;
+			var urlAux = currentUrl.split('/');
+			host = urlAux[2];
+			if (navigator.userAgent.match(/msie/i)){
+				jQuery.support.cors = true;
+				$.ajax({
+					type: "GET",
+					url: url,      
+					crossDomain:true,
+					async: false,
+					beforeSend: function(x) {
+						if(x && x.overrideMimeType) {
+							x.overrideMimeType("application/j-son;charset=UTF-8");
+						}
+					},
+					dataType: "text",
+					success: function(data){
+						var json = eval('(' + data + ')');
+						if (json && json['shipping_rates'] && json['shipping_rates'][0] && json['shipping_rates'][0]['name']) {
+							ShippingRates = json['shipping_rates'];
+							for (var i in ShippingRates) {
+								ShippingRate = ShippingRates[i];
+								getShippingRateDetailsResponse(ShippingRate);
+							}
+						}
+					}
+				});
+			}else{
+				jQuery.ajax({
+					url:url,
+					cache:false,
+					dataType:'text',
+					crossDomain:true,
+					success:function (data, textStatus, XMLHttpRequest) {
+						var json = eval('(' + data + ')');
+						if (json && json['shipping_rates'] && json['shipping_rates'][0] && json['shipping_rates'][0]['name']) {
+							ShippingRates = json['shipping_rates'];
+							for (var i in ShippingRates) {
+								ShippingRate = ShippingRates[i];
+								getShippingRateDetailsResponse(ShippingRate);
+							}
+						}
+				},
+				error:function () {
+					return false;
+				}
+				});
+			}
+			
+		}
+		function getShippingRateDetailsResponse(response) {
+			if(response['name'] != ''){
+				name[index-1] = response['name'];
+				price[index-1] = response['price'];
+				
+					if (index == ShippingRates.length) {
+						sortedArray = price.sort(function(a,b){return a - b});		// Sort the shipping price from low to high.
+						// Find the index of low price in the array
+						for(var k=0;  k < sortedArray.length; k++){
+							if(sortedArray[0] == price[k]){
+								break;
+							}
+						}
+						shipping_method = name[k];	
+						shipping_price = price[k];
+						
+		                $("#external_domesticshipping").val(shipping_price);
+						$("#shipping_method").val(shipping_method);
+		                
+		                //-- Iframe to load Ic cart landing page
+		                //===========================================
+						$("#loading").after('<iframe style="min-height:1150;display:none" name="icIframe" id="icIframe" src="javascript:parent.getFrameHTML();" frameborder="0" align="center" width="100%" scrolling="auto" height="1150">Your Browser Does Not upport Frames</iframe>');
+						document.getElementById('icIframe').src = "";
+						document.getElementById('icIframe').src = "https://www.internationalcheckout.com/cart.php?ver="+Math.random();
+		                document.getElementById('icForm').submit();
+		        	
+		        		$(".sidebar").css("display", "none"); // Remove side bar so that Ic page can load in full page width, please match the class of side bar below
+		                $(".main").css("width", "940px"); // Set the width of main container, please match the class of container below
+		                // Load Ic iframe page
+						setTimeout(function() {
+							$('#icIframe').fadeIn();
+							$(".clearfix.page-container").css("width", "100%");
+							$("#loading").css("display","none");// Don't display the loading text now as Ic iframe has been loaded now.
+							$("#icForm").remove();// Remove Ic for for security
+						}, 5000);
+					}
+					index++;
+			}
+		}
+		</script>
+
+	</div>
+</section>

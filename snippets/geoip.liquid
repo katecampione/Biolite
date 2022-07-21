@@ -1,0 +1,27 @@
+{% if settings.enable_geoip %}
+
+    {% include 'geoip_service' %}
+    <script>
+        var geoip = new GeoIPService();
+        geoip.getLocation();
+
+        var locationSwitcher = new LocationSwitcherModule(); // fresh instance of location switcher
+
+        function getRedirectUrl(base) {
+            return base + window.location.pathname + window.location.search;
+        }
+
+        // Show the popup to a user who doesn't have a suggested store
+        function showPopUpOne(suggested_region) {
+            console.log("ROW store - show all store options!")
+            locationSwitcher.openModal();
+        }
+
+        // Show the popup to a client that has a suggested store.
+        function showPopUpTwo(go_to_store) {
+            this_store = "{{ settings.geoip_current_store }}";
+            console.log("Store recommendation popup - show " + this_store + " and " + go_to_store);
+            locationSwitcher.openModal();
+        }
+    </script>
+{% endif %}

@@ -1,0 +1,26 @@
+<!-- Start Attribution.io Snippet for customer registrations -->
+<script>
+var _attio = _attio || [];
+(function(){
+{% if customer %}
+	customer_info = {
+	  name: "{{ customer.name }}",
+	  email: "{{ customer.email }}",
+	  totalSpent: "{{ customer.total_spent }}",
+	  allOrdersCount: {{ customer.orders_count }},
+	  has_account: {{customer.has_account}},
+	  details_url: 'https://biolite-2.myshopify.com/admin/customers/'+{{customer.id}},
+	};
+	customer_id = {{customer.id}};
+{% else %}
+	customer_id = null;
+{% endif %}
+loginPage = '/account/register';
+ref = document.referrer;
+if( (ref.indexOf(loginPage) + loginPage.length) == ref.length ){
+	_attio.push({command:'event', event_name: 'registration', event_key: '001e2d134bd5e708', client_id: customer_id, transaction_id: '{{customer.id}}' });
+}
+})();
+</script>
+<!-- End Attribution.io Snippet -->
+ 

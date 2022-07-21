@@ -1,0 +1,61 @@
+{% comment %}
+  
+  --------------------------------
+
+  BioLite Sorting Nav PARTIAL
+
+  the function APP.isotope.hash() will force click these depending on circumstances
+
+  --------------------------------
+
+{% endcomment %}
+
+{% unless collection.handle == 'all' or collection.handle == 'all-products' %}
+  <nav id="product-grid-filter" class="nav-horizontal nav-horizontal--icons" data-sticky>
+    <div class="wrapper wrapper--full wrapper--max_height">
+
+      <div class="nav-horizontal__menu">
+        <ul class="product-categories">
+
+          <li id="all" class="active">
+            <a href="javascript:;" class="isotope-filter" data-filter=".product-category--all-products-test" title="Shop All">
+              <i class="icomoon icon-cart-small-01"></i>
+              <span>Shop All</span>
+            </a>
+          </li>
+          <li id="cooking">
+            <a href="javascript:;" class="isotope-filter" data-filter=".product-category--cooking" title="Cooking">
+              <i class="icomoon icon-cook-small"></i>
+              <span>Cooking</span>
+            </a>
+          </li>
+          <li id="charging">
+            <a href="javascript:;" class="isotope-filter" data-filter=".product-category--charging" title="Charging">
+              <i class="icomoon icon-charge-small"></i>
+              <span>Charging</span>
+            </a>
+          </li>
+          <li id="lighting">
+            <a href="javascript:;" class="isotope-filter" data-filter=".product-category--lighting" title="Lighting">
+              <i class="icomoon icon-light-small"></i>
+              <span>Lighting</span>
+            </a>
+          </li>
+          <li id="systems">
+            <a href="javascript:;" class="isotope-filter" data-filter=".product-category--systems" title="Systems">
+              <i class="icomoon icon-shop-small"></i>
+              <span>Systems</span>
+            </a>
+          </li>
+            <li id="webexclusive" class="mobile-hide">
+            <a href="javascript:;" class="isotope-filter" data-filter=".product-category--web-exclusive" title="Web Exclusive">
+              <span class="mobile-hide"><i class="icomoon icon-web-small-01 mobile-hide"></i></span>
+              <span class="mobile-hide">Web Exclusive</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+{% endunless %}

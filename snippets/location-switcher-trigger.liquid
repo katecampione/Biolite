@@ -1,0 +1,9 @@
+<a href="#locationSwitcher" title="Choose Your Region" aria-label="Opens new dialog" class="location-switcher-trigger" data-location-switcher-trigger>
+  <span class="location-switcher-trigger-flags">
+    <img src="{{ settings.geoip_current_store_flag_1 | img_url: 'master' }}" alt="{{ settings.geoip_current_store_flag_1.alt }}" />
+    {% if settings.geoip_current_store_flag_2 %}
+      <img src="{{ settings.geoip_current_store_flag_2 | img_url: 'master' }}" alt="{{ settings.geoip_current_store_flag_2.alt }}" />
+    {% endif %}
+  </span>
+  <strong class="location-switcher-trigger-short-title">{{ settings.geoip_current_store }}</strong>
+</a>

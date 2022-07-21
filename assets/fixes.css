@@ -1,0 +1,27 @@
+
+/**
+ * Product Grid
+ */
+.product-grid-item__clickable {
+  position: absolute;
+  z-index:10;
+  top:0;left:0;
+  width:100%;height:65%;
+}
+
+
+/**
+ * Nav Circles
+ */
+.nav-circles.nav-circles--transparent  li .circle,
+.nav-circles.nav-circles--transparent  li.active .circle {
+
+  /*border-color:white;*/
+}
+
+/**
+ * Badge
+ */
+.badge {
+  display:none;
+}

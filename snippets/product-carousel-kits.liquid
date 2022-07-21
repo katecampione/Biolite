@@ -1,0 +1,15 @@
+<!-- HERO HOME -->
+<ul id="product-carousels">
+  {% assign images = product.images %}
+  <li class="carousel">
+    <div class="hero__viewport hero-carousel">
+      <ul class="slides">
+        {% for image in images %}
+        <li>
+          <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.title }}" />
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </li>
+</ul>

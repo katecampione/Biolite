@@ -1,0 +1,750 @@
+{% comment %} Set some product details so we can use them in multiple spots {% endcomment %}
+{% assign product_title_shortened = product.title | remove: 'BioLite' %}
+{% assign default_variant = bold_selected_or_first_available_variant %}
+{%- include 'bold-variant' with default_variant, output: 'none' -%}
+{% assign featured_image = default_variant.featured_image | default: product.featured_image %}
+{% assign features_and_specs = product.metafields.content.features_and_specs | split: ',' %}
+
+{% capture product_price_meta %}
+  <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+  <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+  <meta itemprop='productID' content='{{ product.id }}' />
+  <meta itemprop='productAddToCartText' content='{{ add_to_cart_text }}' />
+  <meta itemProp='quantity' content="1"/>
+  {% for variant in product.variants %}
+{%- include 'bold-variant' with variant, hide_action: 'skip' -%}
+    <meta itemprop='variantPrice' content='{{ bold_variant_price }}' data-variant-id='{{ variant.id }}' />
+    {% if variant.compare_at_price %}
+      <meta itemprop='comparePrice' location='{{ variant.option1 }}' content='{{ variant.compare_at_price }}' data-variant-id='{{ variant.id }}' />
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+<div itemscope itemtype="http://schema.org/Product">
+
+  <nav class="nav-horizontal nav-horizontal--products" data-sticky>
+    <div class="wrapper wrapper--full wrapper--max_height">
+      <div class="grid__item grid__item--p0 nav-horizontal__title">
+        {% assign product_title_shortened = product.title | remove: 'BioLite'  | remove: '(BaseCamp Sold Separately)' %}
+        
+        {% if product.tags contains 'category-stoves' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline;">Home</a><span class="category-arrows">>></span><a href="/collections/stoves" class="gray-warm din-medium" style="text-decoration:underline">Stoves</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% elsif product.tags contains 'category-power' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline">Home</a><span class="category-arrows">>></span><a href="/collections/power" class="gray-warm din-medium" style="text-decoration:underline">Power</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% elsif product.tags contains 'category-lighting' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline">Home</a><span class="category-arrows">>></span><a href="/collections/lighting" class="gray-warm din-medium" style="text-decoration:underline">Lighting</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% elsif product.tags contains 'category-gearkits' %}
+        <a href="/" class="gray-warm din-medium" style="text-decoration:underline">Home</a><span class="category-arrows">>></span><a href="/collections/gearkits" class="gray-warm din-medium" style="text-decoration:underline">Gear Kits</a><span class="category-arrows">>></span><span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% else %}
+        <span class="gray-warm din-medium" title="{{ product_title_shortened }}">{{ product_title_shortened }}</span>
+        {% endif %}
+      </div>
+      <div class="grid__item nav-horizontal__menu">
+
+      </div>
+      {% if product.tags contains '' or product.available == false %}
+
+      {% else %}
+
+        <div class="grid__item nav-horizontal__action">
+         
+          {{ product_price_meta }}
+        </div>
+
+      {% endif %}
+
+    </div>
+
+  </nav>
+
+  <!--/product-page-view-->
+  <div class="product-page-view">
+
+    <div id="shop-with-impact-dropdown">
+      <div class="dropdown" style='background-image: url("https://cdn.shopify.com/s/files/1/0666/9741/files/Impact_Dropdown_BG.jpg?17717286138029674813");'>
+        <div class="wrapper wrapper--large">
+          <div class="grid__item" style="text-align: right;">
+            <span class="icomoon icon-close-circle" data-toggle-shop-with-impact></span>
+          </div>
+          <div class="grid__item">
+            <h2>A Purchase With Impact</h2>
+            <p style="padding-right:130px" class="light" mb20 pr40>A portion of every sale from the BioLite shop gets re-invested into our work in bringing clean cooking and energy to thousands of families across India and sub-Saharan Africa.<br><br>We’re creating a new approach to energy access; one that empowers people to power themselves. And it all starts with you empowering us.</p>
+            <iframe width="475" height="267" style="border: 4px solid #fff; margin-top:30px;" src="https://www.youtube.com/embed/mV1MRlhLnWQ" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT OVERVIEW -->
+    <section id="product-overview" class="single-product-features single-product-features--tall" >
+      <div class="wrapper wrapper--full wrapper--max_height">
+
+        <!-- THUMBNAILS AND IMAGES -->
+        <div class="grid__item large--five-eighths medium--one-whole" id="product-thumbnails">
+
+          {% include 'product-carousel' %}
+          {% include "mini-slider" %}
+
+          {% if product.metafields.hero.video %}
+            <a href="#" class="mobile-video mobile-show" data-control-modal="#hero-video--{{ product.handle | handleize }}" title="{{ product_title_shortened }}">
+              <div class="text-center">
+                <i class="icomoon icon-youtube product-video-play"></i>
+                <strong>Watch:</strong>
+               {% if product.metafields.custom.videocaption %}
+                <p class="light">{{ product.metafields.custom.videocaption }}</p>
+                {% else %}
+                <p class="light">{{ product_title_shortened }}</p>
+             {% endif %}
+
+              </div>
+            </a>
+         
+          
+          
+          {% endif %}
+
+        </div>
+        <!--/ THUMBNAILS AND IMAGES -->
+
+        <!-- Content -->
+        <div class="grid__item large--three-eighths medium--one-whole table" id="product-content">
+
+          <div class="hide-on-mobile">
+            <h1>{{ product_title_shortened }}</h1>
+            <h2>{{ product.metafields.desc.short  }}</h2>
+
+            {% if product.tags contains 'limitededition' %}
+            {% else %}
+              <div class="hide-on-mobile">
+                <div class="pb20">
+                  <div class="star-container-top"></div>
+                  <a href="#" data-control-scrollto="#product-rating" data-control-scrollto-offset="68" class="gray-light top-see-all" title="See All">See All</a>
+                  <a href="#" data-control-scrollto="#product-rating" data-control-scrollto-offset="68" class="gray-light top-write-a-review" title="Write A Review">Write A Review</a>
+                </div>
+              </div>
+            {% endif %}
+
+            <p class="light">{{ product.content }}</p>
+          </div>
+
+ 
+          
+          
+      
+          
+          <div class="clearfix"></div>   
+          
+          
+       
+          
+
+          
+  {% if product.tags contains 'outofstock' or product.available == false %}
+                {% else %}
+     
+  {% if product.tags contains 'displayinventory' %}
+           <div class="shipping-notice">
+              <span class="icomoon icon-note-01 notice-icon"></span>
+             <span class="shipping-notice-message">Special Holiday Edition: Only <span style="text-decoration:underline">{{ bold_selected_or_first_available_variant.inventory_quantity  }}</span> Left In Stock</span>
+            </div>
+           {% else %}
+          {% endif %}
+      {% endif %}
+          
+    
+                   
+  
+
+
+          <!--PRICE QUANTITY CONTAINER-->
+          <div class="price-qty-container">
+
+            <div class="price-container">
+              <span id="ProductPrice" itemprop="price" class="h4">
+                <span data-otv-variant-price>{{ default_variant.price | money }}</span>
+                <div class="compare-at product-price-compare-strike">
+                  <span class="product-price-compare-strike" data-otv-variant-compare-price>
+                    {% if default_variant.compare_at_price > default_variant.price %}
+                    
+                      {{ default_variant.compare_at_price | money }}
+                    {% endif %}
+                  </span>
+                </div>
+              </span>
+            </div>
+
+            <div id="qty-select">
+              <div class="qty-text semibold" style="font-family:din-next-pro;color:#5D5D5D;">Quantity</div><!--
+              --><div class="qty-controls">
+                <span tabIndex="0" href="#" class="icomoon icon-quantity-minus"></span>
+                <span class="qty-text">1</span>
+                <span tabIndex="0" href="#" class="icomoon icon-quantity-plus"></span>
+              </div>
+              <input type="hidden" id="product-qty" name="name" value="1">
+            </div>
+
+          </div>
+           
+        
+          <!--/PRICE QUANTITY CONTAINER-->
+
+            {% if bold_selected_or_first_available_variant.inventory_quantity < 3  %}
+           
+                {% if product.metafields.shipping.noticenew %}
+          <div class="shipping-notice">
+              <span class="icomoon icon-shipping-exception-01 shipping-icon"></span>
+              <span class="shipping-notice-message">{{ product.metafields.shipping.noticenew }}</span>
+            </div>
+            {% else %}
+          
+          <div class="shipping-notice">
+              <span class="shipping-notice-message">THIS ITEM IS BACKORDERED <br>Orders can still be placed &amp; you'll receive an email when shipped </span>
+            </div>
+          {% endif %}
+      {% endif %}
+          
+               
+          
+          {% if product.tags contains 'outofstock'%}
+           
+          <div class="shipping-notice">
+              <span class="icomoon icon-shipping-exception-01 shipping-icon"></span>
+              <span class="shipping-notice-message">{{ product.metafields.outofstock.custommessage }}</span>
+            </div>
+            {% else %}
+      {% endif %}
+   
+
+          <!--NO INVENTORY-->
+          {% if product.tags contains 'noinventory'%}
+           
+      {% if product.metafields.outofstock.custommessage %}
+          
+          <div class="grid__item large mt40">
+            
+              <span class="soldout-notice-message mb10">{{ product.metafields.outofstock.custommessage }}</span>
+            </div>
+         {% else %}
+
+          
+          <div class="grid__item large mt40">
+              <span class="shipping-notice-message mb10">Out of stock. Be the first to know when the next batch ships.</span>
+              <div style="margin:10px 0 20px 0;">
+                <form id="email_signup" style="margin:0 auto;" class="klaviyo_condensed_styling klaviyo_condensed_float klaviyo_condensed_embed_HeBeHG" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" target="_blank" novalidate="novalidate">
+                  <input type="hidden" name="g" value="HeBeHG">
+                  <div class="klaviyo_field_group">
+                    <label for="k_id_email">Newsletter Sign Up</label>
+                    <input type="email" value="" name="email" id="k_id_email" placeholder="Enter Email" />
+                  </div>
+                  <div class="klaviyo_messages">
+                    <div class="success_message" style="display:none;"></div>
+                    <div class="error_message" style="display:none;"></div>
+                  </div>
+                  <div class="klaviyo_form_actions">
+                    <button type="submit" class="klaviyo_submit_button">Notify Me</button>
+                  </div>
+                </form>
+              </div>
+              <style type="text/css">
+                .klaviyo_styling.klaviyo_condensed_embed_HeBeHG,
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_HeBeHG {
+                  font-family: opensans, Arial;
+                }.klaviyo_styling.klaviyo_condensed_embed_HeBeHG label,
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_HeBeHG label {
+                  color:#222;
+                }.klaviyo_styling.klaviyo_condensed_embed_HeBeHG input[type=text],
+                .klaviyo_styling.klaviyo_condensed_embed_HeBeHG input[type=email],
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_HeBeHG input[type=text],
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_HeBeHG input[type=email] {
+                  border-radius: 2px;
+                  height:50px;
+                  font-family: opensans, Arial;
+
+                }
+                .klaviyo_condensed_styling .klaviyo_field_group {
+                    width: 275px;
+                    margin: 0 5px 0 0;
+                }
+                  .klaviyo_condensed_styling, .klaviyo_styling {
+                    max-width: 400px;
+                }
+
+                  .klaviyo_condensed_styling .klaviyo_submit_button, .klaviyo_styling .klaviyo_submit_button {
+                     font-family: din-next-pro, Arial;
+                    font-size:16px;
+
+                }
+
+                  .klaviyo_condensed_styling .klaviyo_messages .error_message, .klaviyo_condensed_styling .klaviyo_messages .success_message, .klaviyo_styling .klaviyo_messages .error_message, .klaviyo_styling .klaviyo_messages .success_message {
+                    font-size: 16px;
+                    line-height: 1.2;
+                    margin-bottom: 12px;
+                    padding-top: 20px;
+                    font-family: din-next-pro;
+                }
+
+                  .klaviyo_styling.klaviyo_condensed_embed_HeBeHG .klaviyo_submit_button,
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_HeBeHG .klaviyo_submit_button {
+                  background-color:#35A8A6;
+                  border-radius: 2px;
+                  height:50px;
+                }.klaviyo_styling.klaviyo_condensed_embed_HeBeHG .klaviyo_submit_button:hover,
+                .klaviyo_condensed_styling.klaviyo_condensed_embed_HeBeHG .klaviyo_submit_button:hover {
+                  background-color:#35A8A6;
+                }
+              </style>
+              <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+              <script type="text/javascript">
+                KlaviyoSubscribe.attachToForms('#email_signup', {
+                  hide_form_on_success: true,
+                  success_message: "Your email has been added. We'll let you know as soon as we're back in stock."
+                });
+              </script>
+
+            </div>
+          
+                    {% endif %}
+
+
+          <!--/OUT OF STOCK-->
+          {% else %}
+          <!--IN STOCK-->
+
+            <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddSingleToCartForm">
+              {% comment %}<input type="hidden" name="id" value="{{ bold_selected_or_first_available_variant.id }}" />{% endcomment %}
+
+              {% if product.has_only_default_variant %}
+
+                <!-- DEFAULT VARIANT HIDDEN -->
+                <input type="hidden" name="id" value="{{ default_variant.id }}" data-otv-variant-field />
+
+              {% else %}
+
+                {% comment %}
+                  Multi-option support with fallback
+                {% endcomment %}
+                <div class="otv-option-selects-container">
+                  <select id="BasicSelector" name="id" data-otv-variant-field>
+                    <option disabled selected>Select an option</option>
+                    {% for variant in product.variants %}
+{%- include 'bold-variant' with variant, hide_action: 'skip' -%}
+                      <option>
+                        {% unless variant.available %}disabled{% endunless %}
+                        {% if variant == default_variant %}selected{% endif %}
+                        value="{{ variant.id }}"
+                      
+                          {{ variant.title }}
+                          {% if variant.available %}
+                            - {{bold_variant_price | money }}
+                            {% if variant.compare_at_price > bold_variant_price %}
+                              (Was {{ variant.compare_at_price | money }}{% if price_suffix %} {{price_suffix}}{% endif %})
+                            {% endif %}
+                          {% else %}
+                            - SOLD OUT
+                          {% endif %}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+              {% endif %}
+              
+                  
+          <!--SHIPPING DELAY-->
+          {% if product.tags contains 'shippingdelay'%}
+                     
+          <div class="grid__item large small--text-center mt10">
+            
+              <span class="soldout-notice-message mb10">{{ product.metafields.shippingdelay.custommessage }}</span>
+            </div>
+         {% else %}
+           {% endif %}
+
+              
+
+
+              <div style="clear: both;"></div>
+            </form>
+
+{%- unless bundle_loaded == 'true' -%}
+{%- include 'shappify-bdl-load-bundle' -%}
+{%- assign bundle_loaded = 'true' -%}
+{%- endunless -%} 
+
+
+          <!--/IN STOCK-->
+          {% endif %}
+
+         
+        {% if product.tags contains 'outofstock' or product.available == false %}
+          {% else %}
+
+          <!--RELATED PRODUCTS-->
+          {% if product.metafields.recommendations.productHandles %}
+            <div class="upsell-section">
+              <span class="upsell-title">{{ product.metafields.upsell.title }}</span>
+              <div id="product-accessories" class="related-products">
+                {% comment %} Related products will be appended here {% endcomment %}
+              </div>
+            </div>
+          {% else %}
+          {% endif %}
+          
+        {% endif %}  
+
+        </div>
+        <!--/ Content -->
+
+      </div>
+    </section>
+    <!--/PRODUCT OVERVIEW -->
+
+    <div class="mobile-wrapper closed">
+      <h2 class="mobile-title"> Description </h2>
+      <section id="product-content" class="mobile-wrapper-content">
+        <div class="mobile-description">
+          <h2>{{ product.metafields.desc.short  }}</h2>
+          <p class="light">{{ product.content }}</p>
+        </div>
+      </section>
+    </div>
+
+    <a name="video-tab"></a>
+
+    <!-- FEATURES & SPECS -->
+    <div id="product-features-and-specs">
+      <ul class="tabs">
+        {% for tab_item in features_and_specs %}
+          {% assign tab_string = tab_item | downcase | replace: ' ','_' %}
+          <li class="light {% if forloop.first == true %}active{% endif %}" data-tab="{{ tab_string }}" aria-controls="{{ tab_string }}" aria-selected="false" tabIndex="0" role="tab"> {{ tab_item }} </li>
+        {% endfor %}
+      </ul>
+
+      <div class="tabs-content">
+        {% for section_title in features_and_specs %}
+
+          {% assign section_string = section_title | downcase | replace: ' ','_' %}
+          {% assign include_string = product.handle | remove: 'biolite-' | prepend: "_" | prepend: section_string %}
+          <div class="{% if forloop.first == true %}active{% endif %} content-section" id="{{ section_string }}" role="tabpanel" tabIndex="0">
+            {% include include_string %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!--/FEATURES & SPECS -->
+
+    <!--PRODUCT FEATURES-->
+    {% if product.metafields.features_slide01.image %}
+      <div class="mobile-wrapper closed">
+        <h2 class="mobile-title"> Images </h2>
+
+        <section id="product-features" class="single-product-features single-product-features--photo_bg mobile-wrapper-content">
+
+          <div class="wrapper wrapper--max_height single-product-features__inner">
+            <div class="grid__item large--one-half pr30">
+
+              <ul class="nav-circles nav-circles--transparent" data-control-nav data-control-targets="#single-product-slides, #single-product-slide-content">
+                {% if product.metafields.features_slide01.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 1', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide01.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide02.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 2', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide02.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide03.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 3', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide03.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide04.icon %}
+                  <li>
+                    <div class="circle icomoon" onClick="_gaq.push(['_trackEvent', 'Click', 'Icon 4', '{{ product.title }}']);">
+                      <i class="{{ product.metafields.features_slide04.icon }}"></i>
+                    </div>
+                  </li>
+                {% endif %}
+              </ul>
+
+              <ul id="single-product-slide-content" class="pt20" data-control-target>
+                {% if product.metafields.features_slide01.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide01.title }}</h3>
+                    <h6>{{ product.metafields.features_slide01.desc }}</h6>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide02.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide02.title }}</h3>
+                    <h6>{{ product.metafields.features_slide02.desc }}</h6>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide03.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide03.title }}</h3>
+                    <h6>{{ product.metafields.features_slide03.desc }}</h6>
+                  </li>
+                {% endif %}
+                {% if product.metafields.features_slide04.title %}
+                  <li>
+                    <h3 class="light">{{ product.metafields.features_slide04.title }}</h3>
+                    <h6>{{ product.metafields.features_slide04.desc }}</h6>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div><!--/single-product-features__inner-->
+
+          <div class="single-product-features__overlay"></div>
+
+          <ul id="single-product-slides" class="single-product-slides" data-control-target>
+            {% if product.metafields.features_slide01.image %}
+              <li class="features_slide01"></li>
+            {% endif %}
+            {% if product.metafields.features_slide02.image %}
+              <li class="features_slide02"></li>
+            {% endif %}
+            {% if product.metafields.features_slide03.image %}
+              <li class="features_slide03"></li>
+            {% endif %}
+            {% if product.metafields.features_slide04.image %}
+              <li class="features_slide04"></li>
+            {% endif %}
+          </ul>
+
+          {% include 'features_background_optimization'%}
+
+        </section>
+      </div>
+    {% endif %}
+    <!--/PRODUCT FEATURES-->
+
+    {% if product.tags contains 'limitededition' %}
+    {% else %}
+    <!--REVIEWS-->
+
+      <div class="mobile-wrapper closed reviews" id="product-reviews">
+        <h2 class="mobile-title">Reviews</h2>
+        <div class="product-reviews-container mobile-wrapper-content">
+          <div class="wrapper">
+            <section class="product-featurette section-large pt0--mobile" itemscope itemtype="http://schema.org/Product">
+              <header class="product-reviews__header text-center grid__item large--one-whole">
+                <h3 class="light">Reviews</h3>
+              </header>
+              {{ product_price_meta }}
+              <div class="product-featurette__image grid__item large--one-third tablet-portrait-hidden">
+                <img src="{{ featured_image | img_url: 'large' }}" alt="{{ product.title }}" title="{{ product.title }}">
+                <h3 class="alt baseline" itemprop="name">{{ product.title | remove: "BioLite" }}</h3>
+                {% if product.tags contains 'outofstock' or product.available == false %}
+                {% else %}
+                  <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddReviewedToCartForm">
+                    <button title="add {{product.title}} to cart" type="submit" onClick="_gaq.push(['_trackEvent', 'Click', 'Bottom Add To Cart', '{{ product.title }}']);" name="add" id="AddToCart" class="btn btn-primary cart-item--add" data-product-variant="{{ default_variant.id }}" data-otv-current-product-add>
+                      <span id="AddToCartText data-otv-current-product-add-text>{{ add_to_cart_text }}</span>
+                    </button>
+                  </form>
+                {% endif %}
+
+                <span id="ProductPrice" itemprop="price" class="product-grid-item__price h1 primary light">
+                  <span data-otv-variant-price>{{ default_variant.price | money }}</span>
+                </span>
+              </div>
+
+              <div class="product-featurette__content grid__item large--two-thirds table">
+                <div id="product-rating">
+                  <div id="shopify-product-reviews" data-id="{{product.id}}" class="show-rating">{{ product.metafields.spr.reviews }}</div>
+                  <a href="" class="spr-load-more" title="Load More Reviews">Load More Reviews</a>
+                </div>
+              </div>
+
+            </section>
+          </div>
+        </div>
+      </div>
+    <!--/REVIEWS-->
+    {% endif %}
+
+    <!-- </section> -->
+    <!-- #content -->
+
+    <!-- Scripts to hide and show all product reviews -->
+    <!-- @todo: 'show' btn if there aren't any reviews -->
+    <script>
+     $(document).ready(function(){
+       jQuery('#product-rating').append(' \
+       <a href="#" class="spr-summary-actions-allreviews gray-light" onclick="">See all Reviews</a>\
+       <a href="#" class="spr-summary-actions-hidereviews gray-light" onclick="">Hide Reviews</a>\
+       <a href="" class="spr-summary-actions-newreview gray-light" onclick="SPR.toggleForm({{product.id}});return false" style="float: left;">Write a review</a> \
+       ');
+
+       jQuery('.spr-summary-actions-hidereviews').hide();
+
+       /*
+        #HACK: don't know why is this change overwritting so I am adding a setTimeout to close this issue. <Rolando Perez.>
+       */
+
+       /*setTimeout(function(){
+         jQuery('.spr-reviews').attr("style","display:block;").addClass("show");
+       }, 7000);
+       */
+
+       jQuery(document).delegate('.spr-summary-actions-allreviews', 'click', function (event) {
+       event.preventDefault();
+       jQuery('.spr-reviews').removeClass('hide').addClass('show');
+       jQuery('.spr-summary-actions-allreviews').hide();
+       jQuery('.spr-summary-actions-newreview').show();
+       jQuery('.spr-load-more').show();
+       jQuery('.spr-form').removeClass('show').addClass('hide');
+       });
+
+       jQuery(document).delegate('#product-reviews .review-scrollto', 'click', function (event) {
+       event.preventDefault();
+       jQuery('.spr-summary-actions-allreviews').trigger( 'click' );
+       });
+
+       jQuery(document).delegate('.spr-summary-actions-newreview', 'click', function (event) {
+       jQuery('.spr-summary-actions-newreview').hide();
+       jQuery('.spr-summary-actions-allreviews').show();
+       jQuery('.spr-load-more').hide();
+       jQuery('.spr-reviews').removeClass('show').addClass('hide');
+       jQuery('.spr-form').removeClass('hide').addClass('show');
+       });
+
+       var paginateCallback = function(){
+         SPRCallbacks = {};
+
+         var nextPage = "",
+             lastPage = "",
+             pastComments = [],
+             nextAnchorTag = [],
+             commentsContainer = [],
+             html = "";
+
+         return function(e){
+           nextPage = $(".spr-pagination-next > a").attr("data-page");
+           lastPage = $(".spr-pagination-page > a").last().attr("data-page");
+           pastComments = $(".spr-reviews");
+           nextAnchorTag = $(".spr-pagination-next > a");
+           commentsContainer = $("#shopify-product-reviews .spr-reviews");
+
+           var comments = pastComments.clone();
+           comments.find(".spr-pagination").remove();
+           html = comments.html();
+
+           if(!SPRCallbacks.onReviewsLoad){
+             // pluging in into Shopify Product Reviews Object SPR;
+             SPRCallbacks.onReviewsLoad = function(e){
+               if(nextPage == lastPage){
+                 $(".spr-load-more").hide();
+               }
+
+               if(pastComments.length > 0){
+                 commentsContainer.prepend(html);
+               }
+
+             };
+
+             SPR.registerCallbacks();
+           }
+
+           nextAnchorTag.click();
+
+           return false;
+
+         }
+       }
+
+       $(".spr-load-more").click(paginateCallback());
+
+
+       /* AM - clone only reviews stars and numbers to the top */
+       jQuery('#product-rating .spr-summary-starrating').appendTo(".star-container-top");
+
+       //pull the intial text
+       var reviewtext = jQuery('#product-rating .spr-summary-caption').text();
+
+       console.log('reviewtext:',reviewtext);
+       //strip the "based on X review"
+       var numberreviews = reviewtext.replace(/on|Based|reviews|review/g,'');
+       numberreviews = numberreviews.replace(/\s+/g, '');
+       numberreviews = numberreviews.replace('(', '');
+       numberreviews = numberreviews.replace(')', '');
+       jQuery(".star-container-top").append('<span class="number-reviews-top">('+numberreviews+')</span>');
+
+       //Trigger opening of see all reviews, and write a review when you click the top
+       $('.top-see-all').click(function() {
+       jQuery('.spr-summary-actions-allreviews').trigger('click');
+       });
+
+       $('.top-write-a-review').click(function() {
+       jQuery('.spr-summary-actions-newreview').trigger('click');
+       SPR.toggleForm({{product.id}});
+       });
+
+       $(".mobile-wrapper").click(function(e){
+         var isOpened = $(this).hasClass("open"),
+             target = $(e.target);
+
+         if(isOpened && (target.hasClass("mobile-title") || target.hasClass("mobile-wrapper"))){
+           $(this).removeClass("open").addClass("closed");
+         }else{
+           $(this).removeClass("closed").addClass("open");
+         }
+       });
+
+     });
+    </script>
+
+    <!-- HERO VIDEO MODAL -->
+    {% if product.metafields.hero.video %}
+      <div id="hero-video--{{ product.handle | handlesize }}" class="modal">
+        <header class="modal__header">
+          {% comment %}<div class="modal__title">{% if product.metafields.hero.video_title %} {{ product.metafields.hero.video_title }} {% else %} {{ product.title }} {% endif %}</div>{% endcomment %}
+          <div class="modal--close">
+            <i class="icomoon icon-close-circle modal-close-button"></i>
+          </div>
+        </header>
+        <div class="modal__content modal__content--video">
+          <div data-control-youtube-video="{{ product.metafields.hero.video }}"></div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% comment %}
+    Add the product data to our Javascript Objects for various magics
+    {% endcomment %}
+    {% if product %}
+      <script type="text/javascript">
+      jQuery(function() {
+      APP.data.current_product = {%- include 'bold-product', output: 'json' -%}
+      APP.data.current_product_variants = {{ product.variants | json }}
+      {% if product.metafields.bundle.productHandle %}
+      meta = {
+      'bundle' : {
+      'productHandle' : {{ product.metafields.bundle.productHandle | json }},
+      'desc' : {{ product.metafields.bundle.desc | json }},
+      }
+      }
+      APP.data.current_product_metafields = meta
+      APP.GetBundledProduct.attach(meta.bundle)
+      {% endif %}
+      APP.getRecommendedProducts.attach({{ product.metafields.recommendations.productHandles | json }})
+      });
+      </script>
+    {% endif %}
+
+  </div><!--/product-page-view-->
+
+</div>
+
+<!-- make product data available to JS -->
+<script type="application/json" data-product-json>
+  {%- include 'bold-product', output: 'json' -%}
+</script>

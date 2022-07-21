@@ -1,0 +1,18 @@
+{% assign currencies = settings.supported_currencies | split: ' ' %}
+{% assign locations = settings.currencies_to_locations | split: ' ' %}
+
+<span class="money"
+{% for variant in product.variants  %}
+{%- include 'bold-variant' with variant, hide_action: 'skip' -%}
+	{% assign splitprice = variant.title | split: '-' %}
+	{% if splitprice.first == 'price' %}
+		{% for location in locations %}
+			{% if location == splitprice.last %}
+				{% assign i = forloop.index %}
+				data-currency-{{ currencies[i] }}="{{ bold_variant_price }} {{ currencies[i] }}"
+			{% endif %}
+		{% endfor  %}
+	{% endif %}
+{% endfor  %}>
+ {{ bold_price | money }}
+</span>

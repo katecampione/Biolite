@@ -1,0 +1,41 @@
+<div class="product-single__mini-slider">
+
+      <ul id="product-color-images-container">
+        <ul id="product-single__image" data-control-target>
+          <li>
+            <div class="shopify-3d-container" role="region" aria-live="polite">
+              <img data-src="{{ product.featured_image.src | img_url: '1024x1024' }}" class="hero-width lazyload" alt="" data-control-nav-image data-otv-variant-image>
+              <div class="shopify-3d-overlay" data-shopify-3d-variant-id="{{ bold_selected_or_first_available_variant.id }}" style="display: none;"></div>
+            </div>
+          </li>
+        </ul>
+
+         {% if product.metafields.hero.video %}
+      <a href="#" class="mobile-video lazyload" data-control-modal="#hero-video--{{ product.handle | handleize }}" title="{{ product_title_shortened }}">
+        <div class="text-center">
+          <i class="icomoon icon-youtube product-video-play"></i>
+        {% if product.metafields.custom.videocaption %}
+         Watch: {{ product.metafields.custom.videocaption }}
+          {% else %}
+          Watch: {{ product_title_shortened }}
+         {% endif %}
+
+        </div>
+      </a>
+      {% endif %}
+
+        <ul class="product-single__thumbnails" data-control-nav data-control-targets="#product-single__image">
+          {% for image in product.images limit:12 %}
+            <li class="grid__item">
+              <img data-src="{{ image.src | img_url: 'small' }}" class="lazyload"  alt="{{ image.alt | escape }}" title="{{ image.alt | escape }}" data-control-nav-thumb="{{ image.src | img_url: '1200x1200' }}" />
+            </li>
+          
+          {% endfor %}
+          
+        </ul>
+      </ul>
+  
+
+</div>
+
+
